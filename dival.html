@@ -1,0 +1,1178 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival package &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.datasets package" href="dival.datasets.html" />
+    <link rel="prev" title="dival" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="dival-package">
+<h1>dival package<a class="headerlink" href="#dival-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dival.datasets.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.datasets.html#module-dival.datasets.dataset">dival.datasets.dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.datasets.html#module-dival.datasets.standard">dival.datasets.standard module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.datasets.html#module-dival.datasets">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dival.reconstructors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.reconstructors.html#module-dival.reconstructors.odl_reconstructors">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.reconstructors.html#module-dival.reconstructors.reconstructor">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.reconstructors.html#module-dival.reconstructors.regression_reconstructors">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.reconstructors.html#module-dival.reconstructors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dival.util.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.util.html#module-dival.util.odl_noise_random_state">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.util.html#module-dival.util.odl_utility">dival.util.odl_utility module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.util.html#module-dival.util.plot">dival.util.plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.util.html#module-dival.util.std_out_err_redirect_tqdm">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.util.html#module-dival.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-dival.data">
+<span id="dival-data-module"></span><h2>dival.data module<a class="headerlink" href="#module-dival.data" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dival.data.DataPairs">
+<em class="property">class </em><code class="descclassname">dival.data.</code><code class="descname">DataPairs</code><span class="sig-paren">(</span><em>observations</em>, <em>ground_truth=None</em>, <em>name=''</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.data.DataPairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Bundles <cite>self.observations</cite> with <cite>self.ground_truth</cite>.</p>
+<dl class="attribute">
+<dt id="dival.data.DataPairs.observations">
+<code class="descname">observations</code><a class="headerlink" href="#dival.data.DataPairs.observations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The observation, possibly distorted or low-dimensional.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of observation space elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.data.DataPairs.ground_truth">
+<code class="descname">ground_truth</code><a class="headerlink" href="#dival.data.DataPairs.ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ground truth. May be replaced with a good quality reference. May
+also be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of reconstruction space elements or <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dival.evaluation">
+<span id="dival-evaluation-module"></span><h2>dival.evaluation module<a class="headerlink" href="#module-dival.evaluation" title="Permalink to this headline">¶</a></h2>
+<p>Provides classes and methods useful for evaluation of methods.</p>
+<dl class="class">
+<dt id="dival.evaluation.ResultTable">
+<em class="property">class </em><code class="descclassname">dival.evaluation.</code><code class="descname">ResultTable</code><span class="sig-paren">(</span><em>reconstructions=None</em>, <em>reconstructor=None</em>, <em>test_data=None</em>, <em>measure_values=None</em>, <em>misc=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Result table of running an evaluation task table.</p>
+<dl class="attribute">
+<dt id="dival.evaluation.ResultTable.results">
+<code class="descname">results</code><a class="headerlink" href="#dival.evaluation.ResultTable.results" title="Permalink to this definition">¶</a></dt>
+<dd><p>The results.
+It has the columns <code class="docutils literal notranslate"><span class="pre">'reconstructions'</span></code>, <code class="docutils literal notranslate"><span class="pre">'reconstructor'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'test_data'</span></code>, <code class="docutils literal notranslate"><span class="pre">'measure_values'</span></code> and <code class="docutils literal notranslate"><span class="pre">'misc'</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>pandas.DataFrame</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.ResultTable.apply_measures">
+<code class="descname">apply_measures</code><span class="sig-paren">(</span><em>measures</em>, <em>index=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable.apply_measures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable.apply_measures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply (additional) measures to reconstructions.</p>
+<p>This is not possible if the reconstructions were not saved, in which
+case a <cite>ValueError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>measures</strong> (<em>list of Measure</em>) – Measures to apply.</p></li>
+<li><p><strong>index</strong> (<em>int</em><em> or </em><em>sequence of ints</em><em>, </em><em>optional</em>) – Indexes of results to which the measures shall be applied.
+If <cite>index</cite> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, this is interpreted as “all results”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If reconstructions are missing or <cite>index</cite> is not valid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.ResultTable.plot_all_reconstructions">
+<code class="descname">plot_all_reconstructions</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable.plot_all_reconstructions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable.plot_all_reconstructions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot all reconstructions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>dict</em>) – Keyword arguments that are forwarded to <cite>self.plot_reconstruction</cite>.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ax</strong> – The axes the reconstructions were plotted in.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray of <cite>matplotlib.axes.Axes</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.ResultTable.plot_convergence">
+<code class="descname">plot_convergence</code><span class="sig-paren">(</span><em>index</em>, <em>measures=None</em>, <em>fig_size=None</em>, <em>gridspec_kw=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable.plot_convergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable.plot_convergence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot measure values for saved iterates.</p>
+<p>This shows the convergence behavior with respect to the measures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – Row index of the result.</p></li>
+<li><p><strong>measures</strong> (list of <cite>Measure</cite> or <cite>Measure</cite>, optional) – Measures to apply. Each measure is plotted in a subplot.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> is passed, all measures in <code class="docutils literal notranslate"><span class="pre">result['measure_values']</span></code>
+are used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ax</strong> – The axes the measure values were plotted in.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray of <cite>matplotlib.axes.Axes</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.ResultTable.plot_performance">
+<code class="descname">plot_performance</code><span class="sig-paren">(</span><em>measure</em>, <em>reconstructors=None</em>, <em>test_data=None</em>, <em>weighted_average=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable.plot_performance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable.plot_performance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot average measure values for different reconstructors.
+The values have to be computed previously, e.g. by
+<cite>self.apply_measures</cite>.</p>
+<p>The average is computed over all rows of <cite>self.results</cite> with the
+specified <cite>test_data</cite> that store the requested <cite>measure</cite> value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>measure</strong> (<cite>Measure</cite> or str) – The measure to plot (or its <code class="docutils literal notranslate"><span class="pre">short_name</span></code>).</p></li>
+<li><p><strong>reconstructors</strong> (sequence of <cite>Reconstructor</cite>, optional) – The reconstructors to compare. If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), all
+reconstructors that are found in the results are compared.</p></li>
+<li><p><strong>test_data</strong> (sequence of <cite>DataPairs</cite> or <cite>DataPairs</cite>, optional) – Test data to take into account for computing the mean value.</p></li>
+<li><p><strong>weighted_average</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to weight the rows according to the number of test data
+elements.
+Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>, i.e. all rows are weighted equally.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, all test data elements are weighted equally.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ax</strong> – The axes the performance was plotted in.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>matplotlib.axes.Axes</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.ResultTable.plot_reconstruction">
+<code class="descname">plot_reconstruction</code><span class="sig-paren">(</span><em>index</em>, <em>test_index=-1</em>, <em>plot_ground_truth=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable.plot_reconstruction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable.plot_reconstruction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the reconstruction at the specified index.
+Supports only 1d and 2d reconstructions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – Index of the task.</p></li>
+<li><p><strong>test_index</strong> (<em>sequence of int</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Index in test data. If -1, plot all reconstructions (the default).</p></li>
+<li><p><strong>plot_ground_truth</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show the ground truth next to the reconstruction.
+The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – Keyword arguments that are passed to <cite>plot_image</cite> if the
+reconstruction is 2d.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ax_list</strong> – The axes the reconstructions and eventually ground truth were
+plotted in.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of ndarray of matplotlib.axes.Axes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.ResultTable.print_summary">
+<code class="descname">print_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable.print_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable.print_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a summary of the results.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.ResultTable.to_string">
+<code class="descname">to_string</code><span class="sig-paren">(</span><em>max_colwidth=70</em>, <em>formatters=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable.to_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable.to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to string. Used by <cite>self.__str__</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_colwidth</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum width of each column, c.f. pandas’ option
+<code class="docutils literal notranslate"><span class="pre">'display.max_colwidth'</span></code>. Default is 70.</p></li>
+<li><p><strong>formatters</strong> (<em>dict of functions</em><em>, </em><em>optional</em>) – Formatter functions for the columns of <cite>self.results</cite>, passed to
+<cite>self.results.to_string</cite>.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – Keyword arguments passed to <cite>self.results.to_string</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The string.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.evaluation.TaskTable">
+<em class="property">class </em><code class="descclassname">dival.evaluation.</code><code class="descname">TaskTable</code><span class="sig-paren">(</span><em>name=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.TaskTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Task table containing reconstruction tasks to evaluate.</p>
+<dl class="attribute">
+<dt id="dival.evaluation.TaskTable.name">
+<code class="descname">name</code><a class="headerlink" href="#dival.evaluation.TaskTable.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the task table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.evaluation.TaskTable.tasks">
+<code class="descname">tasks</code><a class="headerlink" href="#dival.evaluation.TaskTable.tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tasks that shall be run. The fields of each dict are set from the
+parameters to <cite>append</cite> (or <cite>append_all_combinations</cite>). See the
+documentation of <cite>append</cite> for documentation of these fields.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.TaskTable.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>reconstructor</em>, <em>test_data</em>, <em>measures=None</em>, <em>dataset=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.TaskTable.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reconstructor</strong> (<cite>Reconstructor</cite>) – The reconstructor.</p></li>
+<li><p><strong>test_data</strong> (<cite>DataPairs</cite>) – The test data.</p></li>
+<li><p><strong>measures</strong> (sequence of (<cite>Measure</cite> or str)) – Measures that will be applied. Either <cite>Measure</cite> objects or their
+short names can be passed.</p></li>
+<li><p><strong>dataset</strong> (<cite>Dataset</cite>) – The dataset that will be passed to <cite>reconstructor.train</cite> if it is a
+<cite>LearnedReconstructor</cite>.</p></li>
+<li><p><strong>options</strong> (<em>dict</em>) – <p>Options that will be used. Options are:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'save_iterates'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether to save the intermediate reconstructions of iterative
+reconstructors (the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>).
+Will be ignored if <code class="docutils literal notranslate"><span class="pre">save_reconstructions=False</span></code> is passed to
+<cite>run</cite>. Requires the reconstructor to call its <cite>callback</cite>
+attribute after each iteration.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'save_iterates_measure_values'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether to compute and save the measure values for each
+intermediate reconstruction of iterative reconstructors
+(the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>). Requires the reconstructor to call
+its <cite>callback</cite> attribute after each iteration.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'save_iterates_step'</span></code><span class="classifier">int, optional</span></dt><dd><p>Step size for <code class="docutils literal notranslate"><span class="pre">'save_iterates'</span></code> and
+<code class="docutils literal notranslate"><span class="pre">'save_iterates_measure_values'</span></code> (the default is 1).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'hyper_param_search'</span></code><span class="classifier">dict, optional</span></dt><dd><p>Options for hyper parameter search. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default
+hyper parameter values are used. If given, it must specify the
+following fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'measure'</span></code><span class="classifier"><cite>Measure</cite></span></dt><dd><p>The measure used for hyper parameter optimization.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'dataset'</span></code><span class="classifier"><cite>Dataset</cite>, optional</span></dt><dd><p>Dataset for training the reconstructor. Only needs to
+be specified if the reconstructor is a
+<cite>LearnedReconstructor</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'HYPER_PARAMS'</span></code><span class="classifier">dict, optional</span></dt><dd><p>Hyper parameter specification overriding the defaults
+in <code class="docutils literal notranslate"><span class="pre">type(reconstructor).HYPER_PARAMS</span></code>.
+The structure of this dict is the same as the structure
+of <code class="docutils literal notranslate"><span class="pre">Reconstructor.HYPER_PARAMS</span></code>, except that all
+fields are optional.
+Here, each value of a dict for one parameter is treated
+as an entity, i.e. specifying the dict
+<code class="docutils literal notranslate"><span class="pre">HYPER_PARAMS[...]['grid_search_options']</span></code> overrides
+the whole dict, not only the specified keys in it.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.TaskTable.append_all_combinations">
+<code class="descname">append_all_combinations</code><span class="sig-paren">(</span><em>reconstructors</em>, <em>test_data</em>, <em>measures=None</em>, <em>datasets=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.append_all_combinations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.TaskTable.append_all_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append tasks of all combinations of test data, reconstructors and
+optionally datasets.
+The order is taken from the lists, with test data changing slowest
+and reconstructor changing fastest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reconstructors</strong> (list of <cite>Reconstructor</cite>) – Reconstructor list.</p></li>
+<li><p><strong>test_data</strong> (list of <cite>DataPairs</cite>) – Test data list.</p></li>
+<li><p><strong>measures</strong> (sequence of (<cite>Measure</cite> or str)) – Measures that will be applied. The same measures are used for all
+combinations of test data and reconstructors. Either <cite>Measure</cite>
+objects or their short names can be passed.</p></li>
+<li><p><strong>datasets</strong> (list of <cite>Dataset</cite>, optional) – Dataset list. Required if <cite>reconstructors</cite> contains at least one
+<cite>LearnedReconstructor</cite>.</p></li>
+<li><p><strong>options</strong> (<em>dict</em>) – Options that will be used. The same options are used for all
+combinations of test data and reconstructors. See <cite>append</cite> for
+documentation of the options.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.evaluation.TaskTable.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>save_reconstructions=True</em>, <em>show_progress='text'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.TaskTable.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all tasks and return the results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_reconstructions</strong> (<em>bool</em><em>, </em><em>optional</em>) – <p>Whether the reconstructions should be saved in the results.
+The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>If measures shall be applied after this method returns, it must be
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">False</span></code>, no iterates (intermediate reconstructions) will be
+saved, even if <code class="docutils literal notranslate"><span class="pre">task['options']['save_iterates']</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</p></li>
+<li><p><strong>show_progress</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Whether and how to show progress. Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'text'</span></code> (default)</dt><dd><p>print a line before running each task</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'tqdm'</span></code></dt><dd><p>show a progress bar with <code class="docutils literal notranslate"><span class="pre">tqdm</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">None</span></code></dt><dd><p>do not show progress</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dival.hyper_param_optimization">
+<span id="dival-hyper-param-optimization-module"></span><h2>dival.hyper_param_optimization module<a class="headerlink" href="#module-dival.hyper_param_optimization" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="dival.hyper_param_optimization.optimize_hyper_params">
+<code class="descclassname">dival.hyper_param_optimization.</code><code class="descname">optimize_hyper_params</code><span class="sig-paren">(</span><em>reconstructor</em>, <em>validation_data</em>, <em>measure</em>, <em>dataset=None</em>, <em>HYPER_PARAMS_override=None</em>, <em>hyperopt_max_evals=1000</em>, <em>hyperopt_max_evals_retrain=1000</em>, <em>hyperopt_rstate=None</em>, <em>show_progressbar=True</em>, <em>tqdm_file=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/hyper_param_optimization.html#optimize_hyper_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.hyper_param_optimization.optimize_hyper_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optimize hyper parameters of a reconstructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reconstructor</strong> (<cite>Reconstructor</cite>) – The reconstructor.</p></li>
+<li><p><strong>validation_data</strong> (<cite>DataPairs</cite>) – The test data on which the performance is measured.</p></li>
+<li><p><strong>measure</strong> (<cite>Measure</cite> or str) – The measure to use as the objective. The sign is chosen automatically
+depending on the measures <cite>measure_type</cite>.</p></li>
+<li><p><strong>dataset</strong> (<cite>Dataset</cite>, optional) – The dataset used for training <cite>reconstructor</cite> if it is a
+<cite>LearnedReconstructor</cite>.</p></li>
+<li><p><strong>HYPER_PARAMS_override</strong> (<em>dict</em><em>, </em><em>optional</em>) – Hyper parameter specification overriding the defaults
+in <code class="docutils literal notranslate"><span class="pre">type(reconstructor).HYPER_PARAMS</span></code>.
+The structure of this dict is the same as the structure
+of <code class="docutils literal notranslate"><span class="pre">Reconstructor.HYPER_PARAMS</span></code>, except that all
+fields are optional.
+Here, each value of a dict for one parameter is treated
+as an entity, i.e. specifying the dict
+<code class="docutils literal notranslate"><span class="pre">HYPER_PARAMS[...]['grid_search_options']</span></code> overrides
+the whole dict, not only the specified keys in it.</p></li>
+<li><p><strong>hyperopt_max_evals</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of evaluations for different combinations of the parameters that
+are optimized by <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code> and that do not require retraining.
+Default: 1000.
+Should be chosen depending on the complexity of dependence and the
+number of such parameters.</p></li>
+<li><p><strong>hyperopt_max_evals_retrain</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of evaluations for different combinations of the parameters that
+are optimized by <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code> and that require retraining.
+Default: 1000.
+Should be chosen depending on the complexity of dependence and the
+number of such parameters.</p></li>
+<li><p><strong>hyperopt_rstate</strong> (<cite>np.random.RandomState</cite>, optional) – Random state for the random searches performed by <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code>.</p></li>
+<li><p><strong>show_progressbar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show a progress bar for the optimization. Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>tqdm_file</strong> (<em>file-like object</em>) – File/stream to pass to <code class="docutils literal notranslate"><span class="pre">tqdm</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-dival.measure">
+<span id="dival-measure-module"></span><h2>dival.measure module<a class="headerlink" href="#module-dival.measure" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dival.measure.L2Measure">
+<em class="property">class </em><code class="descclassname">dival.measure.</code><code class="descname">L2Measure</code><span class="sig-paren">(</span><em>short_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#L2Measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.L2Measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.measure.Measure</span></code></a></p>
+<p>The euclidean (l2) distance measure.</p>
+<dl class="method">
+<dt id="dival.measure.L2Measure.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>reconstruction</em>, <em>ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#L2Measure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.L2Measure.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the value of this measure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The value of this measure for the given <cite>reconstruction</cite> and
+<cite>ground_truth</cite>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.L2Measure.description">
+<code class="descname">description</code><em class="property"> = 'distance given by sqrt(sum((reconstruction-ground_truth)**2))'</em><a class="headerlink" href="#dival.measure.L2Measure.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.L2Measure.measure_type">
+<code class="descname">measure_type</code><em class="property"> = 'distance'</em><a class="headerlink" href="#dival.measure.L2Measure.measure_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.L2Measure.name">
+<code class="descname">name</code><em class="property"> = 'euclidean distance'</em><a class="headerlink" href="#dival.measure.L2Measure.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.L2Measure.short_name">
+<code class="descname">short_name</code><em class="property"> = 'l2'</em><a class="headerlink" href="#dival.measure.L2Measure.short_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.measure.MSEMeasure">
+<em class="property">class </em><code class="descclassname">dival.measure.</code><code class="descname">MSEMeasure</code><span class="sig-paren">(</span><em>short_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#MSEMeasure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.MSEMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.measure.Measure</span></code></a></p>
+<p>The mean squared error distance measure.</p>
+<dl class="method">
+<dt id="dival.measure.MSEMeasure.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>reconstruction</em>, <em>ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#MSEMeasure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.MSEMeasure.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the value of this measure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The value of this measure for the given <cite>reconstruction</cite> and
+<cite>ground_truth</cite>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.MSEMeasure.description">
+<code class="descname">description</code><em class="property"> = 'distance given by 1/n * sum((reconstruction-ground_truth)**2)'</em><a class="headerlink" href="#dival.measure.MSEMeasure.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.MSEMeasure.measure_type">
+<code class="descname">measure_type</code><em class="property"> = 'distance'</em><a class="headerlink" href="#dival.measure.MSEMeasure.measure_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.MSEMeasure.name">
+<code class="descname">name</code><em class="property"> = 'mean squared error'</em><a class="headerlink" href="#dival.measure.MSEMeasure.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.MSEMeasure.short_name">
+<code class="descname">short_name</code><em class="property"> = 'mse'</em><a class="headerlink" href="#dival.measure.MSEMeasure.short_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.measure.Measure">
+<em class="property">class </em><code class="descclassname">dival.measure.</code><code class="descname">Measure</code><span class="sig-paren">(</span><em>short_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.Measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract base class for measures used for evaluation.</p>
+<dl class="attribute">
+<dt id="dival.measure.Measure.measure_type">
+<code class="descname">measure_type</code><a class="headerlink" href="#dival.measure.Measure.measure_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The measure type.
+Measures with type <code class="docutils literal notranslate"><span class="pre">'distance'</span></code> should attain small values if the
+reconstruction is good. Measures with type <code class="docutils literal notranslate"><span class="pre">'quality'</span></code> should attain
+large values if the reconstruction is good.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>{‘distance’, ‘quality’}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.Measure.short_name">
+<code class="descname">short_name</code><a class="headerlink" href="#dival.measure.Measure.short_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short name of the measure, used as identifier (key in <cite>measure_dict</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.Measure.name">
+<code class="descname">name</code><a class="headerlink" href="#dival.measure.Measure.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the measure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.Measure.description">
+<code class="descname">description</code><a class="headerlink" href="#dival.measure.Measure.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description of the measure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.Measure.measure_dict">
+<code class="descname">measure_dict</code><a class="headerlink" href="#dival.measure.Measure.measure_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registry of all measures with their <cite>short_name</cite> as key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict, class attribute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.measure.Measure.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>reconstruction</em>, <em>ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.Measure.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the value of this measure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">Class methods</code></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">-------------</code></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.measure.Measure.get_by_short_name">
+<code class="descname">get_by_short_name</code><span class="sig-paren">(</span><em>short_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.get_by_short_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.Measure.get_by_short_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <cite>Measure</cite> instance with given short name by registry lookup.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">apply</code><span class="sig-paren">(</span><em>reconstruction</em>, <em>ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.apply"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Calculate the value of this measure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The value of this measure for the given <cite>reconstruction</cite> and
+<cite>ground_truth</cite>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.measure.Measure.as_operator_for_fixed_ground_truth">
+<code class="descname">as_operator_for_fixed_ground_truth</code><span class="sig-paren">(</span><em>ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.as_operator_for_fixed_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.Measure.as_operator_for_fixed_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">description</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_by_short_name</code><span class="sig-paren">(</span><em>short_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.get_by_short_name"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">measure_dict</code><em class="property"> = {'l2': &lt;dival.measure.L2Measure object&gt;, 'mse': &lt;dival.measure.MSEMeasure object&gt;, 'psnr': &lt;dival.measure.PSNRMeasure object&gt;, 'ssim': &lt;dival.measure.SSIMMeasure object&gt;}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">measure_type</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">name</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">short_name</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.measure.PSNRMeasure">
+<em class="property">class </em><code class="descclassname">dival.measure.</code><code class="descname">PSNRMeasure</code><span class="sig-paren">(</span><em>max_value=None</em>, <em>short_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#PSNRMeasure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.PSNRMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.measure.Measure</span></code></a></p>
+<p>The peak signal-to-noise ratio (PSNR) measure.</p>
+<dl class="attribute">
+<dt id="dival.measure.PSNRMeasure.max_value">
+<code class="descname">max_value</code><a class="headerlink" href="#dival.measure.PSNRMeasure.max_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum image value that is possible.
+If <cite>max_value</cite> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">np.max(ground_truth)</span></code> is used in
+<cite>apply</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.measure.PSNRMeasure.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>reconstruction</em>, <em>ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#PSNRMeasure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.PSNRMeasure.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the value of this measure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The value of this measure for the given <cite>reconstruction</cite> and
+<cite>ground_truth</cite>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.PSNRMeasure.description">
+<code class="descname">description</code><em class="property"> = 'quality given by 10*log10(MAX**2/MSE)'</em><a class="headerlink" href="#dival.measure.PSNRMeasure.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.PSNRMeasure.measure_type">
+<code class="descname">measure_type</code><em class="property"> = 'quality'</em><a class="headerlink" href="#dival.measure.PSNRMeasure.measure_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.PSNRMeasure.name">
+<code class="descname">name</code><em class="property"> = 'peak signal-to-noise ratio'</em><a class="headerlink" href="#dival.measure.PSNRMeasure.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.PSNRMeasure.short_name">
+<code class="descname">short_name</code><em class="property"> = 'psnr'</em><a class="headerlink" href="#dival.measure.PSNRMeasure.short_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.measure.SSIMMeasure">
+<em class="property">class </em><code class="descclassname">dival.measure.</code><code class="descname">SSIMMeasure</code><span class="sig-paren">(</span><em>*args</em>, <em>short_name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#SSIMMeasure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.SSIMMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.measure.Measure</span></code></a></p>
+<p>The structural similarity index measure.</p>
+<dl class="method">
+<dt id="dival.measure.SSIMMeasure.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>reconstruction</em>, <em>ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#SSIMMeasure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.SSIMMeasure.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the value of this measure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The value of this measure for the given <cite>reconstruction</cite> and
+<cite>ground_truth</cite>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.SSIMMeasure.description">
+<code class="descname">description</code><em class="property"> = 'The (M)SSIM like described in `Wang et al. 2014 &lt;https://doi.org/10.1109/TIP.2003.819861&gt;`_.'</em><a class="headerlink" href="#dival.measure.SSIMMeasure.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.SSIMMeasure.measure_type">
+<code class="descname">measure_type</code><em class="property"> = 'quality'</em><a class="headerlink" href="#dival.measure.SSIMMeasure.measure_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.SSIMMeasure.name">
+<code class="descname">name</code><em class="property"> = 'structural similarity index'</em><a class="headerlink" href="#dival.measure.SSIMMeasure.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dival.measure.SSIMMeasure.short_name">
+<code class="descname">short_name</code><em class="property"> = 'ssim'</em><a class="headerlink" href="#dival.measure.SSIMMeasure.short_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="dival.measure.gen_unique_name">
+<code class="descclassname">dival.measure.</code><code class="descname">gen_unique_name</code><span class="sig-paren">(</span><em>name_orig</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#gen_unique_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.gen_unique_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-dival">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dival" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dival.Reconstructor">
+<em class="property">class </em><code class="descclassname">dival.</code><code class="descname">Reconstructor</code><span class="sig-paren">(</span><em>reco_space=None</em>, <em>observation_space=None</em>, <em>name=''</em>, <em>hyper_params=None</em>, <em>callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Reconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract reconstructor base class.</p>
+<p>Subclasses must implement the abstract method <cite>reconstruct</cite>.</p>
+<dl class="attribute">
+<dt id="dival.Reconstructor.name">
+<code class="descname">name</code><a class="headerlink" href="#dival.Reconstructor.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the reconstructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Reconstructor.callback">
+<code class="descname">callback</code><a class="headerlink" href="#dival.Reconstructor.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object that should be called at some point(s) in <cite>reconstruct</cite>.
+E.g. an iterative reconstructor could call it at each iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>odl.solvers.util.callback.Callback</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Reconstructor.HYPER_PARAMS">
+<code class="descname">HYPER_PARAMS</code><em class="property"> = {}</em><a class="headerlink" href="#dival.Reconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specification of hyper parameters.</p>
+<p>This class attribute is a dict that lists the hyper parameter of the
+reconstructor.
+It should not be hidden by an instance attribute of the same name (i.e. by
+assigning a value to <cite>self.HYPER_PARAMS</cite> in an instance of a subtype).</p>
+<p>The keys of this dict are the names of the hyper parameters, and each
+value is a dict with the following fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'default'</span></code></dt><dd><p>Default value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'retrain'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether training depends on the parameter. Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the reconstructor is retrained while optimizing
+the parameter value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'range'</span></code><span class="classifier">(float, float), optional</span></dt><dd><p>Interval of valid values. If this field is set, the parameter is
+taken to be real-valued.
+Either <code class="docutils literal notranslate"><span class="pre">'range'</span></code> or <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> has to be set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'choices'</span></code><span class="classifier">sequence, optional</span></dt><dd><p>Sequence of valid values of any type. If this field is set,
+<code class="docutils literal notranslate"><span class="pre">'range'</span></code> is ignored. Can be used to perform manual grid search.
+Either <code class="docutils literal notranslate"><span class="pre">'range'</span></code> or <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> has to be set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'method'</span></code><span class="classifier">{‘grid_search’, ‘hyperopt’}, optional</span></dt><dd><p>Optimization method for the parameter. Default: <code class="docutils literal notranslate"><span class="pre">'grid_search'</span></code>.
+Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'grid_search'</span></code></dt><dd><p>Grid search over a sequence of fixed values. Can be
+configured by the dict <code class="docutils literal notranslate"><span class="pre">'grid_search_options'</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'hyperopt'</span></code></dt><dd><p>Random search using the <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code> package. Can be
+configured by the dict <code class="docutils literal notranslate"><span class="pre">'hyperopt_options'</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'grid_search_options'</span></code><span class="classifier">dict</span></dt><dd><p>Option dict for grid search with the fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'num_samples'</span></code><span class="classifier">int, optional</span></dt><dd><p>Number of values. Default: 10.
+Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and <code class="docutils literal notranslate"><span class="pre">'choices'</span></code>
+is not.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'type'</span></code><span class="classifier">{‘linear’}, optional</span></dt><dd><p>Type of grid, i.e. distribution of the values.
+Default: <code class="docutils literal notranslate"><span class="pre">'linear'</span></code>.
+Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and <code class="docutils literal notranslate"><span class="pre">'choices'</span></code>
+is not.
+Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'linear'</span></code></dt><dd><p>Equidistant values in the <code class="docutils literal notranslate"><span class="pre">'range'</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'hyperopt_options'</span></code><span class="classifier">dict</span></dt><dd><p>Option dict for <code class="docutils literal notranslate"><span class="pre">'hyperopt'</span></code> method with the fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'space'</span></code><span class="classifier">hyperopt space, optional</span></dt><dd><p>Custom hyperopt search space. If this field is set,
+<code class="docutils literal notranslate"><span class="pre">'range'</span></code> and <code class="docutils literal notranslate"><span class="pre">'type'</span></code> are ignored.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'type'</span></code><span class="classifier">{‘uniform’}, optional</span></dt><dd><p>Type of the space for sampling. Default: <code class="docutils literal notranslate"><span class="pre">'uniform'</span></code>.
+Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'uniform'</span></code></dt><dd><p>Uniform distribution over the <code class="docutils literal notranslate"><span class="pre">'range'</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Reconstructor.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Reconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct input data from observation data.</p>
+<p>This method must be implemented by subclasses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Reconstructor.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Reconstructor.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the reconstructor.</p>
+<p>The default implementation resets <cite>callback</cite> if present.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.LearnedReconstructor">
+<em class="property">class </em><code class="descclassname">dival.</code><code class="descname">LearnedReconstructor</code><span class="sig-paren">(</span><em>reco_space=None</em>, <em>observation_space=None</em>, <em>name=''</em>, <em>hyper_params=None</em>, <em>callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
+<dl class="method">
+<dt id="dival.LearnedReconstructor.load_params">
+<code class="descname">load_params</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load parameters from path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters are stored. C.f. <cite>save_params</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.LearnedReconstructor.save_params">
+<code class="descname">save_params</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save parameters to path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters should be saved.
+Implementations should either use it as a file path (w/ or w/o
+extension) or as a directory path for multiple files (the dir
+should be created by this method if it does not exist).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.LearnedReconstructor.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the reconstructor with a dataset by adapting its parameters.</p>
+<p>Should only use the training data from <cite>dataset</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<cite>Dataset</cite>) – The dataset from which the training data should be used.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.DataPairs">
+<em class="property">class </em><code class="descclassname">dival.</code><code class="descname">DataPairs</code><span class="sig-paren">(</span><em>observations</em>, <em>ground_truth=None</em>, <em>name=''</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.DataPairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Bundles <cite>self.observations</cite> with <cite>self.ground_truth</cite>.</p>
+<dl class="attribute">
+<dt id="dival.DataPairs.observations">
+<code class="descname">observations</code><a class="headerlink" href="#dival.DataPairs.observations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The observation, possibly distorted or low-dimensional.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of observation space elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.DataPairs.ground_truth">
+<code class="descname">ground_truth</code><a class="headerlink" href="#dival.DataPairs.ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ground truth. May be replaced with a good quality reference. May
+also be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of reconstruction space elements or <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.Dataset">
+<em class="property">class </em><code class="descclassname">dival.</code><code class="descname">Dataset</code><span class="sig-paren">(</span><em>space=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="dival.Dataset.create_tensorflow_dataset">
+<code class="descname">create_tensorflow_dataset</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_tensorflow_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.create_tensorflow_dataset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.create_torch_dataset">
+<code class="descname">create_torch_dataset</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.generator">
+<code class="descname">generator</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> (<em>{'train'</em><em>, </em><em>'validation'</em><em>, </em><em>'test'}</em><em>, </em><em>optional</em>) – Whether to yield train, validation or test data.
+Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><strong>data</strong> (<em>odl element or sequence of odl elements</em>) – Sample of the dataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_data_pairs">
+<code class="descname">get_data_pairs</code><span class="sig-paren">(</span><em>part='train'</em>, <em>n=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_data_pairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_data_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return full data part as <cite>DataPairs</cite> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> (<em>{'train'</em><em>, </em><em>'validation'</em><em>, </em><em>'test'}</em><em>, </em><em>optional</em>) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pairs (from the beginning). If <code class="docutils literal notranslate"><span class="pre">None</span></code>, all available
+data is used (the default).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_len">
+<code class="descname">get_len</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of elements the generator will yield.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> (<em>{'train'</em><em>, </em><em>'validation'</em><em>, </em><em>'test'}</em><em>, </em><em>optional</em>) – Whether to return the number of train, validation or test elements.
+Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_shape">
+<code class="descname">get_shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_shape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the shape of each element.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_test_generator">
+<code class="descname">get_test_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_test_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_test_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_test_len">
+<code class="descname">get_test_len</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_test_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_test_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of elements the test generator will yield.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_train_generator">
+<code class="descname">get_train_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_train_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_train_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_train_len">
+<code class="descname">get_train_len</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_train_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_train_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of elements the train generator will yield.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_validation_generator">
+<code class="descname">get_validation_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_validation_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_validation_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_validation_len">
+<code class="descname">get_validation_len</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_validation_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_validation_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of elements the validation generator will yield.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">dival</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">dival package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">dival</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">dival</a></li>
+      <li>Next: <a href="dival.datasets.html" title="next chapter">dival.datasets package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/dival.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

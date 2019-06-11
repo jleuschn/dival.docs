@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival.util.odl_utility &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for dival.util.odl_utility</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Provides an interface to the ODL element classes.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">dival.util.odl_noise_random_state</span> <span class="k">import</span> <span class="p">(</span><span class="n">white_noise</span><span class="p">,</span> <span class="n">uniform_noise</span><span class="p">,</span>
+                                               <span class="n">poisson_noise</span><span class="p">,</span>
+                                               <span class="n">salt_pepper_noise</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">odl.discr.lp_discr</span> <span class="k">import</span> <span class="n">uniform_discr</span>
+<span class="kn">from</span> <span class="nn">odl.operator.operator</span> <span class="k">import</span> <span class="n">Operator</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="uniform_discr_element"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_utility.uniform_discr_element">[docs]</a><span class="k">def</span> <span class="nf">uniform_discr_element</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate an element of a ODL space from an array-like.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    inp : array-like</span>
+<span class="sd">        The input data from which the element is generated.</span>
+<span class="sd">    space : `odl.discr.DiscretizedSpace`, optional</span>
+<span class="sd">        The space which the element will belong to. If not given, a uniform</span>
+<span class="sd">        discretization space with cell size 1 centered around the origin is</span>
+<span class="sd">        generated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">inp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">space</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">space</span> <span class="o">=</span> <span class="n">uniform_discr</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+                              <span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">element</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">element</span></div>
+
+
+<div class="viewcode-block" id="apply_noise"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_utility.apply_noise">[docs]</a><span class="k">def</span> <span class="nf">apply_noise</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">noise_type</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Apply noise to an odl element.</span>
+<span class="sd">    Calls noise functions from ``odl.phantom.noise`` or their equivalents</span>
+<span class="sd">    from ``dival.util.odl_noise_random_state``, which support a custom random</span>
+<span class="sd">    state.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : odl element</span>
+<span class="sd">        The element to which the noise is applied (in-place).</span>
+<span class="sd">    noise_type : {&#39;white&#39;, &#39;uniform&#39;, &#39;poisson&#39;, &#39;salt_pepper&#39;}</span>
+<span class="sd">        Type of noise.</span>
+<span class="sd">    noise_kwargs : dict, optional</span>
+<span class="sd">        Keyword arguments to be passed to the noise function, e.g. ``&#39;stddev&#39;``</span>
+<span class="sd">        for ``&#39;white&#39;`` noise.</span>
+<span class="sd">    seed : int, optional</span>
+<span class="sd">        Random seed passed to the noise function.</span>
+<span class="sd">    random_state : `np.random.RandomState`, optional</span>
+<span class="sd">        Random state passed to the noise function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n_kwargs</span> <span class="o">=</span> <span class="n">noise_kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">n_kwargs</span><span class="p">[</span><span class="s1">&#39;seed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">seed</span>
+    <span class="n">n_kwargs</span><span class="p">[</span><span class="s1">&#39;random_state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">random_state</span>
+    <span class="k">if</span> <span class="n">noise_type</span> <span class="o">==</span> <span class="s1">&#39;white&#39;</span><span class="p">:</span>
+        <span class="n">relative_stddev</span> <span class="o">=</span> <span class="n">n_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;relative_stddev&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">stddev</span> <span class="o">=</span> <span class="n">n_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;stddev&#39;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">relative_stddev</span><span class="p">:</span>
+            <span class="n">mean_abs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+            <span class="n">stddev</span> <span class="o">*=</span> <span class="n">mean_abs</span>
+        <span class="n">noise</span> <span class="o">=</span> <span class="n">white_noise</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="n">stddev</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">noise_type</span> <span class="o">==</span> <span class="s1">&#39;uniform&#39;</span><span class="p">:</span>
+        <span class="n">noise</span> <span class="o">=</span> <span class="n">uniform_noise</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">noise_type</span> <span class="o">==</span> <span class="s1">&#39;poisson&#39;</span><span class="p">:</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="n">n_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;factor&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">factor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">intensity</span> <span class="o">=</span> <span class="n">n_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;intensity&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">intensity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;noise_kwargs must contain either a &quot;</span>
+                                 <span class="s2">&quot;&#39;factor&#39; or an &#39;intensity&#39; for &quot;</span>
+                                 <span class="s2">&quot;noise_type=&#39;poisson&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">intensity</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">factor</span>
+        <span class="n">noise</span> <span class="o">=</span> <span class="n">poisson_noise</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">noise_type</span> <span class="o">==</span> <span class="s1">&#39;salt_pepper&#39;</span><span class="p">:</span>
+        <span class="n">noise</span> <span class="o">=</span> <span class="n">salt_pepper_noise</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown noise type &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">noise_type</span><span class="p">))</span>
+
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">noise</span></div>
+
+
+<div class="viewcode-block" id="NoiseOperator"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_utility.NoiseOperator">[docs]</a><span class="k">class</span> <span class="nc">NoiseOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Operator applying noise.</span>
+
+<span class="sd">    Wraps `apply_noise`, which calls noise functions from ``odl.phantom.noise``</span>
+<span class="sd">    or their equivalents from ``dival.util.odl_noise_random_state``, which</span>
+<span class="sd">    support a custom random state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">noise_type</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct a noise operator.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        space : odl space</span>
+<span class="sd">            Domain and range.</span>
+<span class="sd">        noise_type : {&#39;white&#39;, &#39;uniform&#39;, &#39;poisson&#39;, &#39;salt_pepper&#39;}</span>
+<span class="sd">            Type of noise.</span>
+<span class="sd">        noise_kwargs : dict, optional</span>
+<span class="sd">            Keyword arguments to be passed to the noise function, e.g.</span>
+<span class="sd">            ``&#39;stddev&#39;`` for ``&#39;white&#39;`` noise.</span>
+<span class="sd">        seed : int, optional</span>
+<span class="sd">            Random seed passed to the noise function.</span>
+<span class="sd">        random_state : `np.random.RandomState`, optional</span>
+<span class="sd">            Random state passed to the noise function.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noise_type</span> <span class="o">=</span> <span class="n">noise_type</span> <span class="ow">or</span> <span class="s1">&#39;white&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noise_kwargs</span> <span class="o">=</span> <span class="n">noise_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+
+    <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">apply_noise</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise_type</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">noise_kwargs</span><span class="p">,</span>
+                    <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">dival</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

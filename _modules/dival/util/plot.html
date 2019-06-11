@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival.util.plot &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for dival.util.plot</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Provides utility functions for visualization.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">ceil</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># import mpl_toolkits.axes_grid.axes_size as Size</span>
+<span class="c1"># from mpl_toolkits.axes_grid import Divider</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="plot_image"><a class="viewcode-back" href="../../../dival.util.html#dival.util.plot.plot_image">[docs]</a><span class="k">def</span> <span class="nf">plot_image</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot `x` using matplotlib&#39;s `imshow` method.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array-like or PIL image</span>
+<span class="sd">        The image data. For further information see `imshow documentation</span>
+<span class="sd">        &lt;https://matplotlib.org/api/_as_gen/matplotlib.pyplot.imshow.html&gt;`_.</span>
+<span class="sd">    fig : matplotlib.figure.Figure, optional</span>
+<span class="sd">        The figure to plot the image in. If ``fig is None``, but `ax` is given,</span>
+<span class="sd">        it is retrieved from `ax`. If both ``fig is None`` and ``ax is None``,</span>
+<span class="sd">        a new figure is created.</span>
+<span class="sd">    ax : matplotlib.axes.Axes, optional</span>
+<span class="sd">        The axes to plot the image in. If ``None``, an axes object is created</span>
+<span class="sd">        in `fig`.</span>
+<span class="sd">    kwargs : dict, optional</span>
+<span class="sd">        Keyword arguments passed to `ax.imshow`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    im : matplotlib.image.AxesImage</span>
+<span class="sd">        The image that was plotted.</span>
+<span class="sd">    ax : matplotlib.axes.Axes</span>
+<span class="sd">        The axes the image was plotted in.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;cmap&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">xticks</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;xticks&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">yticks</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;yticks&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">xticks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">yticks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yticks</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">asarray</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">im</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="plot_images"><a class="viewcode-back" href="../../../dival.util.html#dival.util.plot.plot_images">[docs]</a><span class="k">def</span> <span class="nf">plot_images</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vrange</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span>
+                <span class="n">cbar</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">rect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fig_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot multiple images using matplotlib&#39;s `imshow` method in subplots.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x_list : list of (array-like or PIL image)</span>
+<span class="sd">        List of the image data. For further information see `imshow</span>
+<span class="sd">        documentation</span>
+<span class="sd">        &lt;https://matplotlib.org/api/_as_gen/matplotlib.pyplot.imshow.html&gt;`_.</span>
+<span class="sd">    nrows : int, optional</span>
+<span class="sd">        The number of subplot rows (the default is 1). If -1, it is computed by</span>
+<span class="sd">        ``ceil(len(x_list)/ncols)``, or set to 1 if `ncols` is not given.</span>
+<span class="sd">    ncols : int, optional</span>
+<span class="sd">        The number of subplot columns. If -1, it is computed by</span>
+<span class="sd">        ``ceil(len(x_list)/nrows)`` (default). If both `nrows` and `ncols` are</span>
+<span class="sd">        given, the value of `ncols` is ignored.</span>
+<span class="sd">    vrange : {&#39;equal&#39;, &#39;individual&#39;} or [list of ](float, float), optional</span>
+<span class="sd">        Value ranges for the colors of the images.</span>
+<span class="sd">        If a string is passed, the range is auto-computed:</span>
+
+<span class="sd">            ``&#39;equal&#39;``</span>
+<span class="sd">                The same colors are used for all images.</span>
+<span class="sd">            ``&#39;individual&#39;``</span>
+<span class="sd">                The colors differ between the images.</span>
+
+<span class="sd">        If a tuple of floats is passed, it is used for all images.</span>
+<span class="sd">        If a list of tuples of floats is passed, each tuple is used for one</span>
+<span class="sd">        image.</span>
+<span class="sd">    cbar : {&#39;one&#39;, &#39;many&#39;, &#39;auto&#39;, &#39;none&#39;}, optional</span>
+<span class="sd">        Colorbar option.</span>
+<span class="sd">        If ``cbar==&#39;one&#39;``, one colorbar is shown. Only possible if the value</span>
+<span class="sd">        ranges used for the colors (cf. `vrange`) are the same for all images.</span>
+<span class="sd">        If ``cbar==&#39;many&#39;``, a colorbar is shown for every image.</span>
+<span class="sd">        If ``cbar==&#39;auto&#39;``, either ``&#39;one&#39;`` or ``&#39;many&#39;`` is chosen,</span>
+<span class="sd">        depending on whether `vrange` is equal for all images.</span>
+<span class="sd">        If ``cbar==&#39;none&#39;``, no colorbars are shown.</span>
+<span class="sd">    fig : matplotlib.figure.Figure, optional</span>
+<span class="sd">        The figure to plot the images in. If ``None``, a new figure is created.</span>
+<span class="sd">    kwargs : dict, optional</span>
+<span class="sd">        Keyword arguments passed to `plot_image`, which in turn passes them to</span>
+<span class="sd">        ``imshow``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    im : ndarray of matplotlib.image.AxesImage</span>
+<span class="sd">        The images that were plotted.</span>
+<span class="sd">    ax : ndarray of matplotlib.axes.Axes</span>
+<span class="sd">        The axes the images were plotted in.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">nrows</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">nrows</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ncols</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ncols</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">nrows</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nrows</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span><span class="o">/</span><span class="n">ncols</span><span class="p">)</span>
+    <span class="n">ncols</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span><span class="o">/</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rect</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">fig_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="n">fig_size</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vrange</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">vrange</span> <span class="o">==</span> <span class="s1">&#39;equal&#39;</span><span class="p">:</span>
+            <span class="n">vrange_</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">min</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_list</span><span class="p">)),</span>
+                        <span class="nb">max</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_list</span><span class="p">)))]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
+            <span class="n">VRANGE_EQUAL</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">vrange</span> <span class="o">==</span> <span class="s1">&#39;individual&#39;</span><span class="p">:</span>
+            <span class="n">vrange_</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_list</span><span class="p">]</span>
+            <span class="n">VRANGE_EQUAL</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`vrange` must be &#39;equal&#39; or &#39;individual&#39;&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vrange</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">vrange</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">vrange_</span> <span class="o">=</span> <span class="p">[</span><span class="n">vrange</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
+        <span class="n">VRANGE_EQUAL</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vrange_</span> <span class="o">=</span> <span class="n">vrange</span>
+        <span class="n">VRANGE_EQUAL</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">VRANGE_EQUAL</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cbar</span> <span class="o">==</span> <span class="s1">&#39;one&#39;</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;cannot use cbar=&#39;one&#39; when vrange is not equal for all&quot;</span>
+                 <span class="s2">&quot;images, falling back to cbar=&#39;many&#39;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cbar</span> <span class="o">!=</span> <span class="s1">&#39;none&#39;</span><span class="p">:</span>
+            <span class="n">cbar</span> <span class="o">=</span> <span class="s1">&#39;many&#39;</span>
+    <span class="k">elif</span> <span class="n">cbar</span> <span class="o">==</span> <span class="s1">&#39;auto&#39;</span><span class="p">:</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="s1">&#39;one&#39;</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ax_</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">vrange_</span><span class="p">)):</span>
+        <span class="n">im_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plot_image</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">im</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">im_</span>
+        <span class="k">if</span> <span class="n">cbar</span> <span class="o">==</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im_</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cbar</span> <span class="o">==</span> <span class="s1">&#39;one&#39;</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">im</span><span class="p">,</span> <span class="n">ax</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">dival</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

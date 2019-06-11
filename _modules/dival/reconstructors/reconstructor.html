@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival.reconstructors.reconstructor &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for dival.reconstructors.reconstructor</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Provides the abstract reconstructor base class.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="k">import</span> <span class="n">signature</span>
+<span class="kn">from</span> <span class="nn">odl.solvers.util.callback</span> <span class="k">import</span> <span class="n">Callback</span><span class="p">,</span> <span class="n">CallbackApply</span>
+
+
+<div class="viewcode-block" id="Reconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.Reconstructor">[docs]</a><span class="k">class</span> <span class="nc">Reconstructor</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Abstract reconstructor base class.</span>
+
+<span class="sd">    Subclasses must implement the abstract method `reconstruct`.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Name of the reconstructor.</span>
+<span class="sd">    callback : odl.solvers.util.callback.Callback</span>
+<span class="sd">        Object that should be called at some point(s) in `reconstruct`.</span>
+<span class="sd">        E.g. an iterative reconstructor could call it at each iteration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">HYPER_PARAMS</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="sd">&quot;&quot;&quot;Specification of hyper parameters.</span>
+
+<span class="sd">    This class attribute is a dict that lists the hyper parameter of the</span>
+<span class="sd">    reconstructor.</span>
+<span class="sd">    It should not be hidden by an instance attribute of the same name (i.e. by</span>
+<span class="sd">    assigning a value to `self.HYPER_PARAMS` in an instance of a subtype).</span>
+
+<span class="sd">    The keys of this dict are the names of the hyper parameters, and each</span>
+<span class="sd">    value is a dict with the following fields:</span>
+
+<span class="sd">        ``&#39;default&#39;``</span>
+<span class="sd">            Default value.</span>
+<span class="sd">        ``&#39;retrain&#39;`` : bool, optional</span>
+<span class="sd">            Whether training depends on the parameter. Default: ``False``.</span>
+<span class="sd">            If ``True``, the reconstructor is retrained while optimizing</span>
+<span class="sd">            the parameter value.</span>
+<span class="sd">        ``&#39;range&#39;`` : (float, float), optional</span>
+<span class="sd">            Interval of valid values. If this field is set, the parameter is</span>
+<span class="sd">            taken to be real-valued.</span>
+<span class="sd">            Either ``&#39;range&#39;`` or ``&#39;choices&#39;`` has to be set.</span>
+<span class="sd">        ``&#39;choices&#39;`` : sequence, optional</span>
+<span class="sd">            Sequence of valid values of any type. If this field is set,</span>
+<span class="sd">            ``&#39;range&#39;`` is ignored. Can be used to perform manual grid search.</span>
+<span class="sd">            Either ``&#39;range&#39;`` or ``&#39;choices&#39;`` has to be set.</span>
+<span class="sd">        ``&#39;method&#39;`` : {&#39;grid_search&#39;, &#39;hyperopt&#39;}, optional</span>
+<span class="sd">             Optimization method for the parameter. Default: ``&#39;grid_search&#39;``.</span>
+<span class="sd">             Options are:</span>
+
+<span class="sd">                ``&#39;grid_search&#39;``</span>
+<span class="sd">                    Grid search over a sequence of fixed values. Can be</span>
+<span class="sd">                    configured by the dict ``&#39;grid_search_options&#39;``.</span>
+<span class="sd">                ``&#39;hyperopt&#39;``</span>
+<span class="sd">                    Random search using the ``hyperopt`` package. Can be</span>
+<span class="sd">                    configured by the dict ``&#39;hyperopt_options&#39;``.</span>
+
+<span class="sd">        ``&#39;grid_search_options&#39;`` : dict</span>
+<span class="sd">            Option dict for grid search with the fields:</span>
+
+<span class="sd">                ``&#39;num_samples&#39;`` : int, optional</span>
+<span class="sd">                    Number of values. Default: 10.</span>
+<span class="sd">                    Only relevant if ``&#39;range&#39;`` is specified and ``&#39;choices&#39;``</span>
+<span class="sd">                    is not.</span>
+<span class="sd">                ``&#39;type&#39;`` : {&#39;linear&#39;}, optional</span>
+<span class="sd">                    Type of grid, i.e. distribution of the values.</span>
+<span class="sd">                    Default: ``&#39;linear&#39;``.</span>
+<span class="sd">                    Only relevant if ``&#39;range&#39;`` is specified and ``&#39;choices&#39;``</span>
+<span class="sd">                    is not.</span>
+<span class="sd">                    Options are:</span>
+
+<span class="sd">                        ``&#39;linear&#39;``</span>
+<span class="sd">                            Equidistant values in the ``&#39;range&#39;``.</span>
+
+<span class="sd">        ``&#39;hyperopt_options&#39;`` : dict</span>
+<span class="sd">            Option dict for ``&#39;hyperopt&#39;`` method with the fields:</span>
+
+<span class="sd">                ``&#39;space&#39;`` : hyperopt space, optional</span>
+<span class="sd">                    Custom hyperopt search space. If this field is set,</span>
+<span class="sd">                    ``&#39;range&#39;`` and ``&#39;type&#39;`` are ignored.</span>
+<span class="sd">                ``&#39;type&#39;`` : {&#39;uniform&#39;}, optional</span>
+<span class="sd">                    Type of the space for sampling. Default: ``&#39;uniform&#39;``.</span>
+<span class="sd">                    Options are:</span>
+
+<span class="sd">                        ``&#39;uniform&#39;``</span>
+<span class="sd">                            Uniform distribution over the ``&#39;range&#39;``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reco_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observation_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">hyper_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span> <span class="o">=</span> <span class="n">reco_space</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">observation_space</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">Callback</span><span class="p">):</span>
+            <span class="n">callback</span> <span class="o">=</span> <span class="n">CallbackApply</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span>
+                             <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">HYPER_PARAMS</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">if</span> <span class="n">hyper_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">hyper_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
+
+<div class="viewcode-block" id="Reconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.Reconstructor.reconstruct">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reconstruct input data from observation data.</span>
+
+<span class="sd">        This method must be implemented by subclasses.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        observation : `observation_space` element</span>
+<span class="sd">            The observation data.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        reconstruction : `reco_space` element</span>
+<span class="sd">            The reconstruction.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="Reconstructor.reset"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.Reconstructor.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset the reconstructor.</span>
+
+<span class="sd">        The default implementation resets `callback` if present.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="FunctionReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.FunctionReconstructor">[docs]</a><span class="k">class</span> <span class="nc">FunctionReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Reconstructor defined by a callable calculating the reconstruction.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    function : callable</span>
+<span class="sd">        Callable that is used in `reconstruct`.</span>
+<span class="sd">    fun_args : list</span>
+<span class="sd">        Arguments to be passed to `function`.</span>
+<span class="sd">    fun_kwargs : dict</span>
+<span class="sd">        Keyword arguments to be passed to `function`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">fun_args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fun_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct a reconstructor by specifying a callable.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        function : callable</span>
+<span class="sd">            Callable that is used in `reconstruct`.</span>
+<span class="sd">        fun_args : list, optional</span>
+<span class="sd">            Arguments to be passed to `function`.</span>
+<span class="sd">        fun_kwargs : dict, optional</span>
+<span class="sd">            Keyword arguments to be passed to `function`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fun_args</span> <span class="o">=</span> <span class="n">fun_args</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fun_kwargs</span> <span class="o">=</span> <span class="n">fun_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="FunctionReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.FunctionReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;callback&#39;</span> <span class="ow">in</span> <span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;callback&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">fun_args</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">fun_kwargs</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="LearnedReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.LearnedReconstructor">[docs]</a><span class="k">class</span> <span class="nc">LearnedReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="LearnedReconstructor.train"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.LearnedReconstructor.train">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Train the reconstructor with a dataset by adapting its parameters.</span>
+
+<span class="sd">        Should only use the training data from `dataset`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset : `Dataset`</span>
+<span class="sd">            The dataset from which the training data should be used.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="LearnedReconstructor.save_params"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.LearnedReconstructor.save_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save parameters to path.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path at which the parameters should be saved.</span>
+<span class="sd">            Implementations should either use it as a file path (w/ or w/o</span>
+<span class="sd">            extension) or as a directory path for multiple files (the dir</span>
+<span class="sd">            should be created by this method if it does not exist).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="LearnedReconstructor.load_params"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.LearnedReconstructor.load_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load parameters from path.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path at which the parameters are stored. C.f. `save_params`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">dival</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

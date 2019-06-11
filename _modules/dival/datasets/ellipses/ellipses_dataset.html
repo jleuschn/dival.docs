@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival.datasets.ellipses.ellipses_dataset &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for dival.datasets.ellipses.ellipses_dataset</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Provides `EllipsesDataset`.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">odl.discr.lp_discr</span> <span class="k">import</span> <span class="n">uniform_discr</span>
+<span class="kn">from</span> <span class="nn">odl.phantom</span> <span class="k">import</span> <span class="n">ellipsoid_phantom</span>
+<span class="kn">from</span> <span class="nn">dival.datasets.dataset</span> <span class="k">import</span> <span class="n">GroundTruthDataset</span>
+
+
+<div class="viewcode-block" id="EllipsesDataset"><a class="viewcode-back" href="../../../../dival.datasets.html#dival.datasets.EllipsesDataset">[docs]</a><span class="k">class</span> <span class="nc">EllipsesDataset</span><span class="p">(</span><span class="n">GroundTruthDataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Dataset with images of multiple random ellipses.</span>
+
+<span class="sd">    This dataset uses the function `odl.phantom.ellipsoid_phantom` to create</span>
+<span class="sd">    the images.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_pt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_pt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct the ellipses dataset.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        min_pt : [int, int], optional</span>
+<span class="sd">            Minimum values of the lp space. Default: [-64, -64].</span>
+<span class="sd">        max_pt : [int, int], optional</span>
+<span class="sd">            Maximum values of the lp space. Default: [64, 64].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">min_pt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">min_pt</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">max_pt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">max_pt</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">space</span> <span class="o">=</span> <span class="n">uniform_discr</span><span class="p">(</span><span class="n">min_pt</span><span class="p">,</span> <span class="n">max_pt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span> <span class="o">=</span> <span class="mi">50000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_len</span> <span class="o">=</span> <span class="mi">5000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_len</span> <span class="o">=</span> <span class="mi">5000</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="n">space</span><span class="p">)</span>
+
+<div class="viewcode-block" id="EllipsesDataset.generator"><a class="viewcode-back" href="../../../../dival.datasets.html#dival.datasets.EllipsesDataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Yield random ellipse phantom images using</span>
+<span class="sd">        `odl.phantom.ellipsoid_phantom`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
+        <span class="k">if</span> <span class="n">part</span> <span class="o">==</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span>
+            <span class="n">seed</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">part</span> <span class="o">==</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span>
+            <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_len</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="n">part</span><span class="p">)</span>
+        <span class="n">n_ellipse</span> <span class="o">=</span> <span class="mi">50</span>
+        <span class="n">ellipsoids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n_ellipse</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span> <span class="o">*</span>
+                 <span class="n">r</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,)))</span>
+            <span class="n">a1</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">a2</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">ellipsoids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rot</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">ellipsoid_phantom</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="n">ellipsoids</span><span class="p">)</span>
+
+            <span class="k">yield</span> <span class="n">image</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">dival</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

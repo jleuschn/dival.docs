@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival.hyper_param_optimization &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for dival.hyper_param_optimization</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">hyperopt</span> <span class="k">import</span> <span class="n">hp</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">tpe</span><span class="p">,</span> <span class="n">Trials</span><span class="p">,</span> <span class="n">space_eval</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">dival.util.std_out_err_redirect_tqdm</span> <span class="k">import</span> <span class="n">std_out_err_redirect_tqdm</span>
+<span class="kn">from</span> <span class="nn">dival.measure</span> <span class="k">import</span> <span class="n">Measure</span>
+<span class="kn">from</span> <span class="nn">dival</span> <span class="k">import</span> <span class="n">LearnedReconstructor</span>
+
+
+<div class="viewcode-block" id="optimize_hyper_params"><a class="viewcode-back" href="../../dival.html#dival.hyper_param_optimization.optimize_hyper_params">[docs]</a><span class="k">def</span> <span class="nf">optimize_hyper_params</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">,</span> <span class="n">measure</span><span class="p">,</span>
+                          <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">HYPER_PARAMS_override</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">hyperopt_max_evals</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                          <span class="n">hyperopt_max_evals_retrain</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                          <span class="n">hyperopt_rstate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">show_progressbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">tqdm_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Optimize hyper parameters of a reconstructor.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor : `Reconstructor`</span>
+<span class="sd">        The reconstructor.</span>
+<span class="sd">    validation_data : `DataPairs`</span>
+<span class="sd">        The test data on which the performance is measured.</span>
+<span class="sd">    measure : `Measure` or str</span>
+<span class="sd">        The measure to use as the objective. The sign is chosen automatically</span>
+<span class="sd">        depending on the measures `measure_type`.</span>
+<span class="sd">    dataset : `Dataset`, optional</span>
+<span class="sd">        The dataset used for training `reconstructor` if it is a</span>
+<span class="sd">        `LearnedReconstructor`.</span>
+<span class="sd">    HYPER_PARAMS_override : dict, optional</span>
+<span class="sd">        Hyper parameter specification overriding the defaults</span>
+<span class="sd">        in ``type(reconstructor).HYPER_PARAMS``.</span>
+<span class="sd">        The structure of this dict is the same as the structure</span>
+<span class="sd">        of ``Reconstructor.HYPER_PARAMS``, except that all</span>
+<span class="sd">        fields are optional.</span>
+<span class="sd">        Here, each value of a dict for one parameter is treated</span>
+<span class="sd">        as an entity, i.e. specifying the dict</span>
+<span class="sd">        ``HYPER_PARAMS[...][&#39;grid_search_options&#39;]`` overrides</span>
+<span class="sd">        the whole dict, not only the specified keys in it.</span>
+<span class="sd">    hyperopt_max_evals : int, optional</span>
+<span class="sd">        Number of evaluations for different combinations of the parameters that</span>
+<span class="sd">        are optimized by ``hyperopt`` and that do not require retraining.</span>
+<span class="sd">        Default: 1000.</span>
+<span class="sd">        Should be chosen depending on the complexity of dependence and the</span>
+<span class="sd">        number of such parameters.</span>
+<span class="sd">    hyperopt_max_evals_retrain : int, optional</span>
+<span class="sd">        Number of evaluations for different combinations of the parameters that</span>
+<span class="sd">        are optimized by ``hyperopt`` and that require retraining.</span>
+<span class="sd">        Default: 1000.</span>
+<span class="sd">        Should be chosen depending on the complexity of dependence and the</span>
+<span class="sd">        number of such parameters.</span>
+<span class="sd">    hyperopt_rstate : `np.random.RandomState`, optional</span>
+<span class="sd">        Random state for the random searches performed by ``hyperopt``.</span>
+<span class="sd">    show_progressbar : bool, optional</span>
+<span class="sd">        Whether to show a progress bar for the optimization. Default: ``True``.</span>
+<span class="sd">    tqdm_file : file-like object</span>
+<span class="sd">        File/stream to pass to ``tqdm``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">measure</span> <span class="o">=</span> <span class="n">Measure</span><span class="o">.</span><span class="n">get_by_short_name</span><span class="p">(</span><span class="n">measure</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">LearnedReconstructor</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;dataset required for training of &#39;</span>
+                         <span class="s1">&#39;`LearnedReconstructor`&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">HYPER_PARAMS_override</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">HYPER_PARAMS_override</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">params_retrain</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">)</span><span class="o">.</span><span class="n">HYPER_PARAMS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">HYPER_PARAMS_override</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">{}))</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;grid_search&#39;</span><span class="p">)</span>
+        <span class="n">retrain</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;retrain&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">retrain</span><span class="p">:</span>
+            <span class="n">params_retrain</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">param</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">param</span>
+
+    <span class="n">loss_sign</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">measure</span><span class="o">.</span><span class="n">measure_type</span> <span class="o">==</span> <span class="s1">&#39;distance&#39;</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">fn</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">reconstructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">reconstructor</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span> <span class="k">for</span>
+                           <span class="n">observation</span> <span class="ow">in</span> <span class="n">validation_data</span><span class="o">.</span><span class="n">observations</span><span class="p">]</span>
+        <span class="n">measure_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span>
+                          <span class="nb">zip</span><span class="p">(</span><span class="n">reconstructions</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">.</span><span class="n">ground_truth</span><span class="p">)]</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_sign</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">measure_values</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;ok&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="n">loss</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">fn_retrain</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">reconstructor</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+        <span class="n">best_sub_hp</span> <span class="o">=</span> <span class="n">_optimize_hyper_params_impl</span><span class="p">(</span>
+            <span class="n">reconstructor</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+            <span class="n">hyperopt_max_evals</span><span class="o">=</span><span class="n">hyperopt_max_evals</span><span class="p">,</span>
+            <span class="n">hyperopt_rstate</span><span class="o">=</span><span class="n">hyperopt_rstate</span><span class="p">,</span> <span class="n">show_progressbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">reconstructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">reconstructor</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span> <span class="k">for</span>
+                           <span class="n">observation</span> <span class="ow">in</span> <span class="n">validation_data</span><span class="o">.</span><span class="n">observations</span><span class="p">]</span>
+        <span class="n">measure_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span>
+                          <span class="nb">zip</span><span class="p">(</span><span class="n">reconstructions</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">.</span><span class="n">ground_truth</span><span class="p">)]</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_sign</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">measure_values</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;ok&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="n">loss</span><span class="p">,</span>
+                <span class="s1">&#39;best_sub_hp&#39;</span><span class="p">:</span> <span class="n">best_sub_hp</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">params_retrain</span><span class="p">:</span>
+        <span class="n">best_hyper_params</span> <span class="o">=</span> <span class="n">_optimize_hyper_params_impl</span><span class="p">(</span>
+            <span class="n">reconstructor</span><span class="p">,</span> <span class="n">fn_retrain</span><span class="p">,</span> <span class="n">params_retrain</span><span class="p">,</span>
+            <span class="n">hyperopt_max_evals</span><span class="o">=</span><span class="n">hyperopt_max_evals_retrain</span><span class="p">,</span>
+            <span class="n">hyperopt_rstate</span><span class="o">=</span><span class="n">hyperopt_rstate</span><span class="p">,</span>
+            <span class="n">show_progressbar</span><span class="o">=</span><span class="n">show_progressbar</span><span class="p">,</span> <span class="n">tqdm_file</span><span class="o">=</span><span class="n">tqdm_file</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">best_hyper_params</span> <span class="o">=</span> <span class="n">_optimize_hyper_params_impl</span><span class="p">(</span>
+            <span class="n">reconstructor</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+            <span class="n">hyperopt_max_evals</span><span class="o">=</span><span class="n">hyperopt_max_evals</span><span class="p">,</span>
+            <span class="n">hyperopt_rstate</span><span class="o">=</span><span class="n">hyperopt_rstate</span><span class="p">,</span>
+            <span class="n">show_progressbar</span><span class="o">=</span><span class="n">show_progressbar</span><span class="p">,</span> <span class="n">tqdm_file</span><span class="o">=</span><span class="n">tqdm_file</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">best_hyper_params</span></div>
+
+
+<span class="k">def</span> <span class="nf">_optimize_hyper_params_impl</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+                                <span class="n">hyperopt_max_evals</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">hyperopt_rstate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                <span class="n">show_progressbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tqdm_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">grid_search_params</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">grid_search_param_choices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">hyperopt_space</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;grid_search&#39;</span><span class="p">:</span>
+            <span class="n">grid_search_options</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;grid_search_options&#39;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">choices</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;choices&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">range_</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;range&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">range_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">grid_type</span> <span class="o">=</span> <span class="n">grid_search_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">grid_type</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+                        <span class="n">n</span> <span class="o">=</span> <span class="n">grid_search_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;num_samples&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+                        <span class="n">choices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">range_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">range_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">&quot;unknown grid type &#39;</span><span class="si">{grid_type}</span><span class="s2">&#39; in </span><span class="si">{reco_cls}</span><span class="s2">.&quot;</span>
+                            <span class="s2">&quot;HYPER_PARAMS[&#39;</span><span class="si">{k}</span><span class="s2">&#39;][&#39;grid_search_options&#39;]&quot;</span><span class="o">.</span>
+                            <span class="nb">format</span><span class="p">(</span>
+                                <span class="n">grid_type</span><span class="o">=</span><span class="n">grid_type</span><span class="p">,</span>
+                                <span class="n">reco_cls</span><span class="o">=</span><span class="n">reconstructor</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;neither &#39;choices&#39; nor &#39;range&#39; is specified in &quot;</span>
+                        <span class="s2">&quot;</span><span class="si">{reco_cls}</span><span class="s2">.HYPER_PARAMS[&#39;</span><span class="si">{k}</span><span class="s2">&#39;], one of them must be &quot;</span>
+                        <span class="s2">&quot;specified for grid search&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                            <span class="n">reco_cls</span><span class="o">=</span><span class="n">reconstructor</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">))</span>
+            <span class="n">grid_search_params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="n">grid_search_param_choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;hyperopt&#39;</span><span class="p">:</span>
+            <span class="n">hyperopt_options</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hyperopt_options&#39;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">space</span> <span class="o">=</span> <span class="n">hyperopt_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;space&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">space</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">choices</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;choices&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">range_</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;range&#39;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">range_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">space_type</span> <span class="o">=</span> <span class="n">hyperopt_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">space_type</span> <span class="o">==</span> <span class="s1">&#39;uniform&#39;</span><span class="p">:</span>
+                            <span class="n">space</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">range_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">range_</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                                <span class="s2">&quot;unknown hyperopt space type &#39;</span><span class="si">{space_type}</span><span class="s2">&#39; &quot;</span>
+                                <span class="s2">&quot;in </span><span class="si">{reco_cls}</span><span class="s2">.HYPER_PARAMS[&#39;</span><span class="si">{k}</span><span class="s2">&#39;]&quot;</span>
+                                <span class="s2">&quot;[&#39;hyperopt_options&#39;]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                    <span class="n">space_type</span><span class="o">=</span><span class="n">space_type</span><span class="p">,</span>
+                                    <span class="n">reco_cls</span><span class="o">=</span><span class="n">reconstructor</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                    <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">&quot;neither &#39;choices&#39; nor &#39;range&#39; is specified in &quot;</span>
+                            <span class="s2">&quot;</span><span class="si">{reco_cls}</span><span class="s2">.HYPER_PARAMS[&#39;</span><span class="si">{k}</span><span class="s2">&#39;]&quot;</span>
+                            <span class="s2">&quot;[&#39;hyperopt_options&#39;]. One of these or &quot;</span>
+                            <span class="s2">&quot;</span><span class="si">{reco_cls}</span><span class="s2">.HYPER_PARAMS[&#39;</span><span class="si">{k}</span><span class="s2">&#39;]&quot;</span>
+                            <span class="s2">&quot;[&#39;hyperopt_options&#39;][&#39;space&#39;] must be specified &quot;</span>
+                            <span class="s2">&quot;for hyperopt param search&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                <span class="n">reco_cls</span><span class="o">=</span><span class="n">reconstructor</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">space</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">choices</span><span class="p">)</span>
+            <span class="n">hyperopt_space</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">space</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown method &#39;</span><span class="si">{method}</span><span class="s2">&#39; for &quot;</span>
+                             <span class="s2">&quot;</span><span class="si">{reco_cls}</span><span class="s2">.HYPER_PARAMS[&#39;</span><span class="si">{k}</span><span class="s2">&#39;]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                 <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                                 <span class="n">reco_cls</span><span class="o">=</span><span class="n">reconstructor</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                 <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">))</span>
+
+    <span class="n">best_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+    <span class="n">best_hyper_params</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">with</span> <span class="n">std_out_err_redirect_tqdm</span><span class="p">(</span><span class="n">tqdm_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">orig_stdout</span><span class="p">:</span>
+        <span class="n">grid_search_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span>
+                                     <span class="n">grid_search_param_choices</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">grid_search_values</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+                <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">grid_search_param_choices</span><span class="p">),</span>
+                <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;hyper param opt. for </span><span class="si">{reco_cls}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">reco_cls</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span>
+                <span class="n">total</span><span class="o">=</span><span class="n">grid_search_total</span><span class="p">,</span>
+                <span class="n">file</span><span class="o">=</span><span class="n">orig_stdout</span><span class="p">,</span>
+                <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">show_progressbar</span><span class="p">):</span>
+            <span class="n">grid_search_param_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">grid_search_params</span><span class="p">,</span>
+                                              <span class="n">grid_search_values</span><span class="p">))</span>
+            <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">grid_search_param_dict</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hyperopt_space</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">({})</span>
+                <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
+                    <span class="n">best_loss</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span>
+                    <span class="n">best_hyper_params</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;best_sub_hp&#39;</span><span class="p">,</span> <span class="p">{})</span>
+                    <span class="n">best_hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">grid_search_param_dict</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">trials</span> <span class="o">=</span> <span class="n">Trials</span><span class="p">()</span>
+                <span class="n">argmin</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="n">hyperopt_space</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">tpe</span><span class="o">.</span><span class="n">suggest</span><span class="p">,</span>
+                              <span class="n">max_evals</span><span class="o">=</span><span class="n">hyperopt_max_evals</span><span class="p">,</span> <span class="n">trials</span><span class="o">=</span><span class="n">trials</span><span class="p">,</span>
+                              <span class="n">rstate</span><span class="o">=</span><span class="n">hyperopt_rstate</span><span class="p">,</span>
+                              <span class="n">show_progressbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">best_trial</span> <span class="o">=</span> <span class="n">trials</span><span class="o">.</span><span class="n">best_trial</span>
+                <span class="k">if</span> <span class="n">best_trial</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
+                    <span class="n">best_loss</span> <span class="o">=</span> <span class="n">best_trial</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span>
+                    <span class="n">best_hyper_params</span> <span class="o">=</span> <span class="n">best_trial</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;best_sub_hp&#39;</span><span class="p">,</span>
+                                                                 <span class="p">{})</span>
+                    <span class="n">best_hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">grid_search_param_dict</span><span class="p">)</span>
+                    <span class="n">best_hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">space_eval</span><span class="p">(</span><span class="n">hyperopt_space</span><span class="p">,</span>
+                                                        <span class="n">argmin</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">best_hyper_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">best_hyper_params</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">best_hyper_params</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">dival</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
