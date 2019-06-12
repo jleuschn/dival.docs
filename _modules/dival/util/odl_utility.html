@@ -78,6 +78,31 @@
 <span class="sd">    noise_kwargs : dict, optional</span>
 <span class="sd">        Keyword arguments to be passed to the noise function, e.g. ``&#39;stddev&#39;``</span>
 <span class="sd">        for ``&#39;white&#39;`` noise.</span>
+<span class="sd">        The arguments are:</span>
+<span class="sd">            </span>
+<span class="sd">            * ``&#39;white&#39;`` noise:</span>
+<span class="sd">                * ``&#39;stddev&#39;``: float, optional</span>
+<span class="sd">                    Standard deviation of each component of the normal</span>
+<span class="sd">                    distribution. Default is 1.</span>
+<span class="sd">                * ``&#39;relative_stddev&#39;``: bool, optional</span>
+<span class="sd">                    Whether to multiply ``&#39;stddev&#39;`` with ``mean(abs(x))``.</span>
+<span class="sd">                    Default is ``False``.</span>
+<span class="sd">            * ``&#39;poisson&#39;`` noise:</span>
+<span class="sd">                * ``&#39;neg_exp_factor&#39;``: float, optional</span>
+<span class="sd">                    If specified, the intensity ``exp(-neg_exp_factor * x)`` is</span>
+<span class="sd">                    used. Default is ``None``.</span>
+<span class="sd">                * ``&#39;scaling_factor&#39;``: float, optional</span>
+<span class="sd">                    If specified, the intensity is multiplied and the samples</span>
+<span class="sd">                    from the poisson distribution are divided by this factor:</span>
+<span class="sd">                    ``poisson(intensity * scaling_factor) / scaling_factor``.</span>
+<span class="sd">                    Default is ``None``.</span>
+<span class="sd">                * ``&#39;intensity&#39;``: odl element, optional</span>
+<span class="sd">                    The intensity (lambda) for the poisson distribution.</span>
+<span class="sd">                    This field is ignored if a ``&#39;neg_exp_factor&#39;`` is</span>
+<span class="sd">                    specified. Note that if this field is specified, `x` is</span>
+<span class="sd">                    replaced by poisson samples from the distribution with the</span>
+<span class="sd">                    specified intensity (where the previous value of `x` is not</span>
+<span class="sd">                    taken into account). Default is ``None``.</span>
 <span class="sd">    seed : int, optional</span>
 <span class="sd">        Random seed passed to the noise function.</span>
 <span class="sd">    random_state : `np.random.RandomState`, optional</span>
@@ -93,25 +118,32 @@
             <span class="n">mean_abs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
             <span class="n">stddev</span> <span class="o">*=</span> <span class="n">mean_abs</span>
         <span class="n">noise</span> <span class="o">=</span> <span class="n">white_noise</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="n">stddev</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="n">noise</span>
     <span class="k">elif</span> <span class="n">noise_type</span> <span class="o">==</span> <span class="s1">&#39;uniform&#39;</span><span class="p">:</span>
         <span class="n">noise</span> <span class="o">=</span> <span class="n">uniform_noise</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="n">noise</span>
     <span class="k">elif</span> <span class="n">noise_type</span> <span class="o">==</span> <span class="s1">&#39;poisson&#39;</span><span class="p">:</span>
-        <span class="n">factor</span> <span class="o">=</span> <span class="n">n_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;factor&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">factor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">neg_exp_factor</span> <span class="o">=</span> <span class="n">n_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;neg_exp_factor&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">neg_exp_factor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">intensity</span> <span class="o">=</span> <span class="n">n_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;intensity&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">intensity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;noise_kwargs must contain either a &quot;</span>
-                                 <span class="s2">&quot;&#39;factor&#39; or an &#39;intensity&#39; for &quot;</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;noise_kwargs must contain either &quot;</span>
+                                 <span class="s2">&quot;&#39;intensity&#39; or &#39;neg_exp_factor&#39; for &quot;</span>
                                  <span class="s2">&quot;noise_type=&#39;poisson&#39;.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">intensity</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">factor</span>
-        <span class="n">noise</span> <span class="o">=</span> <span class="n">poisson_noise</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">)</span>
+            <span class="n">intensity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">neg_exp_factor</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+        <span class="n">scaling_factor</span> <span class="o">=</span> <span class="n">n_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;scaling_factor&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scaling_factor</span><span class="p">:</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">poisson_noise</span><span class="p">(</span><span class="n">intensity</span> <span class="o">*</span> <span class="n">scaling_factor</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">)</span> <span class="o">/</span>
+                     <span class="n">scaling_factor</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">poisson_noise</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">))</span>
     <span class="k">elif</span> <span class="n">noise_type</span> <span class="o">==</span> <span class="s1">&#39;salt_pepper&#39;</span><span class="p">:</span>
         <span class="n">noise</span> <span class="o">=</span> <span class="n">salt_pepper_noise</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span> <span class="o">**</span><span class="n">n_kwargs</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="n">noise</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown noise type &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">noise_type</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown noise type &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">noise_type</span><span class="p">))</span></div>
 
-    <span class="n">x</span> <span class="o">+=</span> <span class="n">noise</span></div>
 
 
 <div class="viewcode-block" id="NoiseOperator"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_utility.NoiseOperator">[docs]</a><span class="k">class</span> <span class="nc">NoiseOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
@@ -133,7 +165,7 @@
 <span class="sd">            Type of noise.</span>
 <span class="sd">        noise_kwargs : dict, optional</span>
 <span class="sd">            Keyword arguments to be passed to the noise function, e.g.</span>
-<span class="sd">            ``&#39;stddev&#39;`` for ``&#39;white&#39;`` noise.</span>
+<span class="sd">            ``&#39;stddev&#39;`` for ``&#39;white&#39;`` noise. Cf. docs for `apply_noise`.</span>
 <span class="sd">        seed : int, optional</span>
 <span class="sd">            Random seed passed to the noise function.</span>
 <span class="sd">        random_state : `np.random.RandomState`, optional</span>

@@ -213,8 +213,62 @@ state.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>odl element</em>) – The element to which the noise is applied (in-place).</p></li>
 <li><p><strong>noise_type</strong> (<em>{'white'</em><em>, </em><em>'uniform'</em><em>, </em><em>'poisson'</em><em>, </em><em>'salt_pepper'}</em>) – Type of noise.</p></li>
-<li><p><strong>noise_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Keyword arguments to be passed to the noise function, e.g. <code class="docutils literal notranslate"><span class="pre">'stddev'</span></code>
-for <code class="docutils literal notranslate"><span class="pre">'white'</span></code> noise.</p></li>
+<li><p><strong>noise_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – <p>Keyword arguments to be passed to the noise function, e.g. <code class="docutils literal notranslate"><span class="pre">'stddev'</span></code>
+for <code class="docutils literal notranslate"><span class="pre">'white'</span></code> noise.
+The arguments are:</p>
+<blockquote>
+<div><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'white'</span></code> noise:</dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'stddev'</span></code>: float, optional</dt><dd><p>Standard deviation of each component of the normal
+distribution. Default is 1.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'relative_stddev'</span></code>: bool, optional</dt><dd><p>Whether to multiply <code class="docutils literal notranslate"><span class="pre">'stddev'</span></code> with <code class="docutils literal notranslate"><span class="pre">mean(abs(x))</span></code>.
+Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'poisson'</span></code> noise:</dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'neg_exp_factor'</span></code>: float, optional</dt><dd><p>If specified, the intensity <code class="docutils literal notranslate"><span class="pre">exp(-neg_exp_factor</span> <span class="pre">*</span> <span class="pre">x)</span></code> is
+used. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'scaling_factor'</span></code>: float, optional</dt><dd><p>If specified, the intensity is multiplied and the samples
+from the poisson distribution are divided by this factor:
+<code class="docutils literal notranslate"><span class="pre">poisson(intensity</span> <span class="pre">*</span> <span class="pre">scaling_factor)</span> <span class="pre">/</span> <span class="pre">scaling_factor</span></code>.
+Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'intensity'</span></code>: odl element, optional</dt><dd><p>The intensity (lambda) for the poisson distribution.
+This field is ignored if a <code class="docutils literal notranslate"><span class="pre">'neg_exp_factor'</span></code> is
+specified. Note that if this field is specified, <cite>x</cite> is
+replaced by poisson samples from the distribution with the
+specified intensity (where the previous value of <cite>x</cite> is not
+taken into account). Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random seed passed to the noise function.</p></li>
 <li><p><strong>random_state</strong> (<cite>np.random.RandomState</cite>, optional) – Random state passed to the noise function.</p></li>
 </ul>
