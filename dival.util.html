@@ -192,6 +192,40 @@ For <code class="docutils literal notranslate"><span class="pre">None</span></co
 <span id="dival-util-odl-utility-module"></span><h2>dival.util.odl_utility module<a class="headerlink" href="#module-dival.util.odl_utility" title="Permalink to this headline">¶</a></h2>
 <p>Provides an interface to the ODL element classes.</p>
 <dl class="class">
+<dt id="dival.util.odl_utility.ExpOperator">
+<em class="property">class </em><code class="descclassname">dival.util.odl_utility.</code><code class="descname">ExpOperator</code><span class="sig-paren">(</span><em>domain</em>, <em>range</em>, <em>linear=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#ExpOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.ExpOperator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<dl class="attribute">
+<dt id="dival.util.odl_utility.ExpOperator.inverse">
+<code class="descname">inverse</code><a class="headerlink" href="#dival.util.odl_utility.ExpOperator.inverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the operator inverse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>OpNotImplementedError</strong> – Since the inverse cannot be default implemented.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.util.odl_utility.LogOperator">
+<em class="property">class </em><code class="descclassname">dival.util.odl_utility.</code><code class="descname">LogOperator</code><span class="sig-paren">(</span><em>domain</em>, <em>range</em>, <em>linear=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#LogOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.LogOperator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<dl class="attribute">
+<dt id="dival.util.odl_utility.LogOperator.inverse">
+<code class="descname">inverse</code><a class="headerlink" href="#dival.util.odl_utility.LogOperator.inverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the operator inverse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>OpNotImplementedError</strong> – Since the inverse cannot be default implemented.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="dival.util.odl_utility.NoiseOperator">
 <em class="property">class </em><code class="descclassname">dival.util.odl_utility.</code><code class="descname">NoiseOperator</code><span class="sig-paren">(</span><em>domain</em>, <em>noise_type</em>, <em>noise_kwargs=None</em>, <em>seed=None</em>, <em>random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#NoiseOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.NoiseOperator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
@@ -239,26 +273,10 @@ Default is <code class="docutils literal notranslate"><span class="pre">False</s
 <li><dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">'poisson'</span></code> noise:</dt><dd><ul>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">'neg_exp_factor'</span></code>: float, optional</dt><dd><p>If specified, the intensity <code class="docutils literal notranslate"><span class="pre">exp(-neg_exp_factor</span> <span class="pre">*</span> <span class="pre">x)</span></code> is
-used. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">'scaling_factor'</span></code>: float, optional</dt><dd><p>If specified, the intensity is multiplied and the samples
 from the poisson distribution are divided by this factor:
-<code class="docutils literal notranslate"><span class="pre">poisson(intensity</span> <span class="pre">*</span> <span class="pre">scaling_factor)</span> <span class="pre">/</span> <span class="pre">scaling_factor</span></code>.
+<code class="docutils literal notranslate"><span class="pre">poisson(x</span> <span class="pre">*</span> <span class="pre">scaling_factor)</span> <span class="pre">/</span> <span class="pre">scaling_factor</span></code>.
 Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">'intensity'</span></code>: odl element, optional</dt><dd><p>The intensity (lambda) for the poisson distribution.
-This field is ignored if a <code class="docutils literal notranslate"><span class="pre">'neg_exp_factor'</span></code> is
-specified. Note that if this field is specified, <cite>x</cite> is
-replaced by poisson samples from the distribution with the
-specified intensity (where the previous value of <cite>x</cite> is not
-taken into account). Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </li>

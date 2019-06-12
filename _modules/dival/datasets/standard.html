@@ -37,6 +37,8 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">odl</span>
 <span class="kn">from</span> <span class="nn">odl.operator.default_ops</span> <span class="k">import</span> <span class="n">ScalingOperator</span>
+<span class="kn">from</span> <span class="nn">odl.operator.operator</span> <span class="k">import</span> <span class="n">OperatorComp</span>
+<span class="kn">from</span> <span class="nn">dival.util.odl_utility</span> <span class="k">import</span> <span class="n">ExpOperator</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.ellipses.ellipses_dataset</span> <span class="k">import</span> <span class="n">EllipsesDataset</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.lidc_idri_dival.lidc_idri_dival_dataset</span> <span class="k">import</span> <span class="p">(</span>
     <span class="n">LIDCIDRIDivalDataset</span><span class="p">)</span>
@@ -70,24 +72,30 @@
         <span class="n">geometry</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">parallel_beam_geometry</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">num_angles</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
         <span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">geometry</span><span class="p">)</span>
 
+        <span class="c1"># Ensure operator has fixed operator norm for scale invariance</span>
+        <span class="n">opnorm</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">power_method_opnorm</span><span class="p">(</span><span class="n">ray_trafo</span><span class="p">)</span>
+<span class="c1">#        operator = (1 / opnorm) * ray_trafo</span>
+
 <span class="c1">#        noise model taken from Adler, J. and Öktem, O., 2018, Learned</span>
 <span class="c1">#        Primal-dual Reconstruction, human dataset</span>
         <span class="n">mu_water</span> <span class="o">=</span> <span class="mf">0.02</span>
         <span class="n">photons_per_pixel</span> <span class="o">=</span> <span class="mi">10000</span>
         <span class="n">factor</span> <span class="o">=</span> <span class="mf">1000.</span>
         <span class="n">preprocessing_op</span> <span class="o">=</span> <span class="n">ScalingOperator</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">factor</span><span class="p">)</span>
-        <span class="n">preprocessing_inverse</span> <span class="o">=</span> <span class="n">ScalingOperator</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span>
-        <span class="n">operator</span> <span class="o">=</span> <span class="n">ray_trafo</span> <span class="o">*</span> <span class="n">preprocessing_op</span>
+        <span class="n">postprocessing_op</span> <span class="o">=</span> <span class="p">(</span><span class="n">ExpOperator</span><span class="p">(</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">)</span> <span class="o">*</span>
+                             <span class="p">(</span><span class="o">-</span><span class="n">mu_water</span><span class="p">))</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="n">OperatorComp</span><span class="p">(</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="n">preprocessing_op</span><span class="p">)</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="n">OperatorComp</span><span class="p">(</span><span class="n">postprocessing_op</span><span class="p">,</span> <span class="n">operator</span><span class="p">)</span>
 
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">lidc_idri_dival_dataset</span><span class="o">.</span><span class="n">create_pair_dataset</span><span class="p">(</span>
             <span class="n">forward_op</span><span class="o">=</span><span class="n">operator</span><span class="p">,</span> <span class="n">noise_type</span><span class="o">=</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span>
-            <span class="n">noise_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;neg_exp_factor&#39;</span><span class="p">:</span> <span class="n">mu_water</span><span class="p">,</span>
-                          <span class="s1">&#39;scaling_factor&#39;</span><span class="p">:</span> <span class="n">photons_per_pixel</span><span class="p">},</span>
+            <span class="n">noise_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;scaling_factor&#39;</span><span class="p">:</span> <span class="n">photons_per_pixel</span><span class="p">},</span>
             <span class="n">noise_seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="n">dataset</span><span class="o">.</span><span class="n">forward_op</span> <span class="o">=</span> <span class="n">operator</span>
         <span class="n">dataset</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">ray_trafo</span>
-        <span class="n">dataset</span><span class="o">.</span><span class="n">preprocessing_inverse</span> <span class="o">=</span> <span class="n">preprocessing_inverse</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">preprocessing_op</span> <span class="o">=</span> <span class="n">preprocessing_op</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">postprocessing_op</span> <span class="o">=</span> <span class="n">postprocessing_op</span>
 
         <span class="k">return</span> <span class="n">dataset</span>
     <span class="k">else</span><span class="p">:</span>
