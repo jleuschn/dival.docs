@@ -45,6 +45,50 @@
 
 
 <div class="viewcode-block" id="get_standard_dataset"><a class="viewcode-back" href="../../../dival.datasets.html#dival.datasets.standard.get_standard_dataset">[docs]</a><span class="k">def</span> <span class="nf">get_standard_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a standard dataset by name.</span>
+
+<span class="sd">    The datasets are:</span>
+
+<span class="sd">        * ``&#39;ellipses&#39;``</span>
+<span class="sd">            A typical synthetical CT dataset with ellipse phantoms.</span>
+<span class="sd">            `EllipsesDataset` is used as ground truth dataset, a ray</span>
+<span class="sd">            transform with parallel beam geometry using 30 angles is applied,</span>
+<span class="sd">            and white gaussian noise with a standard deviation of 5% (i.e.</span>
+<span class="sd">            ``0.05 * mean(abs(observation))``) is added.</span>
+<span class="sd">            The ray transform is stored in the attribute `ray_trafo` of the</span>
+<span class="sd">            dataset.</span>
+<span class="sd">        * ``&#39;lidc_idri_dival&#39;``</span>
+<span class="sd">            A dataset based on real CT reconstructions from the LIDC-IDRI</span>
+<span class="sd">            dataset.</span>
+<span class="sd">            `LIDCIDRIDivalDataset` is used as ground truth dataset and a ray</span>
+<span class="sd">            transform with parallel beam geometry using 30 angles is applied,</span>
+<span class="sd">            followed by ``exp(-mu * observation)`` due to Beer-Lamberts law,</span>
+<span class="sd">            where ``mu = 0.02 cm^2/g`` (mass attenuation of water).</span>
+<span class="sd">            The noise is chosen in the way presented in [1]_ for the human</span>
+<span class="sd">            dataset: poisson noise corresponding to 10^4 incident photons per</span>
+<span class="sd">            pixel before attenuation is used.</span>
+<span class="sd">            The ray transform is stored in the attribute `ray_trafo` of the</span>
+<span class="sd">            dataset. The deterministic pre- and postprocessing operators</span>
+<span class="sd">            applied before and after the ray transform are stored in the</span>
+<span class="sd">            attributes `preprocessing_op` and `postprocessing_op` of the</span>
+<span class="sd">            dataset, which also implement the respective inverses.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Adler, J., &amp; Öktem, O. (2018). Learned Primal-Dual Reconstruction.</span>
+<span class="sd">        IEEE Transactions on Medical Imaging, 37, 1322-1332.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Name of the dataset.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dataset : `ObservationGroundTruthDataset`</span>
+<span class="sd">        The dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ellipses&#39;</span><span class="p">:</span>
         <span class="n">ellipses_dataset</span> <span class="o">=</span> <span class="n">EllipsesDataset</span><span class="p">()</span>
         <span class="n">space</span> <span class="o">=</span> <span class="n">ellipses_dataset</span><span class="o">.</span><span class="n">space</span>
