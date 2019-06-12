@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival.util.odl_utility module &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.util.plot module" href="dival.util.plot.html" />
+    <link rel="prev" title="dival.util.odl_noise_random_state module" href="dival.util.odl_noise_random_state.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-dival.util.odl_utility">
+<span id="dival-util-odl-utility-module"></span><h1>dival.util.odl_utility module<a class="headerlink" href="#module-dival.util.odl_utility" title="Permalink to this headline">¶</a></h1>
+<p>Provides an interface to the ODL element classes.</p>
+<dl class="class">
+<dt id="dival.util.odl_utility.ExpOperator">
+<em class="property">class </em><code class="descclassname">dival.util.odl_utility.</code><code class="descname">ExpOperator</code><span class="sig-paren">(</span><em>domain</em>, <em>range</em>, <em>linear=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#ExpOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.ExpOperator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<dl class="attribute">
+<dt id="dival.util.odl_utility.ExpOperator.inverse">
+<code class="descname">inverse</code><a class="headerlink" href="#dival.util.odl_utility.ExpOperator.inverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the operator inverse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>OpNotImplementedError</strong> – Since the inverse cannot be default implemented.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.util.odl_utility.LogOperator">
+<em class="property">class </em><code class="descclassname">dival.util.odl_utility.</code><code class="descname">LogOperator</code><span class="sig-paren">(</span><em>domain</em>, <em>range</em>, <em>linear=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#LogOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.LogOperator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<dl class="attribute">
+<dt id="dival.util.odl_utility.LogOperator.inverse">
+<code class="descname">inverse</code><a class="headerlink" href="#dival.util.odl_utility.LogOperator.inverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the operator inverse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>OpNotImplementedError</strong> – Since the inverse cannot be default implemented.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.util.odl_utility.NoiseOperator">
+<em class="property">class </em><code class="descclassname">dival.util.odl_utility.</code><code class="descname">NoiseOperator</code><span class="sig-paren">(</span><em>domain</em>, <em>noise_type</em>, <em>noise_kwargs=None</em>, <em>seed=None</em>, <em>random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#NoiseOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.NoiseOperator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<p>Operator applying noise.</p>
+<p>Wraps <cite>apply_noise</cite>, which calls noise functions from <code class="docutils literal notranslate"><span class="pre">odl.phantom.noise</span></code>
+or their equivalents from <code class="docutils literal notranslate"><span class="pre">dival.util.odl_noise_random_state</span></code>, which
+support a custom random state.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="dival.util.odl_utility.apply_noise">
+<code class="descclassname">dival.util.odl_utility.</code><code class="descname">apply_noise</code><span class="sig-paren">(</span><em>x</em>, <em>noise_type</em>, <em>noise_kwargs=None</em>, <em>seed=None</em>, <em>random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#apply_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.apply_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply noise to an odl element.
+Calls noise functions from <code class="docutils literal notranslate"><span class="pre">odl.phantom.noise</span></code> or their equivalents
+from <code class="docutils literal notranslate"><span class="pre">dival.util.odl_noise_random_state</span></code>, which support a custom random
+state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>odl element</em>) – The element to which the noise is applied (in-place).</p></li>
+<li><p><strong>noise_type</strong> (<em>{'white'</em><em>, </em><em>'uniform'</em><em>, </em><em>'poisson'</em><em>, </em><em>'salt_pepper'}</em>) – Type of noise.</p></li>
+<li><p><strong>noise_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – <p>Keyword arguments to be passed to the noise function, e.g. <code class="docutils literal notranslate"><span class="pre">'stddev'</span></code>
+for <code class="docutils literal notranslate"><span class="pre">'white'</span></code> noise.
+The arguments are:</p>
+<blockquote>
+<div><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'white'</span></code> noise:</dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'stddev'</span></code>: float, optional</dt><dd><p>Standard deviation of each component of the normal
+distribution. Default is 1.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'relative_stddev'</span></code>: bool, optional</dt><dd><p>Whether to multiply <code class="docutils literal notranslate"><span class="pre">'stddev'</span></code> with <code class="docutils literal notranslate"><span class="pre">mean(abs(x))</span></code>.
+Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'poisson'</span></code> noise:</dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'scaling_factor'</span></code>: float, optional</dt><dd><p>If specified, the intensity is multiplied and the samples
+from the poisson distribution are divided by this factor:
+<code class="docutils literal notranslate"><span class="pre">poisson(x</span> <span class="pre">*</span> <span class="pre">scaling_factor)</span> <span class="pre">/</span> <span class="pre">scaling_factor</span></code>.
+Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random seed passed to the noise function.</p></li>
+<li><p><strong>random_state</strong> (<cite>np.random.RandomState</cite>, optional) – Random state passed to the noise function.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="dival.util.odl_utility.uniform_discr_element">
+<code class="descclassname">dival.util.odl_utility.</code><code class="descname">uniform_discr_element</code><span class="sig-paren">(</span><em>inp</em>, <em>space=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#uniform_discr_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.uniform_discr_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate an element of a ODL space from an array-like.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<em>array-like</em>) – The input data from which the element is generated.</p></li>
+<li><p><strong>space</strong> (<cite>odl.discr.DiscretizedSpace</cite>, optional) – The space which the element will belong to. If not given, a uniform
+discretization space with cell size 1 centered around the origin is
+generated.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dival.html">dival package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dival.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dival.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.html#module-dival">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="dival.html">dival package</a><ul>
+  <li><a href="dival.util.html">dival.util package</a><ul>
+      <li>Previous: <a href="dival.util.odl_noise_random_state.html" title="previous chapter">dival.util.odl_noise_random_state module</a></li>
+      <li>Next: <a href="dival.util.plot.html" title="next chapter">dival.util.plot module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/dival.util.odl_utility.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

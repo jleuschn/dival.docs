@@ -42,7 +42,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="uniform_discr_element"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_utility.uniform_discr_element">[docs]</a><span class="k">def</span> <span class="nf">uniform_discr_element</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="uniform_discr_element"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.uniform_discr_element">[docs]</a><span class="k">def</span> <span class="nf">uniform_discr_element</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generate an element of a ODL space from an array-like.</span>
 
 <span class="sd">    Parameters</span>
@@ -62,7 +62,7 @@
     <span class="k">return</span> <span class="n">element</span></div>
 
 
-<div class="viewcode-block" id="apply_noise"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_utility.apply_noise">[docs]</a><span class="k">def</span> <span class="nf">apply_noise</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">noise_type</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="apply_noise"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.apply_noise">[docs]</a><span class="k">def</span> <span class="nf">apply_noise</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">noise_type</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Apply noise to an odl element.</span>
 <span class="sd">    Calls noise functions from ``odl.phantom.noise`` or their equivalents</span>
@@ -126,7 +126,7 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown noise type &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">noise_type</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="ExpOperator"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_utility.ExpOperator">[docs]</a><span class="k">class</span> <span class="nc">ExpOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+<div class="viewcode-block" id="ExpOperator"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.ExpOperator">[docs]</a><span class="k">class</span> <span class="nc">ExpOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
 
@@ -135,7 +135,7 @@
         <span class="k">return</span> <span class="n">LogOperator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="LogOperator"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_utility.LogOperator">[docs]</a><span class="k">class</span> <span class="nc">LogOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+<div class="viewcode-block" id="LogOperator"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.LogOperator">[docs]</a><span class="k">class</span> <span class="nc">LogOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
 
@@ -144,7 +144,7 @@
         <span class="k">return</span> <span class="n">ExpOperator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="NoiseOperator"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_utility.NoiseOperator">[docs]</a><span class="k">class</span> <span class="nc">NoiseOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+<div class="viewcode-block" id="NoiseOperator"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.NoiseOperator">[docs]</a><span class="k">class</span> <span class="nc">NoiseOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Operator applying noise.</span>
 
 <span class="sd">    Wraps `apply_noise`, which calls noise functions from ``odl.phantom.noise``</span>
@@ -200,7 +200,7 @@
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">dival</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.html">dival package</a></li>
 </ul>
 
 <div class="relations">

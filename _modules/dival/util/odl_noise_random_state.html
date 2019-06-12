@@ -55,7 +55,7 @@
            <span class="s1">&#39;uniform_noise&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="white_noise"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_noise_random_state.white_noise">[docs]</a><span class="k">def</span> <span class="nf">white_noise</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="white_noise"><a class="viewcode-back" href="../../../dival.util.odl_noise_random_state.html#dival.util.odl_noise_random_state.white_noise">[docs]</a><span class="k">def</span> <span class="nf">white_noise</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Standard gaussian noise in space, pointwise ``N(mean, stddev**2)``.</span>
 
 <span class="sd">    Parameters</span>
@@ -116,7 +116,7 @@
     <span class="k">return</span> <span class="n">space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="uniform_noise"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_noise_random_state.uniform_noise">[docs]</a><span class="k">def</span> <span class="nf">uniform_noise</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="uniform_noise"><a class="viewcode-back" href="../../../dival.util.odl_noise_random_state.html#dival.util.odl_noise_random_state.uniform_noise">[docs]</a><span class="k">def</span> <span class="nf">uniform_noise</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Uniformly distributed noise in ``space``, pointwise ``U(low, high)``.</span>
 
 <span class="sd">    Parameters</span>
@@ -180,7 +180,7 @@
     <span class="k">return</span> <span class="n">space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="poisson_noise"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_noise_random_state.poisson_noise">[docs]</a><span class="k">def</span> <span class="nf">poisson_noise</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="poisson_noise"><a class="viewcode-back" href="../../../dival.util.odl_noise_random_state.html#dival.util.odl_noise_random_state.poisson_noise">[docs]</a><span class="k">def</span> <span class="nf">poisson_noise</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Poisson distributed noise with given intensity.</span>
 
 <span class="sd">    Parameters</span>
@@ -238,7 +238,7 @@
     <span class="k">return</span> <span class="n">intensity</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="salt_pepper_noise"><a class="viewcode-back" href="../../../dival.util.html#dival.util.odl_noise_random_state.salt_pepper_noise">[docs]</a><span class="k">def</span> <span class="nf">salt_pepper_noise</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">salt_vs_pepper</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<div class="viewcode-block" id="salt_pepper_noise"><a class="viewcode-back" href="../../../dival.util.odl_noise_random_state.html#dival.util.odl_noise_random_state.salt_pepper_noise">[docs]</a><span class="k">def</span> <span class="nf">salt_pepper_noise</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">salt_vs_pepper</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                       <span class="n">low_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">high_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                       <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Add salt and pepper noise to vector.</span>
@@ -377,7 +377,7 @@
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">dival</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.html">dival package</a></li>
 </ul>
 
 <div class="relations">

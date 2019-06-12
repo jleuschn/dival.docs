@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival.reconstructors.regression_reconstructors module &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.util package" href="dival.util.html" />
+    <link rel="prev" title="dival.reconstructors.reconstructor module" href="dival.reconstructors.reconstructor.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-dival.reconstructors.regression_reconstructors">
+<span id="dival-reconstructors-regression-reconstructors-module"></span><h1>dival.reconstructors.regression_reconstructors module<a class="headerlink" href="#module-dival.reconstructors.regression_reconstructors" title="Permalink to this headline">¶</a></h1>
+<p>Provides wrappers for reconstruction methods of odl.</p>
+<dl class="class">
+<dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor">
+<em class="property">class </em><code class="descclassname">dival.reconstructors.regression_reconstructors.</code><code class="descname">LinRegReconstructor</code><span class="sig-paren">(</span><em>hyper_params=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.LearnedReconstructor</span></code></a></p>
+<dl class="attribute">
+<dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.HYPER_PARAMS">
+<code class="descname">HYPER_PARAMS</code><em class="property"> = {'l2_regularization': {'default': 0.0, 'hyperopt_options': {'space': &lt;hyperopt.pyll.base.Apply object&gt;}, 'method': 'hyperopt', 'range': [0.0, inf], 'retrain': True}}</em><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstructor learning and applying linear regression.</p>
+<p>Assumes the inverse operator is linear, i.e. <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">A_inv</span> <span class="pre">*</span> <span class="pre">y</span></code>.
+Learns the entries of <code class="docutils literal notranslate"><span class="pre">A_inv</span></code> by l2-regularized linear regression:
+<code class="docutils literal notranslate"><span class="pre">A_inv</span> <span class="pre">=</span> <span class="pre">1/2N</span> <span class="pre">*</span> <span class="pre">sum_i</span> <span class="pre">||x_i</span> <span class="pre">-</span> <span class="pre">A_inv</span> <span class="pre">*</span> <span class="pre">y_i||^2</span> <span class="pre">+</span> <span class="pre">alpha/2</span> <span class="pre">*</span> <span class="pre">||A_inv||_F^2</span></code>,
+where (y_i, x_i) with i=1,…,N are pairs of observations and the
+corresponding ground truth.</p>
+<dl class="attribute">
+<dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.weights">
+<code class="descname">weights</code><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>The weight matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>np.ndarray</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.load_params">
+<code class="descname">load_params</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load parameters from path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters are stored. C.f. <cite>save_params</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct input data from observation data.</p>
+<p>This method must be implemented by subclasses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.save_params">
+<code class="descname">save_params</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save parameters to path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters should be saved.
+Implementations should either use it as a file path (w/ or w/o
+extension) or as a directory path for multiple files (the dir
+should be created by this method if it does not exist).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the reconstructor with a dataset by adapting its parameters.</p>
+<p>Should only use the training data from <cite>dataset</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<cite>Dataset</cite>) – The dataset from which the training data should be used.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dival.html">dival package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dival.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dival.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.html#module-dival">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="dival.html">dival package</a><ul>
+  <li><a href="dival.reconstructors.html">dival.reconstructors package</a><ul>
+      <li>Previous: <a href="dival.reconstructors.reconstructor.html" title="previous chapter">dival.reconstructors.reconstructor module</a></li>
+      <li>Next: <a href="dival.util.html" title="next chapter">dival.util package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/dival.reconstructors.regression_reconstructors.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival.reconstructors.reconstructor module &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.reconstructors.regression_reconstructors module" href="dival.reconstructors.regression_reconstructors.html" />
+    <link rel="prev" title="dival.reconstructors.odl_reconstructors module" href="dival.reconstructors.odl_reconstructors.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-dival.reconstructors.reconstructor">
+<span id="dival-reconstructors-reconstructor-module"></span><h1>dival.reconstructors.reconstructor module<a class="headerlink" href="#module-dival.reconstructors.reconstructor" title="Permalink to this headline">¶</a></h1>
+<p>Provides the abstract reconstructor base class.</p>
+<dl class="class">
+<dt id="dival.reconstructors.reconstructor.FunctionReconstructor">
+<em class="property">class </em><code class="descclassname">dival.reconstructors.reconstructor.</code><code class="descname">FunctionReconstructor</code><span class="sig-paren">(</span><em>function</em>, <em>*args</em>, <em>fun_args=None</em>, <em>fun_kwargs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#FunctionReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.FunctionReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
+<p>Reconstructor defined by a callable calculating the reconstruction.</p>
+<dl class="attribute">
+<dt id="dival.reconstructors.reconstructor.FunctionReconstructor.function">
+<code class="descname">function</code><a class="headerlink" href="#dival.reconstructors.reconstructor.FunctionReconstructor.function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callable that is used in <cite>reconstruct</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.reconstructor.FunctionReconstructor.fun_args">
+<code class="descname">fun_args</code><a class="headerlink" href="#dival.reconstructors.reconstructor.FunctionReconstructor.fun_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arguments to be passed to <cite>function</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.reconstructor.FunctionReconstructor.fun_kwargs">
+<code class="descname">fun_kwargs</code><a class="headerlink" href="#dival.reconstructors.reconstructor.FunctionReconstructor.fun_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keyword arguments to be passed to <cite>function</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.FunctionReconstructor.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#FunctionReconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.FunctionReconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct input data from observation data.</p>
+<p>This method must be implemented by subclasses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.reconstructors.reconstructor.LearnedReconstructor">
+<em class="property">class </em><code class="descclassname">dival.reconstructors.reconstructor.</code><code class="descname">LearnedReconstructor</code><span class="sig-paren">(</span><em>reco_space=None</em>, <em>observation_space=None</em>, <em>name=''</em>, <em>hyper_params=None</em>, <em>callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.LearnedReconstructor.load_params">
+<code class="descname">load_params</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load parameters from path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters are stored. C.f. <cite>save_params</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.LearnedReconstructor.save_params">
+<code class="descname">save_params</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save parameters to path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters should be saved.
+Implementations should either use it as a file path (w/ or w/o
+extension) or as a directory path for multiple files (the dir
+should be created by this method if it does not exist).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.LearnedReconstructor.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the reconstructor with a dataset by adapting its parameters.</p>
+<p>Should only use the training data from <cite>dataset</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<cite>Dataset</cite>) – The dataset from which the training data should be used.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.reconstructors.reconstructor.Reconstructor">
+<em class="property">class </em><code class="descclassname">dival.reconstructors.reconstructor.</code><code class="descname">Reconstructor</code><span class="sig-paren">(</span><em>reco_space=None</em>, <em>observation_space=None</em>, <em>name=''</em>, <em>hyper_params=None</em>, <em>callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract reconstructor base class.</p>
+<p>Subclasses must implement the abstract method <cite>reconstruct</cite>.</p>
+<dl class="attribute">
+<dt id="dival.reconstructors.reconstructor.Reconstructor.name">
+<code class="descname">name</code><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the reconstructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.reconstructor.Reconstructor.callback">
+<code class="descname">callback</code><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object that should be called at some point(s) in <cite>reconstruct</cite>.
+E.g. an iterative reconstructor could call it at each iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>odl.solvers.util.callback.Callback</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS">
+<code class="descname">HYPER_PARAMS</code><em class="property"> = {}</em><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specification of hyper parameters.</p>
+<p>This class attribute is a dict that lists the hyper parameter of the
+reconstructor.
+It should not be hidden by an instance attribute of the same name (i.e. by
+assigning a value to <cite>self.HYPER_PARAMS</cite> in an instance of a subtype).</p>
+<p>The keys of this dict are the names of the hyper parameters, and each
+value is a dict with the following fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'default'</span></code></dt><dd><p>Default value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'retrain'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether training depends on the parameter. Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the reconstructor is retrained while optimizing
+the parameter value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'range'</span></code><span class="classifier">(float, float), optional</span></dt><dd><p>Interval of valid values. If this field is set, the parameter is
+taken to be real-valued.
+Either <code class="docutils literal notranslate"><span class="pre">'range'</span></code> or <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> has to be set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'choices'</span></code><span class="classifier">sequence, optional</span></dt><dd><p>Sequence of valid values of any type. If this field is set,
+<code class="docutils literal notranslate"><span class="pre">'range'</span></code> is ignored. Can be used to perform manual grid search.
+Either <code class="docutils literal notranslate"><span class="pre">'range'</span></code> or <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> has to be set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'method'</span></code><span class="classifier">{‘grid_search’, ‘hyperopt’}, optional</span></dt><dd><p>Optimization method for the parameter. Default: <code class="docutils literal notranslate"><span class="pre">'grid_search'</span></code>.
+Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'grid_search'</span></code></dt><dd><p>Grid search over a sequence of fixed values. Can be
+configured by the dict <code class="docutils literal notranslate"><span class="pre">'grid_search_options'</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'hyperopt'</span></code></dt><dd><p>Random search using the <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code> package. Can be
+configured by the dict <code class="docutils literal notranslate"><span class="pre">'hyperopt_options'</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'grid_search_options'</span></code><span class="classifier">dict</span></dt><dd><p>Option dict for grid search with the fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'num_samples'</span></code><span class="classifier">int, optional</span></dt><dd><p>Number of values. Default: 10.
+Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and <code class="docutils literal notranslate"><span class="pre">'choices'</span></code>
+is not.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'type'</span></code><span class="classifier">{‘linear’}, optional</span></dt><dd><p>Type of grid, i.e. distribution of the values.
+Default: <code class="docutils literal notranslate"><span class="pre">'linear'</span></code>.
+Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and <code class="docutils literal notranslate"><span class="pre">'choices'</span></code>
+is not.
+Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'linear'</span></code></dt><dd><p>Equidistant values in the <code class="docutils literal notranslate"><span class="pre">'range'</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'hyperopt_options'</span></code><span class="classifier">dict</span></dt><dd><p>Option dict for <code class="docutils literal notranslate"><span class="pre">'hyperopt'</span></code> method with the fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'space'</span></code><span class="classifier">hyperopt space, optional</span></dt><dd><p>Custom hyperopt search space. If this field is set,
+<code class="docutils literal notranslate"><span class="pre">'range'</span></code> and <code class="docutils literal notranslate"><span class="pre">'type'</span></code> are ignored.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'type'</span></code><span class="classifier">{‘uniform’}, optional</span></dt><dd><p>Type of the space for sampling. Default: <code class="docutils literal notranslate"><span class="pre">'uniform'</span></code>.
+Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'uniform'</span></code></dt><dd><p>Uniform distribution over the <code class="docutils literal notranslate"><span class="pre">'range'</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.Reconstructor.reconstruct">
+<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct input data from observation data.</p>
+<p>This method must be implemented by subclasses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.Reconstructor.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the reconstructor.</p>
+<p>The default implementation resets <cite>callback</cite> if present.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dival.html">dival package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dival.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dival.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.html#module-dival">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="dival.html">dival package</a><ul>
+  <li><a href="dival.reconstructors.html">dival.reconstructors package</a><ul>
+      <li>Previous: <a href="dival.reconstructors.odl_reconstructors.html" title="previous chapter">dival.reconstructors.odl_reconstructors module</a></li>
+      <li>Next: <a href="dival.reconstructors.regression_reconstructors.html" title="next chapter">dival.reconstructors.regression_reconstructors module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/dival.reconstructors.reconstructor.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

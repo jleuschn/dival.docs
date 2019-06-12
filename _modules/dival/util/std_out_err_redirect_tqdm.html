@@ -42,23 +42,23 @@
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
 
 
-<div class="viewcode-block" id="DummyTqdmFile"><a class="viewcode-back" href="../../../dival.util.html#dival.util.std_out_err_redirect_tqdm.DummyTqdmFile">[docs]</a><span class="k">class</span> <span class="nc">DummyTqdmFile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="DummyTqdmFile"><a class="viewcode-back" href="../../../dival.util.std_out_err_redirect_tqdm.html#dival.util.std_out_err_redirect_tqdm.DummyTqdmFile">[docs]</a><span class="k">class</span> <span class="nc">DummyTqdmFile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Dummy file-like that will write to tqdm&quot;&quot;&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
 
-<div class="viewcode-block" id="DummyTqdmFile.write"><a class="viewcode-back" href="../../../dival.util.html#dival.util.std_out_err_redirect_tqdm.DummyTqdmFile.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="DummyTqdmFile.write"><a class="viewcode-back" href="../../../dival.util.std_out_err_redirect_tqdm.html#dival.util.std_out_err_redirect_tqdm.DummyTqdmFile.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="c1"># Avoid print() second call (useless \n)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">tqdm</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DummyTqdmFile.flush"><a class="viewcode-back" href="../../../dival.util.html#dival.util.std_out_err_redirect_tqdm.DummyTqdmFile.flush">[docs]</a>    <span class="k">def</span> <span class="nf">flush</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DummyTqdmFile.flush"><a class="viewcode-back" href="../../../dival.util.std_out_err_redirect_tqdm.html#dival.util.std_out_err_redirect_tqdm.DummyTqdmFile.flush">[docs]</a>    <span class="k">def</span> <span class="nf">flush</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;flush&quot;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">)()</span></div></div>
 
 
-<div class="viewcode-block" id="std_out_err_redirect_tqdm"><a class="viewcode-back" href="../../../dival.util.html#dival.util.std_out_err_redirect_tqdm.std_out_err_redirect_tqdm">[docs]</a><span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
+<div class="viewcode-block" id="std_out_err_redirect_tqdm"><a class="viewcode-back" href="../../../dival.util.std_out_err_redirect_tqdm.html#dival.util.std_out_err_redirect_tqdm.std_out_err_redirect_tqdm">[docs]</a><span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
 <span class="k">def</span> <span class="nf">std_out_err_redirect_tqdm</span><span class="p">(</span><span class="n">yield_</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">yield_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">yield</span> <span class="n">yield_</span>
@@ -93,7 +93,7 @@
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">dival</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.html">dival package</a></li>
 </ul>
 
 <div class="relations">

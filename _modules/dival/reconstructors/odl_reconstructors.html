@@ -41,7 +41,7 @@
 <span class="kn">from</span> <span class="nn">dival</span> <span class="k">import</span> <span class="n">Reconstructor</span>
 
 
-<div class="viewcode-block" id="FBPReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.FBPReconstructor">[docs]</a><span class="k">class</span> <span class="nc">FBPReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="FBPReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.FBPReconstructor">[docs]</a><span class="k">class</span> <span class="nc">FBPReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
     <span class="n">HYPER_PARAMS</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;filter_type&#39;</span><span class="p">:</span>
             <span class="p">{</span><span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;Ram-Lak&#39;</span><span class="p">,</span>
@@ -84,7 +84,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pre_processor</span> <span class="o">=</span> <span class="n">pre_processor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">post_processor</span> <span class="o">=</span> <span class="n">post_processor</span>
 
-<div class="viewcode-block" id="FBPReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.FBPReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+<div class="viewcode-block" id="FBPReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.FBPReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fbp_op</span> <span class="o">=</span> <span class="n">fbp_op</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
                              <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_processor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -98,7 +98,7 @@
 <span class="c1"># TODO class IterativeReconstructor</span>
 
 
-<div class="viewcode-block" id="CGReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor">[docs]</a><span class="k">class</span> <span class="nc">CGReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="CGReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor">[docs]</a><span class="k">class</span> <span class="nc">CGReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reconstructor applying the conjugate gradient method.</span>
 
 <span class="sd">    Attributes</span>
@@ -150,7 +150,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">op_is_symmetric</span> <span class="o">=</span> <span class="n">op_is_symmetric</span>
 
-<div class="viewcode-block" id="CGReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+<div class="viewcode-block" id="CGReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_is_symmetric</span><span class="p">:</span>
             <span class="n">iterative</span><span class="o">.</span><span class="n">conjugate_gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span>
@@ -161,7 +161,7 @@
         <span class="k">return</span> <span class="n">x</span></div></div>
 
 
-<div class="viewcode-block" id="GaussNewtonReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor">[docs]</a><span class="k">class</span> <span class="nc">GaussNewtonReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="GaussNewtonReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor">[docs]</a><span class="k">class</span> <span class="nc">GaussNewtonReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reconstructor applying the Gauss-Newton method.</span>
 
 <span class="sd">    Attributes</span>
@@ -203,7 +203,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">zero_seq</span> <span class="o">=</span> <span class="n">zero_seq</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
 
-<div class="viewcode-block" id="GaussNewtonReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+<div class="viewcode-block" id="GaussNewtonReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;callback&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_seq</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -213,7 +213,7 @@
         <span class="k">return</span> <span class="n">x</span></div></div>
 
 
-<div class="viewcode-block" id="KaczmarzReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor">[docs]</a><span class="k">class</span> <span class="nc">KaczmarzReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="KaczmarzReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor">[docs]</a><span class="k">class</span> <span class="nc">KaczmarzReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reconstructor applying Kaczmarz&#39;s method.</span>
 
 <span class="sd">    Attributes</span>
@@ -273,7 +273,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">callback_loop</span> <span class="o">=</span> <span class="n">callback_loop</span>
 
-<div class="viewcode-block" id="KaczmarzReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+<div class="viewcode-block" id="KaczmarzReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">iterative</span><span class="o">.</span><span class="n">kaczmarz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ops</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="p">,</span>
@@ -281,7 +281,7 @@
         <span class="k">return</span> <span class="n">x</span></div></div>
 
 
-<div class="viewcode-block" id="LandweberReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor">[docs]</a><span class="k">class</span> <span class="nc">LandweberReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="LandweberReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor">[docs]</a><span class="k">class</span> <span class="nc">LandweberReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reconstructor applying Landweber&#39;s method.</span>
 
 <span class="sd">    Attributes</span>
@@ -330,14 +330,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">projection</span> <span class="o">=</span> <span class="n">projection</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
 
-<div class="viewcode-block" id="LandweberReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+<div class="viewcode-block" id="LandweberReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">iterative</span><span class="o">.</span><span class="n">landweber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span></div></div>
 
 
-<div class="viewcode-block" id="MLEMReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.MLEMReconstructor">[docs]</a><span class="k">class</span> <span class="nc">MLEMReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="MLEMReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.MLEMReconstructor">[docs]</a><span class="k">class</span> <span class="nc">MLEMReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reconstructor applying Maximum Likelihood Expectation Maximization.</span>
 
 <span class="sd">    If multiple operators are given, Ordered Subsets MLEM is applied.</span>
@@ -393,7 +393,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sensitivities</span> <span class="o">=</span> <span class="n">sensitivities</span>
 
-<div class="viewcode-block" id="MLEMReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.html#dival.reconstructors.odl_reconstructors.MLEMReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+<div class="viewcode-block" id="MLEMReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.MLEMReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">DiscretizedSpaceElement</span><span class="p">):</span>
             <span class="n">observation</span> <span class="o">=</span> <span class="p">[</span><span class="n">observation</span><span class="p">]</span>
@@ -421,7 +421,7 @@
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">dival</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.html">dival package</a></li>
 </ul>
 
 <div class="relations">

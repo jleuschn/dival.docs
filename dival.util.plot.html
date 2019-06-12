@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dival.util.plot module &#8212; Deep Inversion Validation Library  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.util.std_out_err_redirect_tqdm module" href="dival.util.std_out_err_redirect_tqdm.html" />
+    <link rel="prev" title="dival.util.odl_utility module" href="dival.util.odl_utility.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-dival.util.plot">
+<span id="dival-util-plot-module"></span><h1>dival.util.plot module<a class="headerlink" href="#module-dival.util.plot" title="Permalink to this headline">¶</a></h1>
+<p>Provides utility functions for visualization.</p>
+<dl class="function">
+<dt id="dival.util.plot.plot_image">
+<code class="descclassname">dival.util.plot.</code><code class="descname">plot_image</code><span class="sig-paren">(</span><em>x</em>, <em>fig=None</em>, <em>ax=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/plot.html#plot_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.plot.plot_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot <cite>x</cite> using matplotlib’s <cite>imshow</cite> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like</em><em> or </em><em>PIL image</em>) – The image data. For further information see <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.imshow.html">imshow documentation</a>.</p></li>
+<li><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em><em>, </em><em>optional</em>) – The figure to plot the image in. If <code class="docutils literal notranslate"><span class="pre">fig</span> <span class="pre">is</span> <span class="pre">None</span></code>, but <cite>ax</cite> is given,
+it is retrieved from <cite>ax</cite>. If both <code class="docutils literal notranslate"><span class="pre">fig</span> <span class="pre">is</span> <span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">is</span> <span class="pre">None</span></code>,
+a new figure is created.</p></li>
+<li><p><strong>ax</strong> (<em>matplotlib.axes.Axes</em><em>, </em><em>optional</em>) – The axes to plot the image in. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, an axes object is created
+in <cite>fig</cite>.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Keyword arguments passed to <cite>ax.imshow</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>im</strong> (<em>matplotlib.image.AxesImage</em>) – The image that was plotted.</p></li>
+<li><p><strong>ax</strong> (<em>matplotlib.axes.Axes</em>) – The axes the image was plotted in.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="dival.util.plot.plot_images">
+<code class="descclassname">dival.util.plot.</code><code class="descname">plot_images</code><span class="sig-paren">(</span><em>x_list</em>, <em>nrows=1</em>, <em>ncols=-1</em>, <em>fig=None</em>, <em>vrange='equal'</em>, <em>cbar='auto'</em>, <em>rect=None</em>, <em>fig_size=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/plot.html#plot_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.plot.plot_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot multiple images using matplotlib’s <cite>imshow</cite> method in subplots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_list</strong> (<em>list of</em><em> (</em><em>array-like</em><em> or </em><em>PIL image</em><em>)</em>) – <p>List of the image data. For further information see <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.imshow.html">imshow
+documentation</a>.</p>
+</p></li>
+<li><p><strong>nrows</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of subplot rows (the default is 1). If -1, it is computed by
+<code class="docutils literal notranslate"><span class="pre">ceil(len(x_list)/ncols)</span></code>, or set to 1 if <cite>ncols</cite> is not given.</p></li>
+<li><p><strong>ncols</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of subplot columns. If -1, it is computed by
+<code class="docutils literal notranslate"><span class="pre">ceil(len(x_list)/nrows)</span></code> (default). If both <cite>nrows</cite> and <cite>ncols</cite> are
+given, the value of <cite>ncols</cite> is ignored.</p></li>
+<li><p><strong>vrange</strong> (<em>{'equal'</em><em>, </em><em>'individual'}</em><em> or </em><em>[</em><em>list of</em><em> ]</em><em>(</em><em>float</em><em>, </em><em>float</em><em>)</em><em>, </em><em>optional</em>) – <p>Value ranges for the colors of the images.
+If a string is passed, the range is auto-computed:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'equal'</span></code></dt><dd><p>The same colors are used for all images.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'individual'</span></code></dt><dd><p>The colors differ between the images.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>If a tuple of floats is passed, it is used for all images.
+If a list of tuples of floats is passed, each tuple is used for one
+image.</p>
+</p></li>
+<li><p><strong>cbar</strong> (<em>{'one'</em><em>, </em><em>'many'</em><em>, </em><em>'auto'</em><em>, </em><em>'none'}</em><em>, </em><em>optional</em>) – Colorbar option.
+If <code class="docutils literal notranslate"><span class="pre">cbar=='one'</span></code>, one colorbar is shown. Only possible if the value
+ranges used for the colors (cf. <cite>vrange</cite>) are the same for all images.
+If <code class="docutils literal notranslate"><span class="pre">cbar=='many'</span></code>, a colorbar is shown for every image.
+If <code class="docutils literal notranslate"><span class="pre">cbar=='auto'</span></code>, either <code class="docutils literal notranslate"><span class="pre">'one'</span></code> or <code class="docutils literal notranslate"><span class="pre">'many'</span></code> is chosen,
+depending on whether <cite>vrange</cite> is equal for all images.
+If <code class="docutils literal notranslate"><span class="pre">cbar=='none'</span></code>, no colorbars are shown.</p></li>
+<li><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em><em>, </em><em>optional</em>) – The figure to plot the images in. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a new figure is created.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Keyword arguments passed to <cite>plot_image</cite>, which in turn passes them to
+<code class="docutils literal notranslate"><span class="pre">imshow</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>im</strong> (<em>ndarray of matplotlib.image.AxesImage</em>) – The images that were plotted.</p></li>
+<li><p><strong>ax</strong> (<em>ndarray of matplotlib.axes.Axes</em>) – The axes the images were plotted in.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Deep Inversion Validation Library</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dival.html">dival package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dival.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dival.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dival.html#module-dival">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="dival.html">dival package</a><ul>
+  <li><a href="dival.util.html">dival.util package</a><ul>
+      <li>Previous: <a href="dival.util.odl_utility.html" title="previous chapter">dival.util.odl_utility module</a></li>
+      <li>Next: <a href="dival.util.std_out_err_redirect_tqdm.html" title="next chapter">dival.util.std_out_err_redirect_tqdm module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/dival.util.plot.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
