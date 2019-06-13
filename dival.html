@@ -394,6 +394,64 @@ Default is <code class="docutils literal notranslate"><span class="pre">'train'<
 
 </dd></dl>
 
+<dl class="function">
+<dt id="dival.get_standard_dataset">
+<code class="descclassname">dival.</code><code class="descname">get_standard_dataset</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/standard.html#get_standard_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.get_standard_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a standard dataset by name.</p>
+<p>The datasets are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>A typical synthetical CT dataset with ellipse phantoms.
+<cite>EllipsesDataset</cite> is used as ground truth dataset, a ray
+transform with parallel beam geometry using 30 angles is applied,
+and white gaussian noise with a standard deviation of 5% (i.e.
+<code class="docutils literal notranslate"><span class="pre">0.05</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added.
+The ray transform is stored in the attribute <cite>ray_trafo</cite> of the
+dataset.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'lidc_idri_dival'</span></code></dt><dd><p>A dataset based on real CT reconstructions from the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
+dataset.
+<cite>LIDCIDRIDivalDataset</cite> is used as ground truth dataset and a ray
+transform with parallel beam geometry using 30 angles is applied,
+followed by <code class="docutils literal notranslate"><span class="pre">exp(-mu</span> <span class="pre">*</span> <span class="pre">observation)</span></code> due to Beer-Lamberts law,
+where <code class="docutils literal notranslate"><span class="pre">mu</span> <span class="pre">=</span> <span class="pre">0.02</span> <span class="pre">cm^2/g</span></code> (mass attenuation of water).
+The noise is chosen in the way presented in <a class="footnote-reference brackets" href="#id2" id="id1">1</a> for the human
+dataset: poisson noise corresponding to 10^4 incident photons per
+pixel before attenuation is used.
+The ray transform is stored in the attribute <cite>ray_trafo</cite> of the
+dataset. The deterministic pre- and postprocessing operators
+applied before and after the ray transform are stored in the
+attributes <cite>preprocessing_op</cite> and <cite>postprocessing_op</cite> of the
+dataset, which also implement the respective inverses.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Adler, J., &amp; Öktem, O. (2018). Learned Primal-Dual Reconstruction.
+IEEE Transactions on Medical Imaging, 37, 1322-1332.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the dataset.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dataset</strong> – The dataset.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>ObservationGroundTruthDataset</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 

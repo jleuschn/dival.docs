@@ -41,9 +41,17 @@
 <span class="kn">from</span> <span class="nn">odl.discr.lp_discr</span> <span class="k">import</span> <span class="n">uniform_discr</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.dataset</span> <span class="k">import</span> <span class="n">GroundTruthDataset</span>
 
+<span class="c1"># path to LIDC-IDRI, you may need to adjust this</span>
+<span class="c1"># The public LIDC-IDRI dataset can be downloaded using either the</span>
+<span class="c1"># NBIA Data Retriever or download_images.py.</span>
 <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="s1">&#39;/localdata/LIDC-IDRI&#39;</span>
-<span class="n">FILE_LIST_FILE</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;/home/jleuschn/phd/dival/datasets/lidc_idri_dival/&#39;</span>
-                  <span class="s1">&#39;lidc_idri_file_list.json&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;LIDC-IDRI dataset not found: directory &quot;</span><span class="si">{}</span><span class="s1">&quot; does &#39;</span>
+                            <span class="s1">&#39;not exist&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">))</span>
+
+<span class="n">FILE_LIST_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span>
+                              <span class="s1">&#39;lidc_idri_file_list.json&#39;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="LIDCIDRIDivalDataset"><a class="viewcode-back" href="../../../../dival.datasets.html#dival.datasets.LIDCIDRIDivalDataset">[docs]</a><span class="k">class</span> <span class="nc">LIDCIDRIDivalDataset</span><span class="p">(</span><span class="n">GroundTruthDataset</span><span class="p">):</span>

@@ -44,7 +44,7 @@
     <span class="n">LIDCIDRIDivalDataset</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="get_standard_dataset"><a class="viewcode-back" href="../../../dival.datasets.standard.html#dival.datasets.get_standard_dataset">[docs]</a><span class="k">def</span> <span class="nf">get_standard_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="get_standard_dataset"><a class="viewcode-back" href="../../../dival.datasets.standard.html#dival.get_standard_dataset">[docs]</a><span class="k">def</span> <span class="nf">get_standard_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a standard dataset by name.</span>
 
@@ -59,7 +59,8 @@
 <span class="sd">            The ray transform is stored in the attribute `ray_trafo` of the</span>
 <span class="sd">            dataset.</span>
 <span class="sd">        * ``&#39;lidc_idri_dival&#39;``</span>
-<span class="sd">            A dataset based on real CT reconstructions from the LIDC-IDRI</span>
+<span class="sd">            A dataset based on real CT reconstructions from the `LIDC-IDRI</span>
+<span class="sd">            &lt;https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI&gt;`_</span>
 <span class="sd">            dataset.</span>
 <span class="sd">            `LIDCIDRIDivalDataset` is used as ground truth dataset and a ray</span>
 <span class="sd">            transform with parallel beam geometry using 30 angles is applied,</span>
@@ -117,7 +118,7 @@
         <span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">geometry</span><span class="p">)</span>
 
         <span class="c1"># Ensure operator has fixed operator norm for scale invariance</span>
-        <span class="n">opnorm</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">power_method_opnorm</span><span class="p">(</span><span class="n">ray_trafo</span><span class="p">)</span>
+<span class="c1">#        opnorm = odl.power_method_opnorm(ray_trafo)</span>
 <span class="c1">#        operator = (1 / opnorm) * ray_trafo</span>
 
 <span class="c1">#        noise model taken from Adler, J. and Öktem, O., 2018, Learned</span>
