@@ -40,15 +40,24 @@
 <span class="kn">from</span> <span class="nn">pydicom.filereader</span> <span class="k">import</span> <span class="n">dcmread</span>
 <span class="kn">from</span> <span class="nn">odl.discr.lp_discr</span> <span class="k">import</span> <span class="n">uniform_discr</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.dataset</span> <span class="k">import</span> <span class="n">GroundTruthDataset</span>
+<span class="kn">from</span> <span class="nn">dival.config</span> <span class="k">import</span> <span class="n">CONFIG</span>
 
-<span class="c1"># path to LIDC-IDRI, you may need to adjust this</span>
+<span class="c1"># path to LIDC-IDRI</span>
 <span class="c1"># The public LIDC-IDRI dataset can be downloaded using either the</span>
 <span class="c1"># NBIA Data Retriever or download_images.py.</span>
-<span class="n">DATA_PATH</span> <span class="o">=</span> <span class="s1">&#39;/localdata/LIDC-IDRI&#39;</span>
+<span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">CONFIG</span><span class="p">[</span><span class="s1">&#39;lidc_idri_dival&#39;</span><span class="p">][</span><span class="s1">&#39;data_path&#39;</span><span class="p">]</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;LIDC-IDRI dataset not found: directory &quot;</span><span class="si">{}</span><span class="s1">&quot; does &#39;</span>
-                            <span class="s1">&#39;not exist&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">))</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+        <span class="s1">&#39;LIDC-IDRI dataset not found: directory &quot;</span><span class="si">{}</span><span class="s1">&quot; does not exist. You may &#39;</span>
+        <span class="s1">&#39;need to edit &quot;config.json&quot; (setting &quot;lidc_idri_dival&quot;/&quot;data_path&quot;) &#39;</span>
+        <span class="s1">&#39;and reload dival. The required parts of the LIDC-IDRI dataset must &#39;</span>
+        <span class="s1">&#39;be stored under this directory. The data can be downloaded either &#39;</span>
+        <span class="s1">&#39;using the NBIA Data Retriever or by running &quot;datasets/lidc_idri_dival&#39;</span>
+        <span class="s1">&#39;/download_images.py&quot;. Caution: The full dataset is ~135GB, the &#39;</span>
+        <span class="s1">&#39;required parts that will be stored by download_images.py are still &#39;</span>
+        <span class="s1">&#39;~30GB. Please make sure there is enough free space.&#39;</span>
+        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">))</span>
 
 <span class="n">FILE_LIST_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span>
                               <span class="s1">&#39;lidc_idri_file_list.json&#39;</span><span class="p">)</span>
