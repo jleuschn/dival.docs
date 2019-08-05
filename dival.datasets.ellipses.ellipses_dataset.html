@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>dival.util package &#8212; Deep Inversion Validation Library  documentation</title>
+    <title>dival.datasets.ellipses.ellipses_dataset module &#8212; Deep Inversion Validation Library  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dival.util.constants module" href="dival.util.constants.html" />
-    <link rel="prev" title="dival.reconstructors.regression_reconstructors module" href="dival.reconstructors.regression_reconstructors.html" />
+    <link rel="next" title="dival.datasets.lidc_idri_dival package" href="dival.datasets.lidc_idri_dival.html" />
+    <link rel="prev" title="dival.datasets.ellipses package" href="dival.datasets.ellipses.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,23 +33,25 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="dival-util-package">
-<h1>dival.util package<a class="headerlink" href="#dival-util-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="module-dival.util">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dival.util" title="Permalink to this headline">¶</a></h2>
-</div>
+  <div class="section" id="module-dival.datasets.ellipses.ellipses_dataset">
+<span id="dival-datasets-ellipses-ellipses-dataset-module"></span><h1>dival.datasets.ellipses.ellipses_dataset module<a class="headerlink" href="#module-dival.datasets.ellipses.ellipses_dataset" title="Permalink to this headline">¶</a></h1>
+<p>Provides <cite>EllipsesDataset</cite>.</p>
+<dl class="class">
+<dt id="dival.datasets.ellipses.ellipses_dataset.EllipsesDataset">
+<em class="property">class </em><code class="descclassname">dival.datasets.ellipses.ellipses_dataset.</code><code class="descname">EllipsesDataset</code><span class="sig-paren">(</span><em>min_pt=None</em>, <em>max_pt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/ellipses/ellipses_dataset.html#EllipsesDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.ellipses.ellipses_dataset.EllipsesDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.GroundTruthDataset" title="dival.datasets.dataset.GroundTruthDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.GroundTruthDataset</span></code></a></p>
+<p>Dataset with images of multiple random ellipses.</p>
+<p>This dataset uses the function <cite>odl.phantom.ellipsoid_phantom</cite> to create
+the images.</p>
+<dl class="method">
+<dt id="dival.datasets.ellipses.ellipses_dataset.EllipsesDataset.generator">
+<code class="descname">generator</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/ellipses/ellipses_dataset.html#EllipsesDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.ellipses.ellipses_dataset.EllipsesDataset.generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield random ellipse phantom images using
+<cite>odl.phantom.ellipsoid_phantom</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -73,9 +75,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="dival.html">dival package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="dival.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">dival.util package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="dival.html#submodules">Submodules</a></li>
@@ -89,8 +91,12 @@
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="dival.html">dival package</a><ul>
-      <li>Previous: <a href="dival.reconstructors.regression_reconstructors.html" title="previous chapter">dival.reconstructors.regression_reconstructors module</a></li>
-      <li>Next: <a href="dival.util.constants.html" title="next chapter">dival.util.constants module</a></li>
+  <li><a href="dival.datasets.html">dival.datasets package</a><ul>
+  <li><a href="dival.datasets.ellipses.html">dival.datasets.ellipses package</a><ul>
+      <li>Previous: <a href="dival.datasets.ellipses.html" title="previous chapter">dival.datasets.ellipses package</a></li>
+      <li>Next: <a href="dival.datasets.lidc_idri_dival.html" title="next chapter">dival.datasets.lidc_idri_dival package</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -125,7 +131,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/dival.util.rst.txt"
+      <a href="_sources/dival.datasets.ellipses.ellipses_dataset.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

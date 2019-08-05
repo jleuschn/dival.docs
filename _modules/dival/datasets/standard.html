@@ -35,13 +35,18 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Provides standard datasets for benchmarking.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="k">import</span> <span class="n">resize</span>
 <span class="kn">import</span> <span class="nn">odl</span>
-<span class="kn">from</span> <span class="nn">odl.operator.default_ops</span> <span class="k">import</span> <span class="n">ScalingOperator</span>
-<span class="kn">from</span> <span class="nn">odl.operator.operator</span> <span class="k">import</span> <span class="n">OperatorComp</span>
-<span class="kn">from</span> <span class="nn">dival.util.odl_utility</span> <span class="k">import</span> <span class="n">ExpOperator</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.ellipses.ellipses_dataset</span> <span class="k">import</span> <span class="n">EllipsesDataset</span>
-<span class="kn">from</span> <span class="nn">dival.datasets.lidc_idri_dival.lidc_idri_dival_dataset</span> <span class="k">import</span> <span class="p">(</span>
-    <span class="n">LIDCIDRIDivalDataset</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">dival.util.constants</span> <span class="k">import</span> <span class="n">MU_MAX</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">dival.datasets.lidc_idri_dival.lidc_idri_dival_dataset</span> <span class="k">import</span> <span class="p">(</span>
+        <span class="n">LIDCIDRIDivalDataset</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;could not import LIDCIDRIDivalDataset because of the following &#39;</span>
+         <span class="s1">&#39;error:</span><span class="se">\n\n</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 
 
 <div class="viewcode-block" id="get_standard_dataset"><a class="viewcode-back" href="../../../dival.datasets.standard.html#dival.get_standard_dataset">[docs]</a><span class="k">def</span> <span class="nf">get_standard_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
@@ -52,28 +57,40 @@
 
 <span class="sd">        * ``&#39;ellipses&#39;``</span>
 <span class="sd">            A typical synthetical CT dataset with ellipse phantoms.</span>
+
 <span class="sd">            `EllipsesDataset` is used as ground truth dataset, a ray</span>
 <span class="sd">            transform with parallel beam geometry using 30 angles is applied,</span>
 <span class="sd">            and white gaussian noise with a standard deviation of 5% (i.e.</span>
-<span class="sd">            ``0.05 * mean(abs(observation))``) is added.</span>
-<span class="sd">            The ray transform is stored in the attribute `ray_trafo` of the</span>
+<span class="sd">            ``0.05 * mean(abs(observation))``) is added. The ray transform is</span>
+<span class="sd">            normalized by its spectral norm.</span>
+
+<span class="sd">            A normalized ray transform that corresponds to the noiseless</span>
+<span class="sd">            forward operator is stored in the attribute `ray_trafo` of the</span>
 <span class="sd">            dataset.</span>
+
+<span class="sd">            In order to avoid the inverse crime, the ground truth images of</span>
+<span class="sd">            shape (128, 128) are upscaled by bilinear interpolation to a</span>
+<span class="sd">            resolution of (400, 400) before the ray transform is applied (whose</span>
+<span class="sd">            discretization is different from the one of `ray_trafo`).</span>
+
 <span class="sd">        * ``&#39;lidc_idri_dival&#39;``</span>
 <span class="sd">            A dataset based on real CT reconstructions from the `LIDC-IDRI</span>
 <span class="sd">            &lt;https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI&gt;`_</span>
 <span class="sd">            dataset.</span>
+
 <span class="sd">            `LIDCIDRIDivalDataset` is used as ground truth dataset and a ray</span>
-<span class="sd">            transform with parallel beam geometry using 30 angles is applied,</span>
-<span class="sd">            followed by ``exp(-mu * observation)`` due to Beer-Lamberts law,</span>
-<span class="sd">            where ``mu = 0.02 cm^2/g`` (mass attenuation of water).</span>
+<span class="sd">            transform with parallel beam geometry using 1000 angles is applied.</span>
 <span class="sd">            The noise is chosen in the way presented in [1]_ for the human</span>
 <span class="sd">            dataset: poisson noise corresponding to 10^4 incident photons per</span>
 <span class="sd">            pixel before attenuation is used.</span>
-<span class="sd">            The ray transform is stored in the attribute `ray_trafo` of the</span>
-<span class="sd">            dataset. The deterministic pre- and postprocessing operators</span>
-<span class="sd">            applied before and after the ray transform are stored in the</span>
-<span class="sd">            attributes `preprocessing_op` and `postprocessing_op` of the</span>
-<span class="sd">            dataset, which also implement the respective inverses.</span>
+
+<span class="sd">            A ray transform that corresponds to the noiseless forward operator</span>
+<span class="sd">            is stored in the attribute `ray_trafo` of the dataset.</span>
+
+<span class="sd">            In order to avoid the inverse crime, the ground truth images of</span>
+<span class="sd">            shape (362, 362) are upscaled by bilinear interpolation to a</span>
+<span class="sd">            resolution of (1000, 1000) before the ray transform is applied</span>
+<span class="sd">            (whose discretization is different from the one of `ray_trafo`).</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
@@ -91,56 +108,118 @@
 <span class="sd">        The dataset.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ellipses&#39;</span><span class="p">:</span>
-        <span class="n">ellipses_dataset</span> <span class="o">=</span> <span class="n">EllipsesDataset</span><span class="p">()</span>
-        <span class="n">space</span> <span class="o">=</span> <span class="n">ellipses_dataset</span><span class="o">.</span><span class="n">space</span>
+        <span class="n">MIN_PT</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]</span>
+        <span class="n">MAX_PT</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]</span>
 
-        <span class="n">geometry</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">parallel_beam_geometry</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">num_angles</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-        <span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">geometry</span><span class="p">)</span>
+        <span class="n">ellipses_dataset</span> <span class="o">=</span> <span class="n">EllipsesDataset</span><span class="p">(</span><span class="n">min_pt</span><span class="o">=</span><span class="n">MIN_PT</span><span class="p">,</span> <span class="n">max_pt</span><span class="o">=</span><span class="n">MAX_PT</span><span class="p">)</span>
+
+        <span class="n">NUM_ANGLES</span> <span class="o">=</span> <span class="mi">30</span>
+        <span class="c1"># image shape for simulation</span>
+        <span class="n">IM_SHAPE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>  <span class="c1"># images will be scaled up from (128, 128)</span>
+
+        <span class="n">reco_space</span> <span class="o">=</span> <span class="n">ellipses_dataset</span><span class="o">.</span><span class="n">space</span>
+        <span class="n">space</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">uniform_discr</span><span class="p">(</span><span class="n">min_pt</span><span class="o">=</span><span class="n">MIN_PT</span><span class="p">,</span> <span class="n">max_pt</span><span class="o">=</span><span class="n">MAX_PT</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">IM_SHAPE</span><span class="p">,</span>
+                                  <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+        <span class="n">reco_geometry</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">parallel_beam_geometry</span><span class="p">(</span>
+            <span class="n">reco_space</span><span class="p">,</span> <span class="n">num_angles</span><span class="o">=</span><span class="n">NUM_ANGLES</span><span class="p">)</span>
+        <span class="n">geometry</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">parallel_beam_geometry</span><span class="p">(</span>
+            <span class="n">space</span><span class="p">,</span> <span class="n">num_angles</span><span class="o">=</span><span class="n">NUM_ANGLES</span><span class="p">,</span>
+            <span class="n">det_shape</span><span class="o">=</span><span class="n">reco_geometry</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="n">IMPL</span> <span class="o">=</span> <span class="s1">&#39;astra_cuda&#39;</span>
+        <span class="n">reco_ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">reco_geometry</span><span class="p">,</span>
+                                               <span class="n">impl</span><span class="o">=</span><span class="n">IMPL</span><span class="p">)</span>
+        <span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">IMPL</span><span class="p">)</span>
+
+        <span class="k">class</span> <span class="nc">_ResizeOperator</span><span class="p">(</span><span class="n">odl</span><span class="o">.</span><span class="n">Operator</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">space</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">resize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">IM_SHAPE</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
 
         <span class="c1"># Ensure operator has fixed operator norm for scale invariance</span>
         <span class="n">opnorm</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">power_method_opnorm</span><span class="p">(</span><span class="n">ray_trafo</span><span class="p">)</span>
-        <span class="n">operator</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">opnorm</span><span class="p">)</span> <span class="o">*</span> <span class="n">ray_trafo</span>
+        <span class="n">resize_op</span> <span class="o">=</span> <span class="n">_ResizeOperator</span><span class="p">()</span>
+        <span class="n">forward_op</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">opnorm</span><span class="p">)</span> <span class="o">*</span> <span class="n">ray_trafo</span> <span class="o">*</span> <span class="n">resize_op</span>
 
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">ellipses_dataset</span><span class="o">.</span><span class="n">create_pair_dataset</span><span class="p">(</span>
-            <span class="n">forward_op</span><span class="o">=</span><span class="n">operator</span><span class="p">,</span> <span class="n">noise_type</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+            <span class="n">forward_op</span><span class="o">=</span><span class="n">forward_op</span><span class="p">,</span> <span class="n">noise_type</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
             <span class="n">noise_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;relative_stddev&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
                           <span class="s1">&#39;stddev&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
-            <span class="n">noise_seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">noise_seeds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
 
-        <span class="n">dataset</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">ray_trafo</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">reco_ray_trafo</span>
 
         <span class="k">return</span> <span class="n">dataset</span>
     <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;lidc_idri_dival&#39;</span><span class="p">:</span>
-        <span class="n">lidc_idri_dival_dataset</span> <span class="o">=</span> <span class="n">LIDCIDRIDivalDataset</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="n">space</span> <span class="o">=</span> <span class="n">lidc_idri_dival_dataset</span><span class="o">.</span><span class="n">space</span>
+        <span class="c1"># ~26cm x 26cm images</span>
+        <span class="n">MIN_PT</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.13</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.13</span><span class="p">]</span>
+        <span class="n">MAX_PT</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">]</span>
 
-        <span class="n">geometry</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">parallel_beam_geometry</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">num_angles</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-        <span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">geometry</span><span class="p">)</span>
+        <span class="n">lidc_idri_dival_dataset</span> <span class="o">=</span> <span class="n">LIDCIDRIDivalDataset</span><span class="p">(</span><span class="n">min_pt</span><span class="o">=</span><span class="n">MIN_PT</span><span class="p">,</span>
+                                                       <span class="n">max_pt</span><span class="o">=</span><span class="n">MAX_PT</span><span class="p">,</span>
+                                                       <span class="n">return_val</span><span class="o">=</span><span class="s1">&#39;mu_normed&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Ensure operator has fixed operator norm for scale invariance</span>
-<span class="c1">#        opnorm = odl.power_method_opnorm(ray_trafo)</span>
-<span class="c1">#        operator = (1 / opnorm) * ray_trafo</span>
+        <span class="n">NUM_ANGLES</span> <span class="o">=</span> <span class="mi">1000</span>
+        <span class="c1"># image shape for simulation</span>
+        <span class="n">IM_SHAPE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># images will be scaled up from (362, 362)</span>
 
-<span class="c1">#        noise model taken from Adler, J. and Öktem, O., 2018, Learned</span>
-<span class="c1">#        Primal-dual Reconstruction, human dataset</span>
-        <span class="n">mu_water</span> <span class="o">=</span> <span class="mf">0.02</span>
-        <span class="n">photons_per_pixel</span> <span class="o">=</span> <span class="mi">10000</span>
-        <span class="n">factor</span> <span class="o">=</span> <span class="mf">1000.</span>
-        <span class="n">preprocessing_op</span> <span class="o">=</span> <span class="n">ScalingOperator</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">factor</span><span class="p">)</span>
-        <span class="n">postprocessing_op</span> <span class="o">=</span> <span class="p">(</span><span class="n">ExpOperator</span><span class="p">(</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">)</span> <span class="o">*</span>
-                             <span class="p">(</span><span class="o">-</span><span class="n">mu_water</span><span class="p">))</span>
-        <span class="n">operator</span> <span class="o">=</span> <span class="n">OperatorComp</span><span class="p">(</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="n">preprocessing_op</span><span class="p">)</span>
-        <span class="n">operator</span> <span class="o">=</span> <span class="n">OperatorComp</span><span class="p">(</span><span class="n">postprocessing_op</span><span class="p">,</span> <span class="n">operator</span><span class="p">)</span>
+        <span class="n">reco_space</span> <span class="o">=</span> <span class="n">lidc_idri_dival_dataset</span><span class="o">.</span><span class="n">space</span>
+        <span class="n">space</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">uniform_discr</span><span class="p">(</span><span class="n">min_pt</span><span class="o">=</span><span class="n">MIN_PT</span><span class="p">,</span> <span class="n">max_pt</span><span class="o">=</span><span class="n">MAX_PT</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">IM_SHAPE</span><span class="p">,</span>
+                                  <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+        <span class="n">reco_geometry</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">parallel_beam_geometry</span><span class="p">(</span>
+            <span class="n">reco_space</span><span class="p">,</span> <span class="n">num_angles</span><span class="o">=</span><span class="n">NUM_ANGLES</span><span class="p">)</span>
+        <span class="n">geometry</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">parallel_beam_geometry</span><span class="p">(</span>
+            <span class="n">space</span><span class="p">,</span> <span class="n">num_angles</span><span class="o">=</span><span class="n">NUM_ANGLES</span><span class="p">,</span>
+            <span class="n">det_shape</span><span class="o">=</span><span class="n">reco_geometry</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="n">IMPL</span> <span class="o">=</span> <span class="s1">&#39;astra_cuda&#39;</span>
+        <span class="n">reco_ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">reco_geometry</span><span class="p">,</span>
+                                               <span class="n">impl</span><span class="o">=</span><span class="n">IMPL</span><span class="p">)</span>
+        <span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">IMPL</span><span class="p">)</span>
+
+        <span class="n">PHOTONS_PER_PIXEL</span> <span class="o">=</span> <span class="mi">10000</span>
+
+        <span class="k">class</span> <span class="nc">_LIDCIDRIDivalForwardOp</span><span class="p">(</span><span class="n">odl</span><span class="o">.</span><span class="n">Operator</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+                <span class="n">im</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">MU_MAX</span>
+                <span class="n">im_resized</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">IM_SHAPE</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="c1"># apply forward operator</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">ray_trafo</span><span class="p">(</span><span class="n">im_resized</span><span class="p">)</span><span class="o">.</span><span class="n">asarray</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+                <span class="c1"># apply poisson noise</span>
+                <span class="n">data</span> <span class="o">*=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+        <span class="k">class</span> <span class="nc">_LIDCIDRIDivalPostProcessor</span><span class="p">(</span><span class="n">odl</span><span class="o">.</span><span class="n">Operator</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">PHOTONS_PER_PIXEL</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># assume at least</span>
+                <span class="c1"># one photon per pixel to avoid log(0)</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+                <span class="n">data</span> <span class="o">/=</span> <span class="p">(</span><span class="o">-</span><span class="n">MU_MAX</span><span class="p">)</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+        <span class="n">forward_op</span> <span class="o">=</span> <span class="n">_LIDCIDRIDivalForwardOp</span><span class="p">()</span>
+        <span class="n">post_processor</span> <span class="o">=</span> <span class="n">_LIDCIDRIDivalPostProcessor</span><span class="p">()</span>
 
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">lidc_idri_dival_dataset</span><span class="o">.</span><span class="n">create_pair_dataset</span><span class="p">(</span>
-            <span class="n">forward_op</span><span class="o">=</span><span class="n">operator</span><span class="p">,</span> <span class="n">noise_type</span><span class="o">=</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span>
-            <span class="n">noise_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;scaling_factor&#39;</span><span class="p">:</span> <span class="n">photons_per_pixel</span><span class="p">},</span>
-            <span class="n">noise_seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">forward_op</span><span class="o">=</span><span class="n">forward_op</span><span class="p">,</span> <span class="n">post_processor</span><span class="o">=</span><span class="n">post_processor</span><span class="p">,</span>
+            <span class="n">noise_type</span><span class="o">=</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span>
+            <span class="n">noise_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;scaling_factor&#39;</span><span class="p">:</span> <span class="n">PHOTONS_PER_PIXEL</span><span class="p">},</span>
+            <span class="n">noise_seeds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
 
-        <span class="n">dataset</span><span class="o">.</span><span class="n">forward_op</span> <span class="o">=</span> <span class="n">operator</span>
-        <span class="n">dataset</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">ray_trafo</span>
-        <span class="n">dataset</span><span class="o">.</span><span class="n">preprocessing_op</span> <span class="o">=</span> <span class="n">preprocessing_op</span>
-        <span class="n">dataset</span><span class="o">.</span><span class="n">postprocessing_op</span> <span class="o">=</span> <span class="n">postprocessing_op</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">reco_ray_trafo</span>
 
         <span class="k">return</span> <span class="n">dataset</span>
     <span class="k">else</span><span class="p">:</span>

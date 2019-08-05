@@ -15,7 +15,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dival.datasets.dataset module" href="dival.datasets.dataset.html" />
+    <link rel="next" title="dival.datasets.ellipses package" href="dival.datasets.ellipses.html" />
     <link rel="prev" title="dival package" href="dival.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -35,6 +35,29 @@
             
   <div class="section" id="dival-datasets-package">
 <h1>dival.datasets package<a class="headerlink" href="#dival-datasets-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses.html">dival.datasets.ellipses package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dival.datasets.ellipses.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.ellipses.ellipses_dataset.html">dival.datasets.ellipses.ellipses_dataset module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dival.datasets.ellipses.html#module-dival.datasets.ellipses">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lidc_idri_dival.html">dival.datasets.lidc_idri_dival package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dival.datasets.lidc_idri_dival.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.lidc_idri_dival.lidc_idri_dival_dataset.html">dival.datasets.lidc_idri_dival.lidc_idri_dival_dataset module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dival.datasets.lidc_idri_dival.html#module-dival.datasets.lidc_idri_dival">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -66,33 +89,38 @@ operator as well as some noise specification if wanted</p></li>
 <dd><p>Return a standard dataset by name.</p>
 <p>The datasets are:</p>
 <blockquote>
-<div><ul class="simple">
-<li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>A typical synthetical CT dataset with ellipse phantoms.
-<cite>EllipsesDataset</cite> is used as ground truth dataset, a ray
+<div><ul>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>A typical synthetical CT dataset with ellipse phantoms.</p>
+<p><cite>EllipsesDataset</cite> is used as ground truth dataset, a ray
 transform with parallel beam geometry using 30 angles is applied,
 and white gaussian noise with a standard deviation of 5% (i.e.
-<code class="docutils literal notranslate"><span class="pre">0.05</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added.
-The ray transform is stored in the attribute <cite>ray_trafo</cite> of the
+<code class="docutils literal notranslate"><span class="pre">0.05</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added. The ray transform is
+normalized by its spectral norm.</p>
+<p>A normalized ray transform that corresponds to the noiseless
+forward operator is stored in the attribute <cite>ray_trafo</cite> of the
 dataset.</p>
+<p>In order to avoid the inverse crime, the ground truth images of
+shape (128, 128) are upscaled by bilinear interpolation to a
+resolution of (400, 400) before the ray transform is applied (whose
+discretization is different from the one of <cite>ray_trafo</cite>).</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
+<li><dl>
 <dt><code class="docutils literal notranslate"><span class="pre">'lidc_idri_dival'</span></code></dt><dd><p>A dataset based on real CT reconstructions from the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
-dataset.
-<cite>LIDCIDRIDivalDataset</cite> is used as ground truth dataset and a ray
-transform with parallel beam geometry using 30 angles is applied,
-followed by <code class="docutils literal notranslate"><span class="pre">exp(-mu</span> <span class="pre">*</span> <span class="pre">observation)</span></code> due to Beer-Lamberts law,
-where <code class="docutils literal notranslate"><span class="pre">mu</span> <span class="pre">=</span> <span class="pre">0.02</span> <span class="pre">cm^2/g</span></code> (mass attenuation of water).
+dataset.</p>
+<p><cite>LIDCIDRIDivalDataset</cite> is used as ground truth dataset and a ray
+transform with parallel beam geometry using 1000 angles is applied.
 The noise is chosen in the way presented in <a class="footnote-reference brackets" href="#id2" id="id1">1</a> for the human
 dataset: poisson noise corresponding to 10^4 incident photons per
-pixel before attenuation is used.
-The ray transform is stored in the attribute <cite>ray_trafo</cite> of the
-dataset. The deterministic pre- and postprocessing operators
-applied before and after the ray transform are stored in the
-attributes <cite>preprocessing_op</cite> and <cite>postprocessing_op</cite> of the
-dataset, which also implement the respective inverses.</p>
+pixel before attenuation is used.</p>
+<p>A ray transform that corresponds to the noiseless forward operator
+is stored in the attribute <cite>ray_trafo</cite> of the dataset.</p>
+<p>In order to avoid the inverse crime, the ground truth images of
+shape (362, 362) are upscaled by bilinear interpolation to a
+resolution of (1000, 1000) before the ray transform is applied
+(whose discretization is different from the one of <cite>ray_trafo</cite>).</p>
 </dd>
 </dl>
 </li>
@@ -221,14 +249,14 @@ Default is <code class="docutils literal notranslate"><span class="pre">'train'<
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
 <dl class="method">
 <dt id="dival.datasets.GroundTruthDataset.create_pair_dataset">
-<code class="descname">create_pair_dataset</code><span class="sig-paren">(</span><em>forward_op</em>, <em>noise_type=None</em>, <em>noise_kwargs=None</em>, <em>noise_seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#GroundTruthDataset.create_pair_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.GroundTruthDataset.create_pair_dataset" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_pair_dataset</code><span class="sig-paren">(</span><em>forward_op</em>, <em>post_processor=None</em>, <em>noise_type=None</em>, <em>noise_kwargs=None</em>, <em>noise_seeds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#GroundTruthDataset.create_pair_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.GroundTruthDataset.create_pair_dataset" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="dival.datasets.ObservationGroundTruthPairDataset">
-<em class="property">class </em><code class="descclassname">dival.datasets.</code><code class="descname">ObservationGroundTruthPairDataset</code><span class="sig-paren">(</span><em>ground_truth_gen</em>, <em>forward_op</em>, <em>train_len=None</em>, <em>validation_len=None</em>, <em>test_len=None</em>, <em>domain=None</em>, <em>noise_type=None</em>, <em>noise_kwargs=None</em>, <em>noise_seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#ObservationGroundTruthPairDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.ObservationGroundTruthPairDataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">dival.datasets.</code><code class="descname">ObservationGroundTruthPairDataset</code><span class="sig-paren">(</span><em>ground_truth_gen</em>, <em>forward_op</em>, <em>post_processor=None</em>, <em>train_len=None</em>, <em>validation_len=None</em>, <em>test_len=None</em>, <em>domain=None</em>, <em>noise_type=None</em>, <em>noise_kwargs=None</em>, <em>noise_seeds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#ObservationGroundTruthPairDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.ObservationGroundTruthPairDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
 <dl class="method">
 <dt id="dival.datasets.ObservationGroundTruthPairDataset.generator">
@@ -265,7 +293,7 @@ the images.</p>
 
 <dl class="class">
 <dt id="dival.datasets.LIDCIDRIDivalDataset">
-<em class="property">class </em><code class="descclassname">dival.datasets.</code><code class="descname">LIDCIDRIDivalDataset</code><span class="sig-paren">(</span><em>normalize=True</em>, <em>min_pt=None</em>, <em>max_pt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lidc_idri_dival/lidc_idri_dival_dataset.html#LIDCIDRIDivalDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LIDCIDRIDivalDataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">dival.datasets.</code><code class="descname">LIDCIDRIDivalDataset</code><span class="sig-paren">(</span><em>min_pt=None</em>, <em>max_pt=None</em>, <em>return_val='mu_normed'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lidc_idri_dival/lidc_idri_dival_dataset.html#LIDCIDRIDivalDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LIDCIDRIDivalDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.GroundTruthDataset" title="dival.datasets.dataset.GroundTruthDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.GroundTruthDataset</span></code></a></p>
 <p>Dataset extracted from the <a class="reference external" href="http://doi.org/10.7937/K9/TCIA.2015.LO9QL9SX">LIDC-IDRI dataset</a>.</p>
 <p>The selection of image files is determined by the accompanying json file.
@@ -273,7 +301,7 @@ It was generated by the script <code class="docutils literal notranslate"><span 
 <p>Each image is cropped to the centered rectangle of shape (362, 362).
 The values are clipped to [-1024, 3071] HU and optionally (by default)
 normalized into [0., 1.] by the formula
-<code class="docutils literal notranslate"><span class="pre">normalized</span> <span class="pre">=</span> <span class="pre">(original</span> <span class="pre">+</span> <span class="pre">1024)</span> <span class="pre">/</span> <span class="pre">4096</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">normalized</span> <span class="pre">=</span> <span class="pre">(original</span> <span class="pre">+</span> <span class="pre">1024)</span> <span class="pre">/</span> <span class="pre">4095</span></code>.</p>
 <dl class="method">
 <dt id="dival.datasets.LIDCIDRIDivalDataset.generator">
 <code class="descname">generator</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lidc_idri_dival/lidc_idri_dival_dataset.html#LIDCIDRIDivalDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LIDCIDRIDivalDataset.generator" title="Permalink to this definition">¶</a></dt>
@@ -323,7 +351,7 @@ normalized into [0., 1.] by the formula
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="dival.html">dival package</a><ul>
       <li>Previous: <a href="dival.html" title="previous chapter">dival package</a></li>
-      <li>Next: <a href="dival.datasets.dataset.html" title="next chapter">dival.datasets.dataset module</a></li>
+      <li>Next: <a href="dival.datasets.ellipses.html" title="next chapter">dival.datasets.ellipses package</a></li>
   </ul></li>
   </ul></li>
 </ul>

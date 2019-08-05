@@ -42,33 +42,38 @@
 <dd><p>Return a standard dataset by name.</p>
 <p>The datasets are:</p>
 <blockquote>
-<div><ul class="simple">
-<li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>A typical synthetical CT dataset with ellipse phantoms.
-<cite>EllipsesDataset</cite> is used as ground truth dataset, a ray
+<div><ul>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>A typical synthetical CT dataset with ellipse phantoms.</p>
+<p><cite>EllipsesDataset</cite> is used as ground truth dataset, a ray
 transform with parallel beam geometry using 30 angles is applied,
 and white gaussian noise with a standard deviation of 5% (i.e.
-<code class="docutils literal notranslate"><span class="pre">0.05</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added.
-The ray transform is stored in the attribute <cite>ray_trafo</cite> of the
+<code class="docutils literal notranslate"><span class="pre">0.05</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added. The ray transform is
+normalized by its spectral norm.</p>
+<p>A normalized ray transform that corresponds to the noiseless
+forward operator is stored in the attribute <cite>ray_trafo</cite> of the
 dataset.</p>
+<p>In order to avoid the inverse crime, the ground truth images of
+shape (128, 128) are upscaled by bilinear interpolation to a
+resolution of (400, 400) before the ray transform is applied (whose
+discretization is different from the one of <cite>ray_trafo</cite>).</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
+<li><dl>
 <dt><code class="docutils literal notranslate"><span class="pre">'lidc_idri_dival'</span></code></dt><dd><p>A dataset based on real CT reconstructions from the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
-dataset.
-<cite>LIDCIDRIDivalDataset</cite> is used as ground truth dataset and a ray
-transform with parallel beam geometry using 30 angles is applied,
-followed by <code class="docutils literal notranslate"><span class="pre">exp(-mu</span> <span class="pre">*</span> <span class="pre">observation)</span></code> due to Beer-Lamberts law,
-where <code class="docutils literal notranslate"><span class="pre">mu</span> <span class="pre">=</span> <span class="pre">0.02</span> <span class="pre">cm^2/g</span></code> (mass attenuation of water).
+dataset.</p>
+<p><cite>LIDCIDRIDivalDataset</cite> is used as ground truth dataset and a ray
+transform with parallel beam geometry using 1000 angles is applied.
 The noise is chosen in the way presented in <a class="footnote-reference brackets" href="#id2" id="id1">1</a> for the human
 dataset: poisson noise corresponding to 10^4 incident photons per
-pixel before attenuation is used.
-The ray transform is stored in the attribute <cite>ray_trafo</cite> of the
-dataset. The deterministic pre- and postprocessing operators
-applied before and after the ray transform are stored in the
-attributes <cite>preprocessing_op</cite> and <cite>postprocessing_op</cite> of the
-dataset, which also implement the respective inverses.</p>
+pixel before attenuation is used.</p>
+<p>A ray transform that corresponds to the noiseless forward operator
+is stored in the attribute <cite>ray_trafo</cite> of the dataset.</p>
+<p>In order to avoid the inverse crime, the ground truth images of
+shape (362, 362) are upscaled by bilinear interpolation to a
+resolution of (1000, 1000) before the ray transform is applied
+(whose discretization is different from the one of <cite>ray_trafo</cite>).</p>
 </dd>
 </dl>
 </li>
