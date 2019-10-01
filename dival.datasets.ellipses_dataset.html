@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.datasets.ellipses_dataset module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.datasets.lodopab_dataset module" href="dival.datasets.lodopab_dataset.html" />
+    <link rel="prev" title="dival.datasets.dataset module" href="dival.datasets.dataset.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="dival.datasets.html">dival.datasets package</a> &raquo;</li>
+        
+      <li>dival.datasets.ellipses_dataset module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.datasets.ellipses_dataset.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dival.datasets.ellipses_dataset">
+<span id="dival-datasets-ellipses-dataset-module"></span><h1>dival.datasets.ellipses_dataset module<a class="headerlink" href="#module-dival.datasets.ellipses_dataset" title="Permalink to this headline">¶</a></h1>
+<p>Provides <cite>EllipsesDataset</cite>.</p>
+<dl class="class">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset">
+<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.ellipses_dataset.</code><code class="sig-name descname">EllipsesDataset</code><span class="sig-paren">(</span><em class="sig-param">image_size=128</em>, <em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">train_len=32000</em>, <em class="sig-param">validation_len=3200</em>, <em class="sig-param">test_len=3200</em>, <em class="sig-param">fixed_seeds=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/ellipses_dataset.html#EllipsesDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.GroundTruthDataset" title="dival.datasets.dataset.GroundTruthDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.GroundTruthDataset</span></code></a></p>
+<p>Dataset with images of multiple random ellipses.</p>
+<p>This dataset uses <code class="xref py py-meth docutils literal notranslate"><span class="pre">odl.phantom.ellipsoid_phantom()</span></code> to create
+the images.
+The images are normalized to have a value range of <code class="docutils literal notranslate"><span class="pre">[0.,</span> <span class="pre">1.]</span></code>.</p>
+<dl class="attribute">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset.space">
+<code class="sig-name descname">space</code><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset.space" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">odl.uniform_discr(min_pt,</span> <span class="pre">max_pt,</span> <span class="pre">(image_size,</span> <span class="pre">image_size),</span>
+<span class="pre">dtype='float32')</span></code>, with the parameters passed to <a class="reference internal" href="#dival.datasets.ellipses_dataset.EllipsesDataset.__init__" title="dival.datasets.ellipses_dataset.EllipsesDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset.shape">
+<code class="sig-name descname">shape</code><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">(image_size,</span> <span class="pre">image_size)</span></code>, with <cite>image_size</cite> parameter passed to
+<a class="reference internal" href="#dival.datasets.ellipses_dataset.EllipsesDataset.__init__" title="dival.datasets.ellipses_dataset.EllipsesDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>. Default <code class="docutils literal notranslate"><span class="pre">(128,</span> <span class="pre">128)</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset.train_len">
+<code class="sig-name descname">train_len</code><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset.train_len" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>train_len</cite> parameter passed to <a class="reference internal" href="#dival.datasets.ellipses_dataset.EllipsesDataset.__init__" title="dival.datasets.ellipses_dataset.EllipsesDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.
+Default <code class="docutils literal notranslate"><span class="pre">32000</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset.validation_len">
+<code class="sig-name descname">validation_len</code><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset.validation_len" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>validation_len</cite> parameter passed to <a class="reference internal" href="#dival.datasets.ellipses_dataset.EllipsesDataset.__init__" title="dival.datasets.ellipses_dataset.EllipsesDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.
+Default <code class="docutils literal notranslate"><span class="pre">3200</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset.test_len">
+<code class="sig-name descname">test_len</code><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset.test_len" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>test_len</cite> parameter passed to <a class="reference internal" href="#dival.datasets.ellipses_dataset.EllipsesDataset.__init__" title="dival.datasets.ellipses_dataset.EllipsesDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.
+Default <code class="docutils literal notranslate"><span class="pre">3200</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset.random_access">
+<code class="sig-name descname">random_access</code><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset.random_access" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset.num_elements_per_sample">
+<code class="sig-name descname">num_elements_per_sample</code><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset.num_elements_per_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">image_size=128</em>, <em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">train_len=32000</em>, <em class="sig-param">validation_len=3200</em>, <em class="sig-param">test_len=3200</em>, <em class="sig-param">fixed_seeds=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/ellipses_dataset.html#EllipsesDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pixels per image dimension. Default: <code class="docutils literal notranslate"><span class="pre">128</span></code>.</p></li>
+<li><p><strong>min_pt</strong> (<em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>, </em><em>optional</em>) – Minimum values of the lp space.
+Default: <code class="docutils literal notranslate"><span class="pre">[-image_size/2,</span> <span class="pre">-image_size/2]</span></code>.</p></li>
+<li><p><strong>max_pt</strong> (<em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>, </em><em>optional</em>) – Maximum values of the lp space.
+Default: <code class="docutils literal notranslate"><span class="pre">[image_size/2,</span> <span class="pre">image_size/2]</span></code>.</p></li>
+<li><p><strong>train_len</strong> (int or <cite>None</cite>, optional) – Length of training set. Default: <code class="docutils literal notranslate"><span class="pre">32000</span></code>.
+If <cite>None</cite>, infinitely many samples could be generated.</p></li>
+<li><p><strong>validation_len</strong> (<em>int</em><em>, </em><em>optional</em>) – Length of training set. Default: <code class="docutils literal notranslate"><span class="pre">3200</span></code>.</p></li>
+<li><p><strong>test_len</strong> (<em>int</em><em>, </em><em>optional</em>) – Length of test set. Default: <code class="docutils literal notranslate"><span class="pre">3200</span></code>.</p></li>
+<li><p><strong>fixed_seeds</strong> (<em>dict</em><em> or </em><em>bool</em><em>, </em><em>optional</em>) – Seeds to use for random generation.
+The values of the keys <code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code> and <code class="docutils literal notranslate"><span class="pre">'test'</span></code>
+are used. If a seed is <cite>None</cite> or omitted, it is choosen randomly.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code> is passed, the seeds
+<code class="docutils literal notranslate"><span class="pre">fixed_seeds={'train':</span> <span class="pre">42,</span> <span class="pre">'validation':</span> <span class="pre">2,</span> <span class="pre">'test':</span> <span class="pre">1}</span></code> are used.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code> is passed (the default), all seeds are chosen
+randomly.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.ellipses_dataset.EllipsesDataset.generator">
+<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/ellipses_dataset.html#EllipsesDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.ellipses_dataset.EllipsesDataset.generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield random ellipse phantom images using
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">odl.phantom.ellipsoid_phantom()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><strong>image</strong> (element of <a class="reference internal" href="#dival.datasets.ellipses_dataset.EllipsesDataset.space" title="dival.datasets.ellipses_dataset.EllipsesDataset.space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">space</span></code></a>) – Random ellipse phantom image with values in <code class="docutils literal notranslate"><span class="pre">[0.,</span> <span class="pre">1.]</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.datasets.lodopab_dataset.html" class="btn btn-neutral float-right" title="dival.datasets.lodopab_dataset module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.datasets.dataset.html" class="btn btn-neutral float-left" title="dival.datasets.dataset module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

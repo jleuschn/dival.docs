@@ -1,49 +1,190 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>dival.data module &#8212; Deep Inversion Validation Library  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.data module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dival.evaluation module" href="dival.evaluation.html" />
-    <link rel="prev" title="dival.config module" href="dival.config.html" />
+    <link rel="next" title="dival.datasets package" href="dival.datasets.html" />
+    <link rel="prev" title="dival.config module" href="dival.config.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>dival.data module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-dival.data">
 <span id="dival-data-module"></span><h1>dival.data module<a class="headerlink" href="#module-dival.data" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="dival.data.DataPairs">
-<em class="property">class </em><code class="descclassname">dival.data.</code><code class="descname">DataPairs</code><span class="sig-paren">(</span><em>observations</em>, <em>ground_truth=None</em>, <em>name=''</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.data.DataPairs" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.data.</code><code class="sig-name descname">DataPairs</code><span class="sig-paren">(</span><em class="sig-param">observations</em>, <em class="sig-param">ground_truth=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.data.DataPairs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Bundles <cite>self.observations</cite> with <cite>self.ground_truth</cite>.</p>
+<p>Bundles <a class="reference internal" href="#dival.data.DataPairs.observations" title="dival.data.DataPairs.observations"><code class="xref py py-attr docutils literal notranslate"><span class="pre">observations</span></code></a> with <a class="reference internal" href="#dival.data.DataPairs.ground_truth" title="dival.data.DataPairs.ground_truth"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ground_truth</span></code></a>.</p>
 <dl class="attribute">
 <dt id="dival.data.DataPairs.observations">
-<code class="descname">observations</code><a class="headerlink" href="#dival.data.DataPairs.observations" title="Permalink to this definition">¶</a></dt>
-<dd><p>The observation, possibly distorted or low-dimensional.</p>
+<code class="sig-name descname">observations</code><a class="headerlink" href="#dival.data.DataPairs.observations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The observations, possibly distorted or low-dimensional.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>list of observation space elements</p>
@@ -53,101 +194,73 @@
 
 <dl class="attribute">
 <dt id="dival.data.DataPairs.ground_truth">
-<code class="descname">ground_truth</code><a class="headerlink" href="#dival.data.DataPairs.ground_truth" title="Permalink to this definition">¶</a></dt>
-<dd><p>The ground truth. May be replaced with a good quality reference. May
-also be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<code class="sig-name descname">ground_truth</code><a class="headerlink" href="#dival.data.DataPairs.ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ground truth data (may be replaced with good quality references).
+If not known, it may be omitted (<cite>None</cite>).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of reconstruction space elements or <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<dd class="field-odd"><p>list of reconstruction space elements or <cite>None</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
+<dl class="method">
+<dt id="dival.data.DataPairs.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">observations</em>, <em class="sig-param">ground_truth=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.data.DataPairs.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
 
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Deep Inversion Validation Library</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="dival.html">dival package</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="dival.html#subpackages">Subpackages</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="dival.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">dival.data module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.hyper_param_optimization.html">dival.hyper_param_optimization module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dival.html#module-dival">Module contents</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="dival.html">dival package</a><ul>
-      <li>Previous: <a href="dival.config.html" title="previous chapter">dival.config module</a></li>
-      <li>Next: <a href="dival.evaluation.html" title="next chapter">dival.evaluation module</a></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-    </form>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.datasets.html" class="btn btn-neutral float-right" title="dival.datasets package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.config.html" class="btn btn-neutral float-left" title="dival.config module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/dival.data.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>

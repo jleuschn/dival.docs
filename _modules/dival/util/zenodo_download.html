@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.util.zenodo_download &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dival.util.zenodo_download</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dival.util.zenodo_download</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+
+
+<div class="viewcode-block" id="download_file"><a class="viewcode-back" href="../../../dival.util.zenodo_download.html#dival.util.zenodo_download.download_file">[docs]</a><span class="k">def</span> <span class="nf">download_file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                  <span class="n">md5sum</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download file with progressbar.</span>
+
+<span class="sd">    Based on</span>
+<span class="sd">    `&lt;https://gist.github.com/ruxi/5d6803c116ec1130d484a4ab8c00c603&gt;`_</span>
+<span class="sd">    (MIT License).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    url : str</span>
+<span class="sd">        URL to download from.</span>
+<span class="sd">    filename : str, optional</span>
+<span class="sd">        Local destination filename (including path).</span>
+<span class="sd">        By default, the file is stored under the current folder and the name</span>
+<span class="sd">        given by the last part of `url`.</span>
+<span class="sd">    chunk_size : int, optional</span>
+<span class="sd">        Number of bytes in a chunk.</span>
+<span class="sd">    verbose : bool, optional</span>
+<span class="sd">        Whether to print additional information.</span>
+<span class="sd">    md5sum : bool, optional</span>
+<span class="sd">        Whether to compute and return the MD5 checksum (hex-digest).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    md5sum : str or `None`</span>
+<span class="sd">        Hex-digest of the MD5 hash, if ``md5sum=True``, otherwise `None`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="n">local_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">local_filename</span> <span class="o">=</span> <span class="n">filename</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">file_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Content-Length&#39;</span><span class="p">])</span>
+    <span class="n">chunk</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">num_bars</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">file_size</span> <span class="o">/</span> <span class="n">chunk_size</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">file_size</span><span class="o">=</span><span class="n">file_size</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">num_bars</span><span class="o">=</span><span class="n">num_bars</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">md5sum</span><span class="p">:</span>
+        <span class="n">hash_md5</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">local_filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">),</span>
+                               <span class="n">total</span><span class="o">=</span><span class="n">num_bars</span><span class="p">,</span>
+                               <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;chunks&#39;</span><span class="p">,</span>
+                               <span class="n">desc</span><span class="o">=</span><span class="n">local_filename</span><span class="p">,</span>
+                               <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">md5sum</span><span class="p">:</span>
+                <span class="n">hash_md5</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">md5sum</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">hash_md5</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="input_yes_no"><a class="viewcode-back" href="../../../dival.util.zenodo_download.html#dival.util.zenodo_download.input_yes_no">[docs]</a><span class="k">def</span> <span class="nf">input_yes_no</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Demand user input y[es] or n[o].</span>
+
+<span class="sd">    The user is asked repeatedly, until the input is valid.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    default : {``&#39;y&#39;``, ``&#39;n&#39;``}, optional</span>
+<span class="sd">        The output if the user enters empty input.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    inp : {``&#39;y&#39;``, ``&#39;n&#39;``}</span>
+<span class="sd">        The users input (or `default`).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_input</span><span class="p">():</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="n">inp</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">inp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">]:</span>
+            <span class="n">inp</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
+        <span class="k">elif</span> <span class="n">inp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">]:</span>
+            <span class="n">inp</span> <span class="o">=</span> <span class="s1">&#39;n&#39;</span>
+        <span class="k">elif</span> <span class="n">inp</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">inp</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;please input y[es] or n[o]&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">inp</span>
+
+    <span class="n">inp</span> <span class="o">=</span> <span class="n">_input</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">inp</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]:</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="n">_input</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">inp</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span></div>
+
+
+<div class="viewcode-block" id="download_zenodo_record"><a class="viewcode-back" href="../../../dival.util.zenodo_download.html#dival.util.zenodo_download.download_zenodo_record">[docs]</a><span class="k">def</span> <span class="nf">download_zenodo_record</span><span class="p">(</span><span class="n">record_id</span><span class="p">,</span> <span class="n">base_path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">md5sum_check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download a zenodo record.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    record_id : str</span>
+<span class="sd">        Record id.</span>
+<span class="sd">    base_path : str, optional</span>
+<span class="sd">        Path to store the downloaded files in. Default is the current folder.</span>
+<span class="sd">    md5sum_check : bool, optional</span>
+<span class="sd">        Whether to check the MD5 sum of each downloaded file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    success : bool</span>
+<span class="sd">        If ``md5sum_check=True``, whether all sums matched. Otherwise the</span>
+<span class="sd">        returned value is always ``True``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://zenodo.org/api/records/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record_id</span><span class="p">))</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;links&#39;</span><span class="p">][</span><span class="s1">&#39;self&#39;</span><span class="p">]</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span>
+        <span class="n">size_kb</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;checksum&#39;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;downloading file </span><span class="si">{:d}</span><span class="s2">/</span><span class="si">{:d}</span><span class="s2">: &#39;</span><span class="si">{}</span><span class="s2">&#39;, </span><span class="si">{}</span><span class="s2">KB&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">),</span> <span class="n">filename</span><span class="p">,</span> <span class="n">size_kb</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">md5sum_check</span><span class="p">:</span>
+            <span class="n">retry</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">md5sum_matches</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">while</span> <span class="n">retry</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">md5sum_matches</span><span class="p">:</span>
+                <span class="n">md5sum</span> <span class="o">=</span> <span class="n">download_file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span>
+                                       <span class="n">md5sum</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">md5sum_matches</span> <span class="o">=</span> <span class="p">(</span><span class="n">md5sum</span> <span class="o">==</span> <span class="n">checksum</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">md5sum_matches</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;md5 checksum does not match for file &#39;</span><span class="si">{}</span><span class="s2">&#39;. Retry &quot;</span>
+                          <span class="s2">&quot;downloading? (y)/n&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+                    <span class="n">retry</span> <span class="o">=</span> <span class="n">input_yes_no</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">md5sum_matches</span><span class="p">:</span>
+                <span class="n">success</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;record download aborted&#39;</span><span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">download_file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span> <span class="n">md5sum</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">success</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

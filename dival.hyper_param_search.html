@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.hyper_param_search module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.measure module" href="dival.measure.html" />
+    <link rel="prev" title="dival.evaluation module" href="dival.evaluation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>dival.hyper_param_search module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.hyper_param_search.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dival.hyper_param_search">
+<span id="dival-hyper-param-search-module"></span><h1>dival.hyper_param_search module<a class="headerlink" href="#module-dival.hyper_param_search" title="Permalink to this headline">¶</a></h1>
+<p>Optimization of hyper parameters.</p>
+<p>Both grid search and random search using the <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code> library are
+supported.</p>
+<p>The hyper parameter specification of a reconstructor class, optionally
+including default options for optimization, are specified in the class
+attribute <a class="reference internal" href="dival.html#dival.Reconstructor.HYPER_PARAMS" title="dival.Reconstructor.HYPER_PARAMS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HYPER_PARAMS</span></code></a>.</p>
+<dl class="function">
+<dt id="dival.hyper_param_search.optimize_hyper_params">
+<code class="sig-prename descclassname">dival.hyper_param_search.</code><code class="sig-name descname">optimize_hyper_params</code><span class="sig-paren">(</span><em class="sig-param">reconstructor</em>, <em class="sig-param">validation_data</em>, <em class="sig-param">measure</em>, <em class="sig-param">dataset=None</em>, <em class="sig-param">HYPER_PARAMS_override=None</em>, <em class="sig-param">hyperopt_max_evals=1000</em>, <em class="sig-param">hyperopt_max_evals_retrain=1000</em>, <em class="sig-param">hyperopt_rstate=None</em>, <em class="sig-param">show_progressbar=True</em>, <em class="sig-param">tqdm_file=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/hyper_param_search.html#optimize_hyper_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.hyper_param_search.optimize_hyper_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optimize hyper parameters of a reconstructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reconstructor</strong> (<a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor</span></code></a>) – The reconstructor.</p></li>
+<li><p><strong>validation_data</strong> (<a class="reference internal" href="dival.data.html#dival.data.DataPairs" title="dival.data.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a>) – The test data on which the performance is measured.</p></li>
+<li><p><strong>measure</strong> (<a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> or str) – The measure to use as the objective. The sign is chosen automatically
+depending on the measures <code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_type</span></code>.</p></li>
+<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>, optional) – The dataset used for training <cite>reconstructor</cite> if it is a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">LearnedReconstructor</span></code>.</p></li>
+<li><p><strong>HYPER_PARAMS_override</strong> (<em>dict</em><em>, </em><em>optional</em>) – Hyper parameter specification overriding the defaults
+in <code class="docutils literal notranslate"><span class="pre">type(reconstructor).HYPER_PARAMS</span></code>.
+The structure of this dict is the same as the structure
+of <code class="xref py py-attr docutils literal notranslate"><span class="pre">Reconstructor.HYPER_PARAMS</span></code>, except that all
+fields are optional.
+Here, each value of a dict for one parameter is treated
+as an entity, i.e. specifying the dict
+<code class="docutils literal notranslate"><span class="pre">HYPER_PARAMS[...]['grid_search_options']</span></code> overrides
+the whole dict, not only the specified keys in it.</p></li>
+<li><p><strong>hyperopt_max_evals</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of evaluations for different combinations of the parameters that
+are optimized by <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code> and that do not require retraining.
+Should be chosen depending on the complexity of dependence and the
+number of such parameters.</p></li>
+<li><p><strong>hyperopt_max_evals_retrain</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of evaluations for different combinations of the parameters that
+are optimized by <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code> and that require retraining.
+Should be chosen depending on the complexity of dependence and the
+number of such parameters.</p></li>
+<li><p><strong>hyperopt_rstate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.random.RandomState</span></code>, optional) – Random state for the random searches performed by <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code>.</p></li>
+<li><p><strong>show_progressbar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show a progress bar for the optimization. Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>tqdm_file</strong> (<em>file-like object</em>) – File/stream to pass to <code class="docutils literal notranslate"><span class="pre">tqdm</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.measure.html" class="btn btn-neutral float-right" title="dival.measure module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.evaluation.html" class="btn btn-neutral float-left" title="dival.evaluation module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

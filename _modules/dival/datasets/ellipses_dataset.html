@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.datasets.ellipses_dataset &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dival.datasets.ellipses_dataset</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dival.datasets.ellipses_dataset</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Provides `EllipsesDataset`.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">repeat</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">odl.discr.lp_discr</span> <span class="k">import</span> <span class="n">uniform_discr</span>
+<span class="kn">from</span> <span class="nn">odl.phantom</span> <span class="k">import</span> <span class="n">ellipsoid_phantom</span>
+<span class="kn">from</span> <span class="nn">dival.datasets.dataset</span> <span class="k">import</span> <span class="n">GroundTruthDataset</span>
+
+
+<div class="viewcode-block" id="EllipsesDataset"><a class="viewcode-back" href="../../../dival.datasets.ellipses_dataset.html#dival.datasets.EllipsesDataset">[docs]</a><span class="k">class</span> <span class="nc">EllipsesDataset</span><span class="p">(</span><span class="n">GroundTruthDataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Dataset with images of multiple random ellipses.</span>
+
+<span class="sd">    This dataset uses :meth:`odl.phantom.ellipsoid_phantom` to create</span>
+<span class="sd">    the images.</span>
+<span class="sd">    The images are normalized to have a value range of ``[0., 1.]``.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    space</span>
+<span class="sd">        ``odl.uniform_discr(min_pt, max_pt, (image_size, image_size),</span>
+<span class="sd">        dtype=&#39;float32&#39;)``, with the parameters passed to :meth:`__init__`.</span>
+<span class="sd">    shape</span>
+<span class="sd">        ``(image_size, image_size)``, with `image_size` parameter passed to</span>
+<span class="sd">        :meth:`__init__`. Default ``(128, 128)``.</span>
+<span class="sd">    train_len</span>
+<span class="sd">        `train_len` parameter passed to :meth:`__init__`.</span>
+<span class="sd">        Default ``32000``.</span>
+<span class="sd">    validation_len</span>
+<span class="sd">        `validation_len` parameter passed to :meth:`__init__`.</span>
+<span class="sd">        Default ``3200``.</span>
+<span class="sd">    test_len</span>
+<span class="sd">        `test_len` parameter passed to :meth:`__init__`.</span>
+<span class="sd">        Default ``3200``.</span>
+<span class="sd">    random_access</span>
+<span class="sd">        ``False``</span>
+<span class="sd">    num_elements_per_sample</span>
+<span class="sd">        ``1``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="EllipsesDataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.ellipses_dataset.html#dival.datasets.EllipsesDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">min_pt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_pt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">train_len</span><span class="o">=</span><span class="mi">32000</span><span class="p">,</span> <span class="n">validation_len</span><span class="o">=</span><span class="mi">3200</span><span class="p">,</span> <span class="n">test_len</span><span class="o">=</span><span class="mi">3200</span><span class="p">,</span>
+                 <span class="n">fixed_seeds</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        image_size : int, optional</span>
+<span class="sd">            Number of pixels per image dimension. Default: ``128``.</span>
+<span class="sd">        min_pt : [int, int], optional</span>
+<span class="sd">            Minimum values of the lp space.</span>
+<span class="sd">            Default: ``[-image_size/2, -image_size/2]``.</span>
+<span class="sd">        max_pt : [int, int], optional</span>
+<span class="sd">            Maximum values of the lp space.</span>
+<span class="sd">            Default: ``[image_size/2, image_size/2]``.</span>
+<span class="sd">        train_len : int or `None`, optional</span>
+<span class="sd">            Length of training set. Default: ``32000``.</span>
+<span class="sd">            If `None`, infinitely many samples could be generated.</span>
+<span class="sd">        validation_len : int, optional</span>
+<span class="sd">            Length of training set. Default: ``3200``.</span>
+<span class="sd">        test_len : int, optional</span>
+<span class="sd">            Length of test set. Default: ``3200``.</span>
+<span class="sd">        fixed_seeds : dict or bool, optional</span>
+<span class="sd">            Seeds to use for random generation.</span>
+<span class="sd">            The values of the keys ``&#39;train&#39;``, ``&#39;validation&#39;`` and ``&#39;test&#39;``</span>
+<span class="sd">            are used. If a seed is `None` or omitted, it is choosen randomly.</span>
+<span class="sd">            If ``True`` is passed, the seeds</span>
+<span class="sd">            ``fixed_seeds={&#39;train&#39;: 42, &#39;validation&#39;: 2, &#39;test&#39;: 1}`` are used.</span>
+<span class="sd">            If ``False`` is passed (the default), all seeds are chosen</span>
+<span class="sd">            randomly.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">image_size</span><span class="p">,</span> <span class="n">image_size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">min_pt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">min_pt</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">max_pt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">max_pt</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">space</span> <span class="o">=</span> <span class="n">uniform_discr</span><span class="p">(</span><span class="n">min_pt</span><span class="p">,</span> <span class="n">max_pt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span> <span class="o">=</span> <span class="n">train_len</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_len</span> <span class="o">=</span> <span class="n">validation_len</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_len</span> <span class="o">=</span> <span class="n">test_len</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_access</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fixed_seeds</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">fixed_seeds</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fixed_seeds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fixed_seeds</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fixed_seeds</span> <span class="o">=</span> <span class="n">fixed_seeds</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="n">space</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EllipsesDataset.generator"><a class="viewcode-back" href="../../../dival.datasets.ellipses_dataset.html#dival.datasets.EllipsesDataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Yield random ellipse phantom images using</span>
+<span class="sd">        :meth:`odl.phantom.ellipsoid_phantom`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        part : {``&#39;train&#39;``, ``&#39;validation&#39;``, ``&#39;test&#39;``}, optional</span>
+<span class="sd">            The data part. Default is ``&#39;train&#39;``.</span>
+
+<span class="sd">        Yields</span>
+<span class="sd">        ------</span>
+<span class="sd">        image : element of :attr:`space`</span>
+<span class="sd">            Random ellipse phantom image with values in ``[0., 1.]``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_seeds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="n">n_ellipse</span> <span class="o">=</span> <span class="mi">50</span>
+        <span class="n">ellipsoids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n_ellipse</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_len</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="n">part</span><span class="p">)</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">repeat</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">repeat</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span> <span class="o">*</span>
+                 <span class="n">r</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,)))</span>
+            <span class="n">a1</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">a2</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="p">(</span><span class="n">n_ellipse</span><span class="p">,))</span>
+            <span class="n">ellipsoids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rot</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">ellipsoid_phantom</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="n">ellipsoids</span><span class="p">)</span>
+            <span class="n">image</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+            <span class="n">image</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+            <span class="k">yield</span> <span class="n">image</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

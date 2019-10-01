@@ -1,134 +1,195 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>dival.reconstructors.odl_reconstructors module &#8212; Deep Inversion Validation Library  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.reconstructors.odl_reconstructors module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.reconstructors.reconstructor module" href="dival.reconstructors.reconstructor.html" />
-    <link rel="prev" title="dival.reconstructors package" href="dival.reconstructors.html" />
+    <link rel="prev" title="dival.reconstructors.fbp_unet_reconstructor module" href="dival.reconstructors.fbp_unet_reconstructor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="dival.reconstructors.html">dival.reconstructors package</a> &raquo;</li>
+        
+      <li>dival.reconstructors.odl_reconstructors module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.reconstructors.odl_reconstructors.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-dival.reconstructors.odl_reconstructors">
 <span id="dival-reconstructors-odl-reconstructors-module"></span><h1>dival.reconstructors.odl_reconstructors module<a class="headerlink" href="#module-dival.reconstructors.odl_reconstructors" title="Permalink to this headline">¶</a></h1>
 <p>Provides wrappers for reconstruction methods of odl.</p>
 <dl class="class">
-<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor">
-<em class="property">class </em><code class="descclassname">dival.reconstructors.odl_reconstructors.</code><code class="descname">CGReconstructor</code><span class="sig-paren">(</span><em>op</em>, <em>x0</em>, <em>niter</em>, <em>callback=None</em>, <em>op_is_symmetric=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#CGReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
-<p>Reconstructor applying the conjugate gradient method.</p>
-<dl class="attribute">
-<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.op">
-<code class="descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.op" title="Permalink to this definition">¶</a></dt>
-<dd><p>The forward operator of the inverse problem.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><cite>odl.operator.Operator</cite></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.x0">
-<code class="descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.x0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initial value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.niter">
-<code class="descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.niter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of iterations.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.callback">
-<code class="descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.callback" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object that is called in each iteration.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>odl.solvers.util.callback.Callback</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.op_is_symmetric">
-<code class="descname">op_is_symmetric</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.op_is_symmetric" title="Permalink to this definition">¶</a></dt>
-<dd><p>If <code class="docutils literal notranslate"><span class="pre">False</span></code> (default), the normal equations are solved. If <code class="docutils literal notranslate"><span class="pre">True</span></code>,
-<cite>op</cite> is assumed to be self-adjoint and the system of equations is
-solved directly.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.reconstruct">
-<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#CGReconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reconstruct input data from observation data.</p>
-<p>This method must be implemented by subclasses.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><cite>reco_space</cite> element</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor">
-<em class="property">class </em><code class="descclassname">dival.reconstructors.odl_reconstructors.</code><code class="descname">FBPReconstructor</code><span class="sig-paren">(</span><em>ray_trafo</em>, <em>padding=True</em>, <em>hyper_params=None</em>, <em>pre_processor=None</em>, <em>post_processor=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#FBPReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">FBPReconstructor</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">padding=True</em>, <em class="sig-param">hyper_params=None</em>, <em class="sig-param">pre_processor=None</em>, <em class="sig-param">post_processor=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#FBPReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor.HYPER_PARAMS">
-<code class="descname">HYPER_PARAMS</code><em class="property"> = {'filter_type': {'choices': ['Ram-Lak', 'Shepp-Logan', 'Cosine', 'Hamming', 'Hann'], 'default': 'Ram-Lak'}, 'frequency_scaling': {'default': 1.0, 'grid_search_options': {'num_samples': 11}, 'range': [0, 1]}}</em><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'filter_type': {'choices': ['Ram-Lak', 'Shepp-Logan', 'Cosine', 'Hamming', 'Hann'], 'default': 'Ram-Lak'}, 'frequency_scaling': {'default': 1.0, 'grid_search_options': {'num_samples': 11}, 'range': [0, 1]}}</em><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reconstructor applying filtered back-projection.</p>
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor.fbp_op">
-<code class="descname">fbp_op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.fbp_op" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fbp_op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.fbp_op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The operator applying filtered back-projection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -140,19 +201,109 @@ solved directly.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor.reconstruct">
-<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#FBPReconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reconstruct input data from observation data.</p>
-<p>This method must be implemented by subclasses.</p>
+<dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">padding=True</em>, <em class="sig-param">hyper_params=None</em>, <em class="sig-param">pre_processor=None</em>, <em class="sig-param">post_processor=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#FBPReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ray_trafo</strong> (<cite>odl.tomo.operators.RayTransform</cite>) – The forward operator. See <cite>odl.tomo.fbp_op</cite> for details.</p></li>
+<li><p><strong>padding</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use padding (the default is <code class="docutils literal notranslate"><span class="pre">True</span></code>).
+See <cite>odl.tomo.fbp_op</cite> for details.</p></li>
+<li><p><strong>pre_processor</strong> (<em>callable</em><em>, </em><em>optional</em>) – Callable that takes the observation and returns the sinogram that
+is passed to the filtered back-projection operator.</p></li>
+<li><p><strong>post_processor</strong> (<em>callable</em><em>, </em><em>optional</em>) – Callable that takes the filtered back-projection and returns the
+final reconstruction.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">CGReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">op_is_symmetric=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#CGReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
+<p>Iterative reconstructor applying the conjugate gradient method.</p>
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.op">
+<code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.op" title="Permalink to this definition">¶</a></dt>
+<dd><p>The forward operator of the inverse problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>odl.operator.Operator</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.x0">
+<code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.x0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.niter">
+<code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.niter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.callback">
+<code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object that is called in each iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code> or <cite>None</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.op_is_symmetric">
+<code class="sig-name descname">op_is_symmetric</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.op_is_symmetric" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <code class="docutils literal notranslate"><span class="pre">False</span></code> (default), the normal equations are solved. If <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+<cite>op</cite> is assumed to be self-adjoint and the system of equations is
+solved directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">op_is_symmetric=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#CGReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls <cite>odl.solvers.iterative.iterative.conjugate_gradient_normal</cite> (if
+<code class="docutils literal notranslate"><span class="pre">op_is_symmetric</span> <span class="pre">==</span> <span class="pre">False</span></code>) or
+<cite>odl.solvers.iterative.iterative.conjugate_gradient</cite> (if
+<code class="docutils literal notranslate"><span class="pre">op_is_symmetric</span> <span class="pre">==</span> <span class="pre">True</span></code>).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op</strong> (<cite>odl.operator.Operator</cite>) – The forward operator of the inverse problem.
+If <code class="docutils literal notranslate"><span class="pre">op_is_symmetric</span> <span class="pre">==</span> <span class="pre">False</span></code> (default), the call
+<code class="docutils literal notranslate"><span class="pre">op.derivative(x).adjoint</span></code> must be valid.
+If <code class="docutils literal notranslate"><span class="pre">op_is_symmetric</span> <span class="pre">==</span> <span class="pre">True</span></code>, <cite>op</cite> must be linear and
+self-adjoint.</p></li>
+<li><p><strong>x0</strong> (<code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element) – Initial value.</p></li>
+<li><p><strong>niter</strong> (<em>int</em>) – Number of iterations.</p></li>
+<li><p><strong>callback</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – Object that is called in each iteration.</p></li>
+<li><p><strong>op_is_symmetric</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code> (default), the normal equations are solved. If
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, <cite>op</cite> is required to be self-adjoint and the system of
+equations is solved directly.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -161,12 +312,12 @@ solved directly.</p>
 
 <dl class="class">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor">
-<em class="property">class </em><code class="descclassname">dival.reconstructors.odl_reconstructors.</code><code class="descname">GaussNewtonReconstructor</code><span class="sig-paren">(</span><em>op</em>, <em>x0</em>, <em>niter</em>, <em>zero_seq=None</em>, <em>callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
-<p>Reconstructor applying the Gauss-Newton method.</p>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">GaussNewtonReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">zero_seq=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
+<p>Iterative reconstructor applying the Gauss-Newton method.</p>
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.op">
-<code class="descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.op" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -177,7 +328,7 @@ solved directly.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.x0">
-<code class="descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.x0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -188,7 +339,7 @@ solved directly.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.niter">
-<code class="descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.niter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maximum number of iterations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -199,7 +350,7 @@ solved directly.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.zero_seq">
-<code class="descname">zero_seq</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.zero_seq" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">zero_seq</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.zero_seq" title="Permalink to this definition">¶</a></dt>
 <dd><p>Zero sequence used for regularization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -210,29 +361,29 @@ solved directly.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.callback">
-<code class="descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.callback" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>odl.solvers.util.callback.Callback</p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code> or <cite>None</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.reconstruct">
-<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reconstruct input data from observation data.</p>
-<p>This method must be implemented by subclasses.</p>
+<dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">zero_seq=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls <cite>odl.solvers.iterative.iterative.gauss_newton</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op</strong> (<cite>odl.operator.Operator</cite>) – The forward operator of the inverse problem.
+The call <code class="docutils literal notranslate"><span class="pre">op.derivative(x).adjoint</span></code> must be valid.</p></li>
+<li><p><strong>x0</strong> (<code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element) – Initial value.</p></li>
+<li><p><strong>niter</strong> (<em>int</em>) – Maximum number of iterations.</p></li>
+<li><p><strong>zero_seq</strong> (<em>iterable</em><em>, </em><em>optional</em>) – Zero sequence used for regularization.</p></li>
+<li><p><strong>callback</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – Object that is called in each iteration.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -241,12 +392,12 @@ solved directly.</p>
 
 <dl class="class">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor">
-<em class="property">class </em><code class="descclassname">dival.reconstructors.odl_reconstructors.</code><code class="descname">KaczmarzReconstructor</code><span class="sig-paren">(</span><em>ops</em>, <em>x0</em>, <em>niter</em>, <em>omega=1</em>, <em>random=False</em>, <em>projection=None</em>, <em>callback=None</em>, <em>callback_loop='outer'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#KaczmarzReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
-<p>Reconstructor applying Kaczmarz’s method.</p>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">KaczmarzReconstructor</code><span class="sig-paren">(</span><em class="sig-param">ops</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">omega=1</em>, <em class="sig-param">random=False</em>, <em class="sig-param">projection=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">callback_loop='outer'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#KaczmarzReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
+<p>Iterative reconstructor applying Kaczmarz’s method.</p>
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.ops">
-<code class="descname">ops</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.ops" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ops</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.ops" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operators of the inverse problem.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -257,7 +408,7 @@ solved directly.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.x0">
-<code class="descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.x0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -268,7 +419,7 @@ solved directly.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.niter">
-<code class="descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.niter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -279,7 +430,7 @@ solved directly.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.omega">
-<code class="descname">omega</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.omega" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omega</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.omega" title="Permalink to this definition">¶</a></dt>
 <dd><p>Relaxation parameter.
 If a single float is given it is used for all operators.</p>
 <dl class="field-list simple">
@@ -291,7 +442,7 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.random">
-<code class="descname">random</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">random</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the order of the operators is randomized in each iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -302,7 +453,7 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.projection">
-<code class="descname">projection</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.projection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">projection</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.projection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callable that can be used to modify the iterates in each iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -313,18 +464,18 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback">
-<code class="descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>odl.solvers.util.callback.Callback</p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code> or <cite>None</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback_loop">
-<code class="descname">callback_loop</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback_loop" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">callback_loop</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback_loop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the <cite>callback</cite> should be called in the inner or outer loop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -334,19 +485,23 @@ If a single float is given it is used for all operators.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.reconstruct">
-<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#KaczmarzReconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reconstruct input data from observation data.</p>
-<p>This method must be implemented by subclasses.</p>
+<dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ops</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">omega=1</em>, <em class="sig-param">random=False</em>, <em class="sig-param">projection=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">callback_loop='outer'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#KaczmarzReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls <cite>odl.solvers.iterative.iterative.kaczmarz</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ops</strong> (sequence of <cite>odl.Operator</cite>) – The forward operators of the inverse problem.
+The call <code class="docutils literal notranslate"><span class="pre">ops[i].derivative(x).adjoint</span></code> must be valid for all i.</p></li>
+<li><p><strong>x0</strong> (<code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element) – Initial value.</p></li>
+<li><p><strong>niter</strong> (<em>int</em>) – Number of iterations.</p></li>
+<li><p><strong>omega</strong> (<em>positive float</em><em> or </em><em>sequence of positive floats</em><em>, </em><em>optional</em>) – Relaxation parameter.
+If a single float is given it is used for all operators.</p></li>
+<li><p><strong>random</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether the order of the operators is randomized in each iteration.</p></li>
+<li><p><strong>projection</strong> (<em>callable</em><em>, </em><em>optional</em>) – Callable that can be used to modify the iterates in each iteration.</p></li>
+<li><p><strong>callback</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – Object that is called in each iteration.</p></li>
+<li><p><strong>callback_loop</strong> (<em>{'inner'</em><em>, </em><em>'outer'}</em>) – Whether the <cite>callback</cite> should be called in the inner or outer loop.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -355,12 +510,12 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="class">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor">
-<em class="property">class </em><code class="descclassname">dival.reconstructors.odl_reconstructors.</code><code class="descname">LandweberReconstructor</code><span class="sig-paren">(</span><em>op</em>, <em>x0</em>, <em>niter</em>, <em>omega=None</em>, <em>projection=None</em>, <em>callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#LandweberReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
-<p>Reconstructor applying Landweber’s method.</p>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">LandweberReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">omega=None</em>, <em class="sig-param">projection=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#LandweberReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
+<p>Iterative reconstructor applying Landweber’s method.</p>
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.op">
-<code class="descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.op" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -371,7 +526,7 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.x0">
-<code class="descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.x0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -382,7 +537,7 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.niter">
-<code class="descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.niter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -393,7 +548,7 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.omega">
-<code class="descname">omega</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.omega" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omega</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.omega" title="Permalink to this definition">¶</a></dt>
 <dd><p>Relaxation parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -404,7 +559,7 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.projection">
-<code class="descname">projection</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.projection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">projection</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.projection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callable that can be used to modify the iterates in each iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -415,29 +570,31 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.callback">
-<code class="descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.callback" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>odl.solvers.util.callback.Callback</p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code> or <cite>None</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.reconstruct">
-<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#LandweberReconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reconstruct input data from observation data.</p>
-<p>This method must be implemented by subclasses.</p>
+<dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">omega=None</em>, <em class="sig-param">projection=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#LandweberReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls <cite>odl.solvers.iterative.iterative.landweber</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op</strong> (<cite>odl.operator.Operator</cite>) – The forward operator of the inverse problem.
+The call <code class="docutils literal notranslate"><span class="pre">op.derivative(x).adjoint</span></code> must be valid.</p></li>
+<li><p><strong>x0</strong> (<code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element) – Initial value.</p></li>
+<li><p><strong>niter</strong> (<em>int</em>) – Number of iterations.</p></li>
+<li><p><strong>omega</strong> (<em>positive float</em><em>, </em><em>optional</em>) – Relaxation parameter.</p></li>
+<li><p><strong>projection</strong> (<em>callable</em><em>, </em><em>optional</em>) – Callable that can be used to modify the iterates in each iteration.
+One argument is passed and expected be modified in-place.</p></li>
+<li><p><strong>callback</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – Object that is called in each iteration.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -446,13 +603,14 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="class">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor">
-<em class="property">class </em><code class="descclassname">dival.reconstructors.odl_reconstructors.</code><code class="descname">MLEMReconstructor</code><span class="sig-paren">(</span><em>op</em>, <em>x0</em>, <em>niter</em>, <em>noise='poisson'</em>, <em>callback=None</em>, <em>sensitivities=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#MLEMReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
-<p>Reconstructor applying Maximum Likelihood Expectation Maximization.</p>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">MLEMReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">noise='poisson'</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">sensitivities=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#MLEMReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
+<p>Iterative reconstructor applying Maximum Likelihood Expectation
+Maximization.</p>
 <p>If multiple operators are given, Ordered Subsets MLEM is applied.</p>
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.op">
-<code class="descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.op" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator(s) of the inverse problem.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -463,7 +621,7 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.x0">
-<code class="descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.x0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -474,7 +632,7 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.niter">
-<code class="descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.niter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -485,29 +643,29 @@ If a single float is given it is used for all operators.</p>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.noise">
-<code class="descname">noise</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.noise" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">noise</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Noise model determining the variant of MLEM.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>{‘poisson’}, optional</p>
+<dd class="field-odd"><p>{‘poisson’} or <cite>None</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.callback">
-<code class="descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.callback" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>odl.solvers.util.callback.Callback</p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code> or <cite>None</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.sensitivities">
-<code class="descname">sensitivities</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.sensitivities" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sensitivities</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.sensitivities" title="Permalink to this definition">¶</a></dt>
 <dd><p>Usable with <code class="docutils literal notranslate"><span class="pre">noise='poisson'</span></code>. The algorithm contains an <code class="docutils literal notranslate"><span class="pre">A^T</span> <span class="pre">1</span></code>
 term, if this parameter is given, it is replaced by it.
 Default: <code class="docutils literal notranslate"><span class="pre">op[i].adjoint(op[i].range.one())</span></code></p>
@@ -519,19 +677,24 @@ Default: <code class="docutils literal notranslate"><span class="pre">op[i].adjo
 </dd></dl>
 
 <dl class="method">
-<dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.reconstruct">
-<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#MLEMReconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reconstruct input data from observation data.</p>
-<p>This method must be implemented by subclasses.</p>
+<dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">noise='poisson'</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">sensitivities=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#MLEMReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls <cite>odl.solvers.iterative.statistical.osmlem</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op</strong> (<cite>odl.operator.Operator</cite> or sequence of <cite>odl.operator.Operator</cite>) – The forward operator(s) of the inverse problem.
+If an operator sequence is given, Ordered Subsets MLEM is applied.</p></li>
+<li><p><strong>x0</strong> (<code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element) – Initial value.</p></li>
+<li><p><strong>niter</strong> (<em>int</em>) – Number of iterations.</p></li>
+<li><p><strong>noise</strong> (<em>{'poisson'}</em><em>, </em><em>optional</em>) – Noise model determining the variant of MLEM.
+For <code class="docutils literal notranslate"><span class="pre">'poisson'</span></code>, the initial value of <code class="docutils literal notranslate"><span class="pre">x</span></code> should be
+non-negative.</p></li>
+<li><p><strong>callback</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – Object that is called in each iteration.</p></li>
+<li><p><strong>sensitivities</strong> (float or <code class="docutils literal notranslate"><span class="pre">op.domain</span></code> <cite>element-like</cite>, optional) – Usable with <code class="docutils literal notranslate"><span class="pre">noise='poisson'</span></code>. The algorithm contains an
+<code class="docutils literal notranslate"><span class="pre">A^T</span> <span class="pre">1</span></code> term, if this parameter is given, it is replaced by it.
+Default: <code class="docutils literal notranslate"><span class="pre">op[i].adjoint(op[i].range.one())</span></code></p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -541,86 +704,52 @@ Default: <code class="docutils literal notranslate"><span class="pre">op[i].adjo
 </div>
 
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Deep Inversion Validation Library</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="dival.html">dival package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="dival.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dival.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dival.html#module-dival">Module contents</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="dival.html">dival package</a><ul>
-  <li><a href="dival.reconstructors.html">dival.reconstructors package</a><ul>
-      <li>Previous: <a href="dival.reconstructors.html" title="previous chapter">dival.reconstructors package</a></li>
-      <li>Next: <a href="dival.reconstructors.reconstructor.html" title="next chapter">dival.reconstructors.reconstructor module</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-    </form>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.reconstructors.reconstructor.html" class="btn btn-neutral float-right" title="dival.reconstructors.reconstructor module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.reconstructors.fbp_unet_reconstructor.html" class="btn btn-neutral float-left" title="dival.reconstructors.fbp_unet_reconstructor module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/dival.reconstructors.odl_reconstructors.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>

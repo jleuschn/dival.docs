@@ -1,35 +1,174 @@
 
+
 <!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.util.plot &mdash; Deep Inversion Validation Library  documentation</title>
+  
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>dival.util.plot &#8212; Deep Inversion Validation Library  documentation</title>
-    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="../../../index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dival.util.plot</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for dival.util.plot</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
@@ -43,28 +182,28 @@
 
 
 <div class="viewcode-block" id="plot_image"><a class="viewcode-back" href="../../../dival.util.plot.html#dival.util.plot.plot_image">[docs]</a><span class="k">def</span> <span class="nf">plot_image</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot `x` using matplotlib&#39;s `imshow` method.</span>
+    <span class="sd">&quot;&quot;&quot;Plot image using matplotlib&#39;s :meth:`imshow` method.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    x : array-like or PIL image</span>
 <span class="sd">        The image data. For further information see `imshow documentation</span>
 <span class="sd">        &lt;https://matplotlib.org/api/_as_gen/matplotlib.pyplot.imshow.html&gt;`_.</span>
-<span class="sd">    fig : matplotlib.figure.Figure, optional</span>
+<span class="sd">    fig : :class:`matplotlib.figure.Figure`, optional</span>
 <span class="sd">        The figure to plot the image in. If ``fig is None``, but `ax` is given,</span>
 <span class="sd">        it is retrieved from `ax`. If both ``fig is None`` and ``ax is None``,</span>
 <span class="sd">        a new figure is created.</span>
-<span class="sd">    ax : matplotlib.axes.Axes, optional</span>
-<span class="sd">        The axes to plot the image in. If ``None``, an axes object is created</span>
+<span class="sd">    ax : :class:`matplotlib.axes.Axes`, optional</span>
+<span class="sd">        The axes to plot the image in. If `None`, an axes object is created</span>
 <span class="sd">        in `fig`.</span>
 <span class="sd">    kwargs : dict, optional</span>
-<span class="sd">        Keyword arguments passed to `ax.imshow`.</span>
+<span class="sd">        Keyword arguments passed to ``ax.imshow``.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    im : matplotlib.image.AxesImage</span>
+<span class="sd">    im : :class:`matplotlib.image.AxesImage`</span>
 <span class="sd">        The image that was plotted.</span>
-<span class="sd">    ax : matplotlib.axes.Axes</span>
+<span class="sd">    ax : :class:`matplotlib.axes.Axes`</span>
 <span class="sd">        The axes the image was plotted in.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -81,17 +220,18 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">yticks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yticks</span><span class="p">)</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">asarray</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">im</span><span class="p">,</span> <span class="n">ax</span></div>
 
 
 <div class="viewcode-block" id="plot_images"><a class="viewcode-back" href="../../../dival.util.plot.html#dival.util.plot.plot_images">[docs]</a><span class="k">def</span> <span class="nf">plot_images</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vrange</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span>
                 <span class="n">cbar</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">rect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fig_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot multiple images using matplotlib&#39;s `imshow` method in subplots.</span>
+    <span class="sd">&quot;&quot;&quot;Plot multiple images using matplotlib&#39;s :meth:`imshow` method in</span>
+<span class="sd">    subplots.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x_list : list of (array-like or PIL image)</span>
+<span class="sd">    x_list : sequence of (array-like or PIL image)</span>
 <span class="sd">        List of the image data. For further information see `imshow</span>
 <span class="sd">        documentation</span>
 <span class="sd">        &lt;https://matplotlib.org/api/_as_gen/matplotlib.pyplot.imshow.html&gt;`_.</span>
@@ -102,7 +242,8 @@
 <span class="sd">        The number of subplot columns. If -1, it is computed by</span>
 <span class="sd">        ``ceil(len(x_list)/nrows)`` (default). If both `nrows` and `ncols` are</span>
 <span class="sd">        given, the value of `ncols` is ignored.</span>
-<span class="sd">    vrange : {&#39;equal&#39;, &#39;individual&#39;} or [list of ](float, float), optional</span>
+<span class="sd">    vrange : {``&#39;equal&#39;``, ``&#39;individual&#39;``} or [list of ](float, float),\</span>
+<span class="sd">             optional</span>
 <span class="sd">        Value ranges for the colors of the images.</span>
 <span class="sd">        If a string is passed, the range is auto-computed:</span>
 
@@ -114,7 +255,7 @@
 <span class="sd">        If a tuple of floats is passed, it is used for all images.</span>
 <span class="sd">        If a list of tuples of floats is passed, each tuple is used for one</span>
 <span class="sd">        image.</span>
-<span class="sd">    cbar : {&#39;one&#39;, &#39;many&#39;, &#39;auto&#39;, &#39;none&#39;}, optional</span>
+<span class="sd">    cbar : {``&#39;one&#39;``, ``&#39;many&#39;``, ``&#39;auto&#39;``, ``&#39;none&#39;``}, optional</span>
 <span class="sd">        Colorbar option.</span>
 <span class="sd">        If ``cbar==&#39;one&#39;``, one colorbar is shown. Only possible if the value</span>
 <span class="sd">        ranges used for the colors (cf. `vrange`) are the same for all images.</span>
@@ -122,19 +263,26 @@
 <span class="sd">        If ``cbar==&#39;auto&#39;``, either ``&#39;one&#39;`` or ``&#39;many&#39;`` is chosen,</span>
 <span class="sd">        depending on whether `vrange` is equal for all images.</span>
 <span class="sd">        If ``cbar==&#39;none&#39;``, no colorbars are shown.</span>
-<span class="sd">    fig : matplotlib.figure.Figure, optional</span>
-<span class="sd">        The figure to plot the images in. If ``None``, a new figure is created.</span>
+<span class="sd">    fig : :class:`matplotlib.figure.Figure`, optional</span>
+<span class="sd">        The figure to plot the images in. If `None`, a new figure is created.</span>
 <span class="sd">    kwargs : dict, optional</span>
 <span class="sd">        Keyword arguments passed to `plot_image`, which in turn passes them to</span>
 <span class="sd">        ``imshow``.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    im : ndarray of matplotlib.image.AxesImage</span>
+<span class="sd">    im : ndarray of :class:`matplotlib.image.AxesImage`</span>
 <span class="sd">        The images that were plotted.</span>
-<span class="sd">    ax : ndarray of matplotlib.axes.Axes</span>
+<span class="sd">    ax : ndarray of :class:`matplotlib.axes.Axes`</span>
 <span class="sd">        The axes the images were plotted in.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">x_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;x_list must be iterable. Pass a sequence or use &#39;</span>
+                        <span class="s1">&#39;`plot_image` to plot single images.&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_list</span><span class="p">)):</span>
+        <span class="n">x_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">nrows</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">nrows</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
@@ -185,69 +333,43 @@
     <span class="k">return</span> <span class="n">im</span><span class="p">,</span> <span class="n">ax</span></div>
 </pre></div>
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../../index.html">Deep Inversion Validation Library</a></h1>
+          <footer>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../dival.html">dival package</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../../index.html">Documentation overview</a><ul>
-  <li><a href="../../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>

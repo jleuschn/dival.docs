@@ -1,35 +1,174 @@
 
+
 <!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.util.odl_noise_random_state &mdash; Deep Inversion Validation Library  documentation</title>
+  
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>dival.util.odl_noise_random_state &#8212; Deep Inversion Validation Library  documentation</title>
-    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="../../../index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dival.util.odl_noise_random_state</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for dival.util.odl_noise_random_state</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
@@ -43,7 +182,11 @@
 <span class="c1"># v. 2.0. If a copy of the MPL was not distributed with this file, You can</span>
 <span class="c1"># obtain one at https://mozilla.org/MPL/2.0/.</span>
 
-<span class="sd">&quot;&quot;&quot;Functions to create noise samples of different distributions.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;Functions to create noise samples of different distributions.</span>
+
+<span class="sd">This module is a copy of :mod:`odl.phantom.noise` that was modified to support</span>
+<span class="sd">random states instead of seeds.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -72,11 +215,11 @@
 <span class="sd">        interpreted as ``stddev * space.one()``.</span>
 <span class="sd">    seed : int, optional</span>
 <span class="sd">        Random seed to use for generating the noise.</span>
-<span class="sd">        For ``None``, use the current seed.</span>
+<span class="sd">        For `None`, use the current seed.</span>
 <span class="sd">        Only takes effect if ``random_state is None``.</span>
 <span class="sd">    random_state : `numpy.random.RandomState`, optional</span>
 <span class="sd">        Random state to use for generating the noise.</span>
-<span class="sd">        For ``None``, use the global numpy random state (i.e. functions in</span>
+<span class="sd">        For `None`, use the global numpy random state (i.e. functions in</span>
 <span class="sd">        ``np.random``).</span>
 
 <span class="sd">    Returns</span>
@@ -135,11 +278,11 @@
 <span class="sd">        as their respective part of the noise.</span>
 <span class="sd">    seed : int, optional</span>
 <span class="sd">        Random seed to use for generating the noise.</span>
-<span class="sd">        For ``None``, use the current seed.</span>
+<span class="sd">        For `None`, use the current seed.</span>
 <span class="sd">        Only takes effect if ``random_state is None``.</span>
 <span class="sd">    random_state : `numpy.random.RandomState`, optional</span>
 <span class="sd">        Random state to use for generating the noise.</span>
-<span class="sd">        For ``None``, use the global numpy random state (i.e. functions in</span>
+<span class="sd">        For `None`, use the global numpy random state (i.e. functions in</span>
 <span class="sd">        ``np.random``).</span>
 
 <span class="sd">    Returns</span>
@@ -194,11 +337,11 @@
 <span class="sd">        Poisson distributed random variable.</span>
 <span class="sd">    seed : int, optional</span>
 <span class="sd">        Random seed to use for generating the noise.</span>
-<span class="sd">        For ``None``, use the current seed.</span>
+<span class="sd">        For `None`, use the current seed.</span>
 <span class="sd">        Only takes effect if ``random_state is None``.</span>
 <span class="sd">    random_state : `numpy.random.RandomState`, optional</span>
 <span class="sd">        Random state to use for generating the noise.</span>
-<span class="sd">        For ``None``, use the global numpy random state (i.e. functions in</span>
+<span class="sd">        For `None`, use the global numpy random state (i.e. functions in</span>
 <span class="sd">        ``np.random``).</span>
 
 <span class="sd">    Notes</span>
@@ -266,11 +409,11 @@
 <span class="sd">        value per subspace is taken.</span>
 <span class="sd">    seed : int, optional</span>
 <span class="sd">        Random seed to use for generating the noise.</span>
-<span class="sd">        For ``None``, use the current seed.</span>
+<span class="sd">        For `None`, use the current seed.</span>
 <span class="sd">        Only takes effect if ``random_state is None``.</span>
 <span class="sd">    random_state : `numpy.random.RandomState`, optional</span>
 <span class="sd">        Random state to use for generating the noise.</span>
-<span class="sd">        For ``None``, use the global numpy random state (i.e. functions in</span>
+<span class="sd">        For `None`, use the global numpy random state (i.e. functions in</span>
 <span class="sd">        ``np.random``).</span>
 
 <span class="sd">    Returns</span>
@@ -359,69 +502,43 @@
     <span class="n">run_doctests</span><span class="p">()</span>
 </pre></div>
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../../index.html">Deep Inversion Validation Library</a></h1>
+          <footer>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../dival.html">dival package</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../../index.html">Documentation overview</a><ul>
-  <li><a href="../../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>

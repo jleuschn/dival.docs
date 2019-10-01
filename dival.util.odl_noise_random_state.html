@@ -1,44 +1,189 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>dival.util.odl_noise_random_state module &#8212; Deep Inversion Validation Library  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.util.odl_noise_random_state module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.util.odl_utility module" href="dival.util.odl_utility.html" />
-    <link rel="prev" title="dival.util.constants module" href="dival.util.constants.html" />
+    <link rel="prev" title="dival.util.constants module" href="dival.util.constants.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="dival.util.html">dival.util package</a> &raquo;</li>
+        
+      <li>dival.util.odl_noise_random_state module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.util.odl_noise_random_state.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-dival.util.odl_noise_random_state">
 <span id="dival-util-odl-noise-random-state-module"></span><h1>dival.util.odl_noise_random_state module<a class="headerlink" href="#module-dival.util.odl_noise_random_state" title="Permalink to this headline">¶</a></h1>
 <p>Functions to create noise samples of different distributions.</p>
+<p>This module is a copy of <code class="xref py py-mod docutils literal notranslate"><span class="pre">odl.phantom.noise</span></code> that was modified to support
+random states instead of seeds.</p>
 <dl class="function">
 <dt id="dival.util.odl_noise_random_state.white_noise">
-<code class="descclassname">dival.util.odl_noise_random_state.</code><code class="descname">white_noise</code><span class="sig-paren">(</span><em>space</em>, <em>mean=0</em>, <em>stddev=1</em>, <em>seed=None</em>, <em>random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#white_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.white_noise" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">white_noise</code><span class="sig-paren">(</span><em class="sig-param">space</em>, <em class="sig-param">mean=0</em>, <em class="sig-param">stddev=1</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#white_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.white_noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard gaussian noise in space, pointwise <code class="docutils literal notranslate"><span class="pre">N(mean,</span> <span class="pre">stddev**2)</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -51,10 +196,10 @@ as the mean of their respective part of the noise.</p></li>
 <li><p><strong>stddev</strong> (<cite>float</cite> or <code class="docutils literal notranslate"><span class="pre">space</span></code> <cite>element-like</cite>, optional) – The standard deviation of the white noise. If a scalar, it is
 interpreted as <code class="docutils literal notranslate"><span class="pre">stddev</span> <span class="pre">*</span> <span class="pre">space.one()</span></code>.</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random seed to use for generating the noise.
-For <code class="docutils literal notranslate"><span class="pre">None</span></code>, use the current seed.
+For <cite>None</cite>, use the current seed.
 Only takes effect if <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">is</span> <span class="pre">None</span></code>.</p></li>
 <li><p><strong>random_state</strong> (<cite>numpy.random.RandomState</cite>, optional) – Random state to use for generating the noise.
-For <code class="docutils literal notranslate"><span class="pre">None</span></code>, use the global numpy random state (i.e. functions in
+For <cite>None</cite>, use the global numpy random state (i.e. functions in
 <code class="docutils literal notranslate"><span class="pre">np.random</span></code>).</p></li>
 </ul>
 </dd>
@@ -72,8 +217,45 @@ For <code class="docutils literal notranslate"><span class="pre">None</span></co
 </dd></dl>
 
 <dl class="function">
+<dt id="dival.util.odl_noise_random_state.uniform_noise">
+<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">uniform_noise</code><span class="sig-paren">(</span><em class="sig-param">space</em>, <em class="sig-param">low=0</em>, <em class="sig-param">high=1</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#uniform_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.uniform_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uniformly distributed noise in <code class="docutils literal notranslate"><span class="pre">space</span></code>, pointwise <code class="docutils literal notranslate"><span class="pre">U(low,</span> <span class="pre">high)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>space</strong> (<cite>TensorSpace</cite> or <cite>ProductSpace</cite>) – The space in which the noise is created.</p></li>
+<li><p><strong>low</strong> (<code class="docutils literal notranslate"><span class="pre">space.field</span></code> element or <code class="docutils literal notranslate"><span class="pre">space</span></code> <cite>element-like</cite>, optional) – The lower bound of the uniform noise. If a scalar, it is interpreted as
+<code class="docutils literal notranslate"><span class="pre">low</span> <span class="pre">*</span> <span class="pre">space.one()</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">space</span></code> is complex, the real and imaginary parts are interpreted
+as their respective part of the noise.</p></li>
+<li><p><strong>high</strong> (<code class="docutils literal notranslate"><span class="pre">space.field</span></code> element or <code class="docutils literal notranslate"><span class="pre">space</span></code> <cite>element-like</cite>, optional) – The upper bound of the uniform noise. If a scalar, it is interpreted as
+<code class="docutils literal notranslate"><span class="pre">high</span> <span class="pre">*</span> <span class="pre">space.one()</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">space</span></code> is complex, the real and imaginary parts are interpreted
+as their respective part of the noise.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random seed to use for generating the noise.
+For <cite>None</cite>, use the current seed.
+Only takes effect if <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">is</span> <span class="pre">None</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<cite>numpy.random.RandomState</cite>, optional) – Random state to use for generating the noise.
+For <cite>None</cite>, use the global numpy random state (i.e. functions in
+<code class="docutils literal notranslate"><span class="pre">np.random</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>white_noise</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">space</span></code> element</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dival.util.odl_noise_random_state.poisson_noise" title="dival.util.odl_noise_random_state.poisson_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">poisson_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.salt_pepper_noise" title="dival.util.odl_noise_random_state.salt_pepper_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">salt_pepper_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.white_noise" title="dival.util.odl_noise_random_state.white_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">white_noise()</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.random.normal()</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="function">
 <dt id="dival.util.odl_noise_random_state.poisson_noise">
-<code class="descclassname">dival.util.odl_noise_random_state.</code><code class="descname">poisson_noise</code><span class="sig-paren">(</span><em>intensity</em>, <em>seed=None</em>, <em>random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#poisson_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.poisson_noise" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">poisson_noise</code><span class="sig-paren">(</span><em class="sig-param">intensity</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#poisson_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.poisson_noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Poisson distributed noise with given intensity.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -83,10 +265,10 @@ For <code class="docutils literal notranslate"><span class="pre">None</span></co
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>poisson_noise</strong> (<code class="docutils literal notranslate"><span class="pre">intensity.space</span></code> element) – Poisson distributed random variable.</p></li>
 <li><p><strong>seed</strong> (<em>int, optional</em>) – Random seed to use for generating the noise.
-For <code class="docutils literal notranslate"><span class="pre">None</span></code>, use the current seed.
+For <cite>None</cite>, use the current seed.
 Only takes effect if <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">is</span> <span class="pre">None</span></code>.</p></li>
 <li><p><strong>random_state</strong> (<cite>numpy.random.RandomState</cite>, optional) – Random state to use for generating the noise.
-For <code class="docutils literal notranslate"><span class="pre">None</span></code>, use the global numpy random state (i.e. functions in
+For <cite>None</cite>, use the global numpy random state (i.e. functions in
 <code class="docutils literal notranslate"><span class="pre">np.random</span></code>).</p></li>
 </ul>
 </p>
@@ -107,7 +289,7 @@ For <code class="docutils literal notranslate"><span class="pre">None</span></co
 
 <dl class="function">
 <dt id="dival.util.odl_noise_random_state.salt_pepper_noise">
-<code class="descclassname">dival.util.odl_noise_random_state.</code><code class="descname">salt_pepper_noise</code><span class="sig-paren">(</span><em>vector</em>, <em>fraction=0.05</em>, <em>salt_vs_pepper=0.5</em>, <em>low_val=None</em>, <em>high_val=None</em>, <em>seed=None</em>, <em>random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#salt_pepper_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.salt_pepper_noise" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">salt_pepper_noise</code><span class="sig-paren">(</span><em class="sig-param">vector</em>, <em class="sig-param">fraction=0.05</em>, <em class="sig-param">salt_vs_pepper=0.5</em>, <em class="sig-param">low_val=None</em>, <em class="sig-param">high_val=None</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#salt_pepper_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.salt_pepper_noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add salt and pepper noise to vector.</p>
 <p>Salt and pepper noise replaces random elements in <code class="docutils literal notranslate"><span class="pre">vector</span></code> with
 <code class="docutils literal notranslate"><span class="pre">low_val</span></code> or <code class="docutils literal notranslate"><span class="pre">high_val</span></code>.</p>
@@ -126,10 +308,10 @@ value per subspace is taken.</p></li>
 Default: maximuim value of <code class="docutils literal notranslate"><span class="pre">vector</span></code>. For product spaces the maximum
 value per subspace is taken.</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random seed to use for generating the noise.
-For <code class="docutils literal notranslate"><span class="pre">None</span></code>, use the current seed.
+For <cite>None</cite>, use the current seed.
 Only takes effect if <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">is</span> <span class="pre">None</span></code>.</p></li>
 <li><p><strong>random_state</strong> (<cite>numpy.random.RandomState</cite>, optional) – Random state to use for generating the noise.
-For <code class="docutils literal notranslate"><span class="pre">None</span></code>, use the global numpy random state (i.e. functions in
+For <cite>None</cite>, use the global numpy random state (i.e. functions in
 <code class="docutils literal notranslate"><span class="pre">np.random</span></code>).</p></li>
 </ul>
 </dd>
@@ -146,126 +328,55 @@ For <code class="docutils literal notranslate"><span class="pre">None</span></co
 </div>
 </dd></dl>
 
-<dl class="function">
-<dt id="dival.util.odl_noise_random_state.uniform_noise">
-<code class="descclassname">dival.util.odl_noise_random_state.</code><code class="descname">uniform_noise</code><span class="sig-paren">(</span><em>space</em>, <em>low=0</em>, <em>high=1</em>, <em>seed=None</em>, <em>random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#uniform_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.uniform_noise" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uniformly distributed noise in <code class="docutils literal notranslate"><span class="pre">space</span></code>, pointwise <code class="docutils literal notranslate"><span class="pre">U(low,</span> <span class="pre">high)</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>space</strong> (<cite>TensorSpace</cite> or <cite>ProductSpace</cite>) – The space in which the noise is created.</p></li>
-<li><p><strong>low</strong> (<code class="docutils literal notranslate"><span class="pre">space.field</span></code> element or <code class="docutils literal notranslate"><span class="pre">space</span></code> <cite>element-like</cite>, optional) – The lower bound of the uniform noise. If a scalar, it is interpreted as
-<code class="docutils literal notranslate"><span class="pre">low</span> <span class="pre">*</span> <span class="pre">space.one()</span></code>.
-If <code class="docutils literal notranslate"><span class="pre">space</span></code> is complex, the real and imaginary parts are interpreted
-as their respective part of the noise.</p></li>
-<li><p><strong>high</strong> (<code class="docutils literal notranslate"><span class="pre">space.field</span></code> element or <code class="docutils literal notranslate"><span class="pre">space</span></code> <cite>element-like</cite>, optional) – The upper bound of the uniform noise. If a scalar, it is interpreted as
-<code class="docutils literal notranslate"><span class="pre">high</span> <span class="pre">*</span> <span class="pre">space.one()</span></code>.
-If <code class="docutils literal notranslate"><span class="pre">space</span></code> is complex, the real and imaginary parts are interpreted
-as their respective part of the noise.</p></li>
-<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random seed to use for generating the noise.
-For <code class="docutils literal notranslate"><span class="pre">None</span></code>, use the current seed.
-Only takes effect if <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">is</span> <span class="pre">None</span></code>.</p></li>
-<li><p><strong>random_state</strong> (<cite>numpy.random.RandomState</cite>, optional) – Random state to use for generating the noise.
-For <code class="docutils literal notranslate"><span class="pre">None</span></code>, use the global numpy random state (i.e. functions in
-<code class="docutils literal notranslate"><span class="pre">np.random</span></code>).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>white_noise</strong></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">space</span></code> element</p>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#dival.util.odl_noise_random_state.poisson_noise" title="dival.util.odl_noise_random_state.poisson_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">poisson_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.salt_pepper_noise" title="dival.util.odl_noise_random_state.salt_pepper_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">salt_pepper_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.white_noise" title="dival.util.odl_noise_random_state.white_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">white_noise()</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.random.normal()</span></code></p>
-</div>
-</dd></dl>
-
 </div>
 
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Deep Inversion Validation Library</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="dival.html">dival package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="dival.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dival.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dival.html#module-dival">Module contents</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="dival.html">dival package</a><ul>
-  <li><a href="dival.util.html">dival.util package</a><ul>
-      <li>Previous: <a href="dival.util.constants.html" title="previous chapter">dival.util.constants module</a></li>
-      <li>Next: <a href="dival.util.odl_utility.html" title="next chapter">dival.util.odl_utility module</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-    </form>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.util.odl_utility.html" class="btn btn-neutral float-right" title="dival.util.odl_utility module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.util.constants.html" class="btn btn-neutral float-left" title="dival.util.constants module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/dival.util.odl_noise_random_state.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>

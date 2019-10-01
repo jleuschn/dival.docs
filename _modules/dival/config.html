@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.config &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>dival.config</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dival.config</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Configuration of the library.</span>
+
+<span class="sd">The module variable :obj:`CONFIG` holds the current configuration.</span>
+
+<span class="sd">The library configuration is stored in the file ``~/.dival/config.json``.</span>
+<span class="sd">If the config file does not exist when the library is imported, it is created</span>
+<span class="sd">using default values.</span>
+<span class="sd">Changes made in ``config.json`` are loaded when the library is (re-)imported.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="s1">&#39;lodopab_dataset&#39;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="s1">&#39;data_path&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span>
+      <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.dival/datasets/lodopab&#39;</span><span class="p">))</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Global configuration dict.</span>
+
+<span class="sd">Holds the current configuration of the library. On ``import dival``, the</span>
+<span class="sd">configuration is loaded from ~/.dival/config.json.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># configuration loaded from config file, overrides hardcoded configuration</span>
+<span class="n">CONFIG_FILENAME</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.dival/config.json&#39;</span><span class="p">))</span>
+
+<span class="c1"># automatically write config file if not existing (e.g., on first import)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">CONFIG_FILENAME</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">CONFIG_FILENAME</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CONFIG_FILENAME</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_fp</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">CONFIG</span><span class="p">,</span> <span class="n">config_fp</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CONFIG_FILENAME</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_fp</span><span class="p">:</span>
+    <span class="n">CONFIG</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_fp</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="get_config"><a class="viewcode-back" href="../../dival.config.html#dival.get_config">[docs]</a><span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="n">key_path</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return (sub-)configuration stored in config file.</span>
+<span class="sd">    Note that values may differ from the current ``CONFIG`` variable if it was</span>
+<span class="sd">    manipulated directly.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    key_path : str, optional</span>
+<span class="sd">        ``&#39;/&#39;``-separated path to sub-configuration. Default is ``&#39;/&#39;``, which</span>
+<span class="sd">        returns the full configuration dict.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sub_config</span>
+<span class="sd">        (sub-)configuration, either a dict or a value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CONFIG_FILENAME</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_fp</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_fp</span><span class="p">)</span>
+    <span class="n">sub_config</span> <span class="o">=</span> <span class="n">config</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="n">sub_config</span> <span class="o">=</span> <span class="n">sub_config</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">sub_config</span></div>
+
+
+<div class="viewcode-block" id="set_config"><a class="viewcode-back" href="../../dival.config.html#dival.set_config">[docs]</a><span class="k">def</span> <span class="nf">set_config</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Updates (sub-)configuration both in ``CONFIG`` variable and in config file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    key_path : str, optional</span>
+<span class="sd">        ``&#39;/&#39;``-separated path to sub-configuration. Pass ``&#39;/&#39;`` to replace</span>
+<span class="sd">        the full configuration dict.</span>
+<span class="sd">    value : object</span>
+<span class="sd">        (sub-)configuration value. Either a dict, which is copied, or a value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">CONFIG</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">CONFIG</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sub_config</span> <span class="o">=</span> <span class="n">CONFIG</span>
+        <span class="n">sub_c</span> <span class="o">=</span> <span class="n">c</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">sub_config</span> <span class="o">=</span> <span class="n">sub_config</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">sub_c</span> <span class="o">=</span> <span class="n">sub_c</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">sub_config</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">sub_c</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CONFIG_FILENAME</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_fp</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">config_fp</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;updated configuration in &#39;</span><span class="si">{}</span><span class="s2">&#39;:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CONFIG_FILENAME</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39; = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

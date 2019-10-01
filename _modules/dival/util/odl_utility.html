@@ -1,39 +1,178 @@
 
+
 <!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.util.odl_utility &mdash; Deep Inversion Validation Library  documentation</title>
+  
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>dival.util.odl_utility &#8212; Deep Inversion Validation Library  documentation</title>
-    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="../../../index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dival.util.odl_utility</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for dival.util.odl_utility</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;Provides an interface to the ODL element classes.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;Provides utilities related to ODL.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">dival.util.odl_noise_random_state</span> <span class="k">import</span> <span class="p">(</span><span class="n">white_noise</span><span class="p">,</span> <span class="n">uniform_noise</span><span class="p">,</span>
                                                <span class="n">poisson_noise</span><span class="p">,</span>
                                                <span class="n">salt_pepper_noise</span><span class="p">)</span>
@@ -49,7 +188,7 @@
 <span class="sd">    ----------</span>
 <span class="sd">    inp : array-like</span>
 <span class="sd">        The input data from which the element is generated.</span>
-<span class="sd">    space : `odl.discr.DiscretizedSpace`, optional</span>
+<span class="sd">    space : :class:`odl.discr.DiscretizedSpace`, optional</span>
 <span class="sd">        The space which the element will belong to. If not given, a uniform</span>
 <span class="sd">        discretization space with cell size 1 centered around the origin is</span>
 <span class="sd">        generated.</span>
@@ -65,37 +204,37 @@
 <div class="viewcode-block" id="apply_noise"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.apply_noise">[docs]</a><span class="k">def</span> <span class="nf">apply_noise</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">noise_type</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Apply noise to an odl element.</span>
-<span class="sd">    Calls noise functions from ``odl.phantom.noise`` or their equivalents</span>
-<span class="sd">    from ``dival.util.odl_noise_random_state``, which support a custom random</span>
-<span class="sd">    state.</span>
+
+<span class="sd">    Calls noise functions from :mod:`odl.phantom.noise` or their equivalents</span>
+<span class="sd">    from :mod:`dival.util.odl_noise_random_state`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    x : odl element</span>
 <span class="sd">        The element to which the noise is applied (in-place).</span>
-<span class="sd">    noise_type : {&#39;white&#39;, &#39;uniform&#39;, &#39;poisson&#39;, &#39;salt_pepper&#39;}</span>
+<span class="sd">    noise_type : {``&#39;white&#39;``, ``&#39;uniform&#39;``, ``&#39;poisson&#39;``, ``&#39;salt_pepper&#39;``}</span>
 <span class="sd">        Type of noise.</span>
 <span class="sd">    noise_kwargs : dict, optional</span>
 <span class="sd">        Keyword arguments to be passed to the noise function, e.g. ``&#39;stddev&#39;``</span>
 <span class="sd">        for ``&#39;white&#39;`` noise.</span>
 <span class="sd">        The arguments are:</span>
 
-<span class="sd">            * ``&#39;white&#39;`` noise:</span>
+<span class="sd">            * for ``noise_type=&#39;white&#39;``:</span>
 <span class="sd">                * ``&#39;stddev&#39;``: float, optional</span>
 <span class="sd">                    Standard deviation of each component of the normal</span>
 <span class="sd">                    distribution. Default is 1.</span>
 <span class="sd">                * ``&#39;relative_stddev&#39;``: bool, optional</span>
 <span class="sd">                    Whether to multiply ``&#39;stddev&#39;`` with ``mean(abs(x))``.</span>
 <span class="sd">                    Default is ``False``.</span>
-<span class="sd">            * ``&#39;poisson&#39;`` noise:</span>
+<span class="sd">            * for ``noise_type=&#39;poisson&#39;``:</span>
 <span class="sd">                * ``&#39;scaling_factor&#39;``: float, optional</span>
 <span class="sd">                    If specified, the intensity is multiplied and the samples</span>
 <span class="sd">                    from the poisson distribution are divided by this factor:</span>
 <span class="sd">                    ``poisson(x * scaling_factor) / scaling_factor``.</span>
-<span class="sd">                    Default is ``None``.</span>
+<span class="sd">                    Default is `None`.</span>
 <span class="sd">    seed : int, optional</span>
 <span class="sd">        Random seed passed to the noise function.</span>
-<span class="sd">    random_state : `np.random.RandomState`, optional</span>
+<span class="sd">    random_state : :class:`np.random.RandomState`, optional</span>
 <span class="sd">        Random state passed to the noise function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n_kwargs</span> <span class="o">=</span> <span class="n">noise_kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -126,44 +265,26 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown noise type &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">noise_type</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="ExpOperator"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.ExpOperator">[docs]</a><span class="k">class</span> <span class="nc">ExpOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">LogOperator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="LogOperator"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.LogOperator">[docs]</a><span class="k">class</span> <span class="nc">LogOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">ExpOperator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span></div>
-
-
 <div class="viewcode-block" id="NoiseOperator"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.NoiseOperator">[docs]</a><span class="k">class</span> <span class="nc">NoiseOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Operator applying noise.</span>
 
-<span class="sd">    Wraps `apply_noise`, which calls noise functions from ``odl.phantom.noise``</span>
-<span class="sd">    or their equivalents from ``dival.util.odl_noise_random_state``, which</span>
-<span class="sd">    support a custom random state.</span>
+<span class="sd">    Wraps :func:`apply_noise`, which calls noise functions from</span>
+<span class="sd">    :mod:`odl.phantom.noise` or their equivalents from</span>
+<span class="sd">    :mod:`dival.util.odl_noise_random_state`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">noise_type</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="NoiseOperator.__init__"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.NoiseOperator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">noise_type</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Construct a noise operator.</span>
-
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        space : odl space</span>
 <span class="sd">            Domain and range.</span>
-<span class="sd">        noise_type : {&#39;white&#39;, &#39;uniform&#39;, &#39;poisson&#39;, &#39;salt_pepper&#39;}</span>
+<span class="sd">        noise_type : {``&#39;white&#39;``, ``&#39;uniform&#39;``, ``&#39;poisson&#39;``,\</span>
+<span class="sd">                      ``&#39;salt_pepper&#39;``}</span>
 <span class="sd">            Type of noise.</span>
 <span class="sd">        noise_kwargs : dict, optional</span>
-<span class="sd">            Keyword arguments to be passed to the noise function, e.g.</span>
-<span class="sd">            ``&#39;stddev&#39;`` for ``&#39;white&#39;`` noise. Cf. docs for `apply_noise`.</span>
+<span class="sd">            Keyword arguments to be passed to the noise function, cf. docs for</span>
+<span class="sd">            :func:`apply_noise`.</span>
 <span class="sd">        seed : int, optional</span>
 <span class="sd">            Random seed passed to the noise function.</span>
 <span class="sd">        random_state : `np.random.RandomState`, optional</span>
@@ -173,7 +294,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">noise_type</span> <span class="o">=</span> <span class="n">noise_type</span> <span class="ow">or</span> <span class="s1">&#39;white&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">noise_kwargs</span> <span class="o">=</span> <span class="n">noise_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span></div>
 
     <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">x</span><span class="p">:</span>
@@ -182,69 +303,43 @@
                     <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span></div>
 </pre></div>
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../../index.html">Deep Inversion Validation Library</a></h1>
+          <footer>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../dival.html">dival package</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../../index.html">Documentation overview</a><ul>
-  <li><a href="../../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>

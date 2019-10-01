@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.datasets.lodopab_dataset module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.datasets.standard module" href="dival.datasets.standard.html" />
+    <link rel="prev" title="dival.datasets.ellipses_dataset module" href="dival.datasets.ellipses_dataset.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="dival.datasets.html">dival.datasets package</a> &raquo;</li>
+        
+      <li>dival.datasets.lodopab_dataset module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.datasets.lodopab_dataset.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dival.datasets.lodopab_dataset">
+<span id="dival-datasets-lodopab-dataset-module"></span><h1>dival.datasets.lodopab_dataset module<a class="headerlink" href="#module-dival.datasets.lodopab_dataset" title="Permalink to this headline">¶</a></h1>
+<p>Provides <cite>LoDoPaBDataset</cite>.</p>
+<dl class="function">
+<dt id="dival.datasets.lodopab_dataset.download_lodopab">
+<code class="sig-prename descclassname">dival.datasets.lodopab_dataset.</code><code class="sig-name descname">download_lodopab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#download_lodopab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.download_lodopab" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset">
+<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.lodopab_dataset.</code><code class="sig-name descname">LoDoPaBDataset</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
+<p>A simulated low dose CT dataset based on real reconstructions from the
+<a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a> dataset.</p>
+<p>The dataset contains 42895 pairs of images and projection data.
+For simulation, a ray transform with parallel beam geometry using 1000
+angles and 513 detector pixels is used. Poisson noise corresponding to 4096
+incident photons per pixel before attenuation is applied to the projection
+data. The images have a size of 362x362 px.</p>
+<p>A ray transform that corresponds to the noiseless forward operator is
+available via the <cite>get_ray_trafo</cite> method of this dataset.</p>
+<dl class="attribute">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.space">
+<code class="sig-name descname">space</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.space" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">(space[0],</span> <span class="pre">space[1])</span></code>, where</dt><dd><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">space[0]</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">odl.uniform_discr([0.,</span> <span class="pre">-0.1838],</span> <span class="pre">[3.1416,</span> <span class="pre">0.1838],</span>
+<span class="pre">(1000,</span> <span class="pre">513),</span> <span class="pre">dtype='float32')</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">space[1]</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">odl.uniform_discr(min_pt,</span> <span class="pre">max_pt,</span> <span class="pre">(362,</span> <span class="pre">362),</span>
+<span class="pre">dtype='float32'))</span></code>, with <cite>min_pt</cite> and <cite>max_pt</cite> parameters
+passed to <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a></p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.shape">
+<code class="sig-name descname">shape</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">(362,</span> <span class="pre">362)</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.train_len">
+<code class="sig-name descname">train_len</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.train_len" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">35820</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.validation_len">
+<code class="sig-name descname">validation_len</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.validation_len" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">3522</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.test_len">
+<code class="sig-name descname">test_len</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.test_len" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">3553</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.random_access">
+<code class="sig-name descname">random_access</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.random_access" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.num_elements_per_sample">
+<code class="sig-name descname">num_elements_per_sample</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.num_elements_per_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_pt</strong> (<em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>optional</em>) – Minimum values of the lp space. Default: <code class="docutils literal notranslate"><span class="pre">[-0.13,</span> <span class="pre">-0.13]</span></code>.</p></li>
+<li><p><strong>max_pt</strong> (<em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>optional</em>) – Maximum values of the lp space. Default: <code class="docutils literal notranslate"><span class="pre">[0.13,</span> <span class="pre">0.13]</span></code>.</p></li>
+<li><p><strong>observation_model</strong> (<em>{'post-log'</em><em>, </em><em>'pre-log'}</em><em>, </em><em>optional</em>) – <p>The observation model to use.
+The default is <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'post-log'</span></code></dt><dd><p>Observations are linearly related to the normalized ground
+truth via the ray transform, <code class="docutils literal notranslate"><span class="pre">obs</span> <span class="pre">=</span> <span class="pre">ray_trafo(gt)</span> <span class="pre">+</span> <span class="pre">noise</span></code>.
+Note that the scaling of the observations matches the
+normalized ground truth, i.e., they are divided by the linear
+attenuation of 3071 HU.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code></dt><dd><p>Observations are non-linearly related to the ground truth, as
+given by the Beer-Lambert law.
+The model is
+<code class="docutils literal notranslate"><span class="pre">obs</span> <span class="pre">=</span> <span class="pre">exp(-ray_trafo(gt</span> <span class="pre">*</span> <span class="pre">MU(3071</span> <span class="pre">HU)))</span> <span class="pre">+</span> <span class="pre">noise</span></code>,
+where <cite>MU(3071 HU)</cite> is the factor, by which the ground truth
+was normalized.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>min_photon_count</strong> (<em>float</em><em>, </em><em>optional</em>) – Replacement value for a simulated photon count of zero.
+If <code class="docutils literal notranslate"><span class="pre">observation_model</span> <span class="pre">==</span> <span class="pre">'post-log'</span></code>, a value greater than zero
+is required in order to avoid undefined values. The default is 0.1,
+both for <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code> and <code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code> model.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.check_for_lodopab">
+<code class="sig-name descname">check_for_lodopab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.check_for_lodopab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.check_for_lodopab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fast check whether first and last file of each dataset part exist
+under the configured data path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>exists</strong> – Whether LoDoPaB seems to exist.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.generator">
+<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield pairs of low dose observations and (virtual) ground truth.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>(observation, ground_truth)</em> –</p>
+<dl>
+<dt><cite>observation</cite><span class="classifier">odl element with shape <code class="docutils literal notranslate"><span class="pre">(1000,</span> <span class="pre">513)</span></code></span></dt><dd><p>The values depend on the
+<cite>observation_model</cite> and <cite>min_photon_count</cite> parameters that were
+passed to <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.</p>
+</dd>
+<dt><cite>ground_truth</cite><span class="classifier">odl element with shape <code class="docutils literal notranslate"><span class="pre">(362,</span> <span class="pre">362)</span></code></span></dt><dd><p>The values lie in the range <code class="docutils literal notranslate"><span class="pre">[0.,</span> <span class="pre">1.]</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_ray_trafo">
+<code class="sig-name descname">get_ray_trafo</code><span class="sig-paren">(</span><em class="sig-param">impl=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_ray_trafo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_ray_trafo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ray transform that is a noiseless version of the forward
+operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>impl</strong> ({<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>}, optional) – The backend implementation passed to
+<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ray_trafo</strong> – The ray transform that corresponds to the noiseless map from
+362 x 362 images to the <code class="docutils literal notranslate"><span class="pre">-log</span></code> of their projections (sinograms).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>odl operator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.ray_trafo">
+<em class="property">property </em><code class="sig-name descname">ray_trafo</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.ray_trafo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read-only property calling <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_ray_trafo" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_ray_trafo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_ray_trafo()</span></code></a> with default parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample">
+<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get single sample of the dataset.
+Returns a pair of (virtual) ground truth and its low dose observation,
+of which either part can be left out by option.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – The index into the dataset part.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (<em>tuple of array-likes</em><em> or </em><em>bools</em><em>, </em><em>optional</em>) – <p><code class="docutils literal notranslate"><span class="pre">out==(out_observation,</span> <span class="pre">out_ground_truth)</span></code></p>
+<dl class="simple">
+<dt>out_observation<span class="classifier">array-like or bool</span></dt><dd><p>Shape <code class="docutils literal notranslate"><span class="pre">(1000,</span> <span class="pre">513)</span></code>.
+If an odl element or array is passed, the observation is
+written to it.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, a new odl element holding the observation is
+created (the default).
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, no observation is returned.</p>
+</dd>
+<dt>out_ground_truth<span class="classifier">array-like or bool</span></dt><dd><p>Shape <code class="docutils literal notranslate"><span class="pre">(362,</span> <span class="pre">362)</span></code>.
+If an odl element or array is passed, the ground truth is
+written to it.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, a new odl element holding the ground truth is
+created (the default).
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, no ground truth is returned.</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl>
+<dt>observation<span class="classifier">odl element or <code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code> or <cite>None</cite></span></dt><dd><p>Depending on the value of <code class="docutils literal notranslate"><span class="pre">out_observation</span></code> (see parameter
+<cite>out</cite>), a newly created odl element, <code class="docutils literal notranslate"><span class="pre">out_observation</span></code> or
+<cite>None</cite> is returned.
+The observation values depend on the <cite>observation_model</cite> and
+<cite>min_photon_count</cite> parameters that were given to the
+constructor.</p>
+</dd>
+<dt>ground_truth<span class="classifier">odl element or <code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code> or <cite>None</cite></span></dt><dd><p>Depending on the value of <code class="docutils literal notranslate"><span class="pre">out_ground_truth</span></code> (see parameter
+<cite>out</cite>), a newly created odl element, <code class="docutils literal notranslate"><span class="pre">out_ground_truth</span></code> or
+<cite>None</cite> is returned.
+The values lie in the range <code class="docutils literal notranslate"><span class="pre">[0.,</span> <span class="pre">1.]</span></code>.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(observation,</span> <span class="pre">ground_truth)</span></code> or <cite>None</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_samples">
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get slice of the dataset.
+Returns a pair of (virtual) ground truth data and its low dose
+observation data, of which either part can be left out by option.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>slice</em><em> or </em><em>range</em>) – The indices into the dataset part.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (<em>tuple of arrays</em><em> or </em><em>bools</em><em>, </em><em>optional</em>) – <p><code class="docutils literal notranslate"><span class="pre">out==(out_observation,</span> <span class="pre">out_ground_truth)</span></code></p>
+<dl>
+<dt>out_observation<span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code> or bool</span></dt><dd><p>If an array is passed, the observation data is written to it.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, a new array holding the observation data is
+created (the default).
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, no observation data is returned.</p>
+</dd>
+<dt>out_ground_truth<span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code> or bool</span></dt><dd><p>If an array is passed, the ground truth data is written to it.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, a new array holding the ground truth data is
+created (the default).
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, no ground truth data is returned.</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl>
+<dt>observation<span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code> or <cite>None</cite></span></dt><dd><p>Shape <code class="docutils literal notranslate"><span class="pre">(samples,</span> <span class="pre">1000,</span> <span class="pre">513)</span></code>.
+Depending on the value of <code class="docutils literal notranslate"><span class="pre">out_observation</span></code> (see parameter
+<cite>out</cite>), a newly created array, <code class="docutils literal notranslate"><span class="pre">out_observation</span></code> or <cite>None</cite>
+is returned.
+The observation values depend on the <cite>observation_model</cite> and
+<cite>min_photon_count</cite> parameters that were given to the
+constructor.</p>
+</dd>
+<dt>ground_truth<span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code> or <cite>None</cite></span></dt><dd><p>Shape <code class="docutils literal notranslate"><span class="pre">(samples,</span> <span class="pre">362,</span> <span class="pre">362)</span></code>.
+Depending on the value of <code class="docutils literal notranslate"><span class="pre">out_ground_truth</span></code> (see parameter
+<cite>out</cite>), a newly created array, <code class="docutils literal notranslate"><span class="pre">out_ground_truth</span></code> or <cite>None</cite>
+is returned.
+The values lie in the range <code class="docutils literal notranslate"><span class="pre">[0.,</span> <span class="pre">1.]</span></code>.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(observation,</span> <span class="pre">ground_truth)</span></code> or <cite>None</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.create_torch_dataset">
+<code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a torch dataset wrapper for one part of this dataset.</p>
+<p>If <code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, samples are
+fetched from <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.generator" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>. The index passed to
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> of the
+returned dataset will be ignored, and parallel data loading (with
+multiple workers) is not applicable.</p>
+<p>If <code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code> returns <cite>True</cite>, samples are looked
+up using <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>. For datasets that support parallel calls
+to <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>, the returned torch dataset can be used by
+multiple workers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>reshape</strong> (tuple of (tuple or <cite>None</cite>), optional) – Shapes to which the elements of each sample will be reshaped.
+If <cite>None</cite> is passed for an element, no reshape is applied.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.datasets.standard.html" class="btn btn-neutral float-right" title="dival.datasets.standard module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.datasets.ellipses_dataset.html" class="btn btn-neutral float-left" title="dival.datasets.ellipses_dataset module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

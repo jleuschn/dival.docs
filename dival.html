@@ -1,37 +1,176 @@
 
+
 <!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival package &mdash; Deep Inversion Validation Library  documentation</title>
+  
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>dival package &#8212; Deep Inversion Validation Library  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dival.datasets package" href="dival.datasets.html" />
-    <link rel="prev" title="Deep Inversion Validation Library’s documentation" href="index.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>dival package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="dival-package">
 <h1>dival package<a class="headerlink" href="#dival-package" title="Permalink to this headline">¶</a></h1>
@@ -40,27 +179,10 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dival.datasets.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.ellipses.html">dival.datasets.ellipses package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="dival.datasets.ellipses.html#submodules">Submodules</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="dival.datasets.ellipses.ellipses_dataset.html">dival.datasets.ellipses.ellipses_dataset module</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="dival.datasets.ellipses.html#module-dival.datasets.ellipses">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.lidc_idri_dival.html">dival.datasets.lidc_idri_dival package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="dival.datasets.lidc_idri_dival.html#submodules">Submodules</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="dival.datasets.lidc_idri_dival.lidc_idri_dival_dataset.html">dival.datasets.lidc_idri_dival.lidc_idri_dival_dataset module</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="dival.datasets.lidc_idri_dival.html#module-dival.datasets.lidc_idri_dival">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="dival.datasets.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
 </ul>
 </li>
@@ -69,6 +191,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dival.reconstructors.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
@@ -84,6 +207,7 @@
 <li class="toctree-l3"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="dival.util.html#module-dival.util">Module contents</a></li>
@@ -99,22 +223,561 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_optimization.html">dival.hyper_param_optimization module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
 </ul>
 </div>
 </div>
 <div class="section" id="module-dival">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dival" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="dival.get_config">
+<code class="sig-prename descclassname">dival.</code><code class="sig-name descname">get_config</code><span class="sig-paren">(</span><em class="sig-param">key_path='/'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/config.html#get_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.get_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return (sub-)configuration stored in config file.
+Note that values may differ from the current <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> variable if it was
+manipulated directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_path</strong> (<em>str</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">'/'</span></code>-separated path to sub-configuration. Default is <code class="docutils literal notranslate"><span class="pre">'/'</span></code>, which
+returns the full configuration dict.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(sub-)configuration, either a dict or a value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>sub_config</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="dival.set_config">
+<code class="sig-prename descclassname">dival.</code><code class="sig-name descname">set_config</code><span class="sig-paren">(</span><em class="sig-param">key_path</em>, <em class="sig-param">value</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/config.html#set_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.set_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates (sub-)configuration both in <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> variable and in config file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key_path</strong> (<em>str</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">'/'</span></code>-separated path to sub-configuration. Pass <code class="docutils literal notranslate"><span class="pre">'/'</span></code> to replace
+the full configuration dict.</p></li>
+<li><p><strong>value</strong> (<em>object</em>) – (sub-)configuration value. Either a dict, which is copied, or a value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.DataPairs">
+<em class="property">class </em><code class="sig-prename descclassname">dival.</code><code class="sig-name descname">DataPairs</code><span class="sig-paren">(</span><em class="sig-param">observations</em>, <em class="sig-param">ground_truth=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.DataPairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Bundles <a class="reference internal" href="#dival.DataPairs.observations" title="dival.DataPairs.observations"><code class="xref py py-attr docutils literal notranslate"><span class="pre">observations</span></code></a> with <a class="reference internal" href="#dival.DataPairs.ground_truth" title="dival.DataPairs.ground_truth"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ground_truth</span></code></a>.</p>
+<dl class="attribute">
+<dt id="dival.DataPairs.observations">
+<code class="sig-name descname">observations</code><a class="headerlink" href="#dival.DataPairs.observations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The observations, possibly distorted or low-dimensional.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of observation space elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.DataPairs.ground_truth">
+<code class="sig-name descname">ground_truth</code><a class="headerlink" href="#dival.DataPairs.ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ground truth data (may be replaced with good quality references).
+If not known, it may be omitted (<cite>None</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of reconstruction space elements or <cite>None</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.DataPairs.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">observations</em>, <em class="sig-param">ground_truth=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.DataPairs.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.Dataset">
+<em class="property">class </em><code class="sig-prename descclassname">dival.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">space=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataset base class.</p>
+<dl class="attribute">
+<dt id="dival.Dataset.space">
+<code class="sig-name descname">space</code><a class="headerlink" href="#dival.Dataset.space" title="Permalink to this definition">¶</a></dt>
+<dd><p>The spaces of the elements of samples as a tuple.
+If only one element per sample is provided, this attribute is the space
+of the element (i.e., no tuple).
+It is strongly recommended to set this attribute in subclasses, as some
+functionality may depend on it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[tuple of ] <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.space.base_tensors.TensorSpace</span></code> or <cite>None</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Dataset.shape">
+<code class="sig-name descname">shape</code><a class="headerlink" href="#dival.Dataset.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>The shapes of the elements of samples as a tuple of tuple of int.
+If only one element per sample is provided, this attribute is the shape
+of the element (i.e., not a tuple of tuple of int, but a tuple of int).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[tuple of ] tuple of int, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Dataset.train_len">
+<code class="sig-name descname">train_len</code><a class="headerlink" href="#dival.Dataset.train_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of training samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Dataset.validation_len">
+<code class="sig-name descname">validation_len</code><a class="headerlink" href="#dival.Dataset.validation_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of validation samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Dataset.test_len">
+<code class="sig-name descname">test_len</code><a class="headerlink" href="#dival.Dataset.test_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of test samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Dataset.random_access">
+<code class="sig-name descname">random_access</code><a class="headerlink" href="#dival.Dataset.random_access" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the dataset supports random access via <code class="docutils literal notranslate"><span class="pre">self.get_sample</span></code> and
+<code class="docutils literal notranslate"><span class="pre">self.get_samples</span></code>.
+Setting this attribute is the preferred way for subclasses to indicate
+whether they support random access.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Dataset.num_elements_per_sample">
+<code class="sig-name descname">num_elements_per_sample</code><a class="headerlink" href="#dival.Dataset.num_elements_per_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of elements per sample.
+E.g. 1 for a ground truth dataset or 2 for a dataset of pairs of
+observation and ground truth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Dataset.standard_dataset_name">
+<code class="sig-name descname">standard_dataset_name</code><a class="headerlink" href="#dival.Dataset.standard_dataset_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Datasets returned by <cite>get_standard_dataset</cite> have this attribute giving
+its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">space=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>space</strong> ([tuple of ] <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.space.base_tensors.TensorSpace</span></code>,                optional) – The spaces of the elements of samples as a tuple.
+If only one element per sample is provided, this attribute is the
+space of the element (i.e., no tuple).
+It is strongly recommended to set <cite>space</cite> in subclasses, as some
+functionality may depend on it.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.generator">
+<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – Whether to yield train, validation or test data.
+Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><strong>data</strong> (<em>odl element or tuple of odl elements</em>) – Sample of the dataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_train_generator">
+<code class="sig-name descname">get_train_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_train_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_train_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_validation_generator">
+<code class="sig-name descname">get_validation_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_validation_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_validation_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_test_generator">
+<code class="sig-name descname">get_test_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_test_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_test_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_len">
+<code class="sig-name descname">get_len</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of elements the generator will yield.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – Whether to return the number of train, validation or test elements.
+Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_train_len">
+<code class="sig-name descname">get_train_len</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_train_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_train_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of samples the train generator will yield.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_validation_len">
+<code class="sig-name descname">get_validation_len</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_validation_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_validation_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of samples the validation generator will yield.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_test_len">
+<code class="sig-name descname">get_test_len</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_test_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_test_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of samples the test generator will yield.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_shape">
+<code class="sig-name descname">get_shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_shape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the shape of each element.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_num_elements_per_sample">
+<code class="sig-name descname">get_num_elements_per_sample</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_num_elements_per_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_num_elements_per_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of elements per sample.</p>
+<p>If <a class="reference internal" href="#dival.Dataset.num_elements_per_sample" title="dival.Dataset.num_elements_per_sample"><code class="xref py py-attr docutils literal notranslate"><span class="pre">num_elements_per_sample</span></code></a> is not set, an attempt to
+infer it by calling <a class="reference internal" href="#dival.Dataset.get_shape" title="dival.Dataset.get_shape"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_shape()</span></code></a> is made.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_data_pairs">
+<code class="sig-name descname">get_data_pairs</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em>, <em class="sig-param">n=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_data_pairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_data_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first samples from data part as <a class="reference internal" href="#dival.DataPairs" title="dival.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a> object.</p>
+<p>Only supports datasets with two elements per sample.``</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pairs (from beginning). If <cite>None</cite>, all available data
+is used (the default).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.create_torch_dataset">
+<code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em>, <em class="sig-param">reshape=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a torch dataset wrapper for one part of this dataset.</p>
+<p>If <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, samples are
+fetched from <a class="reference internal" href="#dival.Dataset.generator" title="dival.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>. The index passed to
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> of the
+returned dataset will be ignored, and parallel data loading (with
+multiple workers) is not applicable.</p>
+<p>If <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <cite>True</cite>, samples are looked
+up using <a class="reference internal" href="#dival.Dataset.get_sample" title="dival.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>. For datasets that support parallel calls
+to <a class="reference internal" href="#dival.Dataset.get_sample" title="dival.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>, the returned torch dataset can be used by
+multiple workers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>reshape</strong> (tuple of (tuple or <cite>None</cite>), optional) – Shapes to which the elements of each sample will be reshaped.
+If <cite>None</cite> is passed for an element, no reshape is applied.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.create_keras_generator">
+<code class="sig-name descname">create_keras_generator</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em>, <em class="sig-param">batch_size=1</em>, <em class="sig-param">shuffle=True</em>, <em class="sig-param">reshape=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_keras_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.create_keras_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a keras data generator wrapper for one part of this dataset.</p>
+<p>If <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, a generator
+wrapping <a class="reference internal" href="#dival.Dataset.generator" title="dival.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a> is returned. In this case no shuffling is
+performed regardless of the passed <cite>shuffle</cite> parameter. Also, parallel
+data loading (with multiple workers) is not applicable.</p>
+<p>If <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <cite>True</cite>, a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">tf.keras.utils.Sequence</span></code> is returned, which is implemented
+using <a class="reference internal" href="#dival.Dataset.get_sample" title="dival.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>. For datasets that support parallel calls to
+<a class="reference internal" href="#dival.Dataset.get_sample" title="dival.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>, the returned data generator (sequence) can be used
+by multiple workers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Batch size. Default is 1.</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to shuffle samples each epoch.
+This option has no effect if <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns
+<code class="docutils literal notranslate"><span class="pre">False</span></code>, since in that case samples are fetched directly from
+<a class="reference internal" href="#dival.Dataset.generator" title="dival.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>.
+The default is <cite>True</cite>.</p></li>
+<li><p><strong>reshape</strong> (tuple of (tuple or <cite>None</cite>), optional) – Shapes to which the elements of each sample will be reshaped.
+If <cite>None</cite> is passed for an element, no reshape is applied.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_sample">
+<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get single sample by index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – Index of the sample.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (array-like or tuple of (array-like or bool) or <cite>None</cite>) – <p>Array(s) (or e.g. odl element(s)) to which the sample is written.
+A tuple should be passed, if the dataset returns two or more arrays
+per sample (i.e. pairs, …).
+If a tuple element is a bool, it has the following meaning:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">True</span></code></dt><dd><p>Create a new array and return it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">False</span></code></dt><dd><p>Do not return this array, i.e. <cite>None</cite> is returned.</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
+<code class="docutils literal notranslate"><span class="pre">out=(True,</span> <span class="pre">False)</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.get_samples">
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get samples by slice or range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>slice</em><em> or </em><em>range</em>) – Indexes of the samples.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (array-like or tuple of (array-like or bool) or <cite>None</cite>) – <p>Array(s) (or e.g. odl element(s)) to which the sample is written.
+The first dimension must match the number of samples requested.
+A tuple should be passed, if the dataset returns two or more arrays
+per sample (i.e. pairs, …).
+If a tuple element is a bool, it has the following meaning:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">True</span></code></dt><dd><p>Create a new array and return it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">False</span></code></dt><dd><p>Do not return this array, i.e. <cite>None</cite> is returned.</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>samples</strong> – If the dataset has multiple arrays per sample, a tuple holding
+arrays is returned.
+E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
+<code class="docutils literal notranslate"><span class="pre">out=(True,</span> <span class="pre">False)</span></code>.
+The samples are stacked in the first
+(additional) dimension of each array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Dataset.supports_random_access">
+<code class="sig-name descname">supports_random_access</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.supports_random_access"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.supports_random_access" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether random access seems to be supported.</p>
+<p>If the object has the attribute <cite>self.random_access</cite>, its value is
+returned (this is the preferred way for subclasses to indicate whether
+they support random access). Otherwise, a simple duck-type check is
+performed which tries to get the first sample by random access.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>supports</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the dataset supports random access, otherwise
+<code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="dival.get_standard_dataset">
+<code class="sig-prename descclassname">dival.</code><code class="sig-name descname">get_standard_dataset</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/standard.html#get_standard_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.get_standard_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a standard dataset by name.</p>
+<p>The standard datasets are (currently):</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>A typical synthetical CT dataset with ellipse phantoms.</p>
+<p><cite>EllipsesDataset</cite> is used as ground truth dataset, a ray
+transform with parallel beam geometry using 30 angles is applied,
+and white gaussian noise with a standard deviation of 5% (i.e.
+<code class="docutils literal notranslate"><span class="pre">0.05</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added. The ray transform is
+normalized by its spectral norm.</p>
+<p>A normalized ray transform that corresponds to the noiseless
+forward operator is stored in the attribute <cite>ray_trafo</cite> of the
+dataset.</p>
+<p>In order to avoid the inverse crime, the ground truth images of
+shape (128, 128) are upscaled by bilinear interpolation to a
+resolution of (400, 400) before the ray transform is applied (whose
+discretization is different from the one of <cite>ray_trafo</cite>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><p>A simulated low dose CT dataset based on real reconstructions from
+the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
+dataset.</p>
+<p>The dataset contains 42895 pairs of images and projection data.
+For simulation, a ray transform with parallel beam geometry using
+1000 angles and 513 detector pixels is used. Poisson noise
+corresponding to 4096 incident photons per pixel before attenuation
+is applied to the projection data.</p>
+<p>A ray transform that corresponds to the noiseless forward operator
+is available via
+<a class="reference internal" href="dival.datasets.html#dival.datasets.LoDoPaBDataset.get_ray_trafo" title="dival.datasets.LoDoPaBDataset.get_ray_trafo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_ray_trafo()</span></code></a> from this
+dataset.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the dataset.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – <p>Keyword arguments.
+Supported parameters for the datasets are:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>no parameters</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><dl>
+<dt>observation_model<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'post-log'</span></code>, <code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code>}, optional</span></dt><dd><p>The observation model to use. Default is <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code>.</p>
+</dd>
+<dt>min_photon_count<span class="classifier">float, optional</span></dt><dd><p>Replacement value for a simulated photon count of zero.
+If <code class="docutils literal notranslate"><span class="pre">observation_model</span> <span class="pre">==</span> <span class="pre">'post-log'</span></code>, a value greater
+than zero is required in order to avoid undefined values.
+The default is 0.1, both for <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code> and
+<code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code> model.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dataset</strong> – The standard dataset.
+It has an attribute <cite>standard_dataset_name</cite> that stores its name.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#dival.Dataset" title="dival.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="class">
 <dt id="dival.Reconstructor">
-<em class="property">class </em><code class="descclassname">dival.</code><code class="descname">Reconstructor</code><span class="sig-paren">(</span><em>reco_space=None</em>, <em>observation_space=None</em>, <em>name=''</em>, <em>hyper_params=None</em>, <em>callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Reconstructor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<em class="property">class </em><code class="sig-prename descclassname">dival.</code><code class="sig-name descname">Reconstructor</code><span class="sig-paren">(</span><em class="sig-param">reco_space=None</em>, <em class="sig-param">observation_space=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">hyper_params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Reconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Abstract reconstructor base class.</p>
-<p>Subclasses must implement the abstract method <cite>reconstruct</cite>.</p>
+<p>There are two ways of implementing a <cite>Reconstructor</cite> subclass:</p>
+<blockquote>
+<div><ul>
+<li><p>Implement <a class="reference internal" href="#dival.Reconstructor.reconstruct" title="dival.Reconstructor.reconstruct"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reconstruct()</span></code></a>. It has to support optional in-place
+and out-of-place evaluation.</p></li>
+<li><p>Implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">_reconstruct()</span></code>. It must have one of the following
+signatures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_reconstruct(self,</span> <span class="pre">observation,</span> <span class="pre">out)</span></code> (in-place)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_reconstruct(self,</span> <span class="pre">observation)</span></code> (out-of-place)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_reconstruct(self,</span> <span class="pre">observation,</span> <span class="pre">out=None)</span></code> (optional
+in-place)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<dl class="attribute">
+<dt id="dival.Reconstructor.reco_space">
+<code class="sig-name descname">reco_space</code><a class="headerlink" href="#dival.Reconstructor.reco_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruction space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.discr.DiscretizedSpace</span></code>, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Reconstructor.observation_space">
+<code class="sig-name descname">observation_space</code><a class="headerlink" href="#dival.Reconstructor.observation_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Observation space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.discr.DiscretizedSpace</span></code>, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="dival.Reconstructor.name">
-<code class="descname">name</code><a class="headerlink" href="#dival.Reconstructor.name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">name</code><a class="headerlink" href="#dival.Reconstructor.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of the reconstructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -124,44 +787,54 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="dival.Reconstructor.callback">
-<code class="descname">callback</code><a class="headerlink" href="#dival.Reconstructor.callback" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object that should be called at some point(s) in <cite>reconstruct</cite>.
-E.g. an iterative reconstructor could call it at each iteration.</p>
+<dt id="dival.Reconstructor.hyper_params">
+<code class="sig-name descname">hyper_params</code><a class="headerlink" href="#dival.Reconstructor.hyper_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current hyper parameter values.
+Initialized automatically using the default values from
+<a class="reference internal" href="#dival.Reconstructor.HYPER_PARAMS" title="dival.Reconstructor.HYPER_PARAMS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HYPER_PARAMS</span></code></a> (but may be overridden by <cite>hyper_params</cite> passed
+to <a class="reference internal" href="#dival.Reconstructor.__init__" title="dival.Reconstructor.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>odl.solvers.util.callback.Callback</p>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="dival.Reconstructor.HYPER_PARAMS">
-<code class="descname">HYPER_PARAMS</code><em class="property"> = {}</em><a class="headerlink" href="#dival.Reconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {}</em><a class="headerlink" href="#dival.Reconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specification of hyper parameters.</p>
 <p>This class attribute is a dict that lists the hyper parameter of the
 reconstructor.
 It should not be hidden by an instance attribute of the same name (i.e. by
 assigning a value to <cite>self.HYPER_PARAMS</cite> in an instance of a subtype).</p>
 <p>The keys of this dict are the names of the hyper parameters, and each
-value is a dict with the following fields:</p>
+value is a dict with the following fields.</p>
 <blockquote>
-<div><dl>
+<div><p>Standard fields:</p>
+<blockquote>
+<div><dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">'default'</span></code></dt><dd><p>Default value.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">'retrain'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether training depends on the parameter. Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.
-If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the reconstructor is retrained while optimizing
-the parameter value.</p>
+Any custom subclass of <cite>LearnedReconstructor</cite> must set this
+field to <code class="docutils literal notranslate"><span class="pre">True</span></code> if training depends on the parameter value.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">'range'</span></code><span class="classifier">(float, float), optional</span></dt><dd><p>Interval of valid values. If this field is set, the parameter is
-taken to be real-valued.
+</dl>
+</div></blockquote>
+<p>Hyper parameter search fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'range'</span></code><span class="classifier">(float, float), optional</span></dt><dd><p>Interval of valid values. If this field is set, the parameter
+is taken to be real-valued.
 Either <code class="docutils literal notranslate"><span class="pre">'range'</span></code> or <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> has to be set.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">'choices'</span></code><span class="classifier">sequence, optional</span></dt><dd><p>Sequence of valid values of any type. If this field is set,
-<code class="docutils literal notranslate"><span class="pre">'range'</span></code> is ignored. Can be used to perform manual grid search.
-Either <code class="docutils literal notranslate"><span class="pre">'range'</span></code> or <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> has to be set.</p>
+<code class="docutils literal notranslate"><span class="pre">'range'</span></code> is ignored. Can be used to perform manual grid
+search. Either <code class="docutils literal notranslate"><span class="pre">'range'</span></code> or <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> has to be set.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">'method'</span></code><span class="classifier">{‘grid_search’, ‘hyperopt’}, optional</span></dt><dd><p>Optimization method for the parameter. Default: <code class="docutils literal notranslate"><span class="pre">'grid_search'</span></code>.
+<dt><code class="docutils literal notranslate"><span class="pre">'method'</span></code><span class="classifier">{‘grid_search’, ‘hyperopt’}, optional</span></dt><dd><p>Optimization method for the parameter.
+Default: <code class="docutils literal notranslate"><span class="pre">'grid_search'</span></code>.
 Options are:</p>
 <blockquote>
 <div><dl class="simple">
@@ -178,13 +851,13 @@ configured by the dict <code class="docutils literal notranslate"><span class="p
 <blockquote>
 <div><dl>
 <dt><code class="docutils literal notranslate"><span class="pre">'num_samples'</span></code><span class="classifier">int, optional</span></dt><dd><p>Number of values. Default: 10.
-Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and <code class="docutils literal notranslate"><span class="pre">'choices'</span></code>
-is not.</p>
+Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and
+<code class="docutils literal notranslate"><span class="pre">'choices'</span></code> is not.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">'type'</span></code><span class="classifier">{‘linear’}, optional</span></dt><dd><p>Type of grid, i.e. distribution of the values.
 Default: <code class="docutils literal notranslate"><span class="pre">'linear'</span></code>.
-Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and <code class="docutils literal notranslate"><span class="pre">'choices'</span></code>
-is not.
+Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and
+<code class="docutils literal notranslate"><span class="pre">'choices'</span></code> is not.
 Options are:</p>
 <blockquote>
 <div><dl class="simple">
@@ -216,53 +889,85 @@ Options are:</p>
 </dd>
 </dl>
 </div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Reconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">reco_space=None</em>, <em class="sig-param">observation_space=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">hyper_params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Reconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="dival.Reconstructor.reconstruct">
-<code class="descname">reconstruct</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Reconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reconstruct</code><span class="sig-paren">(</span><em class="sig-param">observation</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Reconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reconstruct input data from observation data.</p>
-<p>This method must be implemented by subclasses.</p>
+<p>The default implementation calls <cite>_reconstruct</cite>, automatically choosing
+in-place or out-of-place evaluation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>observation</strong> (<cite>observation_space</cite> element) – The observation data.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>observation</strong> (<a class="reference internal" href="#dival.Reconstructor.observation_space" title="dival.Reconstructor.observation_space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">observation_space</span></code></a> element-like) – The observation data.</p></li>
+<li><p><strong>out</strong> (<a class="reference internal" href="#dival.Reconstructor.reco_space" title="dival.Reconstructor.reco_space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reco_space</span></code></a> element-like, optional) – Array to which the result is written (in-place evaluation).
+If <cite>None</cite>, a new array is created (out-of-place evaluation).</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><cite>reco_space</cite> element</p>
+<dd class="field-odd"><p><a class="reference internal" href="#dival.Reconstructor.reco_space" title="dival.Reconstructor.reco_space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reco_space</span></code></a> element or <cite>out</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.IterativeReconstructor">
+<em class="property">class </em><code class="sig-prename descclassname">dival.</code><code class="sig-name descname">IterativeReconstructor</code><span class="sig-paren">(</span><em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#IterativeReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.IterativeReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
+<p>Iterative reconstructor base class.</p>
+<p>Subclasses should call <code class="docutils literal notranslate"><span class="pre">self.callback()</span></code> after each iteration in
+<code class="docutils literal notranslate"><span class="pre">self.reconstruct</span></code>.</p>
+<dl class="attribute">
+<dt id="dival.IterativeReconstructor.callback">
+<code class="sig-name descname">callback</code><a class="headerlink" href="#dival.IterativeReconstructor.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback to be called after each iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code> or <cite>None</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="dival.Reconstructor.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Reconstructor.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reset the reconstructor.</p>
-<p>The default implementation resets <cite>callback</cite> if present.</p>
+<dt id="dival.IterativeReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#IterativeReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.IterativeReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="dival.LearnedReconstructor">
-<em class="property">class </em><code class="descclassname">dival.</code><code class="descname">LearnedReconstructor</code><span class="sig-paren">(</span><em>reco_space=None</em>, <em>observation_space=None</em>, <em>name=''</em>, <em>hyper_params=None</em>, <em>callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.</code><code class="sig-name descname">LearnedReconstructor</code><span class="sig-paren">(</span><em class="sig-param">reco_space=None</em>, <em class="sig-param">observation_space=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">hyper_params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
 <dl class="method">
-<dt id="dival.LearnedReconstructor.load_params">
-<code class="descname">load_params</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load parameters from path.</p>
+<dt id="dival.LearnedReconstructor.train">
+<code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param">dataset</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the reconstructor with a dataset by adapting its parameters.</p>
+<p>Should only use the training data from <cite>dataset</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters are stored. C.f. <cite>save_params</cite>.</p>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="#dival.Dataset" title="dival.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – The dataset from which the training data should be used.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="dival.LearnedReconstructor.save_params">
-<code class="descname">save_params</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_params</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save parameters to path.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -275,13 +980,12 @@ should be created by this method if it does not exist).</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="dival.LearnedReconstructor.train">
-<code class="descname">train</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor.train" title="Permalink to this definition">¶</a></dt>
-<dd><p>Train the reconstructor with a dataset by adapting its parameters.</p>
-<p>Should only use the training data from <cite>dataset</cite>.</p>
+<dt id="dival.LearnedReconstructor.load_params">
+<code class="sig-name descname">load_params</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.LearnedReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load parameters from path.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dataset</strong> (<cite>Dataset</cite>) – The dataset from which the training data should be used.</p>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters are stored. C.f. <cite>save_params</cite>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -289,282 +993,361 @@ should be created by this method if it does not exist).</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="dival.DataPairs">
-<em class="property">class </em><code class="descclassname">dival.</code><code class="descname">DataPairs</code><span class="sig-paren">(</span><em>observations</em>, <em>ground_truth=None</em>, <em>name=''</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.DataPairs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Bundles <cite>self.observations</cite> with <cite>self.ground_truth</cite>.</p>
+<dt id="dival.Measure">
+<em class="property">class </em><code class="sig-prename descclassname">dival.</code><code class="sig-name descname">Measure</code><span class="sig-paren">(</span><em class="sig-param">short_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract base class for measures used for evaluation.</p>
+<p>In subclasses, either <a class="reference internal" href="#dival.Measure.__init__" title="dival.Measure.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a> should be inherited or it should
+call <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> in order to register the <a class="reference internal" href="#dival.Measure.short_name" title="dival.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>
+and to ensure it is unique.</p>
 <dl class="attribute">
-<dt id="dival.DataPairs.observations">
-<code class="descname">observations</code><a class="headerlink" href="#dival.DataPairs.observations" title="Permalink to this definition">¶</a></dt>
-<dd><p>The observation, possibly distorted or low-dimensional.</p>
+<dt id="dival.Measure.measure_type">
+<code class="sig-name descname">measure_type</code><a class="headerlink" href="#dival.Measure.measure_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The measure type.
+Measures with type <code class="docutils literal notranslate"><span class="pre">'distance'</span></code> should attain small values if the
+reconstruction is good. Measures with type <code class="docutils literal notranslate"><span class="pre">'quality'</span></code> should attain
+large values if the reconstruction is good.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of observation space elements</p>
+<dd class="field-odd"><p>{<code class="docutils literal notranslate"><span class="pre">'distance'</span></code>, <code class="docutils literal notranslate"><span class="pre">'quality'</span></code>}</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="dival.DataPairs.ground_truth">
-<code class="descname">ground_truth</code><a class="headerlink" href="#dival.DataPairs.ground_truth" title="Permalink to this definition">¶</a></dt>
-<dd><p>The ground truth. May be replaced with a good quality reference. May
-also be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<dt id="dival.Measure.short_name">
+<code class="sig-name descname">short_name</code><a class="headerlink" href="#dival.Measure.short_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short name of the measure, used as identifier (key in
+<a class="reference internal" href="#dival.Measure.measure_dict" title="dival.Measure.measure_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_dict</span></code></a>).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of reconstruction space elements or <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="dival.Measure.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#dival.Measure.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the measure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="class">
-<dt id="dival.Dataset">
-<em class="property">class </em><code class="descclassname">dival.</code><code class="descname">Dataset</code><span class="sig-paren">(</span><em>space=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="dival.Dataset.create_tensorflow_dataset">
-<code class="descname">create_tensorflow_dataset</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_tensorflow_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.create_tensorflow_dataset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.create_torch_dataset">
-<code class="descname">create_torch_dataset</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.generator">
-<code class="descname">generator</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.generator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Yield data.</p>
+<dl class="attribute">
+<dt id="dival.Measure.description">
+<code class="sig-name descname">description</code><a class="headerlink" href="#dival.Measure.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description of the measure.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.Measure.measure_dict">
+<code class="sig-name descname">measure_dict</code><a class="headerlink" href="#dival.Measure.measure_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registry of all measures with their <a class="reference internal" href="#dival.Measure.short_name" title="dival.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a> as key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict, class attribute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">measure_type</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">name</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">description</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">measure_dict</code><em class="property"> = {'l2': &lt;dival.measure.L2Measure object&gt;, 'mse': &lt;dival.measure.MSEMeasure object&gt;, 'psnr': &lt;dival.measure.PSNRMeasure object&gt;, 'ssim': &lt;dival.measure.SSIMMeasure object&gt;}</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.Measure.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">short_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Measure.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>part</strong> (<em>{'train'</em><em>, </em><em>'validation'</em><em>, </em><em>'test'}</em><em>, </em><em>optional</em>) – Whether to yield train, validation or test data.
-Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
-</dd>
-<dt class="field-even">Yields</dt>
-<dd class="field-even"><p><strong>data</strong> (<em>odl element or sequence of odl elements</em>) – Sample of the dataset.</p>
+<dd class="field-odd"><p><strong>short_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The short name of this measure, used as identifier in
+<a class="reference internal" href="#dival.Measure.measure_dict" title="dival.Measure.measure_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_dict</span></code></a>.
+If <cite>None</cite> is passed and <a class="reference internal" href="#dival.Measure.short_name" title="dival.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a> was not set by the
+subclass, the <code class="docutils literal notranslate"><span class="pre">__name__</span></code> of the subclass is used.
+If <cite>short_name</cite> is already taken by another instance, a unique
+short name is generated by appending a suffix of format <code class="docutils literal notranslate"><span class="pre">'_%d'</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">short_name</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
 <dl class="method">
-<dt id="dival.Dataset.get_data_pairs">
-<code class="descname">get_data_pairs</code><span class="sig-paren">(</span><em>part='train'</em>, <em>n=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_data_pairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_data_pairs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return full data part as <cite>DataPairs</cite> object.</p>
+<dt id="dival.Measure.apply">
+<em class="property">abstract </em><code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param">reconstruction</em>, <em class="sig-param">ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Measure.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the value of this measure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>part</strong> (<em>{'train'</em><em>, </em><em>'validation'</em><em>, </em><em>'test'}</em><em>, </em><em>optional</em>) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
-<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pairs (from the beginning). If <code class="docutils literal notranslate"><span class="pre">None</span></code>, all available
-data is used (the default).</p></li>
+<li><p><strong>reconstruction</strong> (<em>odl element</em>) – The reconstruction.</p></li>
+<li><p><strong>ground_truth</strong> (<em>odl element</em>) – The ground truth to compare with.</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.get_len">
-<code class="descname">get_len</code><span class="sig-paren">(</span><em>part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_len" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number of elements the generator will yield.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>part</strong> (<em>{'train'</em><em>, </em><em>'validation'</em><em>, </em><em>'test'}</em><em>, </em><em>optional</em>) – Whether to return the number of train, validation or test elements.
-Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.get_shape">
-<code class="descname">get_shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_shape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_shape" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the shape of each element.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.get_test_generator">
-<code class="descname">get_test_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_test_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_test_generator" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.get_test_len">
-<code class="descname">get_test_len</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_test_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_test_len" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number of elements the test generator will yield.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.get_train_generator">
-<code class="descname">get_train_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_train_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_train_generator" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.get_train_len">
-<code class="descname">get_train_len</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_train_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_train_len" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number of elements the train generator will yield.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.get_validation_generator">
-<code class="descname">get_validation_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_validation_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_validation_generator" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dival.Dataset.get_validation_len">
-<code class="descname">get_validation_len</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_validation_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_validation_len" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number of elements the validation generator will yield.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="dival.get_standard_dataset">
-<code class="descclassname">dival.</code><code class="descname">get_standard_dataset</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/standard.html#get_standard_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.get_standard_dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a standard dataset by name.</p>
-<p>The datasets are:</p>
-<blockquote>
-<div><ul>
-<li><dl>
-<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>A typical synthetical CT dataset with ellipse phantoms.</p>
-<p><cite>EllipsesDataset</cite> is used as ground truth dataset, a ray
-transform with parallel beam geometry using 30 angles is applied,
-and white gaussian noise with a standard deviation of 5% (i.e.
-<code class="docutils literal notranslate"><span class="pre">0.05</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added. The ray transform is
-normalized by its spectral norm.</p>
-<p>A normalized ray transform that corresponds to the noiseless
-forward operator is stored in the attribute <cite>ray_trafo</cite> of the
-dataset.</p>
-<p>In order to avoid the inverse crime, the ground truth images of
-shape (128, 128) are upscaled by bilinear interpolation to a
-resolution of (400, 400) before the ray transform is applied (whose
-discretization is different from the one of <cite>ray_trafo</cite>).</p>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt><code class="docutils literal notranslate"><span class="pre">'lidc_idri_dival'</span></code></dt><dd><p>A dataset based on real CT reconstructions from the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
-dataset.</p>
-<p><cite>LIDCIDRIDivalDataset</cite> is used as ground truth dataset and a ray
-transform with parallel beam geometry using 1000 angles is applied.
-The noise is chosen in the way presented in <a class="footnote-reference brackets" href="#id2" id="id1">1</a> for the human
-dataset: poisson noise corresponding to 10^4 incident photons per
-pixel before attenuation is used.</p>
-<p>A ray transform that corresponds to the noiseless forward operator
-is stored in the attribute <cite>ray_trafo</cite> of the dataset.</p>
-<p>In order to avoid the inverse crime, the ground truth images of
-shape (362, 362) are upscaled by bilinear interpolation to a
-resolution of (1000, 1000) before the ray transform is applied
-(whose discretization is different from the one of <cite>ray_trafo</cite>).</p>
-</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-<p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Adler, J., &amp; Öktem, O. (2018). Learned Primal-Dual Reconstruction.
-IEEE Transactions on Medical Imaging, 37, 1322-1332.</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the dataset.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>dataset</strong> – The dataset.</p>
+<dd class="field-even"><p><strong>value</strong> – The value of this measure for the given <cite>reconstruction</cite> and
+<cite>ground_truth</cite>.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><cite>ObservationGroundTruthDataset</cite></p>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Measure.get_by_short_name">
+<em class="property">classmethod </em><code class="sig-name descname">get_by_short_name</code><span class="sig-paren">(</span><em class="sig-param">short_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.get_by_short_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Measure.get_by_short_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <a class="reference internal" href="#dival.Measure" title="dival.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> instance with given short name by registry
+lookup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>short_name</strong> (<em>str</em>) – Short name, identifier in <a class="reference internal" href="#dival.Measure.measure_dict" title="dival.Measure.measure_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_dict</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>measure</strong> – The instance.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#dival.Measure" title="dival.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.Measure.as_operator_for_fixed_ground_truth">
+<code class="sig-name descname">as_operator_for_fixed_ground_truth</code><span class="sig-paren">(</span><em class="sig-param">ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.as_operator_for_fixed_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Measure.as_operator_for_fixed_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an odl operator that can be applied to different reconstructions
+for fixed ground truth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>op</strong> – odl operator.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>odl operator</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.TaskTable">
+<em class="property">class </em><code class="sig-prename descclassname">dival.</code><code class="sig-name descname">TaskTable</code><span class="sig-paren">(</span><em class="sig-param">name=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.TaskTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Task table containing reconstruction tasks to evaluate.</p>
+<dl class="attribute">
+<dt id="dival.TaskTable.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#dival.TaskTable.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the task table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.TaskTable.tasks">
+<code class="sig-name descname">tasks</code><a class="headerlink" href="#dival.TaskTable.tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tasks that shall be run. The fields of each dict are set from the
+parameters to <a class="reference internal" href="#dival.TaskTable.append" title="dival.TaskTable.append"><code class="xref py py-meth docutils literal notranslate"><span class="pre">append()</span></code></a> (or <a class="reference internal" href="#dival.TaskTable.append_all_combinations" title="dival.TaskTable.append_all_combinations"><code class="xref py py-meth docutils literal notranslate"><span class="pre">append_all_combinations()</span></code></a>). Cf.
+documentation of <a class="reference internal" href="#dival.TaskTable.append" title="dival.TaskTable.append"><code class="xref py py-meth docutils literal notranslate"><span class="pre">append()</span></code></a> for details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.TaskTable.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.TaskTable.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.TaskTable.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">save_reconstructions=True</em>, <em class="sig-param">show_progress='text'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.TaskTable.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all tasks and return the results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_reconstructions</strong> (<em>bool</em><em>, </em><em>optional</em>) – <p>Whether the reconstructions should be saved in the results.
+The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>If measures shall be applied after this method returns, it must be
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">False</span></code>, no iterates (intermediate reconstructions) will be
+saved, even if <code class="docutils literal notranslate"><span class="pre">task['options']['save_iterates']==True</span></code>.</p>
+</p></li>
+<li><p><strong>show_progress</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Whether and how to show progress. Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'text'</span></code> (default)</dt><dd><p>print a line before running each task</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'tqdm'</span></code></dt><dd><p>show a progress bar with <code class="docutils literal notranslate"><span class="pre">tqdm</span></code></p>
+</dd>
+<dt><cite>None</cite></dt><dd><p>do not show progress</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.TaskTable.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">reconstructor</em>, <em class="sig-param">test_data</em>, <em class="sig-param">measures=None</em>, <em class="sig-param">dataset=None</em>, <em class="sig-param">hyper_param_choices=None</em>, <em class="sig-param">options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.TaskTable.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reconstructor</strong> (<a class="reference internal" href="#dival.Reconstructor" title="dival.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor</span></code></a>) – The reconstructor.</p></li>
+<li><p><strong>test_data</strong> (<a class="reference internal" href="#dival.DataPairs" title="dival.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a>) – The test data.</p></li>
+<li><p><strong>measures</strong> (sequence of (<a class="reference internal" href="#dival.Measure" title="dival.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> or str)) – Measures that will be applied. Either <a class="reference internal" href="#dival.Measure" title="dival.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> objects or
+their short names can be passed.</p></li>
+<li><p><strong>dataset</strong> (<a class="reference internal" href="#dival.Dataset" title="dival.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – The dataset that will be passed to
+<a class="reference internal" href="#dival.LearnedReconstructor.train" title="dival.LearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reconstructor.train</span></code></a> if it is a
+<a class="reference internal" href="#dival.LearnedReconstructor" title="dival.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">LearnedReconstructor</span></code></a>.</p></li>
+<li><p><strong>hyper_param_choices</strong> (<em>dict of list</em><em> or </em><em>list of dict</em><em>, </em><em>optional</em>) – <p>Choices of hyper parameter combinations to try as sub-tasks.</p>
+<blockquote>
+<div><ul>
+<li><p>If a dict of lists is specified, all combinations of the
+list elements (cartesian product space) are tried.</p></li>
+<li><p>If a list of dicts is specified, each dict is taken as a
+parameter combination to try.</p></li>
+</ul>
+</div></blockquote>
+<p>The current parameter values are read from
+<a class="reference internal" href="#dival.Reconstructor.hyper_params" title="dival.Reconstructor.hyper_params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Reconstructor.hyper_params</span></code></a> in the beginning and used as
+default values for all parameters not specified in the passed
+dicts. Afterwards, the original values are restored.</p>
+</p></li>
+<li><p><strong>options</strong> (<em>dict</em>) – <p>Options that will be used. Options are:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'skip_training'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether to skip training. Can be used for manual training
+of reconstructors (or loading of a stored state).
+The default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'save_iterates'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether to save the intermediate reconstructions of iterative
+reconstructors (the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>).
+Will be ignored if <code class="docutils literal notranslate"><span class="pre">save_reconstructions=False</span></code> is passed to
+<cite>run</cite>. Requires the reconstructor to call its <cite>callback</cite>
+attribute after each iteration.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'save_iterates_measure_values'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether to compute and save the measure values for each
+intermediate reconstruction of iterative reconstructors
+(the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>). Requires the reconstructor to call
+its <cite>callback</cite> attribute after each iteration.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'save_iterates_step'</span></code><span class="classifier">int, optional</span></dt><dd><p>Step size for <code class="docutils literal notranslate"><span class="pre">'save_iterates'</span></code> and
+<code class="docutils literal notranslate"><span class="pre">'save_iterates_measure_values'</span></code> (the default is 1).</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.TaskTable.append_all_combinations">
+<code class="sig-name descname">append_all_combinations</code><span class="sig-paren">(</span><em class="sig-param">reconstructors</em>, <em class="sig-param">test_data</em>, <em class="sig-param">measures=None</em>, <em class="sig-param">datasets=None</em>, <em class="sig-param">hyper_param_choices=None</em>, <em class="sig-param">options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.append_all_combinations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.TaskTable.append_all_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append tasks of all combinations of test data, reconstructors and
+optionally datasets.
+The order is taken from the lists, with test data changing slowest
+and reconstructor changing fastest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reconstructors</strong> (list of <cite>Reconstructor</cite>) – Reconstructor list.</p></li>
+<li><p><strong>test_data</strong> (list of <cite>DataPairs</cite>) – Test data list.</p></li>
+<li><p><strong>measures</strong> (sequence of (<cite>Measure</cite> or str)) – Measures that will be applied. The same measures are used for all
+combinations of test data and reconstructors. Either <cite>Measure</cite>
+objects or their short names can be passed.</p></li>
+<li><p><strong>datasets</strong> (list of <cite>Dataset</cite>, optional) – Dataset list. Required if <cite>reconstructors</cite> contains at least one
+<cite>LearnedReconstructor</cite>.</p></li>
+<li><p><strong>hyper_param_choices</strong> (<em>list of</em><em> (</em><em>dict of list</em><em> or </em><em>list of dict</em><em>)</em><em>, </em><em>optional</em>) – Choices of hyper parameter combinations for each reconstructor,
+which are tried as sub-tasks.
+The i-th element of this list is used for the i-th reconstructor.
+See <cite>append</cite> for documentation of how the choices are passed.</p></li>
+<li><p><strong>options</strong> (<em>dict</em>) – Options that will be used. The same options are used for all
+combinations of test data and reconstructors. See <cite>append</cite> for
+documentation of the options.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
 </div>
 
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Deep Inversion Validation Library</a></h1>
+          <footer>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dival package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.hyper_param_optimization.html">dival.hyper_param_optimization module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-dival">Module contents</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Deep Inversion Validation Library’s documentation</a></li>
-      <li>Next: <a href="dival.datasets.html" title="next chapter">dival.datasets package</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, Hannes Albers, Johannes Leuschner, Maximilian Schmidt.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/dival.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>
