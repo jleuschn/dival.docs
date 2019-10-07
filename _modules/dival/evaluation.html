@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3
+                0.3.1
               </div>
             
           
@@ -200,10 +200,13 @@
 <span class="sd">        Tasks that shall be run. The fields of each dict are set from the</span>
 <span class="sd">        parameters to :meth:`append` (or :meth:`append_all_combinations`). Cf.</span>
 <span class="sd">        documentation of :meth:`append` for details.</span>
+<span class="sd">    results : :class:`ResultTable` or `None`</span>
+<span class="sd">        Results from the latest call to :meth:`run`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="TaskTable.__init__"><a class="viewcode-back" href="../../dival.evaluation.html#dival.TaskTable.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="TaskTable.run"><a class="viewcode-back" href="../../dival.evaluation.html#dival.TaskTable.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_reconstructions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run all tasks and return the results.</span>
@@ -275,14 +278,21 @@
                         <span class="n">param_values</span> <span class="o">=</span> <span class="p">[</span>
                             <span class="n">hp_choices</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">[</span><span class="n">orig_hyper_params</span><span class="p">[</span><span class="n">k</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span>
                             <span class="n">keys_retrain_first</span><span class="p">]</span>
-                        <span class="n">hp_choice_it</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="n">hp_choice_list</span> <span class="o">=</span> <span class="p">[</span>
                             <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys_retrain_first</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span> <span class="k">for</span>
                             <span class="n">v</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">param_values</span><span class="p">)]</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">hp_choice_it</span> <span class="o">=</span> <span class="n">hp_choices</span>
-                        <span class="k">for</span> <span class="n">hp_choice</span> <span class="ow">in</span> <span class="n">hp_choice_it</span><span class="p">:</span>
+                        <span class="n">hp_choice_list</span> <span class="o">=</span> <span class="n">hp_choices</span>
+                        <span class="k">for</span> <span class="n">hp_choice</span> <span class="ow">in</span> <span class="n">hp_choice_list</span><span class="p">:</span>
                             <span class="n">_warn_if_invalid_keys</span><span class="p">(</span><span class="n">hp_choice</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-                    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">hp_choice</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hp_choice_it</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">hp_choice</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+                            <span class="n">tqdm</span><span class="p">(</span><span class="n">hp_choice_list</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;sub-task&#39;</span><span class="p">,</span>
+                                 <span class="n">file</span><span class="o">=</span><span class="n">orig_stdout</span><span class="p">,</span>
+                                 <span class="n">disable</span><span class="o">=</span><span class="p">(</span><span class="n">show_progress</span> <span class="o">!=</span> <span class="s1">&#39;tqdm&#39;</span><span class="p">),</span>
+                                 <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">)):</span>
+                        <span class="k">if</span> <span class="n">show_progress</span> <span class="o">==</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sub-task </span><span class="si">{j}</span><span class="s1">/</span><span class="si">{n}</span><span class="s1"> ...&#39;</span>
+                                  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="n">j</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">hp_choice_list</span><span class="p">)))</span>
                         <span class="n">train</span> <span class="o">=</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span>
                                             <span class="n">LearnedReconstructor</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
                             <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span>
@@ -324,8 +334,8 @@
                     <span class="n">row</span><span class="p">[</span><span class="s1">&#39;sub_task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
                     <span class="n">row_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 
-        <span class="n">results</span> <span class="o">=</span> <span class="n">ResultTable</span><span class="p">(</span><span class="n">row_list</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">results</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">ResultTable</span><span class="p">(</span><span class="n">row_list</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span></div>
 
     <span class="k">def</span> <span class="nf">_run_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reconstructor</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">measures</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">hp_choice</span><span class="p">,</span>
                   <span class="n">save_reconstructions</span><span class="p">,</span> <span class="n">save_iterates</span><span class="p">):</span>

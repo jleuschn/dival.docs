@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3
+                0.3.1
               </div>
             
           
@@ -205,10 +205,8 @@
     <span class="k">if</span> <span class="n">inp</span><span class="p">:</span>
         <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">inp</span>
         <span class="n">set_config</span><span class="p">(</span><span class="s1">&#39;lodopab_dataset/data_path&#39;</span><span class="p">,</span> <span class="n">DATA_PATH</span><span class="p">)</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;The lodopab dataset is not published yet. We will update &#39;</span>
-                    <span class="s1">&#39;the library as soon as possible, inserting the record id &#39;</span>
-                    <span class="s1">&#39;here.&#39;</span><span class="p">)</span>
-    <span class="n">ZENODO_RECORD_ID</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># TODO insert record id</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ZENODO_RECORD_ID</span> <span class="o">=</span> <span class="s1">&#39;3384092&#39;</span>
     <span class="n">success</span> <span class="o">=</span> <span class="n">download_zenodo_record</span><span class="p">(</span><span class="n">ZENODO_RECORD_ID</span><span class="p">,</span> <span class="n">DATA_PATH</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;download of LoDoPaB-CT dataset </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;successful&#39;</span> <span class="k">if</span> <span class="n">success</span>
                                                      <span class="k">else</span> <span class="s1">&#39;failed&#39;</span><span class="p">))</span>

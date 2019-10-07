@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3
+                0.3.1
               </div>
             
           
@@ -206,6 +206,17 @@ documentation of <a class="reference internal" href="#dival.evaluation.TaskTable
 </dl>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="dival.evaluation.TaskTable.results">
+<code class="sig-name descname">results</code><a class="headerlink" href="#dival.evaluation.TaskTable.results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Results from the latest call to <a class="reference internal" href="#dival.evaluation.TaskTable.run" title="dival.evaluation.TaskTable.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#dival.evaluation.ResultTable" title="dival.evaluation.ResultTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultTable</span></code></a> or <cite>None</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="dival.evaluation.TaskTable.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.TaskTable.__init__" title="Permalink to this definition">¶</a></dt>
@@ -334,7 +345,7 @@ documentation of the options.</p></li>
 <em class="property">class </em><code class="sig-prename descclassname">dival.evaluation.</code><code class="sig-name descname">ResultTable</code><span class="sig-paren">(</span><em class="sig-param">row_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The results of a <a class="reference internal" href="#dival.evaluation.TaskTable" title="dival.evaluation.TaskTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">TaskTable</span></code></a>.</p>
-<p>Cf. <code class="xref py py-attr docutils literal notranslate"><span class="pre">TaskTable.results</span></code>.</p>
+<p>Cf. <a class="reference internal" href="#dival.evaluation.TaskTable.results" title="dival.evaluation.TaskTable.results"><code class="xref py py-attr docutils literal notranslate"><span class="pre">TaskTable.results</span></code></a>.</p>
 <dl class="attribute">
 <dt id="dival.evaluation.ResultTable.results">
 <code class="sig-name descname">results</code><a class="headerlink" href="#dival.evaluation.ResultTable.results" title="Permalink to this definition">¶</a></dt>
@@ -353,7 +364,7 @@ columns are <code class="docutils literal notranslate"><span class="pre">'recons
 <dt id="dival.evaluation.ResultTable.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">row_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#ResultTable.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.ResultTable.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Usually, objects of this type are constructed by
-<a class="reference internal" href="#dival.evaluation.TaskTable.run" title="dival.evaluation.TaskTable.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TaskTable.run()</span></code></a>, which sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">TaskTable.results</span></code>, rather
+<a class="reference internal" href="#dival.evaluation.TaskTable.run" title="dival.evaluation.TaskTable.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TaskTable.run()</span></code></a>, which sets <a class="reference internal" href="#dival.evaluation.TaskTable.results" title="dival.evaluation.TaskTable.results"><code class="xref py py-attr docutils literal notranslate"><span class="pre">TaskTable.results</span></code></a>, rather
 than by manually calling this constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
