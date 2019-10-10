@@ -180,7 +180,7 @@
 <span class="kn">from</span> <span class="nn">dival.datasets.dataset</span> <span class="k">import</span> <span class="n">GroundTruthDataset</span>
 
 
-<div class="viewcode-block" id="EllipsesDataset"><a class="viewcode-back" href="../../../dival.datasets.ellipses_dataset.html#dival.datasets.EllipsesDataset">[docs]</a><span class="k">class</span> <span class="nc">EllipsesDataset</span><span class="p">(</span><span class="n">GroundTruthDataset</span><span class="p">):</span>
+<div class="viewcode-block" id="EllipsesDataset"><a class="viewcode-back" href="../../../dival.datasets.html#dival.datasets.EllipsesDataset">[docs]</a><span class="k">class</span> <span class="nc">EllipsesDataset</span><span class="p">(</span><span class="n">GroundTruthDataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Dataset with images of multiple random ellipses.</span>
 
 <span class="sd">    This dataset uses :meth:`odl.phantom.ellipsoid_phantom` to create</span>
@@ -209,7 +209,7 @@
 <span class="sd">    num_elements_per_sample</span>
 <span class="sd">        ``1``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="EllipsesDataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.ellipses_dataset.html#dival.datasets.EllipsesDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">min_pt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_pt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="EllipsesDataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.html#dival.datasets.EllipsesDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">min_pt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_pt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">train_len</span><span class="o">=</span><span class="mi">32000</span><span class="p">,</span> <span class="n">validation_len</span><span class="o">=</span><span class="mi">3200</span><span class="p">,</span> <span class="n">test_len</span><span class="o">=</span><span class="mi">3200</span><span class="p">,</span>
                  <span class="n">fixed_seeds</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -258,7 +258,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">fixed_seeds</span> <span class="o">=</span> <span class="n">fixed_seeds</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="n">space</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="EllipsesDataset.generator"><a class="viewcode-back" href="../../../dival.datasets.ellipses_dataset.html#dival.datasets.EllipsesDataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="EllipsesDataset.generator"><a class="viewcode-back" href="../../../dival.datasets.html#dival.datasets.EllipsesDataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Yield random ellipse phantom images using</span>
 <span class="sd">        :meth:`odl.phantom.ellipsoid_phantom`.</span>
 

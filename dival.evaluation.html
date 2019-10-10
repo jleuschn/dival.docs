@@ -227,6 +227,8 @@ documentation of <a class="reference internal" href="#dival.evaluation.TaskTable
 <dt id="dival.evaluation.TaskTable.run">
 <code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">save_reconstructions=True</em>, <em class="sig-param">show_progress='text'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.evaluation.TaskTable.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run all tasks and return the results.</p>
+<p>The returned <a class="reference internal" href="#dival.evaluation.ResultTable" title="dival.evaluation.ResultTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultTable</span></code></a> object is also stored as
+<a class="reference internal" href="#dival.evaluation.TaskTable.results" title="dival.evaluation.TaskTable.results"><code class="xref py py-attr docutils literal notranslate"><span class="pre">results</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -251,6 +253,12 @@ saved, even if <code class="docutils literal notranslate"><span class="pre">task
 </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>results</strong> – The results.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#dival.evaluation.ResultTable" title="dival.evaluation.ResultTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultTable</span></code></a></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -261,13 +269,13 @@ saved, even if <code class="docutils literal notranslate"><span class="pre">task
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>reconstructor</strong> (<a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor</span></code></a>) – The reconstructor.</p></li>
-<li><p><strong>test_data</strong> (<a class="reference internal" href="dival.data.html#dival.data.DataPairs" title="dival.data.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a>) – The test data.</p></li>
-<li><p><strong>measures</strong> (sequence of (<a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> or str)) – Measures that will be applied. Either <a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> objects or
+<li><p><strong>reconstructor</strong> (<a class="reference internal" href="dival.html#dival.Reconstructor" title="dival.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor</span></code></a>) – The reconstructor.</p></li>
+<li><p><strong>test_data</strong> (<a class="reference internal" href="dival.html#dival.DataPairs" title="dival.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a>) – The test data.</p></li>
+<li><p><strong>measures</strong> (sequence of (<a class="reference internal" href="dival.html#dival.Measure" title="dival.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> or str)) – Measures that will be applied. Either <a class="reference internal" href="dival.html#dival.Measure" title="dival.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> objects or
 their short names can be passed.</p></li>
-<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – The dataset that will be passed to
+<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.html#dival.datasets.Dataset" title="dival.datasets.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – The dataset that will be passed to
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">reconstructor.train</span></code> if it is a
-<a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">LearnedReconstructor</span></code></a>.</p></li>
+<a class="reference internal" href="dival.html#dival.LearnedReconstructor" title="dival.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">LearnedReconstructor</span></code></a>.</p></li>
 <li><p><strong>hyper_param_choices</strong> (<em>dict of list</em><em> or </em><em>list of dict</em><em>, </em><em>optional</em>) – <p>Choices of hyper parameter combinations to try as sub-tasks.</p>
 <blockquote>
 <div><ul>
@@ -383,7 +391,7 @@ case a <code class="xref py py-class docutils literal notranslate"><span class="
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>measures</strong> (list of <a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a>) – Measures to apply.</p></li>
+<li><p><strong>measures</strong> (list of <a class="reference internal" href="dival.html#dival.Measure" title="dival.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a>) – Measures to apply.</p></li>
 <li><p><strong>task_ind</strong> (<em>int</em><em> or </em><em>sequence of ints</em><em>, </em><em>optional</em>) – Indexes of tasks to which the measures shall be applied.
 If <cite>None</cite>, this is interpreted as “all results”.</p></li>
 </ul>
@@ -450,7 +458,7 @@ truth were plotted.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>task_ind</strong> (<em>int</em>) – Index of the task.</p></li>
 <li><p><strong>sub_task_ind</strong> (<em>int</em><em>, </em><em>optional</em>) – Index of the sub-task (default <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
-<li><p><strong>measures</strong> ([list of ] <a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a>, optional) – Measures to apply. Each measure is plotted in a subplot.
+<li><p><strong>measures</strong> ([list of ] <a class="reference internal" href="dival.html#dival.Measure" title="dival.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a>, optional) – Measures to apply. Each measure is plotted in a subplot.
 If <cite>None</cite> is passed, all measures in <code class="docutils literal notranslate"><span class="pre">result['measure_values']</span></code>
 are used.</p></li>
 </ul>
@@ -478,10 +486,10 @@ choices are averaged).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>measure</strong> (<a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> or str) – The measure to plot (or its <a class="reference internal" href="dival.measure.html#dival.measure.Measure.short_name" title="dival.measure.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>).</p></li>
-<li><p><strong>reconstructors</strong> (sequence of <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor</span></code></a>, optional) – The reconstructors to compare. If <cite>None</cite> (default), all
+<li><p><strong>measure</strong> (<a class="reference internal" href="dival.html#dival.Measure" title="dival.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> or str) – The measure to plot (or its <a class="reference internal" href="dival.html#dival.Measure.short_name" title="dival.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>).</p></li>
+<li><p><strong>reconstructors</strong> (sequence of <a class="reference internal" href="dival.html#dival.Reconstructor" title="dival.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor</span></code></a>, optional) – The reconstructors to compare. If <cite>None</cite> (default), all
 reconstructors that are found in the results are compared.</p></li>
-<li><p><strong>test_data</strong> ([sequence of ] <a class="reference internal" href="dival.data.html#dival.data.DataPairs" title="dival.data.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a>, optional) – Test data to take into account for computing the mean value.
+<li><p><strong>test_data</strong> ([sequence of ] <a class="reference internal" href="dival.html#dival.DataPairs" title="dival.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a>, optional) – Test data to take into account for computing the mean value.
 By default, all test data is used.</p></li>
 <li><p><strong>weighted_average</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to weight the rows according to the number of pairs in
 their test data.

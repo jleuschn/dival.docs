@@ -679,8 +679,11 @@ shape (128, 128) are upscaled by bilinear interpolation to a
 resolution of (400, 400) before the ray transform is applied (whose
 discretization is different from the one of <cite>ray_trafo</cite>).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><p>A simulated low dose CT dataset based on real reconstructions from
-the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
+<dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><p>The LoDoPaB-CT dataset, which is documented in the
+preprint <a class="reference external" href="https://arxiv.org/abs/1910.01113">https://arxiv.org/abs/1910.01113</a> hosted on
+<a class="reference external" href="https://zenodo.org/record/3384092">https://zenodo.org/record/3384092</a>.
+It is a simulated low dose CT dataset based on real reconstructions
+from the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
 dataset.</p>
 <p>The dataset contains 42895 pairs of images and projection data.
 For simulation, a ray transform with parallel beam geometry using
@@ -1205,6 +1208,8 @@ documentation of <a class="reference internal" href="#dival.TaskTable.append" ti
 <dt id="dival.TaskTable.run">
 <code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">save_reconstructions=True</em>, <em class="sig-param">show_progress='text'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/evaluation.html#TaskTable.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.TaskTable.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run all tasks and return the results.</p>
+<p>The returned <code class="xref py py-class docutils literal notranslate"><span class="pre">ResultTable</span></code> object is also stored as
+<a class="reference internal" href="#dival.TaskTable.results" title="dival.TaskTable.results"><code class="xref py py-attr docutils literal notranslate"><span class="pre">results</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1228,6 +1233,12 @@ saved, even if <code class="docutils literal notranslate"><span class="pre">task
 </div></blockquote>
 </p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>results</strong> – The results.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultTable</span></code></p>
 </dd>
 </dl>
 </dd></dl>

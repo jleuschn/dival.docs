@@ -90,7 +90,17 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dival.datasets.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dival.datasets.html#module-dival.datasets">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dival.datasets.lodopab_dataset module</a></li>
@@ -179,6 +189,7 @@
   <div class="section" id="module-dival.datasets.lodopab_dataset">
 <span id="dival-datasets-lodopab-dataset-module"></span><h1>dival.datasets.lodopab_dataset module<a class="headerlink" href="#module-dival.datasets.lodopab_dataset" title="Permalink to this headline">¶</a></h1>
 <p>Provides <cite>LoDoPaBDataset</cite>.</p>
+<p>Provides simple access to the <a class="reference external" href="https://zenodo.org/record/3384092">LoDoPaB-CT dataset</a> documented in an <a class="reference external" href="https://arxiv.org/abs/1910.01113">ArXiv preprint</a>.</p>
 <dl class="function">
 <dt id="dival.datasets.lodopab_dataset.download_lodopab">
 <code class="sig-prename descclassname">dival.datasets.lodopab_dataset.</code><code class="sig-name descname">download_lodopab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#download_lodopab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.download_lodopab" title="Permalink to this definition">¶</a></dt>
@@ -188,8 +199,11 @@
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset">
 <em class="property">class </em><code class="sig-prename descclassname">dival.datasets.lodopab_dataset.</code><code class="sig-name descname">LoDoPaBDataset</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
-<p>A simulated low dose CT dataset based on real reconstructions from the
-<a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a> dataset.</p>
+<p>The LoDoPaB-CT dataset, which is documented in the preprint
+<a class="reference external" href="https://arxiv.org/abs/1910.01113">https://arxiv.org/abs/1910.01113</a> hosted on
+<a class="reference external" href="https://zenodo.org/record/3384092">https://zenodo.org/record/3384092</a>.
+It is a simulated low dose CT dataset based on real reconstructions from
+the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a> dataset.</p>
 <p>The dataset contains 42895 pairs of images and projection data.
 For simulation, a ray transform with parallel beam geometry using 1000
 angles and 513 detector pixels is used. Poisson noise corresponding to 4096

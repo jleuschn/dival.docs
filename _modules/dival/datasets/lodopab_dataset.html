@@ -172,7 +172,12 @@
             
   <h1>Source code for dival.datasets.lodopab_dataset</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;Provides `LoDoPaBDataset`.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;Provides `LoDoPaBDataset`.</span>
+
+<span class="sd">Provides simple access to the `LoDoPaB-CT dataset</span>
+<span class="sd">&lt;https://zenodo.org/record/3384092&gt;`_ documented in an `ArXiv preprint</span>
+<span class="sd">&lt;https://arxiv.org/abs/1910.01113&gt;`_.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">ceil</span>
@@ -226,8 +231,11 @@
 
 <div class="viewcode-block" id="LoDoPaBDataset"><a class="viewcode-back" href="../../../dival.datasets.lodopab_dataset.html#dival.datasets.LoDoPaBDataset">[docs]</a><span class="k">class</span> <span class="nc">LoDoPaBDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A simulated low dose CT dataset based on real reconstructions from the</span>
-<span class="sd">    `LIDC-IDRI</span>
+<span class="sd">    The LoDoPaB-CT dataset, which is documented in the preprint</span>
+<span class="sd">    `&lt;https://arxiv.org/abs/1910.01113&gt;`_ hosted on</span>
+<span class="sd">    `&lt;https://zenodo.org/record/3384092&gt;`_.</span>
+<span class="sd">    It is a simulated low dose CT dataset based on real reconstructions from</span>
+<span class="sd">    the `LIDC-IDRI</span>
 <span class="sd">    &lt;https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI&gt;`_ dataset.</span>
 
 <span class="sd">    The dataset contains 42895 pairs of images and projection data.</span>

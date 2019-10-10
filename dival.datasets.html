@@ -222,7 +222,7 @@
 <td><p>Dataset with images of multiple random ellipses.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dival.datasets.LoDoPaBDataset" title="dival.datasets.LoDoPaBDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoDoPaBDataset</span></code></a>([min_pt, max_pt, …])</p></td>
-<td><p>A simulated low dose CT dataset based on real reconstructions from the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a> dataset.</p></td>
+<td><p>The LoDoPaB-CT dataset, which is documented in the preprint <a class="reference external" href="https://arxiv.org/abs/1910.01113">https://arxiv.org/abs/1910.01113</a> hosted on <a class="reference external" href="https://zenodo.org/record/3384092">https://zenodo.org/record/3384092</a>.It is a simulated low dose CT dataset based on real reconstructions from the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a> dataset..</p></td>
 </tr>
 </tbody>
 </table>
@@ -262,8 +262,11 @@ shape (128, 128) are upscaled by bilinear interpolation to a
 resolution of (400, 400) before the ray transform is applied (whose
 discretization is different from the one of <cite>ray_trafo</cite>).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><p>A simulated low dose CT dataset based on real reconstructions from
-the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
+<dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><p>The LoDoPaB-CT dataset, which is documented in the
+preprint <a class="reference external" href="https://arxiv.org/abs/1910.01113">https://arxiv.org/abs/1910.01113</a> hosted on
+<a class="reference external" href="https://zenodo.org/record/3384092">https://zenodo.org/record/3384092</a>.
+It is a simulated low dose CT dataset based on real reconstructions
+from the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
 dataset.</p>
 <p>The dataset contains 42895 pairs of images and projection data.
 For simulation, a ray transform with parallel beam geometry using
@@ -509,7 +512,7 @@ infer it by calling <a class="reference internal" href="#dival.datasets.Dataset.
 <dl class="method">
 <dt id="dival.datasets.Dataset.get_data_pairs">
 <code class="sig-name descname">get_data_pairs</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em>, <em class="sig-param">n=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_data_pairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.Dataset.get_data_pairs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return first samples from data part as <a class="reference internal" href="dival.data.html#dival.data.DataPairs" title="dival.data.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a> object.</p>
+<dd><p>Return first samples from data part as <a class="reference internal" href="dival.html#dival.DataPairs" title="dival.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a> object.</p>
 <p>Only supports datasets with two elements per sample.``</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -850,8 +853,11 @@ randomly.</p></li>
 <dt id="dival.datasets.LoDoPaBDataset">
 <em class="property">class </em><code class="sig-prename descclassname">dival.datasets.</code><code class="sig-name descname">LoDoPaBDataset</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
-<p>A simulated low dose CT dataset based on real reconstructions from the
-<a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a> dataset.</p>
+<p>The LoDoPaB-CT dataset, which is documented in the preprint
+<a class="reference external" href="https://arxiv.org/abs/1910.01113">https://arxiv.org/abs/1910.01113</a> hosted on
+<a class="reference external" href="https://zenodo.org/record/3384092">https://zenodo.org/record/3384092</a>.
+It is a simulated low dose CT dataset based on real reconstructions from
+the <a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a> dataset.</p>
 <p>The dataset contains 42895 pairs of images and projection data.
 For simulation, a ray transform with parallel beam geometry using 1000
 angles and 513 detector pixels is used. Poisson noise corresponding to 4096

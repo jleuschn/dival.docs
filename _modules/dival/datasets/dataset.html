@@ -181,7 +181,7 @@
 <span class="kn">from</span> <span class="nn">dival.util.odl_utility</span> <span class="k">import</span> <span class="n">NoiseOperator</span>
 
 
-<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">():</span>
+<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Dataset base class.</span>
 
 <span class="sd">    Attributes</span>
@@ -215,7 +215,7 @@
 <span class="sd">        Datasets returned by `get_standard_dataset` have this attribute giving</span>
 <span class="sd">        its name.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -229,7 +229,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="n">space</span></div>
 
-<div class="viewcode-block" id="Dataset.generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.generator"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Yield data.</span>
 
 <span class="sd">        Parameters</span>
@@ -249,16 +249,16 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_train_generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_train_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_train_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_train_generator"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_train_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_train_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.get_validation_generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_validation_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_validation_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_validation_generator"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_validation_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_validation_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="s1">&#39;validation&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.get_test_generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_test_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_test_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_test_generator"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_test_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_test_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.get_len"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_len</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_len"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_len</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of elements the generator will yield.</span>
 
 <span class="sd">        Parameters</span>
@@ -277,14 +277,14 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dataset part must be &#39;train&#39;, &quot;</span>
                              <span class="s2">&quot;&#39;validation&#39; or &#39;test&#39;, not &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">part</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Dataset.get_train_len"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_train_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_train_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_train_len"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_train_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_train_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of samples the train generator will yield.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_validation_len"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_validation_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_validation_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_validation_len"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_validation_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_validation_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of samples the validation generator will yield.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
@@ -292,21 +292,21 @@
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_test_len"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_test_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_test_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_test_len"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_test_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_test_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of samples the test generator will yield.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_len</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_shape"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_shape">[docs]</a>    <span class="k">def</span> <span class="nf">get_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_shape"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_shape">[docs]</a>    <span class="k">def</span> <span class="nf">get_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the shape of each element.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_num_elements_per_sample"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_num_elements_per_sample">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_elements_per_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_num_elements_per_sample"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_num_elements_per_sample">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_elements_per_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return number of elements per sample.</span>
 
 <span class="sd">        If :attr:`num_elements_per_sample` is not set, an attempt to</span>
@@ -318,7 +318,7 @@
             <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()</span>  <span class="c1"># may raise NotImplementedError</span>
             <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="Dataset.get_data_pairs"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_data_pairs">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_data_pairs"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_data_pairs">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return first samples from data part as :class:`.DataPairs` object.</span>
 
@@ -346,7 +346,7 @@
         <span class="n">data_pairs</span> <span class="o">=</span> <span class="n">DataPairs</span><span class="p">(</span><span class="n">observations</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data_pairs</span></div>
 
-<div class="viewcode-block" id="Dataset.create_torch_dataset"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.create_torch_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">create_torch_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.create_torch_dataset"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.create_torch_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">create_torch_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a torch dataset wrapper for one part of this dataset.</span>
 
@@ -425,7 +425,7 @@
 
         <span class="k">return</span> <span class="n">dataset</span></div>
 
-<div class="viewcode-block" id="Dataset.create_keras_generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.create_keras_generator">[docs]</a>    <span class="k">def</span> <span class="nf">create_keras_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="Dataset.create_keras_generator"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.create_keras_generator">[docs]</a>    <span class="k">def</span> <span class="nf">create_keras_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a keras data generator wrapper for one part of this dataset.</span>
@@ -539,7 +539,7 @@
 
         <span class="k">return</span> <span class="n">generator</span></div>
 
-<div class="viewcode-block" id="Dataset.get_sample"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_sample">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_sample"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_sample">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get single sample by index.</span>
 
 <span class="sd">        Parameters</span>
@@ -567,7 +567,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_samples"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_samples"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.get_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get samples by slice or range.</span>
 
 <span class="sd">        Parameters</span>
@@ -600,7 +600,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.supports_random_access"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.supports_random_access">[docs]</a>    <span class="k">def</span> <span class="nf">supports_random_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.supports_random_access"><a class="viewcode-back" href="../../../dival.datasets.html#dival.Dataset.supports_random_access">[docs]</a>    <span class="k">def</span> <span class="nf">supports_random_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Whether random access seems to be supported.</span>
 
 <span class="sd">        If the object has the attribute `self.random_access`, its value is</span>
@@ -625,12 +625,12 @@
             <span class="k">return</span> <span class="kc">True</span></div></div>
 
 
-<div class="viewcode-block" id="ObservationGroundTruthPairDataset"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.ObservationGroundTruthPairDataset">[docs]</a><span class="k">class</span> <span class="nc">ObservationGroundTruthPairDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+<div class="viewcode-block" id="ObservationGroundTruthPairDataset"><a class="viewcode-back" href="../../../dival.datasets.html#dival.ObservationGroundTruthPairDataset">[docs]</a><span class="k">class</span> <span class="nc">ObservationGroundTruthPairDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Dataset of pairs generated from a ground truth generator by applying a</span>
 <span class="sd">    forward operator and noise.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="ObservationGroundTruthPairDataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.ObservationGroundTruthPairDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ground_truth_gen</span><span class="p">,</span> <span class="n">forward_op</span><span class="p">,</span> <span class="n">post_processor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="ObservationGroundTruthPairDataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.html#dival.ObservationGroundTruthPairDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ground_truth_gen</span><span class="p">,</span> <span class="n">forward_op</span><span class="p">,</span> <span class="n">post_processor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">train_len</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validation_len</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_len</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">domain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">noise_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">noise_seeds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -685,7 +685,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_elements_per_sample</span> <span class="o">=</span> <span class="mi">2</span></div>
 
-<div class="viewcode-block" id="ObservationGroundTruthPairDataset.generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.ObservationGroundTruthPairDataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="ObservationGroundTruthPairDataset.generator"><a class="viewcode-back" href="../../../dival.datasets.html#dival.ObservationGroundTruthPairDataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
         <span class="n">gt_gen_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ground_truth_gen</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="n">part</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">noise_seeds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">part</span><span class="p">))</span>
@@ -701,11 +701,11 @@
             <span class="k">yield</span> <span class="p">(</span><span class="n">full_op</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">),</span> <span class="n">ground_truth</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="GroundTruthDataset"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.GroundTruthDataset">[docs]</a><span class="k">class</span> <span class="nc">GroundTruthDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+<div class="viewcode-block" id="GroundTruthDataset"><a class="viewcode-back" href="../../../dival.datasets.html#dival.GroundTruthDataset">[docs]</a><span class="k">class</span> <span class="nc">GroundTruthDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Ground truth dataset base class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="GroundTruthDataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.GroundTruthDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="GroundTruthDataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.html#dival.GroundTruthDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -717,7 +717,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">num_elements_per_sample</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="n">space</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GroundTruthDataset.create_pair_dataset"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.GroundTruthDataset.create_pair_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">create_pair_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forward_op</span><span class="p">,</span> <span class="n">post_processor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="GroundTruthDataset.create_pair_dataset"><a class="viewcode-back" href="../../../dival.datasets.html#dival.GroundTruthDataset.create_pair_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">create_pair_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forward_op</span><span class="p">,</span> <span class="n">post_processor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                             <span class="n">noise_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                             <span class="n">noise_seeds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
