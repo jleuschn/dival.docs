@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1
+                0.3.2
               </div>
             
           
@@ -198,9 +198,13 @@
 <span class="sd">    ----------</span>
 <span class="sd">    fbp_op : `odl.operator.Operator`</span>
 <span class="sd">        The operator applying filtered back-projection.</span>
+<span class="sd">        It is computed in the constructor, and is recomputed for each</span>
+<span class="sd">        reconstruction if ``recompute_fbp_op == True`` (since parameters could</span>
+<span class="sd">        change).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="FBPReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.FBPReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">hyper_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">pre_processor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">post_processor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                 <span class="n">pre_processor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">post_processor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">recompute_fbp_op</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -215,6 +219,14 @@
 <span class="sd">        post_processor : callable, optional</span>
 <span class="sd">            Callable that takes the filtered back-projection and returns the</span>
 <span class="sd">            final reconstruction.</span>
+<span class="sd">        recompute_fbp_op : bool, optional</span>
+<span class="sd">            Whether :attr:`fbp_op` should be recomputed on each call to</span>
+<span class="sd">            :meth:`reconstruct`. Must be ``True`` (default) if changes to</span>
+<span class="sd">            :attr:`ray_trafo`, :attr:`hyper_params` or :attr:`padding` are</span>
+<span class="sd">            planned in order to use the updated values in :meth:`reconstruct`.</span>
+<span class="sd">            If none of these attributes will change, you may specify</span>
+<span class="sd">            ``recompute_fbp_op==False``, so :attr:`fbp_op` can be computed</span>
+<span class="sd">            only once, improving reconstruction time efficiency.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">ray_trafo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="n">padding</span>
@@ -222,13 +234,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">post_processor</span> <span class="o">=</span> <span class="n">post_processor</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">reco_space</span><span class="o">=</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span> <span class="n">observation_space</span><span class="o">=</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">,</span>
-            <span class="n">hyper_params</span><span class="o">=</span><span class="n">hyper_params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-
-    <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+            <span class="n">hyper_params</span><span class="o">=</span><span class="n">hyper_params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fbp_op</span> <span class="o">=</span> <span class="n">fbp_op</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
                              <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recompute_fbp_op</span> <span class="o">=</span> <span class="n">recompute_fbp_op</span></div>
+
+    <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_processor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_processor</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recompute_fbp_op</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fbp_op</span> <span class="o">=</span> <span class="n">fbp_op</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
+                                 <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fbp_op</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_processor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_processor</span><span class="p">(</span><span class="n">out</span><span class="p">)</span></div>

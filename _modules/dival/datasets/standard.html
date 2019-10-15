@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1
+                0.3.2
               </div>
             
           
@@ -237,7 +237,12 @@
 <span class="sd">        Supported parameters for the datasets are:</span>
 
 <span class="sd">            ``&#39;ellipses&#39;``</span>
-<span class="sd">                no parameters</span>
+<span class="sd">                impl : {``&#39;skimage&#39;``, ``&#39;astra_cpu&#39;``, ``&#39;astra_cuda&#39;``},\</span>
+<span class="sd">                        optional</span>
+<span class="sd">                    Implementation passed to :class:`odl.tomo.RayTransform`</span>
+<span class="sd">                fixed_seeds : dict or bool, optional</span>
+<span class="sd">                    Seeds to use for random ellipse generation, passed to</span>
+<span class="sd">                    :class:`.EllipsesDataset`.</span>
 <span class="sd">            ``&#39;lodopab&#39;``</span>
 <span class="sd">                observation_model : {``&#39;post-log&#39;``, ``&#39;pre-log&#39;``}, optional</span>
 <span class="sd">                    The observation model to use. Default is ``&#39;post-log&#39;``.</span>
@@ -256,7 +261,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ellipses&#39;</span><span class="p">:</span>
-        <span class="n">ellipses_dataset</span> <span class="o">=</span> <span class="n">EllipsesDataset</span><span class="p">(</span><span class="n">image_size</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+        <span class="n">fixed_seeds</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;fixed_seeds&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">ellipses_dataset</span> <span class="o">=</span> <span class="n">EllipsesDataset</span><span class="p">(</span><span class="n">image_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+                                           <span class="n">fixed_seeds</span><span class="o">=</span><span class="n">fixed_seeds</span><span class="p">)</span>
 
         <span class="n">NUM_ANGLES</span> <span class="o">=</span> <span class="mi">30</span>
         <span class="c1"># image shape for simulation</span>

@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3.1
+                0.3.2
               </div>
             
           
@@ -90,17 +90,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="dival.datasets.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">dival.datasets.lodopab_dataset module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dival.datasets.html#module-dival.datasets">Module contents</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dival.datasets.lodopab_dataset module</a></li>
@@ -464,30 +454,6 @@ The values lie in the range <code class="docutils literal notranslate"><span cla
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(observation,</span> <span class="pre">ground_truth)</span></code> or <cite>None</cite></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.create_torch_dataset">
-<code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a torch dataset wrapper for one part of this dataset.</p>
-<p>If <code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, samples are
-fetched from <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.generator" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>. The index passed to
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> of the
-returned dataset will be ignored, and parallel data loading (with
-multiple workers) is not applicable.</p>
-<p>If <code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code> returns <cite>True</cite>, samples are looked
-up using <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>. For datasets that support parallel calls
-to <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>, the returned torch dataset can be used by
-multiple workers.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
-<li><p><strong>reshape</strong> (tuple of (tuple or <cite>None</cite>), optional) – Shapes to which the elements of each sample will be reshaped.
-If <cite>None</cite> is passed for an element, no reshape is applied.</p></li>
-</ul>
 </dd>
 </dl>
 </dd></dl>

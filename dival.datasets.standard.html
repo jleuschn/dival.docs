@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3.1
+                0.3.2
               </div>
             
           
@@ -90,17 +90,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="dival.datasets.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">dival.datasets.standard module</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dival.datasets.html#module-dival.datasets">Module contents</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
@@ -236,7 +226,13 @@ dataset.</p>
 Supported parameters for the datasets are:</p>
 <blockquote>
 <div><dl>
-<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>no parameters</p>
+<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><dl>
+<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></p>
+</dd>
+<dt>fixed_seeds<span class="classifier">dict or bool, optional</span></dt><dd><p>Seeds to use for random ellipse generation, passed to
+<a class="reference internal" href="dival.datasets.ellipses_dataset.html#dival.datasets.ellipses_dataset.EllipsesDataset" title="dival.datasets.ellipses_dataset.EllipsesDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">EllipsesDataset</span></code></a>.</p>
+</dd>
+</dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><dl>
 <dt>observation_model<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'post-log'</span></code>, <code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code>}, optional</span></dt><dd><p>The observation model to use. Default is <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code>.</p>
@@ -259,7 +255,7 @@ The default is 0.1, both for <code class="docutils literal notranslate"><span cl
 It has an attribute <cite>standard_dataset_name</cite> that stores its name.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="dival.datasets.html#dival.datasets.Dataset" title="dival.datasets.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>

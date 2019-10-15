@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1
+                0.3.2
               </div>
             
           
@@ -409,7 +409,11 @@ its name.</p>
 <dl class="method">
 <dt id="dival.Dataset.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">space=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>The attributes that potentially should be set by the subclass are:
+<a class="reference internal" href="#dival.Dataset.space" title="dival.Dataset.space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">space</span></code></a> (can also be set by argument), <a class="reference internal" href="#dival.Dataset.shape" title="dival.Dataset.shape"><code class="xref py py-attr docutils literal notranslate"><span class="pre">shape</span></code></a>,
+<a class="reference internal" href="#dival.Dataset.train_len" title="dival.Dataset.train_len"><code class="xref py py-attr docutils literal notranslate"><span class="pre">train_len</span></code></a>, <a class="reference internal" href="#dival.Dataset.validation_len" title="dival.Dataset.validation_len"><code class="xref py py-attr docutils literal notranslate"><span class="pre">validation_len</span></code></a>, <a class="reference internal" href="#dival.Dataset.test_len" title="dival.Dataset.test_len"><code class="xref py py-attr docutils literal notranslate"><span class="pre">test_len</span></code></a>,
+<a class="reference internal" href="#dival.Dataset.random_access" title="dival.Dataset.random_access"><code class="xref py py-attr docutils literal notranslate"><span class="pre">random_access</span></code></a> and <a class="reference internal" href="#dival.Dataset.num_elements_per_sample" title="dival.Dataset.num_elements_per_sample"><code class="xref py py-attr docutils literal notranslate"><span class="pre">num_elements_per_sample</span></code></a>.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>space</strong> ([tuple of ] <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.space.base_tensors.TensorSpace</span></code>,                optional) – The spaces of the elements of samples as a tuple.
 If only one element per sample is provided, this attribute is the
@@ -490,8 +494,19 @@ Default is <code class="docutils literal notranslate"><span class="pre">'train'<
 <dt id="dival.Dataset.get_num_elements_per_sample">
 <code class="sig-name descname">get_num_elements_per_sample</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_num_elements_per_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_num_elements_per_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return number of elements per sample.</p>
-<p>If <a class="reference internal" href="#dival.Dataset.num_elements_per_sample" title="dival.Dataset.num_elements_per_sample"><code class="xref py py-attr docutils literal notranslate"><span class="pre">num_elements_per_sample</span></code></a> is not set, an attempt to
-infer it by calling <a class="reference internal" href="#dival.Dataset.get_shape" title="dival.Dataset.get_shape"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_shape()</span></code></a> is made.</p>
+<p>Returns <a class="reference internal" href="#dival.Dataset.num_elements_per_sample" title="dival.Dataset.num_elements_per_sample"><code class="xref py py-attr docutils literal notranslate"><span class="pre">num_elements_per_sample</span></code></a> if it is set.
+Otherwise, it is inferred from <a class="reference internal" href="#dival.Dataset.space" title="dival.Dataset.space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">space</span></code></a> (which is strongly
+recommended to be set in every subclass).
+If also <a class="reference internal" href="#dival.Dataset.space" title="dival.Dataset.space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">space</span></code></a> is not set, a <code class="xref py py-class docutils literal notranslate"><span class="pre">NotImplementedError</span></code> is
+raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>num_elements_per_sample</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -705,7 +720,13 @@ dataset.</p>
 Supported parameters for the datasets are:</p>
 <blockquote>
 <div><dl>
-<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>no parameters</p>
+<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><dl>
+<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></p>
+</dd>
+<dt>fixed_seeds<span class="classifier">dict or bool, optional</span></dt><dd><p>Seeds to use for random ellipse generation, passed to
+<a class="reference internal" href="dival.datasets.ellipses_dataset.html#dival.datasets.ellipses_dataset.EllipsesDataset" title="dival.datasets.ellipses_dataset.EllipsesDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">EllipsesDataset</span></code></a>.</p>
+</dd>
+</dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><dl>
 <dt>observation_model<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'post-log'</span></code>, <code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code>}, optional</span></dt><dd><p>The observation model to use. Default is <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code>.</p>
