@@ -356,6 +356,7 @@
 
 <div class="viewcode-block" id="LearnedReconstructor.save_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.save_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save parameters to path.</span>
+<span class="sd">        Both hyper parameters and learned parameters should be included.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -369,11 +370,13 @@
 
 <div class="viewcode-block" id="LearnedReconstructor.load_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.load_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load parameters from path.</span>
+<span class="sd">        See also :meth:`save_params`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        path : str</span>
-<span class="sd">            Path at which the parameters are stored. C.f. `save_params`.</span>
+<span class="sd">            Path at which the parameters are stored. Depending on the</span>
+<span class="sd">            implementation, this may be a file path or a directory path.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 

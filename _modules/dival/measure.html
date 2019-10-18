@@ -183,12 +183,6 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="k">import</span> <span class="n">compare_ssim</span>
 <span class="kn">from</span> <span class="nn">odl.operator.operator</span> <span class="k">import</span> <span class="n">Operator</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">dival.util.torch_ssim</span> <span class="k">import</span> <span class="n">SSIM</span> <span class="k">as</span> <span class="n">TorchSSIM</span>
-    <span class="kn">import</span> <span class="nn">torch</span>
-    <span class="n">TORCH_SSIM_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="k">except</span> <span class="n">ModuleNotFoundError</span><span class="p">:</span>
-    <span class="n">TORCH_SSIM_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
 
 
 <div class="viewcode-block" id="gen_unique_name"><a class="viewcode-back" href="../../dival.measure.html#dival.gen_unique_name">[docs]</a><span class="k">def</span> <span class="nf">gen_unique_name</span><span class="p">(</span><span class="n">name_orig</span><span class="p">):</span>
@@ -406,8 +400,7 @@
     <span class="n">description</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;The (M)SSIM like described in `Wang et al. 2014 &#39;</span>
                    <span class="s1">&#39;&lt;https://doi.org/10.1109/TIP.2003.819861&gt;`_.&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SSIMMeasure.__init__"><a class="viewcode-back" href="../../dival.measure.html#dival.SSIMMeasure.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">short_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">torch_device</span><span class="o">=</span><span class="s1">&#39;cuda:0&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SSIMMeasure.__init__"><a class="viewcode-back" href="../../dival.measure.html#dival.SSIMMeasure.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">short_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This is a wrapper for :func:`skimage.measure.compare_ssim`.</span>
 <span class="sd">        The data range is automatically determined from the ground truth if not</span>
@@ -417,34 +410,14 @@
 <span class="sd">        ----------</span>
 <span class="sd">        short_name : str, optional</span>
 <span class="sd">            Short name.</span>
-<span class="sd">        impl : {``&#39;skimage&#39;``, ``&#39;torch&#39;``}, optional</span>
-<span class="sd">            SSIM implementation to use. If `None`, ``&#39;torch&#39;`` will be used if</span>
-<span class="sd">            available (requires ``pytorch-msssim``).</span>
-<span class="sd">        data_range : float, optional</span>
-<span class="sd">            Data range (max - min possible value). If `None`,</span>
+<span class="sd">        kwargs : dict, optional</span>
+<span class="sd">            Keyword arguments that will be passed to</span>
+<span class="sd">            :func:`~skimage.measure.compare_ssim` in :meth:`apply`.</span>
+<span class="sd">            If `data_range` is not specified,</span>
 <span class="sd">            ``np.max(ground_truth) - np.min(ground_truth)`` is used.</span>
-<span class="sd">        torch_device : str, optional</span>
-<span class="sd">            Device to perform the computation on. Only used if</span>
-<span class="sd">            ``impl == &#39;torch&#39;``.</span>
-<span class="sd">        kwargs: dict, optional</span>
-<span class="sd">            Keyword arguments that will be passed to the implementation, i.e.</span>
-
-<span class="sd">                ``impl == &#39;skimage&#39;``</span>
-<span class="sd">                    ``**kwargs`` passed to :func:`skimage.measure.compare_ssim`</span>
-<span class="sd">                    (called in :meth:`apply`)</span>
-<span class="sd">                ``impl == &#39;torch&#39;``</span>
-<span class="sd">                    ``**kwargs`` passed to :meth:`pytorch_msssim.SSIM.__init__`</span>
-<span class="sd">                    (called here in :meth:`__init__`)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">impl</span> <span class="o">=</span> <span class="n">impl</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">impl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">impl</span> <span class="o">=</span> <span class="s1">&#39;torch&#39;</span> <span class="k">if</span> <span class="n">TORCH_SSIM_AVAILABLE</span> <span class="k">else</span> <span class="s1">&#39;skimage&#39;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">impl</span> <span class="o">==</span> <span class="s1">&#39;torch&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">torch_device</span> <span class="o">=</span> <span class="n">torch_device</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">torch_ssim</span> <span class="o">=</span> <span class="p">(</span><span class="n">TorchSSIM</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
-                               <span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">torch_device</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_range</span> <span class="o">=</span> <span class="n">data_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_range&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">short_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">short_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_data_range</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">short_name</span><span class="p">,</span>
                                                   <span class="bp">self</span><span class="o">.</span><span class="n">data_range</span><span class="p">)</span>
@@ -452,19 +425,10 @@
 
 <div class="viewcode-block" id="SSIMMeasure.apply"><a class="viewcode-back" href="../../dival.measure.html#dival.SSIMMeasure.apply">[docs]</a>    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reconstruction</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">):</span>
         <span class="n">gt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">)</span>
-        <span class="n">reco</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">reconstruction</span><span class="p">)</span>
         <span class="n">data_range</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_range</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                       <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">gt</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">gt</span><span class="p">))</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">impl</span> <span class="o">==</span> <span class="s1">&#39;torch&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">torch_ssim</span><span class="o">.</span><span class="n">data_range</span> <span class="o">=</span> <span class="n">data_range</span>
-            <span class="n">ssim</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">torch_ssim</span><span class="p">(</span>
-                <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">reco</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">torch_device</span><span class="p">),</span>
-                <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">gt</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">torch_device</span><span class="p">))</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ssim</span> <span class="o">=</span> <span class="n">compare_ssim</span><span class="p">(</span><span class="n">reco</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">data_range</span><span class="o">=</span><span class="n">data_range</span><span class="p">,</span>
-                                <span class="n">use_sample_covariance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ssim</span></div></div>
+        <span class="k">return</span> <span class="n">compare_ssim</span><span class="p">(</span><span class="n">reconstruction</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">data_range</span><span class="o">=</span><span class="n">data_range</span><span class="p">,</span>
+                            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 
 
 <span class="n">SSIM</span> <span class="o">=</span> <span class="n">SSIMMeasure</span><span class="p">()</span>
