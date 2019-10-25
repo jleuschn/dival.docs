@@ -316,24 +316,28 @@ configured by the dict <code class="docutils literal notranslate"><span class="p
 </dl>
 </div></blockquote>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">'grid_search_options'</span></code><span class="classifier">dict</span></dt><dd><p>Option dict for grid search with the fields:</p>
+<dt><code class="docutils literal notranslate"><span class="pre">'grid_search_options'</span></code><span class="classifier">dict</span></dt><dd><p>Option dict for grid search.</p>
+<p>The following fields determine how <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is sampled
+(in case it is specified and no <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> are specified):</p>
 <blockquote>
 <div><dl>
-<dt><code class="docutils literal notranslate"><span class="pre">'num_samples'</span></code><span class="classifier">int, optional</span></dt><dd><p>Number of values. Default: 10.
-Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and
-<code class="docutils literal notranslate"><span class="pre">'choices'</span></code> is not.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">'num_samples'</span></code><span class="classifier">int, optional</span></dt><dd><p>Number of values. Default: <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">'type'</span></code><span class="classifier">{‘linear’}, optional</span></dt><dd><p>Type of grid, i.e. distribution of the values.
+<dt><code class="docutils literal notranslate"><span class="pre">'type'</span></code><span class="classifier">{‘linear’, ‘logarithmic’}, optional</span></dt><dd><p>Type of grid, i.e. distribution of the values.
 Default: <code class="docutils literal notranslate"><span class="pre">'linear'</span></code>.
-Only relevant if <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is specified and
-<code class="docutils literal notranslate"><span class="pre">'choices'</span></code> is not.
 Options are:</p>
 <blockquote>
 <div><dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">'linear'</span></code></dt><dd><p>Equidistant values in the <code class="docutils literal notranslate"><span class="pre">'range'</span></code>.</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'logarithmic'</span></code></dt><dd><p>Values in the <code class="docutils literal notranslate"><span class="pre">'range'</span></code> that are equidistant
+in the log scale.</p>
+</dd>
 </dl>
 </div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'log_base'</span></code><span class="classifier">int, optional</span></dt><dd><p>Log-base that is used if <code class="docutils literal notranslate"><span class="pre">'type'</span></code> is
+<code class="docutils literal notranslate"><span class="pre">'logarithmic'</span></code>. Default: <code class="docutils literal notranslate"><span class="pre">10.</span></code>.</p>
 </dd>
 </dl>
 </div></blockquote>

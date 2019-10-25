@@ -249,21 +249,26 @@
 <span class="sd">                        configured by the dict ``&#39;hyperopt_options&#39;``.</span>
 
 <span class="sd">            ``&#39;grid_search_options&#39;`` : dict</span>
-<span class="sd">                Option dict for grid search with the fields:</span>
+<span class="sd">                Option dict for grid search.</span>
+
+<span class="sd">                The following fields determine how ``&#39;range&#39;`` is sampled</span>
+<span class="sd">                (in case it is specified and no ``&#39;choices&#39;`` are specified):</span>
 
 <span class="sd">                    ``&#39;num_samples&#39;`` : int, optional</span>
-<span class="sd">                        Number of values. Default: 10.</span>
-<span class="sd">                        Only relevant if ``&#39;range&#39;`` is specified and</span>
-<span class="sd">                        ``&#39;choices&#39;`` is not.</span>
-<span class="sd">                    ``&#39;type&#39;`` : {&#39;linear&#39;}, optional</span>
+<span class="sd">                        Number of values. Default: ``10``.</span>
+<span class="sd">                    ``&#39;type&#39;`` : {&#39;linear&#39;, &#39;logarithmic&#39;}, optional</span>
 <span class="sd">                        Type of grid, i.e. distribution of the values.</span>
 <span class="sd">                        Default: ``&#39;linear&#39;``.</span>
-<span class="sd">                        Only relevant if ``&#39;range&#39;`` is specified and</span>
-<span class="sd">                        ``&#39;choices&#39;`` is not.</span>
 <span class="sd">                        Options are:</span>
 
 <span class="sd">                            ``&#39;linear&#39;``</span>
 <span class="sd">                                Equidistant values in the ``&#39;range&#39;``.</span>
+<span class="sd">                            ``&#39;logarithmic&#39;``</span>
+<span class="sd">                                Values in the ``&#39;range&#39;`` that are equidistant</span>
+<span class="sd">                                in the log scale.</span>
+<span class="sd">                    ``&#39;log_base&#39;`` : int, optional</span>
+<span class="sd">                        Log-base that is used if ``&#39;type&#39;`` is</span>
+<span class="sd">                        ``&#39;logarithmic&#39;``. Default: ``10.``.</span>
 
 <span class="sd">            ``&#39;hyperopt_options&#39;`` : dict</span>
 <span class="sd">                Option dict for ``&#39;hyperopt&#39;`` method with the fields:</span>

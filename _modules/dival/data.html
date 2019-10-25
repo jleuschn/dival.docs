@@ -175,6 +175,7 @@
 <div class="viewcode-block" id="DataPairs"><a class="viewcode-back" href="../../dival.data.html#dival.DataPairs">[docs]</a><span class="k">class</span> <span class="nc">DataPairs</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Bundles :attr:`observations` with :attr:`ground_truth`.</span>
+<span class="sd">    Implements :meth:`__getitem__` and :meth:`__len__`.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -209,7 +210,25 @@
         <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;DataPairs &#39;</span><span class="si">{name}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
                 <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">())</span>
 
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return data pair(s).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx : index supported by list</span>
+<span class="sd">            The index that is applied to :attr:`observations` and</span>
+<span class="sd">            :attr:`ground_truth`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pair : tuple of odl elements or tuple of lists of odl elements</span>
+<span class="sd">            The pair of data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">observations</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ground_truth</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+
     <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the length.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">observations</span><span class="p">)</span></div>
 </pre></div>
 

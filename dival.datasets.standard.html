@@ -229,6 +229,14 @@ Supported parameters for the datasets are:</p>
 <dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><dl>
 <dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></p>
 </dd>
+<dt>normalize_ray_trafo<span class="classifier">bool, optional</span></dt><dd><p>Whether to normalize the forward operator by its op-norm.
+Default is <cite>False</cite>.
+If <cite>True</cite>, the observation values are divided by
+<code class="docutils literal notranslate"><span class="pre">opnorm</span> <span class="pre">=</span> <span class="pre">dataset.ray_trafo.norm(estimate=True)</span></code>, so
+e.g. FBP requires to apply
+<code class="docutils literal notranslate"><span class="pre">(opnorm</span> <span class="pre">*</span> <span class="pre">fbp_op(dataset.ray_trafo))(observation)</span></code> in
+order obtain the original image value scale.</p>
+</dd>
 <dt>fixed_seeds<span class="classifier">dict or bool, optional</span></dt><dd><p>Seeds to use for random ellipse generation, passed to
 <a class="reference internal" href="dival.datasets.ellipses_dataset.html#dival.datasets.ellipses_dataset.EllipsesDataset" title="dival.datasets.ellipses_dataset.EllipsesDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">EllipsesDataset</span></code></a>.</p>
 </dd>
