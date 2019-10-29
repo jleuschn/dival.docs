@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.3.3
               </div>
             
           
@@ -405,9 +405,12 @@ The samples are stacked in the first
 
 <dl class="class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">FBPUNetReconstructor</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">scales=5</em>, <em class="sig-param">epochs=20</em>, <em class="sig-param">batch_size=64</em>, <em class="sig-param">num_data_loader_workers=8</em>, <em class="sig-param">use_cuda=True</em>, <em class="sig-param">show_pbar=True</em>, <em class="sig-param">fbp_impl='astra_cuda'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">FBPUNetReconstructor</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">scales=None</em>, <em class="sig-param">epochs=None</em>, <em class="sig-param">batch_size=None</em>, <em class="sig-param">num_data_loader_workers=8</em>, <em class="sig-param">use_cuda=True</em>, <em class="sig-param">show_pbar=True</em>, <em class="sig-param">fbp_impl='astra_cuda'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.LearnedReconstructor</span></code></a></p>
-<p>CT Reconstructor applying filtered back-projection followed by a
+<dl class="attribute">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.HYPER_PARAMS">
+<code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'batch_size': {'default': 64, 'retrain': True}, 'epochs': {'default': 20, 'retrain': True}, 'scales': {'default': 5, 'retrain': True}}</em><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>CT Reconstructor applying filtered back-projection followed by a
 postprocessing U-Net (cf. <a class="footnote-reference brackets" href="#id3" id="id1">1</a>).
 The U-Net architecture is similar to the one in <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
 <p class="rubric">References</p>
@@ -425,19 +428,21 @@ IEEE/CVF Conference on Computer Vision and Pattern Recognition.
 <a class="reference external" href="https://doi.org/10.1109/CVPR.2018.00984">doi:10.1109/CVPR.2018.00984</a></p>
 </dd>
 </dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">scales=5</em>, <em class="sig-param">epochs=20</em>, <em class="sig-param">batch_size=64</em>, <em class="sig-param">num_data_loader_workers=8</em>, <em class="sig-param">use_cuda=True</em>, <em class="sig-param">show_pbar=True</em>, <em class="sig-param">fbp_impl='astra_cuda'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">scales=None</em>, <em class="sig-param">epochs=None</em>, <em class="sig-param">batch_size=None</em>, <em class="sig-param">num_data_loader_workers=8</em>, <em class="sig-param">use_cuda=True</em>, <em class="sig-param">show_pbar=True</em>, <em class="sig-param">fbp_impl='astra_cuda'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>) – Ray transform from which the FBP operator is constructed.</p></li>
-<li><p><strong>scales</strong> (<em>int</em>) – Number of scales in the U-Net.</p></li>
-<li><p><strong>epochs</strong> (<em>int</em>) – Number of epochs to train.</p></li>
-<li><p><strong>batch_size</strong> (<em>int</em>) – Batch size.</p></li>
-<li><p><strong>num_data_loader_workers</strong> (<em>int</em>) – Number of parallel workers to use for loading data.</p></li>
-<li><p><strong>use_cuda</strong> (<em>bool</em>) – Whether to use cuda for the U-Net.</p></li>
-<li><p><strong>show_pbar</strong> (<em>bool</em>) – Whether to show tqdm progress bars during the epochs.</p></li>
+<li><p><strong>scales</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of scales in the U-Net (a hyper parameter).</p></li>
+<li><p><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of epochs to train (a hyper parameter).</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Batch size (a hyper parameter).</p></li>
+<li><p><strong>num_data_loader_workers</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel workers to use for loading data.</p></li>
+<li><p><strong>use_cuda</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use cuda for the U-Net.</p></li>
+<li><p><strong>show_pbar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show tqdm progress bars during the epochs.</p></li>
 <li><p><strong>fbp_impl</strong> (<em>str</em><em>, </em><em>optional</em>) – The backend implementation passed to
 <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code> in case no <cite>ray_trafo</cite> is specified.
 Then <code class="docutils literal notranslate"><span class="pre">dataset.get_ray_trafo(impl=fbp_impl)</span></code> is used to get the
@@ -446,6 +451,51 @@ ray transform and FBP operator.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_epochs">
+<code class="sig-name descname">get_epochs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.get_epochs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_epochs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_epochs">
+<code class="sig-name descname">set_epochs</code><span class="sig-paren">(</span><em class="sig-param">epochs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_epochs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_epochs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.epochs">
+<em class="property">property </em><code class="sig-name descname">epochs</code><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.epochs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_batch_size">
+<code class="sig-name descname">get_batch_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.get_batch_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_batch_size">
+<code class="sig-name descname">set_batch_size</code><span class="sig-paren">(</span><em class="sig-param">batch_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_batch_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.batch_size">
+<em class="property">property </em><code class="sig-name descname">batch_size</code><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_scales">
+<code class="sig-name descname">get_scales</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.get_scales"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_scales" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_scales">
+<code class="sig-name descname">set_scales</code><span class="sig-paren">(</span><em class="sig-param">scales</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_scales"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_scales" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.scales">
+<em class="property">property </em><code class="sig-name descname">scales</code><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.scales" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.train">

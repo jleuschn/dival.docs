@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.3.3
               </div>
             
           
@@ -177,6 +177,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">ceil</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">odl.tomo</span> <span class="k">import</span> <span class="n">fbp_op</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
@@ -352,6 +353,20 @@
 
 
 <div class="viewcode-block" id="FBPUNetReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor">[docs]</a><span class="k">class</span> <span class="nc">FBPUNetReconstructor</span><span class="p">(</span><span class="n">LearnedReconstructor</span><span class="p">):</span>
+    <span class="n">HYPER_PARAMS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;scales&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s1">&#39;retrain&#39;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="s1">&#39;retrain&#39;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+            <span class="s1">&#39;retrain&#39;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CT Reconstructor applying filtered back-projection followed by a</span>
 <span class="sd">    postprocessing U-Net (cf. [1]_).</span>
@@ -370,7 +385,7 @@
 <span class="sd">           `doi:10.1109/CVPR.2018.00984</span>
 <span class="sd">           &lt;https://doi.org/10.1109/CVPR.2018.00984&gt;`_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FBPUNetReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+<div class="viewcode-block" id="FBPUNetReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">num_data_loader_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_pbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">fbp_impl</span><span class="o">=</span><span class="s1">&#39;astra_cuda&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -378,17 +393,17 @@
 <span class="sd">        ----------</span>
 <span class="sd">        ray_trafo : :class:`odl.tomo.RayTransform`</span>
 <span class="sd">            Ray transform from which the FBP operator is constructed.</span>
-<span class="sd">        scales : int</span>
-<span class="sd">            Number of scales in the U-Net.</span>
-<span class="sd">        epochs : int</span>
-<span class="sd">            Number of epochs to train.</span>
-<span class="sd">        batch_size : int</span>
-<span class="sd">            Batch size.</span>
-<span class="sd">        num_data_loader_workers : int</span>
+<span class="sd">        scales : int, optional</span>
+<span class="sd">            Number of scales in the U-Net (a hyper parameter).</span>
+<span class="sd">        epochs : int, optional</span>
+<span class="sd">            Number of epochs to train (a hyper parameter).</span>
+<span class="sd">        batch_size : int, optional</span>
+<span class="sd">            Batch size (a hyper parameter).</span>
+<span class="sd">        num_data_loader_workers : int, optional</span>
 <span class="sd">            Number of parallel workers to use for loading data.</span>
-<span class="sd">        use_cuda : bool</span>
+<span class="sd">        use_cuda : bool, optional</span>
 <span class="sd">            Whether to use cuda for the U-Net.</span>
-<span class="sd">        show_pbar : bool</span>
+<span class="sd">        show_pbar : bool, optional</span>
 <span class="sd">            Whether to show tqdm progress bars during the epochs.</span>
 <span class="sd">        fbp_impl : str, optional</span>
 <span class="sd">            The backend implementation passed to</span>
@@ -398,17 +413,48 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">ray_trafo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fbp_op</span> <span class="o">=</span> <span class="n">fbp_op</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_data_loader_workers</span> <span class="o">=</span> <span class="n">num_data_loader_workers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span> <span class="o">=</span> <span class="n">use_cuda</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">show_pbar</span> <span class="o">=</span> <span class="n">show_pbar</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fbp_impl</span> <span class="o">=</span> <span class="n">fbp_impl</span>
-        <span class="n">tensor_type</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span> <span class="k">else</span>
-                       <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">get_skip_model</span><span class="p">(</span><span class="n">scales</span><span class="o">=</span><span class="n">scales</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">tensor_type</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">reco_space</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
-                         <span class="n">observation_space</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+                         <span class="n">observation_space</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">epochs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hyper_params&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;epochs&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;hyper parameter &#39;epochs&#39; overridden by constructor argument&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">batch_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hyper_params&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;batch_size&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;hyper parameter &#39;batch_size&#39; overridden by constructor argument&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scales</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scales</span> <span class="o">=</span> <span class="n">scales</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hyper_params&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;scales&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;hyper parameter &#39;scales&#39; overridden by constructor argument&quot;</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="FBPUNetReconstructor.get_epochs"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_epochs">[docs]</a>    <span class="k">def</span> <span class="nf">get_epochs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span><span class="s1">&#39;epochs&#39;</span><span class="p">]</span></div>
+        
+<div class="viewcode-block" id="FBPUNetReconstructor.set_epochs"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_epochs">[docs]</a>    <span class="k">def</span> <span class="nf">set_epochs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span><span class="s1">&#39;epochs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">epochs</span></div>
+
+    <span class="n">epochs</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_epochs</span><span class="p">,</span> <span class="n">set_epochs</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="FBPUNetReconstructor.get_batch_size"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_batch_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_batch_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span></div>
+        
+<div class="viewcode-block" id="FBPUNetReconstructor.set_batch_size"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_batch_size">[docs]</a>    <span class="k">def</span> <span class="nf">set_batch_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">batch_size</span></div>
+
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_batch_size</span><span class="p">,</span> <span class="n">set_batch_size</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="FBPUNetReconstructor.get_scales"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_scales">[docs]</a>    <span class="k">def</span> <span class="nf">get_scales</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span><span class="s1">&#39;scales&#39;</span><span class="p">]</span></div>
+        
+<div class="viewcode-block" id="FBPUNetReconstructor.set_scales"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_scales">[docs]</a>    <span class="k">def</span> <span class="nf">set_scales</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scales</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span><span class="s1">&#39;scales&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scales</span></div>
+
+    <span class="n">scales</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_scales</span><span class="p">,</span> <span class="n">set_scales</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FBPUNetReconstructor.train"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -427,6 +473,10 @@
         <span class="n">fbp_dataset_validation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fbp_dataset</span><span class="o">.</span><span class="n">create_torch_dataset</span><span class="p">(</span>
             <span class="n">part</span><span class="o">=</span><span class="s1">&#39;validation&#39;</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">fbp_dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                                         <span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">fbp_dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        
+        <span class="n">ttype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">get_skip_model</span><span class="p">(</span><span class="n">scales</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scales</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">tensor_type</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="p">)</span>
 
         <span class="n">criterion</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
         <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
@@ -447,8 +497,6 @@
 
         <span class="n">best_model_wts</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">state_dict</span><span class="p">())</span>
         <span class="n">best_psnr</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="p">)</span>
 
         <span class="n">device</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda:0&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span> <span class="k">else</span>
                   <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">))</span>
@@ -510,7 +558,8 @@
 
                         <span class="n">batch_id</span> <span class="o">+=</span> <span class="mi">1</span>
 
-                    <span class="n">epoch_psnr</span> <span class="o">=</span> <span class="n">running_psnr</span> <span class="o">/</span> <span class="n">dataset_sizes</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span>
+                    <span class="n">num_steps</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">dataset_sizes</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+                    <span class="n">epoch_psnr</span> <span class="o">=</span> <span class="n">running_psnr</span> <span class="o">/</span> <span class="n">num_steps</span>
 
                     <span class="c1"># deep copy the model</span>
                     <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;validation&#39;</span> <span class="ow">and</span> <span class="n">epoch_psnr</span> <span class="o">&gt;</span> <span class="n">best_psnr</span><span class="p">:</span>
@@ -553,9 +602,16 @@
 <span class="sd">        filename : str</span>
 <span class="sd">            Filename (ending ``.pt``).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ttype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">get_skip_model</span><span class="p">(</span><span class="n">scales</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scales</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">ttype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="p">)</span>
         <span class="n">map_location</span> <span class="o">=</span> <span class="s1">&#39;cuda:0&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>
-                                            <span class="n">map_location</span><span class="o">=</span><span class="n">map_location</span><span class="p">))</span></div></div>
+        <span class="n">state_dict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">map_location</span><span class="p">)</span>
+        <span class="c1"># backwards-compatibility with non-data_parallel weights</span>
+        <span class="n">data_parallel</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">state_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;module.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data_parallel</span><span class="p">:</span>
+            <span class="n">state_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;module.&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="get_skip_model"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.get_skip_model">[docs]</a><span class="k">def</span> <span class="nf">get_skip_model</span><span class="p">(</span><span class="n">scales</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>

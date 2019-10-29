@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.3.3
               </div>
             
           
@@ -624,6 +624,8 @@
                              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">len_part</span><span class="p">))</span>
         <span class="n">range_files</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">range_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">NUM_SAMPLES_PER_FILE</span><span class="p">,</span>
                             <span class="n">range_</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="n">NUM_SAMPLES_PER_FILE</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
         <span class="p">(</span><span class="n">out_observation</span><span class="p">,</span> <span class="n">out_ground_truth</span><span class="p">)</span> <span class="o">=</span> <span class="n">out</span>
         <span class="c1"># compute slice objects</span>
         <span class="n">slices_files</span> <span class="o">=</span> <span class="p">[]</span>
