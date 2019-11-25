@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.6
               </div>
             
           
@@ -110,6 +110,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
 
             
@@ -187,7 +188,7 @@
 
 <dl class="class">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset">
-<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.lodopab_dataset.</code><code class="sig-name descname">LoDoPaBDataset</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.lodopab_dataset.</code><code class="sig-name descname">LoDoPaBDataset</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em>, <em class="sig-param">impl='astra_cuda'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
 <p>The LoDoPaB-CT dataset, which is documented in the preprint
 <a class="reference external" href="https://arxiv.org/abs/1910.01113">https://arxiv.org/abs/1910.01113</a> hosted on
@@ -256,7 +257,7 @@ passed to <a class="reference internal" href="#dival.datasets.lodopab_dataset.Lo
 
 <dl class="method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em>, <em class="sig-param">impl='astra_cuda'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -284,6 +285,8 @@ was normalized.</p>
 If <code class="docutils literal notranslate"><span class="pre">observation_model</span> <span class="pre">==</span> <span class="pre">'post-log'</span></code>, a value greater than zero
 is required in order to avoid undefined values. The default is 0.1,
 both for <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code> and <code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code> model.</p></li>
+<li><p><strong>impl</strong> ({<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                optional) – Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code> to
+construct <code class="xref py py-attr docutils literal notranslate"><span class="pre">ray_trafo</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -344,12 +347,6 @@ operator.</p>
 <dd class="field-odd"><p>odl operator</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.ray_trafo">
-<em class="property">property </em><code class="sig-name descname">ray_trafo</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.ray_trafo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read-only property calling <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_ray_trafo" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_ray_trafo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_ray_trafo()</span></code></a> with default parameters.</p>
 </dd></dl>
 
 <dl class="method">

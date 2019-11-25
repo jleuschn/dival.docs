@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.6
               </div>
             
           
@@ -110,6 +110,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
 
             
@@ -184,6 +185,9 @@
 <em class="property">class </em><code class="sig-prename descclassname">dival.datasets.dataset.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">space=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.dataset.Dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Dataset base class.</p>
+<p>Subclasses must either implement <a class="reference internal" href="#dival.datasets.dataset.Dataset.generator" title="dival.datasets.dataset.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a> or provide random access
+by implementing <a class="reference internal" href="#dival.datasets.dataset.Dataset.get_sample" title="dival.datasets.dataset.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> and <a class="reference internal" href="#dival.datasets.dataset.Dataset.get_samples" title="dival.datasets.dataset.Dataset.get_samples"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_samples()</span></code></a> (which then
+should be indicated by setting the attribute <code class="docutils literal notranslate"><span class="pre">random_access</span> <span class="pre">=</span> <span class="pre">True</span></code>).</p>
 <dl class="attribute">
 <dt id="dival.datasets.dataset.Dataset.space">
 <code class="sig-name descname">space</code><a class="headerlink" href="#dival.datasets.dataset.Dataset.space" title="Permalink to this definition">¶</a></dt>
@@ -306,6 +310,8 @@ functionality may depend on it.</p>
 <dt id="dival.datasets.dataset.Dataset.generator">
 <code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.dataset.Dataset.generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield data.</p>
+<p>The default implementation calls <a class="reference internal" href="#dival.datasets.dataset.Dataset.get_sample" title="dival.datasets.dataset.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
+implements it (i.e., supports random access).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – Whether to yield train, validation or test data.
@@ -366,6 +372,19 @@ Default is <code class="docutils literal notranslate"><span class="pre">'train'<
 <dt id="dival.datasets.dataset.Dataset.get_shape">
 <code class="sig-name descname">get_shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_shape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.dataset.Dataset.get_shape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the shape of each element.</p>
+<p>Returns <a class="reference internal" href="#dival.datasets.dataset.Dataset.shape" title="dival.datasets.dataset.Dataset.shape"><code class="xref py py-attr docutils literal notranslate"><span class="pre">shape</span></code></a> if it is set.
+Otherwise, it is inferred from <a class="reference internal" href="#dival.datasets.dataset.Dataset.space" title="dival.datasets.dataset.Dataset.space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">space</span></code></a> (which is strongly
+recommended to be set in every subclass).
+If also <a class="reference internal" href="#dival.datasets.dataset.Dataset.space" title="dival.datasets.dataset.Dataset.space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">space</span></code></a> is not set, a <code class="xref py py-class docutils literal notranslate"><span class="pre">NotImplementedError</span></code> is
+raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>shape</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>[tuple of ] tuple</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -495,6 +514,8 @@ If a tuple element is a bool, it has the following meaning:</p>
 <dt id="dival.datasets.dataset.Dataset.get_samples">
 <code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.dataset.Dataset.get_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get samples by slice or range.</p>
+<p>The default implementation calls <a class="reference internal" href="#dival.datasets.dataset.Dataset.get_sample" title="dival.datasets.dataset.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
+implements it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -589,6 +610,8 @@ for that part. By default, no fixed seeds are used.</p></li>
 <dt id="dival.datasets.dataset.ObservationGroundTruthPairDataset.generator">
 <code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#ObservationGroundTruthPairDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.dataset.ObservationGroundTruthPairDataset.generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield data.</p>
+<p>The default implementation calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code> if the dataset
+implements it (i.e., supports random access).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – Whether to yield train, validation or test data.

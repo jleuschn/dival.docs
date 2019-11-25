@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.6
               </div>
             
           
@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.version.html">dival.version module</a></li>
 </ul>
 
             
@@ -195,11 +196,15 @@
 <span class="sd">Global configuration dict.</span>
 
 <span class="sd">Holds the current configuration of the library. On ``import dival``, the</span>
-<span class="sd">configuration is loaded from ~/.dival/config.json.</span>
+<span class="sd">configuration is loaded from ``~/.dival/config.json``.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># configuration loaded from config file, overrides hardcoded configuration</span>
 <span class="n">CONFIG_FILENAME</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.dival/config.json&#39;</span><span class="p">))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Path of the configuration file.</span>
+<span class="sd">The value is given by ``&#39;~/.dival/config.json&#39;``, expanded and normalized.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># automatically write config file if not existing (e.g., on first import)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">CONFIG_FILENAME</span><span class="p">):</span>

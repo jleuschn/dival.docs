@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.6
               </div>
             
           
@@ -110,6 +110,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
 
             
@@ -427,7 +428,7 @@ implementation, this may be a file path or a directory path.</p>
 <em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.reconstructor.</code><code class="sig-name descname">IterativeReconstructor</code><span class="sig-paren">(</span><em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#IterativeReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.IterativeReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
 <p>Iterative reconstructor base class.</p>
-<p>Subclasses should call <code class="docutils literal notranslate"><span class="pre">self.callback()</span></code> after each iteration in
+<p>Subclasses should call <a class="reference internal" href="#dival.reconstructors.reconstructor.IterativeReconstructor.callback" title="dival.reconstructors.reconstructor.IterativeReconstructor.callback"><code class="xref py py-attr docutils literal notranslate"><span class="pre">callback</span></code></a> after each iteration in
 <code class="docutils literal notranslate"><span class="pre">self.reconstruct</span></code>.</p>
 <dl class="attribute">
 <dt id="dival.reconstructors.reconstructor.IterativeReconstructor.callback">
@@ -443,7 +444,36 @@ implementation, this may be a file path or a directory path.</p>
 <dl class="method">
 <dt id="dival.reconstructors.reconstructor.IterativeReconstructor.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#IterativeReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.IterativeReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>callback</strong> (<code class="docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – Callback to be called after each iteration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.IterativeReconstructor.reconstruct">
+<code class="sig-name descname">reconstruct</code><span class="sig-paren">(</span><em class="sig-param">observation</em>, <em class="sig-param">out=None</em>, <em class="sig-param">callback=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#IterativeReconstructor.reconstruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.IterativeReconstructor.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct input data from observation data.</p>
+<p>Same as <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.reconstruct" title="dival.reconstructors.reconstructor.Reconstructor.reconstruct"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Reconstructor.reconstruct()</span></code></a>, but with additional optional
+<cite>callback</cite> parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>observation</strong> (<code class="xref py py-attr docutils literal notranslate"><span class="pre">observation_space</span></code> element-like) – The observation data.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-attr docutils literal notranslate"><span class="pre">reco_space</span></code> element-like, optional) – Array to which the result is written (in-place evaluation).
+If <cite>None</cite>, a new array is created (out-of-place evaluation).</p></li>
+<li><p><strong>callback</strong> (<code class="docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – New value of <a class="reference internal" href="#dival.reconstructors.reconstructor.IterativeReconstructor.callback" title="dival.reconstructors.reconstructor.IterativeReconstructor.callback"><code class="xref py py-attr docutils literal notranslate"><span class="pre">callback</span></code></a>. If <cite>None</cite>, the value of
+<a class="reference internal" href="#dival.reconstructors.reconstructor.IterativeReconstructor.callback" title="dival.reconstructors.reconstructor.IterativeReconstructor.callback"><code class="xref py py-attr docutils literal notranslate"><span class="pre">callback</span></code></a> is not modified.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>reconstruction</strong> – The reconstruction.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">reco_space</span></code> element or <cite>out</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
