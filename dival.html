@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.4.0
               </div>
             
           
@@ -706,12 +706,10 @@ performed which tries to get the first sample by random access.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><p>A typical synthetical CT dataset with ellipse phantoms.</p>
 <p><cite>EllipsesDataset</cite> is used as ground truth dataset, a ray
 transform with parallel beam geometry using 30 angles is applied,
-and white gaussian noise with a standard deviation of 5% (i.e.
-<code class="docutils literal notranslate"><span class="pre">0.05</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added. The ray transform is
-normalized by its spectral norm.</p>
-<p>A normalized ray transform that corresponds to the noiseless
-forward operator is stored in the attribute <cite>ray_trafo</cite> of the
-dataset.</p>
+and white gaussian noise with a standard deviation of 2.5% (i.e.
+<code class="docutils literal notranslate"><span class="pre">0.025</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added.</p>
+<p>The ray transform that corresponds to the (noiseless) forward
+operator is stored in the attribute <cite>ray_trafo</cite> of the dataset.</p>
 <p>In order to avoid the inverse crime, the ground truth images of
 shape (128, 128) are upscaled by bilinear interpolation to a
 resolution of (400, 400) before the ray transform is applied (whose
@@ -745,14 +743,6 @@ Supported parameters for the datasets are:</p>
 <div><dl>
 <dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><dl>
 <dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></p>
-</dd>
-<dt>normalize_ray_trafo<span class="classifier">bool, optional</span></dt><dd><p>Whether to normalize the forward operator by its op-norm.
-Default is <cite>False</cite>.
-If <cite>True</cite>, the observation values are divided by
-<code class="docutils literal notranslate"><span class="pre">opnorm</span> <span class="pre">=</span> <span class="pre">dataset.ray_trafo.norm(estimate=True)</span></code>, so
-e.g. FBP requires to apply
-<code class="docutils literal notranslate"><span class="pre">(opnorm</span> <span class="pre">*</span> <span class="pre">fbp_op(dataset.ray_trafo))(observation)</span></code> in
-order obtain the original image value scale.</p>
 </dd>
 <dt>fixed_seeds<span class="classifier">dict or bool, optional</span></dt><dd><p>Seeds to use for random ellipse generation, passed to
 <a class="reference internal" href="dival.datasets.ellipses_dataset.html#dival.datasets.ellipses_dataset.EllipsesDataset" title="dival.datasets.ellipses_dataset.EllipsesDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">EllipsesDataset</span></code></a>.</p>

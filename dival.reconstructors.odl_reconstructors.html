@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.4.0
               </div>
             
           
@@ -705,6 +705,137 @@ non-negative.</p></li>
 <li><p><strong>sensitivities</strong> (float or <code class="docutils literal notranslate"><span class="pre">op.domain</span></code> <cite>element-like</cite>, optional) – Usable with <code class="docutils literal notranslate"><span class="pre">noise='poisson'</span></code>. The algorithm contains an
 <code class="docutils literal notranslate"><span class="pre">A^T</span> <span class="pre">1</span></code> term, if this parameter is given, it is replaced by it.
 Default: <code class="docutils literal notranslate"><span class="pre">op[i].adjoint(op[i].range.one())</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">ISTAReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">gamma=0.001</em>, <em class="sig-param">reg=&lt;class 'odl.solvers.functional.default_functionals.L1Norm'&gt;</em>, <em class="sig-param">accelerated=True</em>, <em class="sig-param">lam=1.0</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ISTAReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
+<p>Iterative reconstructor applying proximal gradient
+algorithm for convex optimization, also known as
+“Iterative Soft-Thresholding Algorithm” (ISTA)</p>
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.op">
+<code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.op" title="Permalink to this definition">¶</a></dt>
+<dd><p>The forward operator of the inverse problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>odl.operator.Operator</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.x0">
+<code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.x0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.niter">
+<code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.niter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.gamma">
+<code class="sig-name descname">gamma</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.gamma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Step size parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>positive float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.reg">
+<code class="sig-name descname">reg</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.reg" title="Permalink to this definition">¶</a></dt>
+<dd><p>The regularization operator of the inverse problem. Needs to have
+<code class="docutils literal notranslate"><span class="pre">f.proximal</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>odl.solvers.functional.Functional</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.accelerated">
+<code class="sig-name descname">accelerated</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.accelerated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates which algorithm to use. If <cite>False</cite>, then the “Iterative
+Soft-Thresholding Algorithm” (ISTA) is used. If <cite>True</cite>, then the
+accelerated version FISTA is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.lam">
+<code class="sig-name descname">lam</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.lam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overrelaxation step size (default <code class="docutils literal notranslate"><span class="pre">1.0</span></code>).
+If callable, it should take an index (starting at zero) and return
+the corresponding step size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float or callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.callback">
+<code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object that is called in each iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code> or <cite>None</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">gamma=0.001</em>, <em class="sig-param">reg=&lt;class 'odl.solvers.functional.default_functionals.L1Norm'&gt;</em>, <em class="sig-param">accelerated=True</em>, <em class="sig-param">lam=1.0</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ISTAReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls
+<cite>odl.solvers.nonsmooth.proximal_gradient_solvers.proximal_gradient</cite> or
+<cite>odl.solvers.nonsmooth.proximal_gradient_solvers        .accelerated_proximal_gradient</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op</strong> (<cite>odl.operator.Operator</cite>) – The forward operator of the inverse problem.</p></li>
+<li><p><strong>x0</strong> (<code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element) – Initial value.</p></li>
+<li><p><strong>niter</strong> (<em>int</em>) – Number of iterations.</p></li>
+<li><p><strong>gamma</strong> (<em>positive float</em><em>, </em><em>optional</em>) – Step size parameter (default <code class="docutils literal notranslate"><span class="pre">0.001</span></code>).</p></li>
+<li><p><strong>reg</strong> ([type of ] <cite>odl.solvers.functional.Functional</cite>, optional) – The regularization functional of the inverse problem. Needs to have
+<code class="docutils literal notranslate"><span class="pre">f.proximal</span></code>. If a type is passed instead, the functional is
+constructed by calling <code class="docutils literal notranslate"><span class="pre">reg(op.domain)</span></code>.
+Default: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.L1Norm</span></code>.</p></li>
+<li><p><strong>accelerated</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Indicates which algorithm to use. If <cite>False</cite>, then the “Iterative
+Soft-Thresholding Algorithm” (ISTA) is used. If <cite>True</cite>, then the
+accelerated version FISTA is used. Default: <cite>True</cite>.</p></li>
+<li><p><strong>lam</strong> (<em>float</em><em> or </em><em>callable</em><em>, </em><em>optional</em>) – Overrelaxation step size (default <code class="docutils literal notranslate"><span class="pre">1.0</span></code>).
+If callable, it should take an index (starting at zero) and return
+the corresponding step size.</p></li>
+<li><p><strong>callback</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – Object that is called in each iteration.</p></li>
 </ul>
 </dd>
 </dl>

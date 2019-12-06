@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.4.0
               </div>
             
           
@@ -196,13 +196,11 @@
 
 <span class="sd">            `EllipsesDataset` is used as ground truth dataset, a ray</span>
 <span class="sd">            transform with parallel beam geometry using 30 angles is applied,</span>
-<span class="sd">            and white gaussian noise with a standard deviation of 5% (i.e.</span>
-<span class="sd">            ``0.05 * mean(abs(observation))``) is added. The ray transform is</span>
-<span class="sd">            normalized by its spectral norm.</span>
+<span class="sd">            and white gaussian noise with a standard deviation of 2.5% (i.e.</span>
+<span class="sd">            ``0.025 * mean(abs(observation))``) is added.</span>
 
-<span class="sd">            A normalized ray transform that corresponds to the noiseless</span>
-<span class="sd">            forward operator is stored in the attribute `ray_trafo` of the</span>
-<span class="sd">            dataset.</span>
+<span class="sd">            The ray transform that corresponds to the (noiseless) forward</span>
+<span class="sd">            operator is stored in the attribute `ray_trafo` of the dataset.</span>
 
 <span class="sd">            In order to avoid the inverse crime, the ground truth images of</span>
 <span class="sd">            shape (128, 128) are upscaled by bilinear interpolation to a</span>
@@ -241,14 +239,6 @@
 <span class="sd">                impl : {``&#39;skimage&#39;``, ``&#39;astra_cpu&#39;``, ``&#39;astra_cuda&#39;``},\</span>
 <span class="sd">                        optional</span>
 <span class="sd">                    Implementation passed to :class:`odl.tomo.RayTransform`</span>
-<span class="sd">                normalize_ray_trafo : bool, optional</span>
-<span class="sd">                    Whether to normalize the forward operator by its op-norm.</span>
-<span class="sd">                    Default is `False`.</span>
-<span class="sd">                    If `True`, the observation values are divided by</span>
-<span class="sd">                    ``opnorm = dataset.ray_trafo.norm(estimate=True)``, so</span>
-<span class="sd">                    e.g. FBP requires to apply</span>
-<span class="sd">                    ``(opnorm * fbp_op(dataset.ray_trafo))(observation)`` in</span>
-<span class="sd">                    order obtain the original image value scale.</span>
 <span class="sd">                fixed_seeds : dict or bool, optional</span>
 <span class="sd">                    Seeds to use for random ellipse generation, passed to</span>
 <span class="sd">                    :class:`.EllipsesDataset`.</span>
@@ -307,16 +297,10 @@
         <span class="n">resize_op</span> <span class="o">=</span> <span class="n">_ResizeOperator</span><span class="p">()</span>
         <span class="n">forward_op</span> <span class="o">=</span> <span class="n">ray_trafo</span> <span class="o">*</span> <span class="n">resize_op</span>
 
-        <span class="n">normalize_ray_trafo</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;normalize_ray_trafo&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">normalize_ray_trafo</span><span class="p">:</span>
-            <span class="c1"># normalize by op-norm of reco_ray_trafo (128x128)</span>
-            <span class="n">opnorm</span> <span class="o">=</span> <span class="n">reco_ray_trafo</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">estimate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">forward_op</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">opnorm</span><span class="p">)</span> <span class="o">*</span> <span class="n">forward_op</span>
-
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">ellipses_dataset</span><span class="o">.</span><span class="n">create_pair_dataset</span><span class="p">(</span>
             <span class="n">forward_op</span><span class="o">=</span><span class="n">forward_op</span><span class="p">,</span> <span class="n">noise_type</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
             <span class="n">noise_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;relative_stddev&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-                          <span class="s1">&#39;stddev&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
+                          <span class="s1">&#39;stddev&#39;</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">},</span>
             <span class="n">noise_seeds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
 
         <span class="n">dataset</span><span class="o">.</span><span class="n">get_ray_trafo</span> <span class="o">=</span> <span class="n">get_reco_ray_trafo</span>
