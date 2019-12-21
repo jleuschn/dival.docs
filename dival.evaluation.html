@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -272,9 +272,9 @@ saved, even if <code class="docutils literal notranslate"><span class="pre">task
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor</strong> (<a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor</span></code></a>) – The reconstructor.</p></li>
 <li><p><strong>test_data</strong> (<a class="reference internal" href="dival.data.html#dival.data.DataPairs" title="dival.data.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a>) – The test data.</p></li>
-<li><p><strong>measures</strong> (sequence of (<a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> or str)) – Measures that will be applied. Either <a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> objects or
+<li><p><strong>measures</strong> (sequence of (<a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> or str), optional) – Measures that will be applied. Either <a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> objects or
 their short names can be passed.</p></li>
-<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – The dataset that will be passed to
+<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>, optional) – The dataset that will be passed to
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">reconstructor.train</span></code> if it is a
 <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">LearnedReconstructor</span></code></a>.</p></li>
 <li><p><strong>hyper_param_choices</strong> (<em>dict of list</em><em> or </em><em>list of dict</em><em>, </em><em>optional</em>) – <p>Choices of hyper parameter combinations to try as sub-tasks.</p>
@@ -292,13 +292,38 @@ default values for all parameters not specified in the passed
 dicts. Afterwards, the original values are restored.</p>
 </p></li>
 <li><p><strong>options</strong> (<em>dict</em>) – <p>Options that will be used. Options are:</p>
-<dl class="simple">
+<dl>
 <dt><code class="docutils literal notranslate"><span class="pre">'skip_training'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether to skip training. Can be used for manual training
 of reconstructors (or loading of a stored state).
-The default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'save_best_reconstructor'</span></code><span class="classifier">dict, optional</span></dt><dd><p>If specified, save the best reconstructor from the sub-tasks
+(cf. <cite>hyper_param_choices</cite>) by calling
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">Reconstructor.save_params()</span></code>.
+For <code class="docutils literal notranslate"><span class="pre">hyper_param_choices=None</span></code>, the reconstructor from the
+single sub-task is saved.
+This option requires <cite>measures</cite> to be non-empty if there are
+multiple sub-tasks.
+The fields are:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'path'</span></code><span class="classifier">str</span></dt><dd><p>The path to save the best reconstructor at (argument to
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">save_params()</span></code>). Note that this path is used
+during execution of the task to store the best
+reconstructor params so far, so the file(s) are
+most likely updated multiple times.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'measure'</span></code><span class="classifier"><a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> or str, optional</span></dt><dd><p>The measure used to define the “best” reconstructor (in
+terms of mean performance).
+Must be one of the <cite>measures</cite>. By default
+<code class="docutils literal notranslate"><span class="pre">measures[0]</span></code> is used.
+This field is ignored if there is only one sub-task.</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">'save_iterates'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether to save the intermediate reconstructions of iterative
-reconstructors (the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>).
+reconstructors. Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.
 Will be ignored if <code class="docutils literal notranslate"><span class="pre">save_reconstructions=False</span></code> is passed to
 <cite>run</cite>. Requires the reconstructor to call its <cite>callback</cite>
 attribute after each iteration.</p>

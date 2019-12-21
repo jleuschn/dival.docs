@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -174,7 +174,10 @@
   <h1>Source code for dival.reconstructors.reconstructor</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Provides the abstract reconstructor base class.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="k">import</span> <span class="n">signature</span><span class="p">,</span> <span class="n">Parameter</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
 
 
 <div class="viewcode-block" id="Reconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor">[docs]</a><span class="k">class</span> <span class="nc">Reconstructor</span><span class="p">:</span>
@@ -344,7 +347,121 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;&#39;_reconstruct&#39; not implemented by class &quot;</span>
                                   <span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39;. Reconstructor subclasses must &quot;</span>
                                   <span class="s2">&quot;implement either &#39;reconstruct&#39; or &quot;</span>
-                                  <span class="s2">&quot;&#39;_reconstruct&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span></div>
+                                  <span class="s2">&quot;&#39;_reconstruct&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+
+<div class="viewcode-block" id="Reconstructor.save_hyper_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.save_hyper_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_hyper_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save hyper parameters to JSON file.</span>
+<span class="sd">        See also :meth:`load_hyper_params`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path of the file in which the hyper parameters should be saved.</span>
+<span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.json&#39;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Reconstructor.load_hyper_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.load_hyper_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_hyper_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load hyper parameters from JSON file.</span>
+<span class="sd">        See also :meth:`save_hyper_params`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path of the file in which the hyper parameters are stored.</span>
+<span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.json&#39;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">hyper_params</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hyper_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">HYPER_PARAMS</span><span class="p">:</span>
+                    <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;loading value for unknown hyper parameter &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span>
+                         <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">hyper_params</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Reconstructor.save_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.save_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save all parameters to file.</span>
+<span class="sd">        E.g. for learned reconstructors, both hyper parameters and learned</span>
+<span class="sd">        parameters should be included.</span>
+<span class="sd">        The purpose of this method, together with :meth:`load_params`, is to</span>
+<span class="sd">        define a unified way of saving and loading any kind of reconstructor.</span>
+<span class="sd">        The default implementation calls :meth:`save_hyper_params`.</span>
+<span class="sd">        Subclasses must reimplement this method in order to include non-hyper</span>
+<span class="sd">        parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str[, optional]</span>
+<span class="sd">            Path at which all non-hyper parameters should be saved.</span>
+<span class="sd">            This argument is required if the reconstructor has non-hyper</span>
+<span class="sd">            parameters.</span>
+<span class="sd">            Implementations should either use it as a file path or as a</span>
+<span class="sd">            directory path for multiple files (the dir should be created by</span>
+<span class="sd">            this method if it does not exist).</span>
+<span class="sd">        hyper_params_path : str, optional</span>
+<span class="sd">            Path of the file in which the hyper parameters should be saved.</span>
+<span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
+<span class="sd">            If not specified, it should be determined from `path`.</span>
+<span class="sd">            The default implementation saves to the file</span>
+<span class="sd">            ``path + &#39;_hyper_params.json&#39;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hp_path</span> <span class="o">=</span> <span class="n">hyper_params_path</span>
+        <span class="k">if</span> <span class="n">hp_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s1">&#39;either a directory `path` or a filename &#39;</span>
+                    <span class="s1">&#39;`hyper_params_path` required (in default implementation &#39;</span>
+                    <span class="s1">&#39;of `Reconstructor.save_params`)&#39;</span><span class="p">)</span>
+            <span class="n">hp_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;_hyper_params.json&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hp_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">hyper_params_path</span> <span class="k">if</span> <span class="n">hyper_params_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">)</span>
+                       <span class="k">else</span> <span class="n">hyper_params_path</span> <span class="o">+</span> <span class="s1">&#39;.json&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_hyper_params</span><span class="p">(</span><span class="n">hp_path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Reconstructor.load_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.load_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load of parameters from file.</span>
+<span class="sd">        E.g. for learned reconstructors, both hyper parameters and learned</span>
+<span class="sd">        parameters should be included.</span>
+<span class="sd">        The purpose of this method, together with :meth:`save_params`, is to</span>
+<span class="sd">        define a unified way of saving and loading any kind of reconstructor.</span>
+<span class="sd">        The default implementation calls :meth:`load_hyper_params`.</span>
+<span class="sd">        Subclasses must reimplement this method in order to include non-hyper</span>
+<span class="sd">        parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str[, optional]</span>
+<span class="sd">            Path at which the parameters are stored.</span>
+<span class="sd">            This argument is required if the reconstructor has non-hyper</span>
+<span class="sd">            parameters.</span>
+<span class="sd">            Depending on the implementation, this may be a file path or a</span>
+<span class="sd">            directory path for multiple files.</span>
+<span class="sd">        hyper_params_path : str, optional</span>
+<span class="sd">            Path of the file in which the hyper parameters are stored.</span>
+<span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
+<span class="sd">            If not specified, it should be determined from `path`. If `path`</span>
+<span class="sd">            is interpreted as a directory, the default for `hyper_params_path`</span>
+<span class="sd">            should be some file in this directory; otherwise, if `path` is used</span>
+<span class="sd">            as a single file name, the default for `hyper_params_path` should</span>
+<span class="sd">            be a file in the same directory as this file.</span>
+<span class="sd">            The default implementation reads from the file</span>
+<span class="sd">            ``path + &#39;_hyper_params.json&#39;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hp_path</span> <span class="o">=</span> <span class="n">hyper_params_path</span>
+        <span class="k">if</span> <span class="n">hp_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s1">&#39;either a directory `path` or a filename &#39;</span>
+                    <span class="s1">&#39;`hyper_params_path` required (in default implementation &#39;</span>
+                    <span class="s1">&#39;of `Reconstructor.save_params`)&#39;</span><span class="p">)</span>
+            <span class="n">hp_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;_hyper_params.json&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hp_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">hyper_params_path</span> <span class="k">if</span> <span class="n">hyper_params_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">)</span>
+                       <span class="k">else</span> <span class="n">hyper_params_path</span> <span class="o">+</span> <span class="s1">&#39;.json&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_hyper_params</span><span class="p">(</span><span class="n">hp_path</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="LearnedReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor">[docs]</a><span class="k">class</span> <span class="nc">LearnedReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
@@ -360,29 +477,82 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="LearnedReconstructor.save_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.save_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Save parameters to path.</span>
-<span class="sd">        Both hyper parameters and learned parameters should be included.</span>
+<div class="viewcode-block" id="LearnedReconstructor.save_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.save_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save all parameters to file.</span>
+
+<span class="sd">        Calls :meth:`save_hyper_params` and :meth:`save_learned_params`, where</span>
+<span class="sd">        :meth:`save_learned_params` should be implemented by the subclass.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        path : str</span>
-<span class="sd">            Path at which the parameters should be saved.</span>
-<span class="sd">            Implementations should either use it as a file path (w/ or w/o</span>
-<span class="sd">            extension) or as a directory path for multiple files (the dir</span>
-<span class="sd">            should be created by this method if it does not exist).</span>
+<span class="sd">            Path at which the learned parameters should be saved.</span>
+<span class="sd">            Passed to :meth:`save_learned_params`.</span>
+<span class="sd">        hyper_params_path : str, optional</span>
+<span class="sd">            Path of the file in which the hyper parameters should be saved.</span>
+<span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
+<span class="sd">            If not specified, it should be determined from `path`.</span>
+<span class="sd">            The default implementation saves to the file</span>
+<span class="sd">            ``path + &#39;_hyper_params.json&#39;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hp_path</span> <span class="o">=</span> <span class="n">hyper_params_path</span>
+        <span class="k">if</span> <span class="n">hp_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">hp_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;_hyper_params.json&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hp_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">hyper_params_path</span> <span class="k">if</span> <span class="n">hyper_params_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">)</span>
+                       <span class="k">else</span> <span class="n">hyper_params_path</span> <span class="o">+</span> <span class="s1">&#39;.json&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_hyper_params</span><span class="p">(</span><span class="n">hp_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_learned_params</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnedReconstructor.load_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.load_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load all parameters from file.</span>
+
+<span class="sd">        Calls :meth:`load_hyper_params` and :meth:`load_learned_params`, where</span>
+<span class="sd">        :meth:`load_learned_params` should be implemented by the subclass.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path at which the parameters are stored.</span>
+<span class="sd">            Passed to :meth:`load_learned_params`.</span>
+<span class="sd">        hyper_params_path : str, optional</span>
+<span class="sd">            Path of the file in which the hyper parameters are stored.</span>
+<span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
+<span class="sd">            If not specified, it should be determined from `path`.</span>
+<span class="sd">            The default implementation reads from the file</span>
+<span class="sd">            ``path + &#39;_hyper_params.json&#39;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hp_path</span> <span class="o">=</span> <span class="n">hyper_params_path</span>
+        <span class="k">if</span> <span class="n">hp_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">hp_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;_hyper_params.json&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hp_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">hyper_params_path</span> <span class="k">if</span> <span class="n">hyper_params_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">)</span>
+                       <span class="k">else</span> <span class="n">hyper_params_path</span> <span class="o">+</span> <span class="s1">&#39;.json&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_hyper_params</span><span class="p">(</span><span class="n">hp_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_learned_params</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnedReconstructor.save_learned_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.save_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_learned_params</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save learned parameters to file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path at which the learned parameters should be saved.</span>
+<span class="sd">            Implementations may interpret this as a file path or as a directory</span>
+<span class="sd">            path for multiple files (which then should be created if it does</span>
+<span class="sd">            not exist).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="LearnedReconstructor.load_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.load_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Load parameters from path.</span>
-<span class="sd">        See also :meth:`save_params`.</span>
+<div class="viewcode-block" id="LearnedReconstructor.load_learned_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.load_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_learned_params</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load learned parameters from file.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        path : str</span>
-<span class="sd">            Path at which the parameters are stored. Depending on the</span>
-<span class="sd">            implementation, this may be a file path or a directory path.</span>
+<span class="sd">            Path at which the learned parameters are stored.</span>
+<span class="sd">            Implementations may interpret this as a file path or as a directory</span>
+<span class="sd">            path for multiple files.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 

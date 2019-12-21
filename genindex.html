@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -270,9 +270,17 @@
 </li>
         <li><a href="dival.reconstructors.html#dival.reconstructors.IterativeReconstructor.__init__">(dival.reconstructors.IterativeReconstructor method)</a>
 </li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ADMMReconstructor.__init__">(dival.reconstructors.odl_reconstructors.ADMMReconstructor method)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.BFGSReconstructor.__init__">(dival.reconstructors.odl_reconstructors.BFGSReconstructor method)</a>
+</li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.__init__">(dival.reconstructors.odl_reconstructors.CGReconstructor method)</a>
 </li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.__init__">(dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor method)</a>
+</li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.FBPReconstructor.__init__">(dival.reconstructors.odl_reconstructors.FBPReconstructor method)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.__init__">(dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor method)</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__">(dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor method)</a>
 </li>
@@ -283,6 +291,8 @@
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor.__init__">(dival.reconstructors.odl_reconstructors.LandweberReconstructor method)</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.MLEMReconstructor.__init__">(dival.reconstructors.odl_reconstructors.MLEMReconstructor method)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.PDHGReconstructor.__init__">(dival.reconstructors.odl_reconstructors.PDHGReconstructor method)</a>
 </li>
         <li><a href="dival.reconstructors.html#dival.reconstructors.Reconstructor.__init__">(dival.reconstructors.Reconstructor method)</a>
 </li>
@@ -308,6 +318,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ISTAReconstructor.accelerated">accelerated (dival.reconstructors.odl_reconstructors.ISTAReconstructor attribute)</a>
+</li>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ADMMReconstructor">ADMMReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
 </li>
       <li><a href="dival.evaluation.html#dival.evaluation.TaskTable.append">append() (dival.evaluation.TaskTable method)</a>
 
@@ -356,6 +368,10 @@
       <li><a href="dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.batch_size">batch_size() (dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor property)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.BFGSReconstructor">BFGSReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="C">C</h2>
@@ -368,7 +384,15 @@
       <ul>
         <li><a href="dival.reconstructors.html#dival.reconstructors.IterativeReconstructor.callback">(dival.reconstructors.IterativeReconstructor attribute)</a>
 </li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ADMMReconstructor.callback">(dival.reconstructors.odl_reconstructors.ADMMReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.BFGSReconstructor.callback">(dival.reconstructors.odl_reconstructors.BFGSReconstructor attribute)</a>
+</li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.callback">(dival.reconstructors.odl_reconstructors.CGReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.callback">(dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.callback">(dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor attribute)</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.callback">(dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor attribute)</a>
 </li>
@@ -380,15 +404,17 @@
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.MLEMReconstructor.callback">(dival.reconstructors.odl_reconstructors.MLEMReconstructor attribute)</a>
 </li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.PDHGReconstructor.callback">(dival.reconstructors.odl_reconstructors.PDHGReconstructor attribute)</a>
+</li>
         <li><a href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor.callback">(dival.reconstructors.reconstructor.IterativeReconstructor attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback_loop">callback_loop (dival.reconstructors.odl_reconstructors.KaczmarzReconstructor attribute)</a>
 </li>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor">CGReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.datasets.lodopab_dataset.html#dival.datasets.lodopab_dataset.LoDoPaBDataset.check_for_lodopab">check_for_lodopab() (dival.datasets.lodopab_dataset.LoDoPaBDataset method)</a>
 
       <ul>
@@ -475,10 +501,10 @@
 </li>
       <li><a href="dival.datasets.standard.html#module-dival.datasets.standard">dival.datasets.standard (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.evaluation.html#module-dival.evaluation">dival.evaluation (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.hyper_param_search.html#module-dival.hyper_param_search">dival.hyper_param_search (module)</a>
 </li>
       <li><a href="dival.measure.html#module-dival.measure">dival.measure (module)</a>
@@ -508,6 +534,8 @@
       <li><a href="dival.util.zenodo_download.html#module-dival.util.zenodo_download">dival.util.zenodo_download (module)</a>
 </li>
       <li><a href="dival.version.html#module-dival.version">dival.version (module)</a>
+</li>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor">DouglasRachfordReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
 </li>
       <li><a href="dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.DownBlock">DownBlock (class in dival.reconstructors.fbp_unet_reconstructor)</a>
 </li>
@@ -569,6 +597,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor">ForwardBackwardReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
+</li>
       <li><a href="dival.reconstructors.html#dival.reconstructors.FunctionReconstructor.fun_args">fun_args (dival.reconstructors.FunctionReconstructor attribute)</a>
 
       <ul>
@@ -855,8 +885,20 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.measure.html#dival.measure.L2Measure">L2Measure (class in dival.measure)</a>
 </li>
-      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ISTAReconstructor.lam">lam (dival.reconstructors.odl_reconstructors.ISTAReconstructor attribute)</a>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ADMMReconstructor.lam">lam (dival.reconstructors.odl_reconstructors.ADMMReconstructor attribute)</a>
+
+      <ul>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.BFGSReconstructor.lam">(dival.reconstructors.odl_reconstructors.BFGSReconstructor attribute)</a>
 </li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.lam">(dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.lam">(dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ISTAReconstructor.lam">(dival.reconstructors.odl_reconstructors.ISTAReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.PDHGReconstructor.lam">(dival.reconstructors.odl_reconstructors.PDHGReconstructor attribute)</a>
+</li>
+      </ul></li>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor">LandweberReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
 </li>
       <li><a href="dival.html#dival.LearnedReconstructor">LearnedReconstructor (class in dival)</a>
@@ -869,16 +911,38 @@
       </ul></li>
       <li><a href="dival.reconstructors.regression_reconstructors.html#dival.reconstructors.regression_reconstructors.LinRegReconstructor">LinRegReconstructor (class in dival.reconstructors.regression_reconstructors)</a>
 </li>
+      <li><a href="dival.html#dival.Reconstructor.load_hyper_params">load_hyper_params() (dival.Reconstructor method)</a>
+
+      <ul>
+        <li><a href="dival.reconstructors.html#dival.reconstructors.Reconstructor.load_hyper_params">(dival.reconstructors.Reconstructor method)</a>
+</li>
+        <li><a href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor.load_hyper_params">(dival.reconstructors.reconstructor.Reconstructor method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dival.html#dival.LearnedReconstructor.load_learned_params">load_learned_params() (dival.LearnedReconstructor method)</a>
+
+      <ul>
+        <li><a href="dival.reconstructors.html#dival.reconstructors.LearnedReconstructor.load_learned_params">(dival.reconstructors.LearnedReconstructor method)</a>
+</li>
+        <li><a href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor.load_learned_params">(dival.reconstructors.reconstructor.LearnedReconstructor method)</a>
+</li>
+      </ul></li>
       <li><a href="dival.html#dival.LearnedReconstructor.load_params">load_params() (dival.LearnedReconstructor method)</a>
 
       <ul>
+        <li><a href="dival.html#dival.Reconstructor.load_params">(dival.Reconstructor method)</a>
+</li>
         <li><a href="dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.load_params">(dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor method)</a>
 </li>
         <li><a href="dival.reconstructors.html#dival.reconstructors.LearnedReconstructor.load_params">(dival.reconstructors.LearnedReconstructor method)</a>
 </li>
+        <li><a href="dival.reconstructors.html#dival.reconstructors.Reconstructor.load_params">(dival.reconstructors.Reconstructor method)</a>
+</li>
         <li><a href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor.load_params">(dival.reconstructors.reconstructor.LearnedReconstructor method)</a>
+</li>
+        <li><a href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor.load_params">(dival.reconstructors.reconstructor.Reconstructor method)</a>
 </li>
         <li><a href="dival.reconstructors.regression_reconstructors.html#dival.reconstructors.regression_reconstructors.LinRegReconstructor.load_params">(dival.reconstructors.regression_reconstructors.LinRegReconstructor method)</a>
 </li>
@@ -963,9 +1027,17 @@
         <li><a href="dival.html#dival.TaskTable.name">(dival.TaskTable attribute)</a>
 </li>
       </ul></li>
-      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.niter">niter (dival.reconstructors.odl_reconstructors.CGReconstructor attribute)</a>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ADMMReconstructor.niter">niter (dival.reconstructors.odl_reconstructors.ADMMReconstructor attribute)</a>
 
       <ul>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.BFGSReconstructor.niter">(dival.reconstructors.odl_reconstructors.BFGSReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.niter">(dival.reconstructors.odl_reconstructors.CGReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.niter">(dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.niter">(dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor attribute)</a>
+</li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.niter">(dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor attribute)</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ISTAReconstructor.niter">(dival.reconstructors.odl_reconstructors.ISTAReconstructor attribute)</a>
@@ -975,6 +1047,8 @@
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor.niter">(dival.reconstructors.odl_reconstructors.LandweberReconstructor attribute)</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.MLEMReconstructor.niter">(dival.reconstructors.odl_reconstructors.MLEMReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.PDHGReconstructor.niter">(dival.reconstructors.odl_reconstructors.PDHGReconstructor attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1031,11 +1105,17 @@
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor.omega">(dival.reconstructors.odl_reconstructors.LandweberReconstructor attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.op">op (dival.reconstructors.odl_reconstructors.CGReconstructor attribute)</a>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ADMMReconstructor.op">op (dival.reconstructors.odl_reconstructors.ADMMReconstructor attribute)</a>
 
       <ul>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.BFGSReconstructor.op">(dival.reconstructors.odl_reconstructors.BFGSReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.op">(dival.reconstructors.odl_reconstructors.CGReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.op">(dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.op">(dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor attribute)</a>
+</li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.op">(dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor attribute)</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ISTAReconstructor.op">(dival.reconstructors.odl_reconstructors.ISTAReconstructor attribute)</a>
@@ -1044,7 +1124,11 @@
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.MLEMReconstructor.op">(dival.reconstructors.odl_reconstructors.MLEMReconstructor attribute)</a>
 </li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.PDHGReconstructor.op">(dival.reconstructors.odl_reconstructors.PDHGReconstructor attribute)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.op_is_symmetric">op_is_symmetric (dival.reconstructors.odl_reconstructors.CGReconstructor attribute)</a>
 </li>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.ops">ops (dival.reconstructors.odl_reconstructors.KaczmarzReconstructor attribute)</a>
@@ -1059,6 +1143,8 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.PDHGReconstructor">PDHGReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
+</li>
       <li><a href="dival.evaluation.html#dival.evaluation.ResultTable.plot_all_reconstructions">plot_all_reconstructions() (dival.evaluation.ResultTable method)</a>
 </li>
       <li><a href="dival.evaluation.html#dival.evaluation.ResultTable.plot_convergence">plot_convergence() (dival.evaluation.ResultTable method)</a>
@@ -1167,14 +1253,36 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.util.odl_noise_random_state.html#dival.util.odl_noise_random_state.salt_pepper_noise">salt_pepper_noise() (in module dival.util.odl_noise_random_state)</a>
 </li>
+      <li><a href="dival.html#dival.Reconstructor.save_hyper_params">save_hyper_params() (dival.Reconstructor method)</a>
+
+      <ul>
+        <li><a href="dival.reconstructors.html#dival.reconstructors.Reconstructor.save_hyper_params">(dival.reconstructors.Reconstructor method)</a>
+</li>
+        <li><a href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor.save_hyper_params">(dival.reconstructors.reconstructor.Reconstructor method)</a>
+</li>
+      </ul></li>
+      <li><a href="dival.html#dival.LearnedReconstructor.save_learned_params">save_learned_params() (dival.LearnedReconstructor method)</a>
+
+      <ul>
+        <li><a href="dival.reconstructors.html#dival.reconstructors.LearnedReconstructor.save_learned_params">(dival.reconstructors.LearnedReconstructor method)</a>
+</li>
+        <li><a href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor.save_learned_params">(dival.reconstructors.reconstructor.LearnedReconstructor method)</a>
+</li>
+      </ul></li>
       <li><a href="dival.html#dival.LearnedReconstructor.save_params">save_params() (dival.LearnedReconstructor method)</a>
 
       <ul>
+        <li><a href="dival.html#dival.Reconstructor.save_params">(dival.Reconstructor method)</a>
+</li>
         <li><a href="dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.save_params">(dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor method)</a>
 </li>
         <li><a href="dival.reconstructors.html#dival.reconstructors.LearnedReconstructor.save_params">(dival.reconstructors.LearnedReconstructor method)</a>
 </li>
+        <li><a href="dival.reconstructors.html#dival.reconstructors.Reconstructor.save_params">(dival.reconstructors.Reconstructor method)</a>
+</li>
         <li><a href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor.save_params">(dival.reconstructors.reconstructor.LearnedReconstructor method)</a>
+</li>
+        <li><a href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor.save_params">(dival.reconstructors.reconstructor.Reconstructor method)</a>
 </li>
         <li><a href="dival.reconstructors.regression_reconstructors.html#dival.reconstructors.regression_reconstructors.LinRegReconstructor.save_params">(dival.reconstructors.regression_reconstructors.LinRegReconstructor method)</a>
 </li>
@@ -1211,6 +1319,8 @@
         <li><a href="dival.datasets.html#dival.datasets.LoDoPaBDataset.shape">(dival.datasets.LoDoPaBDataset attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.html#dival.Measure.short_name">short_name (dival.Measure attribute)</a>, <a href="dival.html#dival.Measure.short_name">[1]</a>
 
       <ul>
@@ -1225,8 +1335,6 @@
         <li><a href="dival.measure.html#dival.measure.SSIMMeasure.short_name">(dival.measure.SSIMMeasure attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.Skip">Skip (class in dival.reconstructors.fbp_unet_reconstructor)</a>
 </li>
       <li><a href="dival.html#dival.Dataset.space">space (dival.Dataset attribute)</a>
@@ -1283,6 +1391,12 @@
         <li><a href="dival.evaluation.html#dival.evaluation.TaskTable">(class in dival.evaluation)</a>
 </li>
       </ul></li>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ADMMReconstructor.tau">tau (dival.reconstructors.odl_reconstructors.ADMMReconstructor attribute)</a>
+
+      <ul>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.tau">(dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor attribute)</a>
+</li>
+      </ul></li>
       <li><a href="dival.html#dival.Dataset.test_len">test_len (dival.Dataset attribute)</a>
 
       <ul>
@@ -1299,10 +1413,10 @@
         <li><a href="dival.datasets.html#dival.datasets.LoDoPaBDataset.test_len">(dival.datasets.LoDoPaBDataset attribute)</a>
 </li>
       </ul></li>
-      <li><a href="dival.evaluation.html#dival.evaluation.ResultTable.to_string">to_string() (dival.evaluation.ResultTable method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dival.evaluation.html#dival.evaluation.ResultTable.to_string">to_string() (dival.evaluation.ResultTable method)</a>
+</li>
       <li><a href="dival.html#dival.LearnedReconstructor.train">train() (dival.LearnedReconstructor method)</a>
 
       <ul>
@@ -1387,9 +1501,17 @@
 <h2 id="X">X</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.x0">x0 (dival.reconstructors.odl_reconstructors.CGReconstructor attribute)</a>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ADMMReconstructor.x0">x0 (dival.reconstructors.odl_reconstructors.ADMMReconstructor attribute)</a>
 
       <ul>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.BFGSReconstructor.x0">(dival.reconstructors.odl_reconstructors.BFGSReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor.x0">(dival.reconstructors.odl_reconstructors.CGReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.x0">(dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.x0">(dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor attribute)</a>
+</li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.x0">(dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor attribute)</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ISTAReconstructor.x0">(dival.reconstructors.odl_reconstructors.ISTAReconstructor attribute)</a>
@@ -1399,6 +1521,8 @@
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor.x0">(dival.reconstructors.odl_reconstructors.LandweberReconstructor attribute)</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.MLEMReconstructor.x0">(dival.reconstructors.odl_reconstructors.MLEMReconstructor attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.PDHGReconstructor.x0">(dival.reconstructors.odl_reconstructors.PDHGReconstructor attribute)</a>
 </li>
       </ul></li>
   </ul></td>

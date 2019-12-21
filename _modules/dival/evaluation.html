@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -226,6 +226,7 @@
 
 <span class="sd">            If ``False``, no iterates (intermediate reconstructions) will be</span>
 <span class="sd">            saved, even if ``task[&#39;options&#39;][&#39;save_iterates&#39;]==True``.</span>
+
 <span class="sd">        show_progress : str, optional</span>
 <span class="sd">            Whether and how to show progress. Options are:</span>
 
@@ -261,6 +262,8 @@
                             <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">task</span><span class="p">[</span><span class="s1">&#39;measures&#39;</span><span class="p">]]</span>
                 <span class="n">options</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span>
                 <span class="n">skip_training</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;skip_training&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="n">save_best_reconstructor</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                    <span class="s1">&#39;save_best_reconstructor&#39;</span><span class="p">)</span>
                 <span class="n">save_iterates</span> <span class="o">=</span> <span class="p">(</span><span class="n">save_reconstructions</span> <span class="ow">and</span>
                                  <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;save_iterates&#39;</span><span class="p">))</span>
 
@@ -294,6 +297,15 @@
                         <span class="n">hp_choice_list</span> <span class="o">=</span> <span class="n">hp_choices</span>
                         <span class="k">for</span> <span class="n">hp_choice</span> <span class="ow">in</span> <span class="n">hp_choice_list</span><span class="p">:</span>
                             <span class="n">_warn_if_invalid_keys</span><span class="p">(</span><span class="n">hp_choice</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                    <span class="k">if</span> <span class="n">save_best_reconstructor</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measures</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">hp_choice_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;No measures are chosen to be evaluated, so &quot;</span>
+                                 <span class="s2">&quot;no best reconstructor can be selected. Will &quot;</span>
+                                 <span class="s2">&quot;not save like requested by &quot;</span>
+                                 <span class="s2">&quot;&#39;save_best_reconstructor&#39; option.&quot;</span><span class="p">)</span>
+                            <span class="n">save_best_reconstructor</span> <span class="o">=</span> <span class="kc">None</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">best_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
                     <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">hp_choice</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
                             <span class="n">tqdm</span><span class="p">(</span><span class="n">hp_choice_list</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;sub-task&#39;</span><span class="p">,</span>
                                  <span class="n">file</span><span class="o">=</span><span class="n">orig_stdout</span><span class="p">,</span>
@@ -324,6 +336,21 @@
                         <span class="n">row</span><span class="p">[</span><span class="s1">&#39;task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
                         <span class="n">row</span><span class="p">[</span><span class="s1">&#39;sub_task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
                         <span class="n">row_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">save_best_reconstructor</span><span class="p">:</span>
+                            <span class="n">measure</span> <span class="o">=</span> <span class="n">save_best_reconstructor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                                <span class="s1">&#39;measure&#39;</span><span class="p">,</span> <span class="n">measures</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                                <span class="n">measure</span> <span class="o">=</span> <span class="n">Measure</span><span class="o">.</span><span class="n">get_by_short_name</span><span class="p">(</span><span class="n">measure</span><span class="p">)</span>
+                            <span class="n">loss_sign</span> <span class="o">=</span> <span class="p">(</span>
+                                <span class="mi">1</span> <span class="k">if</span> <span class="n">measure</span><span class="o">.</span><span class="n">measure_type</span> <span class="o">==</span> <span class="s1">&#39;distance&#39;</span>
+                                <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                            <span class="n">cur_loss</span> <span class="o">=</span> <span class="p">(</span>
+                                <span class="n">loss_sign</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                                    <span class="n">row</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">][</span><span class="n">measure</span><span class="o">.</span><span class="n">short_name</span><span class="p">]))</span>
+                            <span class="k">if</span> <span class="n">cur_loss</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
+                                <span class="n">reconstructor</span><span class="o">.</span><span class="n">save_params</span><span class="p">(</span>
+                                    <span class="n">save_best_reconstructor</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
+                                <span class="n">best_loss</span> <span class="o">=</span> <span class="n">cur_loss</span>
                     <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span> <span class="o">=</span> <span class="n">orig_hyper_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># run task (with hyper params as they are)</span>
@@ -343,6 +370,9 @@
                     <span class="n">row</span><span class="p">[</span><span class="s1">&#39;task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
                     <span class="n">row</span><span class="p">[</span><span class="s1">&#39;sub_task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
                     <span class="n">row_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">save_best_reconstructor</span><span class="p">:</span>
+                        <span class="n">reconstructor</span><span class="o">.</span><span class="n">save_params</span><span class="p">(</span>
+                            <span class="n">save_best_reconstructor</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">ResultTable</span><span class="p">(</span><span class="n">row_list</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span></div>
@@ -433,10 +463,10 @@
 <span class="sd">            The reconstructor.</span>
 <span class="sd">        test_data : :class:`.DataPairs`</span>
 <span class="sd">            The test data.</span>
-<span class="sd">        measures : sequence of (:class:`.Measure` or str)</span>
+<span class="sd">        measures : sequence of (:class:`.Measure` or str), optional</span>
 <span class="sd">            Measures that will be applied. Either :class:`.Measure` objects or</span>
 <span class="sd">            their short names can be passed.</span>
-<span class="sd">        dataset : :class:`.Dataset`</span>
+<span class="sd">        dataset : :class:`.Dataset`, optional</span>
 <span class="sd">            The dataset that will be passed to</span>
 <span class="sd">            :meth:`reconstructor.train &lt;LearnedReconstructor.train&gt;` if it is a</span>
 <span class="sd">            :class:`.LearnedReconstructor`.</span>
@@ -458,10 +488,33 @@
 <span class="sd">            ``&#39;skip_training&#39;`` : bool, optional</span>
 <span class="sd">                Whether to skip training. Can be used for manual training</span>
 <span class="sd">                of reconstructors (or loading of a stored state).</span>
-<span class="sd">                The default is ``False``.</span>
+<span class="sd">                Default: ``False``.</span>
+<span class="sd">            ``&#39;save_best_reconstructor&#39;`` : dict, optional</span>
+<span class="sd">                If specified, save the best reconstructor from the sub-tasks</span>
+<span class="sd">                (cf. `hyper_param_choices`) by calling</span>
+<span class="sd">                :meth:`Reconstructor.save_params`.</span>
+<span class="sd">                For ``hyper_param_choices=None``, the reconstructor from the</span>
+<span class="sd">                single sub-task is saved.</span>
+<span class="sd">                This option requires `measures` to be non-empty if there are</span>
+<span class="sd">                multiple sub-tasks.</span>
+<span class="sd">                The fields are:</span>
+
+<span class="sd">                    ``&#39;path&#39;`` : str</span>
+<span class="sd">                        The path to save the best reconstructor at (argument to</span>
+<span class="sd">                        :meth:`save_params`). Note that this path is used</span>
+<span class="sd">                        during execution of the task to store the best</span>
+<span class="sd">                        reconstructor params so far, so the file(s) are</span>
+<span class="sd">                        most likely updated multiple times.</span>
+<span class="sd">                    ``&#39;measure&#39;`` : :class:`.Measure` or str, optional</span>
+<span class="sd">                        The measure used to define the &quot;best&quot; reconstructor (in</span>
+<span class="sd">                        terms of mean performance).</span>
+<span class="sd">                        Must be one of the `measures`. By default</span>
+<span class="sd">                        ``measures[0]`` is used.</span>
+<span class="sd">                        This field is ignored if there is only one sub-task.</span>
+
 <span class="sd">            ``&#39;save_iterates&#39;`` : bool, optional</span>
 <span class="sd">                Whether to save the intermediate reconstructions of iterative</span>
-<span class="sd">                reconstructors (the default is ``False``).</span>
+<span class="sd">                reconstructors. Default: ``False``.</span>
 <span class="sd">                Will be ignored if ``save_reconstructions=False`` is passed to</span>
 <span class="sd">                `run`. Requires the reconstructor to call its `callback`</span>
 <span class="sd">                attribute after each iteration.</span>

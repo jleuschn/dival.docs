@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -375,6 +375,95 @@ If <cite>None</cite>, a new array is created (out-of-place evaluation).</p></li>
 </dl>
 </dd></dl>
 
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.Reconstructor.save_hyper_params">
+<code class="sig-name descname">save_hyper_params</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.save_hyper_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.save_hyper_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save hyper parameters to JSON file.
+See also <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.load_hyper_params" title="dival.reconstructors.reconstructor.Reconstructor.load_hyper_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_hyper_params()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path of the file in which the hyper parameters should be saved.
+The ending <code class="docutils literal notranslate"><span class="pre">'.json'</span></code> is automatically appended if not included.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.Reconstructor.load_hyper_params">
+<code class="sig-name descname">load_hyper_params</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.load_hyper_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.load_hyper_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load hyper parameters from JSON file.
+See also <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.save_hyper_params" title="dival.reconstructors.reconstructor.Reconstructor.save_hyper_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save_hyper_params()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path of the file in which the hyper parameters are stored.
+The ending <code class="docutils literal notranslate"><span class="pre">'.json'</span></code> is automatically appended if not included.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.Reconstructor.save_params">
+<code class="sig-name descname">save_params</code><span class="sig-paren">(</span><em class="sig-param">path=None</em>, <em class="sig-param">hyper_params_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.save_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save all parameters to file.
+E.g. for learned reconstructors, both hyper parameters and learned
+parameters should be included.
+The purpose of this method, together with <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.load_params" title="dival.reconstructors.reconstructor.Reconstructor.load_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_params()</span></code></a>, is to
+define a unified way of saving and loading any kind of reconstructor.
+The default implementation calls <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.save_hyper_params" title="dival.reconstructors.reconstructor.Reconstructor.save_hyper_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save_hyper_params()</span></code></a>.
+Subclasses must reimplement this method in order to include non-hyper
+parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em><em>[</em><em>, </em><em>optional</em><em>]</em>) – Path at which all non-hyper parameters should be saved.
+This argument is required if the reconstructor has non-hyper
+parameters.
+Implementations should either use it as a file path or as a
+directory path for multiple files (the dir should be created by
+this method if it does not exist).</p></li>
+<li><p><strong>hyper_params_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path of the file in which the hyper parameters should be saved.
+The ending <code class="docutils literal notranslate"><span class="pre">'.json'</span></code> is automatically appended if not included.
+If not specified, it should be determined from <cite>path</cite>.
+The default implementation saves to the file
+<code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">+</span> <span class="pre">'_hyper_params.json'</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.Reconstructor.load_params">
+<code class="sig-name descname">load_params</code><span class="sig-paren">(</span><em class="sig-param">path=None</em>, <em class="sig-param">hyper_params_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#Reconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.load_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load of parameters from file.
+E.g. for learned reconstructors, both hyper parameters and learned
+parameters should be included.
+The purpose of this method, together with <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.save_params" title="dival.reconstructors.reconstructor.Reconstructor.save_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save_params()</span></code></a>, is to
+define a unified way of saving and loading any kind of reconstructor.
+The default implementation calls <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.load_hyper_params" title="dival.reconstructors.reconstructor.Reconstructor.load_hyper_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_hyper_params()</span></code></a>.
+Subclasses must reimplement this method in order to include non-hyper
+parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em><em>[</em><em>, </em><em>optional</em><em>]</em>) – Path at which the parameters are stored.
+This argument is required if the reconstructor has non-hyper
+parameters.
+Depending on the implementation, this may be a file path or a
+directory path for multiple files.</p></li>
+<li><p><strong>hyper_params_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path of the file in which the hyper parameters are stored.
+The ending <code class="docutils literal notranslate"><span class="pre">'.json'</span></code> is automatically appended if not included.
+If not specified, it should be determined from <cite>path</cite>. If <cite>path</cite>
+is interpreted as a directory, the default for <cite>hyper_params_path</cite>
+should be some file in this directory; otherwise, if <cite>path</cite> is used
+as a single file name, the default for <cite>hyper_params_path</cite> should
+be a file in the same directory as this file.
+The default implementation reads from the file
+<code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">+</span> <span class="pre">'_hyper_params.json'</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -395,28 +484,69 @@ If <cite>None</cite>, a new array is created (out-of-place evaluation).</p></li>
 
 <dl class="method">
 <dt id="dival.reconstructors.reconstructor.LearnedReconstructor.save_params">
-<code class="sig-name descname">save_params</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save parameters to path.
-Both hyper parameters and learned parameters should be included.</p>
+<code class="sig-name descname">save_params</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">hyper_params_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save all parameters to file.</p>
+<p>Calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">save_hyper_params()</span></code> and <a class="reference internal" href="#dival.reconstructors.reconstructor.LearnedReconstructor.save_learned_params" title="dival.reconstructors.reconstructor.LearnedReconstructor.save_learned_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save_learned_params()</span></code></a>, where
+<a class="reference internal" href="#dival.reconstructors.reconstructor.LearnedReconstructor.save_learned_params" title="dival.reconstructors.reconstructor.LearnedReconstructor.save_learned_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save_learned_params()</span></code></a> should be implemented by the subclass.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters should be saved.
-Implementations should either use it as a file path (w/ or w/o
-extension) or as a directory path for multiple files (the dir
-should be created by this method if it does not exist).</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path at which the learned parameters should be saved.
+Passed to <a class="reference internal" href="#dival.reconstructors.reconstructor.LearnedReconstructor.save_learned_params" title="dival.reconstructors.reconstructor.LearnedReconstructor.save_learned_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save_learned_params()</span></code></a>.</p></li>
+<li><p><strong>hyper_params_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path of the file in which the hyper parameters should be saved.
+The ending <code class="docutils literal notranslate"><span class="pre">'.json'</span></code> is automatically appended if not included.
+If not specified, it should be determined from <cite>path</cite>.
+The default implementation saves to the file
+<code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">+</span> <span class="pre">'_hyper_params.json'</span></code>.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="dival.reconstructors.reconstructor.LearnedReconstructor.load_params">
-<code class="sig-name descname">load_params</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load parameters from path.
-See also <a class="reference internal" href="#dival.reconstructors.reconstructor.LearnedReconstructor.save_params" title="dival.reconstructors.reconstructor.LearnedReconstructor.save_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save_params()</span></code></a>.</p>
+<code class="sig-name descname">load_params</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">hyper_params_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load all parameters from file.</p>
+<p>Calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">load_hyper_params()</span></code> and <a class="reference internal" href="#dival.reconstructors.reconstructor.LearnedReconstructor.load_learned_params" title="dival.reconstructors.reconstructor.LearnedReconstructor.load_learned_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_learned_params()</span></code></a>, where
+<a class="reference internal" href="#dival.reconstructors.reconstructor.LearnedReconstructor.load_learned_params" title="dival.reconstructors.reconstructor.LearnedReconstructor.load_learned_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_learned_params()</span></code></a> should be implemented by the subclass.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the parameters are stored. Depending on the
-implementation, this may be a file path or a directory path.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path at which the parameters are stored.
+Passed to <a class="reference internal" href="#dival.reconstructors.reconstructor.LearnedReconstructor.load_learned_params" title="dival.reconstructors.reconstructor.LearnedReconstructor.load_learned_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_learned_params()</span></code></a>.</p></li>
+<li><p><strong>hyper_params_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path of the file in which the hyper parameters are stored.
+The ending <code class="docutils literal notranslate"><span class="pre">'.json'</span></code> is automatically appended if not included.
+If not specified, it should be determined from <cite>path</cite>.
+The default implementation reads from the file
+<code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">+</span> <span class="pre">'_hyper_params.json'</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.LearnedReconstructor.save_learned_params">
+<code class="sig-name descname">save_learned_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.save_learned_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor.save_learned_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save learned parameters to file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the learned parameters should be saved.
+Implementations may interpret this as a file path or as a directory
+path for multiple files (which then should be created if it does
+not exist).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.reconstructors.reconstructor.LearnedReconstructor.load_learned_params">
+<code class="sig-name descname">load_learned_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#LearnedReconstructor.load_learned_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.reconstructor.LearnedReconstructor.load_learned_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load learned parameters from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the learned parameters are stored.
+Implementations may interpret this as a file path or as a directory
+path for multiple files.</p>
 </dd>
 </dl>
 </dd></dl>
