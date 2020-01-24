@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.1
+                0.4.2
               </div>
             
           
@@ -174,11 +174,15 @@
   <h1>Source code for dival.util.odl_utility</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Provides utilities related to ODL.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">dival.util.odl_noise_random_state</span> <span class="k">import</span> <span class="p">(</span><span class="n">white_noise</span><span class="p">,</span> <span class="n">uniform_noise</span><span class="p">,</span>
                                                <span class="n">poisson_noise</span><span class="p">,</span>
                                                <span class="n">salt_pepper_noise</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">odl.discr.lp_discr</span> <span class="k">import</span> <span class="n">uniform_discr</span>
 <span class="kn">from</span> <span class="nn">odl.operator.operator</span> <span class="k">import</span> <span class="n">Operator</span>
+<span class="kn">from</span> <span class="nn">odl.solvers.util.callback</span> <span class="k">import</span> <span class="n">Callback</span>
+<span class="kn">from</span> <span class="nn">odl.util</span> <span class="k">import</span> <span class="n">signature_string</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
@@ -302,6 +306,153 @@
             <span class="n">out</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="n">apply_noise</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise_type</span><span class="p">,</span> <span class="n">noise_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">noise_kwargs</span><span class="p">,</span>
                     <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CallbackStore"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.CallbackStore">[docs]</a><span class="k">class</span> <span class="nc">CallbackStore</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is a modified copy of odl.solvers.util.callback.CallbackStore,</span>
+<span class="sd">    Copyright held by The ODL contributors, subject to the terms of the</span>
+<span class="sd">    Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed</span>
+<span class="sd">    with this file, You can obtain one at https://mozilla.org/MPL/2.0/.</span>
+<span class="sd">    This copy incorporates https://github.com/odlgroup/odl/pull/1539.</span>
+
+<span class="sd">    Callback for storing all iterates of a solver.</span>
+<span class="sd">    Can optionally apply a function, for example the norm or calculating the</span>
+<span class="sd">    residual.</span>
+<span class="sd">    By default, calls the ``copy()`` method on the iterates before storing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CallbackStore.__init__"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.CallbackStore.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a new instance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        results : list, optional</span>
+<span class="sd">            List in which to store the iterates.</span>
+<span class="sd">            Default: new list (``[]``)</span>
+<span class="sd">        function : callable, optional</span>
+<span class="sd">            Deprecated, use composition instead. See examples.</span>
+<span class="sd">            Function to be called on all incoming results before storage.</span>
+<span class="sd">            Default: copy</span>
+<span class="sd">        step : int, optional</span>
+<span class="sd">            Number of iterates between storing iterates.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Store results as-is:</span>
+<span class="sd">        &gt;&gt;&gt; callback = CallbackStore()</span>
+<span class="sd">        Provide list to store iterates in:</span>
+<span class="sd">        &gt;&gt;&gt; results = []</span>
+<span class="sd">        &gt;&gt;&gt; callback = CallbackStore(results=results)</span>
+<span class="sd">        Store the norm of the results:</span>
+<span class="sd">        &gt;&gt;&gt; norm_function = lambda x: x.norm()</span>
+<span class="sd">        &gt;&gt;&gt; callback = CallbackStore() * norm_function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">results</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="k">if</span> <span class="n">function</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;`function` argument is deprecated and will be &#39;</span>
+                          <span class="s1">&#39;removed in a future release. Use composition &#39;</span>
+                          <span class="s1">&#39;instead. &#39;</span>
+                          <span class="s1">&#39;See Examples in the documentation.&#39;</span><span class="p">,</span>
+                          <span class="ne">DeprecationWarning</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iter</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Append result to results list.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="CallbackStore.reset"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.CallbackStore.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Clear the results list.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iter</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Allow iteration over the results.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return ``self[index]``.</span>
+<span class="sd">        Get iterates by index.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Number of results stored.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return ``repr(self)``.&quot;&quot;&quot;</span>
+        <span class="n">optargs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="p">[]),</span>
+                   <span class="p">(</span><span class="s1">&#39;function&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+        <span class="n">inner_str</span> <span class="o">=</span> <span class="n">signature_string</span><span class="p">([],</span> <span class="n">optargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">inner_str</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CallbackStoreAfter"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.CallbackStoreAfter">[docs]</a><span class="k">class</span> <span class="nc">CallbackStoreAfter</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Callback for storing after specific numbers of iterations of a solver.</span>
+<span class="sd">    Calls the ``copy()`` method on the iterates before storing.</span>
+
+<span class="sd">    The source code of this class is based on</span>
+<span class="sd">    odl.solvers.util.callback.CallbackStore, Copyright held by The ODL</span>
+<span class="sd">    contributors, subject to the terms of the Mozilla Public License, v. 2.0.</span>
+<span class="sd">    If a copy of the MPL was not distributed with this file, You can obtain one</span>
+<span class="sd">    at https://mozilla.org/MPL/2.0/.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CallbackStoreAfter.__init__"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.CallbackStoreAfter.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_after_iters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a new instance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        results : list, optional</span>
+<span class="sd">            List in which to store the iterates.</span>
+<span class="sd">            Default: new list (``[]``)</span>
+<span class="sd">        store_after_iters : list of int, optional</span>
+<span class="sd">            Numbers of iterations after which the result should be stored.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">results</span> <span class="k">if</span> <span class="n">results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">store_after_iters</span> <span class="o">=</span> <span class="p">(</span><span class="n">store_after_iters</span>
+                                  <span class="k">if</span> <span class="n">store_after_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iter</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Append result to results list.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">store_after_iters</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="CallbackStoreAfter.reset"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.CallbackStoreAfter.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Clear the results list.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iter</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Allow iteration over the results.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return ``self[index]``.</span>
+<span class="sd">        Get iterates by index.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Number of results stored.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return ``repr(self)``.&quot;&quot;&quot;</span>
+        <span class="n">optargs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="p">[]),</span>
+                   <span class="p">(</span><span class="s1">&#39;store_after_iters&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">store_after_iters</span><span class="p">,</span> <span class="p">[])]</span>
+        <span class="n">inner_str</span> <span class="o">=</span> <span class="n">signature_string</span><span class="p">([],</span> <span class="n">optargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">inner_str</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.1
+                0.4.2
               </div>
             
           
@@ -178,11 +178,15 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">ceil</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span> <span class="nn">odl.solvers.util.callback</span> <span class="k">import</span> <span class="n">Callback</span><span class="p">,</span> <span class="n">CallbackStore</span>
+<span class="kn">from</span> <span class="nn">dival.util.odl_utility</span> <span class="k">import</span> <span class="n">CallbackStoreAfter</span>
+<span class="kn">from</span> <span class="nn">dival.util.odl_utility</span> <span class="k">import</span> <span class="n">CallbackStore</span>
+<span class="c1"># to be replaced by odl.solvers.util.callback.CallbackStore when</span>
+<span class="c1"># https://github.com/odlgroup/odl/pull/1539 is included in ODL release</span>
 <span class="kn">from</span> <span class="nn">dival.util.plot</span> <span class="k">import</span> <span class="n">plot_image</span><span class="p">,</span> <span class="n">plot_images</span>
 <span class="kn">from</span> <span class="nn">dival.util.std_out_err_redirect_tqdm</span> <span class="k">import</span> <span class="n">std_out_err_redirect_tqdm</span>
 <span class="kn">from</span> <span class="nn">dival.measure</span> <span class="k">import</span> <span class="n">Measure</span>
@@ -209,7 +213,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="TaskTable.run"><a class="viewcode-back" href="../../dival.evaluation.html#dival.TaskTable.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_reconstructions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="TaskTable.run"><a class="viewcode-back" href="../../dival.evaluation.html#dival.TaskTable.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_reconstructions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">reuse_iterates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">show_progress</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run all tasks and return the results.</span>
 
 <span class="sd">        The returned :class:`ResultTable` object is also stored as</span>
@@ -226,6 +231,24 @@
 
 <span class="sd">            If ``False``, no iterates (intermediate reconstructions) will be</span>
 <span class="sd">            saved, even if ``task[&#39;options&#39;][&#39;save_iterates&#39;]==True``.</span>
+
+<span class="sd">        reuse_iterates : bool, optional</span>
+<span class="sd">            Whether to reuse iterates from other sub-tasks if possible.</span>
+<span class="sd">            The default is ``True``.</span>
+
+<span class="sd">            If there are sub-tasks whose hyper parameter choices differ only</span>
+<span class="sd">            in the number of iterations of an :class:`IterativeReconstructor`,</span>
+<span class="sd">            only the sub-task with the maximum number of iterations is run and</span>
+<span class="sd">            the results for the other ones determined by storing iterates if</span>
+<span class="sd">            this option is ``True``.</span>
+
+<span class="sd">            Note 1: If enabled, the callbacks assigned to the reconstructor</span>
+<span class="sd">            will be run only for the above specified sub-tasks with the maximum</span>
+<span class="sd">            number of iterations.</span>
+
+<span class="sd">            Note 2: If the reconstructor is non-deterministic, this option can</span>
+<span class="sd">            affect the results as the same realization is used for multiple</span>
+<span class="sd">            sub-tasks.</span>
 
 <span class="sd">        show_progress : str, optional</span>
 <span class="sd">            Whether and how to show progress. Options are:</span>
@@ -287,6 +310,12 @@
                         <span class="n">keys_retrain_first</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
                             <span class="n">hp_choices</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
                             <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">retrain_param_keys</span><span class="p">)</span>
+<span class="c1">#                        if isinstance(reconstructor, IterativeReconstructor):</span>
+                            <span class="c1"># &#39;iterations&#39; treated specially to re-use iterates</span>
+<span class="c1">#                            keys_retrain_first.remove(&#39;iterations&#39;)</span>
+<span class="c1">#                            hp_choices_iterations = hp_choices.get(</span>
+<span class="c1">#                                &#39;iterations&#39;,</span>
+<span class="c1">#                                [orig_hyper_params[&#39;iterations&#39;]])</span>
                         <span class="n">param_values</span> <span class="o">=</span> <span class="p">[</span>
                             <span class="n">hp_choices</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">[</span><span class="n">orig_hyper_params</span><span class="p">[</span><span class="n">k</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span>
                             <span class="n">keys_retrain_first</span><span class="p">]</span>
@@ -297,6 +326,28 @@
                         <span class="n">hp_choice_list</span> <span class="o">=</span> <span class="n">hp_choices</span>
                         <span class="k">for</span> <span class="n">hp_choice</span> <span class="ow">in</span> <span class="n">hp_choice_list</span><span class="p">:</span>
                             <span class="n">_warn_if_invalid_keys</span><span class="p">(</span><span class="n">hp_choice</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1">#                        if isinstance(reconstructor, IterativeReconstructor):</span>
+<span class="c1">#                             no special support for re-using iterates</span>
+<span class="c1">#                            hp_choices_iterations = []</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">IterativeReconstructor</span><span class="p">)</span> <span class="ow">and</span>
+                            <span class="n">reuse_iterates</span><span class="p">):</span>
+                        <span class="n">reuse_iterates_from</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">hp_choice_j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hp_choice_list</span><span class="p">):</span>
+                            <span class="n">iter_j</span> <span class="o">=</span> <span class="n">hp_choice_j</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                                <span class="s1">&#39;iterations&#39;</span><span class="p">,</span> <span class="n">orig_hyper_params</span><span class="p">[</span><span class="s1">&#39;iterations&#39;</span><span class="p">])</span>
+                            <span class="p">(</span><span class="n">k_max</span><span class="p">,</span> <span class="n">iter_max</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">iter_j</span><span class="p">)</span>
+                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">hp_choice_k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hp_choice_list</span><span class="p">):</span>
+                                <span class="n">iter_k</span> <span class="o">=</span> <span class="n">hp_choice_k</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                                    <span class="s1">&#39;iterations&#39;</span><span class="p">,</span>
+                                    <span class="n">orig_hyper_params</span><span class="p">[</span><span class="s1">&#39;iterations&#39;</span><span class="p">])</span>
+                                <span class="k">if</span> <span class="n">iter_k</span> <span class="o">&gt;</span> <span class="n">iter_max</span><span class="p">:</span>
+                                    <span class="n">hp_choice_j_rem</span> <span class="o">=</span> <span class="n">hp_choice_j</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                                    <span class="n">hp_choice_j_rem</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;iterations&#39;</span><span class="p">)</span>
+                                    <span class="n">hp_choice_k_rem</span> <span class="o">=</span> <span class="n">hp_choice_k</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                                    <span class="n">hp_choice_k_rem</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;iterations&#39;</span><span class="p">)</span>
+                                    <span class="k">if</span> <span class="n">hp_choice_j_rem</span> <span class="o">==</span> <span class="n">hp_choice_k_rem</span><span class="p">:</span>
+                                        <span class="p">(</span><span class="n">k_max</span><span class="p">,</span> <span class="n">iter_max</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">iter_k</span><span class="p">)</span>
+                            <span class="n">reuse_iterates_from</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k_max</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">save_best_reconstructor</span><span class="p">:</span>
                         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measures</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">hp_choice_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                             <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;No measures are chosen to be evaluated, so &quot;</span>
@@ -306,6 +357,8 @@
                             <span class="n">save_best_reconstructor</span> <span class="o">=</span> <span class="kc">None</span>
                         <span class="k">else</span><span class="p">:</span>
                             <span class="n">best_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+                    <span class="n">row_sub_list</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">hp_choice_list</span><span class="p">)</span>
+                    <span class="c1"># run sub-tasks</span>
                     <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">hp_choice</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
                             <span class="n">tqdm</span><span class="p">(</span><span class="n">hp_choice_list</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;sub-task&#39;</span><span class="p">,</span>
                                  <span class="n">file</span><span class="o">=</span><span class="n">orig_stdout</span><span class="p">,</span>
@@ -322,36 +375,85 @@
                                  <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">retrain_param_keys</span><span class="p">))))</span>
                         <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span> <span class="o">=</span> <span class="n">orig_hyper_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
                         <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">hp_choice</span><span class="p">)</span>
+<span class="c1">#                        if (isinstance(reconstructor, IterativeReconstructor)</span>
+<span class="c1">#                                and hp_choices_iterations):</span>
+<span class="c1">#                            reconstructor.hyper_params[&#39;iterations&#39;] = max(</span>
+<span class="c1">#                                hp_choices_iterations)  # only largest number</span>
                         <span class="k">if</span> <span class="n">train</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">skip_training</span><span class="p">:</span>
                             <span class="n">reconstructor</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">task</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
-                        <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_task</span><span class="p">(</span>
-                            <span class="n">reconstructor</span><span class="o">=</span><span class="n">reconstructor</span><span class="p">,</span>
-                            <span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">,</span>
-                            <span class="n">measures</span><span class="o">=</span><span class="n">measures</span><span class="p">,</span>
-                            <span class="n">hp_choice</span><span class="o">=</span><span class="n">hp_choice</span><span class="p">,</span>
-                            <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
-                            <span class="n">save_reconstructions</span><span class="o">=</span><span class="n">save_reconstructions</span><span class="p">,</span>
-                            <span class="n">save_iterates</span><span class="o">=</span><span class="n">save_iterates</span><span class="p">,</span>
-                            <span class="p">)</span>
-                        <span class="n">row</span><span class="p">[</span><span class="s1">&#39;task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-                        <span class="n">row</span><span class="p">[</span><span class="s1">&#39;sub_task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
-                        <span class="n">row_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+                        <span class="n">run_sub_task</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span>
+                                                       <span class="n">IterativeReconstructor</span><span class="p">)</span>
+                                            <span class="ow">and</span> <span class="n">reuse_iterates</span>
+                                            <span class="ow">and</span> <span class="n">reuse_iterates_from</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">run_sub_task</span><span class="p">:</span>
+                            <span class="n">return_rows_iterates</span> <span class="o">=</span> <span class="kc">None</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span>
+                                           <span class="n">IterativeReconstructor</span><span class="p">)</span> <span class="ow">and</span>
+                                    <span class="n">reuse_iterates</span><span class="p">):</span>
+                                <span class="c1"># determine the iteration numbers needed for</span>
+                                <span class="c1"># other sub-tasks</span>
+                                <span class="n">return_iterates_for</span> <span class="o">=</span> <span class="p">[</span>
+                                    <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">from_k</span> <span class="ow">in</span>
+                                    <span class="nb">enumerate</span><span class="p">(</span><span class="n">reuse_iterates_from</span><span class="p">)</span>
+                                    <span class="k">if</span> <span class="n">from_k</span> <span class="o">==</span> <span class="n">j</span><span class="p">]</span>  <span class="c1"># sub-task indices</span>
+                                <span class="n">return_rows_iterates</span> <span class="o">=</span> <span class="p">[</span>
+                                    <span class="n">hp_choice_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                                        <span class="s1">&#39;iterations&#39;</span><span class="p">,</span>
+                                        <span class="n">orig_hyper_params</span><span class="p">[</span><span class="s1">&#39;iterations&#39;</span><span class="p">])</span>
+                                    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">return_iterates_for</span><span class="p">]</span>  <span class="c1"># iterations</span>
+                            <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_task</span><span class="p">(</span>
+                                <span class="n">reconstructor</span><span class="o">=</span><span class="n">reconstructor</span><span class="p">,</span>
+                                <span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">,</span>
+                                <span class="n">measures</span><span class="o">=</span><span class="n">measures</span><span class="p">,</span>
+                                <span class="n">hp_choice</span><span class="o">=</span><span class="n">hp_choice</span><span class="p">,</span>
+                                <span class="n">return_rows_iterates</span><span class="o">=</span><span class="n">return_rows_iterates</span><span class="p">,</span>
+                                <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
+                                <span class="n">save_reconstructions</span><span class="o">=</span><span class="n">save_reconstructions</span><span class="p">,</span>
+                                <span class="n">save_iterates</span><span class="o">=</span><span class="n">save_iterates</span><span class="p">,</span>
+                                <span class="p">)</span>
+                            <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                                <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">rows_iterates</span><span class="p">)</span> <span class="o">=</span> <span class="n">row</span>
+                                <span class="c1"># assign rows for other sub-tasks</span>
+                                <span class="k">for</span> <span class="n">r_i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">return_iterates_for</span><span class="p">):</span>
+                                    <span class="n">rows_iterates</span><span class="p">[</span><span class="n">r_i</span><span class="p">][</span><span class="s1">&#39;task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+                                    <span class="n">rows_iterates</span><span class="p">[</span><span class="n">r_i</span><span class="p">][</span><span class="s1">&#39;sub_task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span>
+                                    <span class="n">row_sub_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">rows_iterates</span><span class="p">[</span><span class="n">r_i</span><span class="p">]</span>
+                            <span class="c1"># assign row for current sub-task</span>
+                            <span class="n">row</span><span class="p">[</span><span class="s1">&#39;task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+                            <span class="n">row</span><span class="p">[</span><span class="s1">&#39;sub_task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
+                            <span class="n">row_sub_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span>
                         <span class="k">if</span> <span class="n">save_best_reconstructor</span><span class="p">:</span>
-                            <span class="n">measure</span> <span class="o">=</span> <span class="n">save_best_reconstructor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-                                <span class="s1">&#39;measure&#39;</span><span class="p">,</span> <span class="n">measures</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-                            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                                <span class="n">measure</span> <span class="o">=</span> <span class="n">Measure</span><span class="o">.</span><span class="n">get_by_short_name</span><span class="p">(</span><span class="n">measure</span><span class="p">)</span>
-                            <span class="n">loss_sign</span> <span class="o">=</span> <span class="p">(</span>
-                                <span class="mi">1</span> <span class="k">if</span> <span class="n">measure</span><span class="o">.</span><span class="n">measure_type</span> <span class="o">==</span> <span class="s1">&#39;distance&#39;</span>
-                                <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-                            <span class="n">cur_loss</span> <span class="o">=</span> <span class="p">(</span>
-                                <span class="n">loss_sign</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
-                                    <span class="n">row</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">][</span><span class="n">measure</span><span class="o">.</span><span class="n">short_name</span><span class="p">]))</span>
-                            <span class="k">if</span> <span class="n">cur_loss</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
-                                <span class="n">reconstructor</span><span class="o">.</span><span class="n">save_params</span><span class="p">(</span>
-                                    <span class="n">save_best_reconstructor</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
-                                <span class="n">best_loss</span> <span class="o">=</span> <span class="n">cur_loss</span>
+                            <span class="k">def</span> <span class="nf">save_if_best_reconstructor</span><span class="p">(</span>
+                                    <span class="n">measure_values</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                                <span class="n">measure</span> <span class="o">=</span> <span class="n">save_best_reconstructor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                                    <span class="s1">&#39;measure&#39;</span><span class="p">,</span> <span class="n">measures</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                                    <span class="n">measure</span> <span class="o">=</span> <span class="n">Measure</span><span class="o">.</span><span class="n">get_by_short_name</span><span class="p">(</span>
+                                        <span class="n">measure</span><span class="p">)</span>
+                                <span class="n">loss_sign</span> <span class="o">=</span> <span class="p">(</span>
+                                    <span class="mi">1</span> <span class="k">if</span> <span class="n">measure</span><span class="o">.</span><span class="n">measure_type</span> <span class="o">==</span> <span class="s1">&#39;distance&#39;</span>
+                                    <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                                <span class="n">cur_loss</span> <span class="o">=</span> <span class="p">(</span>
+                                    <span class="n">loss_sign</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">measure_values</span><span class="p">[</span>
+                                        <span class="n">measure</span><span class="o">.</span><span class="n">short_name</span><span class="p">]))</span>
+                                <span class="k">if</span> <span class="n">cur_loss</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
+                                    <span class="k">if</span> <span class="n">iterations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                                        <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span>
+                                            <span class="s1">&#39;iterations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iterations</span>
+                                    <span class="n">reconstructor</span><span class="o">.</span><span class="n">save_params</span><span class="p">(</span>
+                                        <span class="n">save_best_reconstructor</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
+                                    <span class="k">return</span> <span class="n">cur_loss</span>
+                                <span class="k">return</span> <span class="n">best_loss</span>
+                            <span class="n">best_loss</span> <span class="o">=</span> <span class="n">save_if_best_reconstructor</span><span class="p">(</span>
+                                <span class="n">row</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">])</span>
+                            <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                                <span class="k">for</span> <span class="n">row_iterates</span><span class="p">,</span> <span class="n">iterations</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                                        <span class="n">rows_iterates</span><span class="p">,</span> <span class="n">return_rows_iterates</span><span class="p">):</span>
+                                    <span class="n">best_loss</span> <span class="o">=</span> <span class="n">save_if_best_reconstructor</span><span class="p">(</span>
+                                        <span class="n">row_iterates</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">],</span>
+                                        <span class="n">iterations</span><span class="o">=</span><span class="n">iterations</span><span class="p">)</span>
                     <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span> <span class="o">=</span> <span class="n">orig_hyper_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="n">row_list</span> <span class="o">+=</span> <span class="n">row_sub_list</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># run task (with hyper params as they are)</span>
                     <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">LearnedReconstructor</span><span class="p">)</span> <span class="ow">and</span>
@@ -363,6 +465,7 @@
                         <span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">,</span>
                         <span class="n">measures</span><span class="o">=</span><span class="n">measures</span><span class="p">,</span>
                         <span class="n">hp_choice</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">return_rows_iterates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                         <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
                         <span class="n">save_reconstructions</span><span class="o">=</span><span class="n">save_reconstructions</span><span class="p">,</span>
                         <span class="n">save_iterates</span><span class="o">=</span><span class="n">save_iterates</span><span class="p">,</span>
@@ -378,56 +481,67 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span></div>
 
     <span class="k">def</span> <span class="nf">_run_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reconstructor</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">measures</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">hp_choice</span><span class="p">,</span>
-                  <span class="n">save_reconstructions</span><span class="p">,</span> <span class="n">save_iterates</span><span class="p">):</span>
+                  <span class="n">return_rows_iterates</span><span class="p">,</span> <span class="n">save_reconstructions</span><span class="p">,</span> <span class="n">save_iterates</span><span class="p">):</span>
+        <span class="c1"># Parameters</span>
+        <span class="c1"># ----------</span>
+        <span class="c1"># return_rows_iterates : list of int or `None`</span>
+        <span class="c1">#     If specified, also return rows for the specified iterates.</span>
+        <span class="c1">#     Must be `None` if reconstructor is no `IterativeReconstructor`.</span>
+        <span class="c1">#</span>
+        <span class="c1"># Returns</span>
+        <span class="c1"># -------</span>
+        <span class="c1"># row [, rows_iterates] : dict or (dict, list of dict)</span>
+        <span class="c1">#     The resulting row, and if `return_rows_iterates` is specified,</span>
+        <span class="c1">#     as second output a list of rows for the iterates.</span>
         <span class="n">reconstructions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">IterativeReconstructor</span><span class="p">)</span> <span class="ow">and</span>
-                <span class="n">save_iterates</span><span class="p">):</span>
-            <span class="n">iterates</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">IterativeReconstructor</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">save_iterates</span><span class="p">:</span>
+                <span class="n">iterates</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;save_iterates_measure_values&#39;</span><span class="p">):</span>
-                <span class="n">iterates_measure_values</span> <span class="o">=</span> <span class="p">{</span><span class="n">m</span><span class="o">.</span><span class="n">short_name</span><span class="p">:</span> <span class="p">[]</span>
-                                           <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">}</span>
+                <span class="n">iterates_measure_values</span> <span class="o">=</span> <span class="p">{</span><span class="n">m</span><span class="o">.</span><span class="n">short_name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">}</span>
+            <span class="n">save_iterates_step</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;save_iterates_step&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">iterates_for_rows</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">observation</span><span class="p">,</span> <span class="n">ground_truth</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">observations</span><span class="p">,</span>
                                              <span class="n">test_data</span><span class="o">.</span><span class="n">ground_truth</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">IterativeReconstructor</span><span class="p">):</span>
                 <span class="n">callbacks</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="n">orig_callback</span> <span class="o">=</span> <span class="n">reconstructor</span><span class="o">.</span><span class="n">callback</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">orig_callback</span><span class="p">,</span> <span class="n">Callback</span><span class="p">):</span>
-                    <span class="n">callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">orig_callback</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">orig_callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;original callback of reconstructor &#39;</span>
-                         <span class="s1">&#39;deactivated since it is not of type &#39;</span>
-                         <span class="s1">&#39;`odl.solvers.util.callback.Callback` (got &#39;</span>
-                         <span class="s1">&#39;`</span><span class="si">{}</span><span class="s1">`)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">orig_callback</span><span class="p">)))</span>
+                <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">iters_for_rows</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="n">iterates_for_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iters_for_rows</span><span class="p">)</span>
+                    <span class="n">callback_store_after</span> <span class="o">=</span> <span class="n">CallbackStoreAfter</span><span class="p">(</span>
+                        <span class="n">iters_for_rows</span><span class="p">,</span>
+                        <span class="n">store_after_iters</span><span class="o">=</span><span class="n">return_rows_iterates</span><span class="p">)</span>
+                    <span class="n">callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">callback_store_after</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">save_iterates</span><span class="p">:</span>
                     <span class="n">iters</span> <span class="o">=</span> <span class="p">[]</span>
                     <span class="n">iterates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iters</span><span class="p">)</span>
-                    <span class="n">callback_save_iterates</span> <span class="o">=</span> <span class="n">CallbackStore</span><span class="p">(</span>
-                        <span class="n">iters</span><span class="p">,</span>
-                        <span class="n">step</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;save_iterates_step&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-                    <span class="n">callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">callback_save_iterates</span><span class="p">)</span>
+                    <span class="n">callback_store</span> <span class="o">=</span> <span class="n">CallbackStore</span><span class="p">(</span>
+                        <span class="n">iters</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">save_iterates_step</span><span class="p">)</span>
+                    <span class="n">callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">callback_store</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;save_iterates_measure_values&#39;</span><span class="p">):</span>
                     <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">:</span>
                         <span class="n">iters_mvs</span> <span class="o">=</span> <span class="p">[]</span>
                         <span class="n">iterates_measure_values</span><span class="p">[</span>
                             <span class="n">measure</span><span class="o">.</span><span class="n">short_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iters_mvs</span><span class="p">)</span>
                         <span class="n">callback_store</span> <span class="o">=</span> <span class="n">CallbackStore</span><span class="p">(</span>
-                            <span class="n">iters_mvs</span><span class="p">,</span>
-                            <span class="n">step</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;save_iterates_step&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+                            <span class="n">iters_mvs</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">save_iterates_step</span><span class="p">)</span>
                         <span class="n">callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="n">callback_store</span> <span class="o">*</span>
                             <span class="n">measure</span><span class="o">.</span><span class="n">as_operator_for_fixed_ground_truth</span><span class="p">(</span>
                                 <span class="n">ground_truth</span><span class="p">))</span>
+                <span class="n">callback</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">callbacks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">reconstructor</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callbacks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                    <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-                        <span class="n">reconstructor</span><span class="o">.</span><span class="n">callback</span> <span class="o">&amp;=</span> <span class="n">callback</span>
+                    <span class="n">callback</span> <span class="o">=</span> <span class="n">callbacks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="n">callback</span> <span class="o">&amp;=</span> <span class="n">c</span>
+                <span class="n">reconstruction</span> <span class="o">=</span> <span class="n">reconstructor</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span>
+                    <span class="n">observation</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">reconstruction</span> <span class="o">=</span> <span class="n">reconstructor</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
 
-            <span class="n">reconstructions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reconstructor</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span>
-                <span class="n">observation</span><span class="p">))</span>
-
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">IterativeReconstructor</span><span class="p">):</span>
-                <span class="n">reconstructor</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">orig_callback</span>
+            <span class="n">reconstructions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reconstruction</span><span class="p">)</span>
 
         <span class="n">measure_values</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">:</span>
@@ -439,8 +553,7 @@
             <span class="k">if</span> <span class="n">save_iterates</span><span class="p">:</span>
                 <span class="n">misc</span><span class="p">[</span><span class="s1">&#39;iterates&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iterates</span>
             <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;save_iterates_measure_values&#39;</span><span class="p">):</span>
-                <span class="n">misc</span><span class="p">[</span><span class="s1">&#39;iterates_measure_values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">iterates_measure_values</span><span class="p">)</span>
+                <span class="n">misc</span><span class="p">[</span><span class="s1">&#39;iterates_measure_values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iterates_measure_values</span>
         <span class="k">if</span> <span class="n">hp_choice</span><span class="p">:</span>
             <span class="n">misc</span><span class="p">[</span><span class="s1">&#39;hp_choice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hp_choice</span>
 
@@ -451,7 +564,42 @@
                <span class="s1">&#39;misc&#39;</span><span class="p">:</span> <span class="n">misc</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">save_reconstructions</span><span class="p">:</span>
             <span class="n">row</span><span class="p">[</span><span class="s1">&#39;reconstructions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reconstructions</span>
-        <span class="k">return</span> <span class="n">row</span>
+        <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># create rows for iterates given by return_rows_iterates</span>
+            <span class="n">rows_iterates</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># convert iterates_for_rows[reconstructions_idx][rows_iterates_idx]</span>
+            <span class="c1"># to</span>
+            <span class="c1"># reconstructions_iterates[rows_iterates_idx][reconstructions_idx]</span>
+            <span class="n">reconstructions_iterates</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="nb">list</span><span class="p">(</span><span class="n">it</span><span class="p">)</span> <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">iterates_for_rows</span><span class="p">)]</span>
+            <span class="k">for</span> <span class="n">iterations</span><span class="p">,</span> <span class="n">recos_iterates</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                    <span class="n">return_rows_iterates</span><span class="p">,</span> <span class="n">reconstructions_iterates</span><span class="p">):</span>
+                <span class="n">measure_values_iterates</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">:</span>
+                    <span class="n">measure_values_iterates</span><span class="p">[</span><span class="n">measure</span><span class="o">.</span><span class="n">short_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="n">measure</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                            <span class="n">recos_iterates</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">ground_truth</span><span class="p">)]</span>
+                <span class="n">misc_iterates</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="c1"># number of iterates to keep</span>
+                <span class="n">n_iterates</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">iterations</span> <span class="o">/</span> <span class="n">save_iterates_step</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">save_iterates</span><span class="p">:</span>
+                    <span class="n">misc_iterates</span><span class="p">[</span><span class="s1">&#39;iterates&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iterates</span><span class="p">[:</span><span class="n">n_iterates</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;save_iterates_measure_values&#39;</span><span class="p">):</span>
+                    <span class="n">misc_iterates</span><span class="p">[</span><span class="s1">&#39;iterates_measure_values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">short_name</span><span class="p">:</span> <span class="n">values</span><span class="p">[:</span><span class="n">n_iterates</span><span class="p">]</span> <span class="k">for</span> <span class="n">short_name</span><span class="p">,</span> <span class="n">values</span>
+                        <span class="ow">in</span> <span class="n">iterates_measure_values</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+                <span class="k">if</span> <span class="n">hp_choice</span><span class="p">:</span>
+                    <span class="n">misc_iterates</span><span class="p">[</span><span class="s1">&#39;hp_choice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hp_choice</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="c1"># specify &#39;iterations&#39; hyper param, which was emulated by</span>
+                    <span class="c1"># using CallbackStoreAfter while running for more iters</span>
+                    <span class="n">misc_iterates</span><span class="p">[</span><span class="s1">&#39;hp_choice&#39;</span><span class="p">][</span><span class="s1">&#39;iterations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iterations</span>
+                <span class="n">row_iterates</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;reconstructions&#39;</span><span class="p">:</span> <span class="n">recos_iterates</span><span class="p">,</span>
+                                <span class="s1">&#39;reconstructor&#39;</span><span class="p">:</span> <span class="n">reconstructor</span><span class="p">,</span>
+                                <span class="s1">&#39;test_data&#39;</span><span class="p">:</span> <span class="n">test_data</span><span class="p">,</span>
+                                <span class="s1">&#39;measure_values&#39;</span><span class="p">:</span> <span class="n">measure_values_iterates</span><span class="p">,</span>
+                                <span class="s1">&#39;misc&#39;</span><span class="p">:</span> <span class="n">misc_iterates</span><span class="p">}</span>
+                <span class="n">rows_iterates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row_iterates</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">row</span> <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">rows_iterates</span><span class="p">)</span>
 
 <div class="viewcode-block" id="TaskTable.append"><a class="viewcode-back" href="../../dival.evaluation.html#dival.TaskTable.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reconstructor</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">measures</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">hyper_param_choices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -516,13 +664,14 @@
 <span class="sd">                Whether to save the intermediate reconstructions of iterative</span>
 <span class="sd">                reconstructors. Default: ``False``.</span>
 <span class="sd">                Will be ignored if ``save_reconstructions=False`` is passed to</span>
-<span class="sd">                `run`. Requires the reconstructor to call its `callback`</span>
-<span class="sd">                attribute after each iteration.</span>
+<span class="sd">                `run`.</span>
+<span class="sd">                If ``reuse_iterates=True`` is passed to `run` and there are</span>
+<span class="sd">                sub-tasks for which iterates are reused, these iterates are the</span>
+<span class="sd">                same objects for all of those sub-tasks (i.e. no copies).</span>
 <span class="sd">            ``&#39;save_iterates_measure_values&#39;`` : bool, optional</span>
 <span class="sd">                Whether to compute and save the measure values for each</span>
 <span class="sd">                intermediate reconstruction of iterative reconstructors</span>
-<span class="sd">                (the default is ``False``). Requires the reconstructor to call</span>
-<span class="sd">                its `callback` attribute after each iteration.</span>
+<span class="sd">                (the default is ``False``).</span>
 <span class="sd">            ``&#39;save_iterates_step&#39;`` : int, optional</span>
 <span class="sd">                Step size for ``&#39;save_iterates&#39;`` and</span>
 <span class="sd">                ``&#39;save_iterates_measure_values&#39;`` (the default is 1).</span>

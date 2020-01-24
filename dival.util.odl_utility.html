@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.1
+                0.4.2
               </div>
             
           
@@ -277,6 +277,88 @@ Default is <cite>None</cite>.</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.util.odl_utility.CallbackStore">
+<em class="property">class </em><code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">CallbackStore</code><span class="sig-paren">(</span><em class="sig-param">results=None</em>, <em class="sig-param">function=None</em>, <em class="sig-param">step=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code></p>
+<p>This is a modified copy of odl.solvers.util.callback.CallbackStore,
+Copyright held by The ODL contributors, subject to the terms of the
+Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed
+with this file, You can obtain one at <a class="reference external" href="https://mozilla.org/MPL/2.0/">https://mozilla.org/MPL/2.0/</a>.
+This copy incorporates <a class="reference external" href="https://github.com/odlgroup/odl/pull/1539">https://github.com/odlgroup/odl/pull/1539</a>.</p>
+<p>Callback for storing all iterates of a solver.
+Can optionally apply a function, for example the norm or calculating the
+residual.
+By default, calls the <code class="docutils literal notranslate"><span class="pre">copy()</span></code> method on the iterates before storing.</p>
+<dl class="method">
+<dt id="dival.util.odl_utility.CallbackStore.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">results=None</em>, <em class="sig-param">function=None</em>, <em class="sig-param">step=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStore.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStore.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a new instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>results</strong> (<em>list</em><em>, </em><em>optional</em>) – List in which to store the iterates.
+Default: new list (<code class="docutils literal notranslate"><span class="pre">[]</span></code>)</p></li>
+<li><p><strong>function</strong> (<em>callable</em><em>, </em><em>optional</em>) – Deprecated, use composition instead. See examples.
+Function to be called on all incoming results before storage.
+Default: copy</p></li>
+<li><p><strong>step</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of iterates between storing iterates.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Store results as-is:
+&gt;&gt;&gt; callback = CallbackStore()
+Provide list to store iterates in:
+&gt;&gt;&gt; results = []
+&gt;&gt;&gt; callback = CallbackStore(results=results)
+Store the norm of the results:
+&gt;&gt;&gt; norm_function = lambda x: x.norm()
+&gt;&gt;&gt; callback = CallbackStore() * norm_function</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.util.odl_utility.CallbackStore.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStore.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStore.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the results list.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dival.util.odl_utility.CallbackStoreAfter">
+<em class="property">class </em><code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">CallbackStoreAfter</code><span class="sig-paren">(</span><em class="sig-param">results=None</em>, <em class="sig-param">store_after_iters=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStoreAfter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStoreAfter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code></p>
+<p>Callback for storing after specific numbers of iterations of a solver.
+Calls the <code class="docutils literal notranslate"><span class="pre">copy()</span></code> method on the iterates before storing.</p>
+<p>The source code of this class is based on
+odl.solvers.util.callback.CallbackStore, Copyright held by The ODL
+contributors, subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one
+at <a class="reference external" href="https://mozilla.org/MPL/2.0/">https://mozilla.org/MPL/2.0/</a>.</p>
+<dl class="method">
+<dt id="dival.util.odl_utility.CallbackStoreAfter.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">results=None</em>, <em class="sig-param">store_after_iters=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStoreAfter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStoreAfter.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a new instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>results</strong> (<em>list</em><em>, </em><em>optional</em>) – List in which to store the iterates.
+Default: new list (<code class="docutils literal notranslate"><span class="pre">[]</span></code>)</p></li>
+<li><p><strong>store_after_iters</strong> (<em>list of int</em><em>, </em><em>optional</em>) – Numbers of iterations after which the result should be stored.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.util.odl_utility.CallbackStoreAfter.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStoreAfter.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStoreAfter.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the results list.</p>
 </dd></dl>
 
 </dd></dl>

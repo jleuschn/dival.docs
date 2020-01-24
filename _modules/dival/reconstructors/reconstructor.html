@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.1
+                0.4.2
               </div>
             
           
@@ -178,6 +178,7 @@
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="k">import</span> <span class="n">signature</span><span class="p">,</span> <span class="n">Parameter</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
 
 
 <div class="viewcode-block" id="Reconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor">[docs]</a><span class="k">class</span> <span class="nc">Reconstructor</span><span class="p">:</span>
@@ -311,6 +312,8 @@
 <span class="sd">        out : :attr:`reco_space` element-like, optional</span>
 <span class="sd">            Array to which the result is written (in-place evaluation).</span>
 <span class="sd">            If `None`, a new array is created (out-of-place evaluation).</span>
+<span class="sd">            If `None`, the new array is initialized with zero before calling</span>
+<span class="sd">            :meth:`_reconstruct`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -559,15 +562,28 @@
 
 <div class="viewcode-block" id="IterativeReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.IterativeReconstructor">[docs]</a><span class="k">class</span> <span class="nc">IterativeReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Iterative reconstructor base class.</span>
+<span class="sd">    It is recommended to use :class:`StandardIterativeReconstructor` as a base</span>
+<span class="sd">    class for iterative reconstructors if suitable, which provides some default</span>
+<span class="sd">    implementation.</span>
 
-<span class="sd">    Subclasses should call :attr:`callback` after each iteration in</span>
-<span class="sd">    ``self.reconstruct``.</span>
+<span class="sd">    Subclasses must call :attr:`callback` after each iteration in</span>
+<span class="sd">    ``self.reconstruct``. This is e.g. required by the :mod:`~dival.evaluation`</span>
+<span class="sd">    module.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    callback : ``odl.solvers.util.callback.Callback`` or `None`</span>
 <span class="sd">        Callback to be called after each iteration.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">HYPER_PARAMS</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">Reconstructor</span><span class="o">.</span><span class="n">HYPER_PARAMS</span><span class="p">)</span>
+    <span class="n">HYPER_PARAMS</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+        <span class="s1">&#39;iterations&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="s1">&#39;retrain&#39;</span><span class="p">:</span> <span class="kc">False</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+
 <div class="viewcode-block" id="IterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.IterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -592,8 +608,10 @@
 <span class="sd">            Array to which the result is written (in-place evaluation).</span>
 <span class="sd">            If `None`, a new array is created (out-of-place evaluation).</span>
 <span class="sd">        callback : ``odl.solvers.util.callback.Callback``, optional</span>
-<span class="sd">            New value of :attr:`callback`. If `None`, the value of</span>
-<span class="sd">            :attr:`callback` is not modified.</span>
+<span class="sd">            Additional callback for this reconstruction that is temporarily</span>
+<span class="sd">            composed with :attr:`callback`, i.e. also called after each</span>
+<span class="sd">            iteration.</span>
+<span class="sd">            If `None`, just :attr:`callback` is called.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -601,8 +619,125 @@
 <span class="sd">            The reconstruction.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div></div>
+            <span class="n">orig_callback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="p">(</span><span class="n">callback</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span>
+                             <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">&amp;</span> <span class="n">callback</span><span class="p">)</span>
+        <span class="n">reconstruction</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">orig_callback</span>
+        <span class="k">return</span> <span class="n">reconstruction</span></div></div>
+
+
+<div class="viewcode-block" id="StandardIterativeReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.StandardIterativeReconstructor">[docs]</a><span class="k">class</span> <span class="nc">StandardIterativeReconstructor</span><span class="p">(</span><span class="n">IterativeReconstructor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Standard iterative reconstructor base class.</span>
+
+<span class="sd">    Provides a default implementation that only requires subclasses to</span>
+<span class="sd">    implement :meth:`_compute_iterate` and optionally :meth:`_setup`.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x0 : :attr:`reco_space` element-like or `None`</span>
+<span class="sd">        Default initial value for the iterative reconstruction.</span>
+<span class="sd">        Can be overridden by passing a different ``x0`` to :meth:`reconstruct`.</span>
+<span class="sd">    callback : ``odl.solvers.util.callback.Callback`` or `None`</span>
+<span class="sd">        Callback that is called after each iteration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="StandardIterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.StandardIterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x0 : :attr:`reco_space` element-like, optional</span>
+<span class="sd">            Default initial value for the iterative reconstruction.</span>
+<span class="sd">            Can be overridden by passing a different ``x0`` to</span>
+<span class="sd">            :meth:`reconstruct`.</span>
+<span class="sd">        callback : ``odl.solvers.util.callback.Callback``, optional</span>
+<span class="sd">            Callback that is called after each iteration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x0</span> <span class="o">=</span> <span class="n">x0</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Setup before iteration process.</span>
+<span class="sd">        Called by the default implementation of :meth:`_reconstruct` in the</span>
+<span class="sd">        beginning, i.e. before computing the first iterate.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        observation : :attr:`observation_space` element-like</span>
+<span class="sd">            The observation data (forwarded from :meth:`reconstruct`).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">_compute_iterate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">reco_previous</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute next iterate.</span>
+<span class="sd">        This method implements the iteration step in the default</span>
+<span class="sd">        implementation of :meth:`_reconstruct`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        observation : :attr:`observation_space` element-like</span>
+<span class="sd">            The observation data (forwarded from :meth:`reconstruct`).</span>
+<span class="sd">        reco_previous : :attr:`reco_space` element-like</span>
+<span class="sd">            The previous iterate value.</span>
+<span class="sd">        out : :attr:`reco_space` element-like</span>
+<span class="sd">            Array to which the iterate value is written.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<div class="viewcode-block" id="StandardIterativeReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.StandardIterativeReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_iter</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                    <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reconstruct input data from observation data.</span>
+
+<span class="sd">        Same as :meth:`Reconstructor.reconstruct`, but with additional</span>
+<span class="sd">        options for iterative reconstructors.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        observation : :attr:`observation_space` element-like</span>
+<span class="sd">            The observation data.</span>
+<span class="sd">        out : :attr:`reco_space` element-like, optional</span>
+<span class="sd">            Array to which the result is written (in-place evaluation).</span>
+<span class="sd">            If `None`, a new array is created (out-of-place evaluation).</span>
+<span class="sd">        x0 : :attr:`reco_space` element-like, optional</span>
+<span class="sd">            Initial value for the iterative reconstruction.</span>
+<span class="sd">            Overrides the attribute :attr:`x0`, which can be set when calling</span>
+<span class="sd">            :meth:`__init__`.</span>
+<span class="sd">            If both :attr:`x0` and this argument are `None`, the default</span>
+<span class="sd">            implementation uses the value of `out` if called in-place, or zero</span>
+<span class="sd">            if called out-of-place.</span>
+<span class="sd">        last_iter : int, optional</span>
+<span class="sd">            If `x0` is the result of an iteration by this method,</span>
+<span class="sd">            this can be used to specify the number of iterations so far.</span>
+<span class="sd">            The number of iterations for the current call is</span>
+<span class="sd">            ``self.hyper_params[&#39;iterations&#39;] - last_iter``.</span>
+<span class="sd">        callback : ``odl.solvers.util.callback.Callback``, optional</span>
+<span class="sd">            Additional callback for this reconstruction that is temporarily</span>
+<span class="sd">            composed with :attr:`callback`, i.e. also called after each</span>
+<span class="sd">            iteration.</span>
+<span class="sd">            If `None`, just :attr:`callback` is called.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        reconstruction : :attr:`reco_space` element or `out`</span>
+<span class="sd">            The reconstruction.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x0_override</span> <span class="o">=</span> <span class="n">x0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_iter</span> <span class="o">=</span> <span class="n">last_iter</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x0_override</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x0_override</span>  <span class="c1"># override for specific reconstruction</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>  <span class="c1"># default init value</span>
+        <span class="c1"># keep value of `out` if no `x0` was specified</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span><span class="s1">&#39;iterations&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_iter</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_compute_iterate</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">reco_previous</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">out</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FunctionReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.FunctionReconstructor">[docs]</a><span class="k">class</span> <span class="nc">FunctionReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>

@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.1
+                0.4.2
               </div>
             
           
@@ -182,7 +182,7 @@
 <span class="kn">from</span> <span class="nn">dival.util.odl_utility</span> <span class="k">import</span> <span class="n">NoiseOperator</span>
 
 
-<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../../dival.html#dival.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">():</span>
+<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Dataset base class.</span>
 
 <span class="sd">    Subclasses must either implement :meth:`generator` or provide random access</span>
@@ -220,7 +220,7 @@
 <span class="sd">        Datasets returned by `get_standard_dataset` have this attribute giving</span>
 <span class="sd">        its name.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The attributes that potentially should be set by the subclass are:</span>
 <span class="sd">        :attr:`space` (can also be set by argument), :attr:`shape`,</span>
@@ -239,7 +239,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="n">space</span></div>
 
-<div class="viewcode-block" id="Dataset.generator"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.generator">[docs]</a>    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Yield data.</span>
 
 <span class="sd">        The default implementation calls :meth:`get_sample` if the dataset</span>
@@ -268,16 +268,16 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_train_generator"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_train_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_train_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_train_generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_train_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_train_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.get_validation_generator"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_validation_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_validation_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_validation_generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_validation_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_validation_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="s1">&#39;validation&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.get_test_generator"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_test_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_test_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_test_generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_test_generator">[docs]</a>    <span class="k">def</span> <span class="nf">get_test_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.get_len"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_len</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_len"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_len</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of elements the generator will yield.</span>
 
 <span class="sd">        Parameters</span>
@@ -295,14 +295,14 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dataset part must be &#39;train&#39;, &quot;</span>
                          <span class="s2">&quot;&#39;validation&#39; or &#39;test&#39;, not &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">part</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Dataset.get_train_len"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_train_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_train_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_train_len"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_train_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_train_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of samples the train generator will yield.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_validation_len"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_validation_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_validation_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_validation_len"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_validation_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_validation_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of samples the validation generator will yield.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
@@ -310,14 +310,14 @@
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_test_len"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_test_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_test_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_test_len"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_test_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_test_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of samples the test generator will yield.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_len</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_shape"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_shape">[docs]</a>    <span class="k">def</span> <span class="nf">get_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_shape"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_shape">[docs]</a>    <span class="k">def</span> <span class="nf">get_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the shape of each element.</span>
 
 <span class="sd">        Returns :attr:`shape` if it is set.</span>
@@ -339,7 +339,7 @@
                     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_num_elements_per_sample"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_num_elements_per_sample">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_elements_per_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_num_elements_per_sample"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_num_elements_per_sample">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_elements_per_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return number of elements per sample.</span>
 
 <span class="sd">        Returns :attr:`num_elements_per_sample` if it is set.</span>
@@ -359,7 +359,7 @@
                 <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_data_pairs"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_data_pairs">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_data_pairs"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_data_pairs">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return first samples from data part as :class:`.DataPairs` object.</span>
 
@@ -387,7 +387,7 @@
         <span class="n">data_pairs</span> <span class="o">=</span> <span class="n">DataPairs</span><span class="p">(</span><span class="n">observations</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data_pairs</span></div>
 
-<div class="viewcode-block" id="Dataset.create_torch_dataset"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.create_torch_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">create_torch_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.create_torch_dataset"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.create_torch_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">create_torch_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a torch dataset wrapper for one part of this dataset.</span>
 
@@ -471,7 +471,7 @@
 
         <span class="k">return</span> <span class="n">dataset</span></div>
 
-<div class="viewcode-block" id="Dataset.create_keras_generator"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.create_keras_generator">[docs]</a>    <span class="k">def</span> <span class="nf">create_keras_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="Dataset.create_keras_generator"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.create_keras_generator">[docs]</a>    <span class="k">def</span> <span class="nf">create_keras_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a keras data generator wrapper for one part of this dataset.</span>
@@ -585,7 +585,7 @@
 
         <span class="k">return</span> <span class="n">generator</span></div>
 
-<div class="viewcode-block" id="Dataset.get_sample"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_sample">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_sample"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_sample">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get single sample by index.</span>
 
 <span class="sd">        Parameters</span>
@@ -613,7 +613,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.get_samples"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.get_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.get_samples"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.get_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get samples by slice or range.</span>
 
 <span class="sd">        The default implementation calls :meth:`get_sample` if the dataset</span>
@@ -678,7 +678,7 @@
             <span class="k">return</span> <span class="n">samples</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="Dataset.supports_random_access"><a class="viewcode-back" href="../../../dival.html#dival.Dataset.supports_random_access">[docs]</a>    <span class="k">def</span> <span class="nf">supports_random_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.supports_random_access"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.supports_random_access">[docs]</a>    <span class="k">def</span> <span class="nf">supports_random_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Whether random access seems to be supported.</span>
 
 <span class="sd">        If the object has the attribute `self.random_access`, its value is</span>

@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.1
+                0.4.2
               </div>
             
           
@@ -173,7 +173,7 @@
             
   <h1>Source code for dival.data</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<div class="viewcode-block" id="DataPairs"><a class="viewcode-back" href="../../dival.html#dival.DataPairs">[docs]</a><span class="k">class</span> <span class="nc">DataPairs</span><span class="p">:</span>
+<div class="viewcode-block" id="DataPairs"><a class="viewcode-back" href="../../dival.data.html#dival.DataPairs">[docs]</a><span class="k">class</span> <span class="nc">DataPairs</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Bundles :attr:`observations` with :attr:`ground_truth`.</span>
 <span class="sd">    Implements :meth:`__getitem__` and :meth:`__len__`.</span>
@@ -186,7 +186,7 @@
 <span class="sd">        The ground truth data (may be replaced with good quality references).</span>
 <span class="sd">        If not known, it may be omitted (`None`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="DataPairs.__init__"><a class="viewcode-back" href="../../dival.html#dival.DataPairs.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observations</span><span class="p">,</span> <span class="n">ground_truth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="DataPairs.__init__"><a class="viewcode-back" href="../../dival.data.html#dival.DataPairs.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observations</span><span class="p">,</span> <span class="n">ground_truth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                  <span class="n">description</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observations</span> <span class="o">=</span> <span class="n">observations</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">observations</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>

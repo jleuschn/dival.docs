@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.1
+                0.4.2
               </div>
             
           
@@ -383,7 +383,9 @@ in-place or out-of-place evaluation.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>observation</strong> (<a class="reference internal" href="#dival.reconstructors.Reconstructor.observation_space" title="dival.reconstructors.Reconstructor.observation_space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">observation_space</span></code></a> element-like) – The observation data.</p></li>
 <li><p><strong>out</strong> (<a class="reference internal" href="#dival.reconstructors.Reconstructor.reco_space" title="dival.reconstructors.Reconstructor.reco_space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reco_space</span></code></a> element-like, optional) – Array to which the result is written (in-place evaluation).
-If <cite>None</cite>, a new array is created (out-of-place evaluation).</p></li>
+If <cite>None</cite>, a new array is created (out-of-place evaluation).
+If <cite>None</cite>, the new array is initialized with zero before calling
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">_reconstruct()</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -490,9 +492,13 @@ The default implementation reads from the file
 <dt id="dival.reconstructors.IterativeReconstructor">
 <em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.</code><code class="sig-name descname">IterativeReconstructor</code><span class="sig-paren">(</span><em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/reconstructor.html#IterativeReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.IterativeReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
-<p>Iterative reconstructor base class.</p>
-<p>Subclasses should call <a class="reference internal" href="#dival.reconstructors.IterativeReconstructor.callback" title="dival.reconstructors.IterativeReconstructor.callback"><code class="xref py py-attr docutils literal notranslate"><span class="pre">callback</span></code></a> after each iteration in
-<code class="docutils literal notranslate"><span class="pre">self.reconstruct</span></code>.</p>
+<p>Iterative reconstructor base class.
+It is recommended to use <code class="xref py py-class docutils literal notranslate"><span class="pre">StandardIterativeReconstructor</span></code> as a base
+class for iterative reconstructors if suitable, which provides some default
+implementation.</p>
+<p>Subclasses must call <a class="reference internal" href="#dival.reconstructors.IterativeReconstructor.callback" title="dival.reconstructors.IterativeReconstructor.callback"><code class="xref py py-attr docutils literal notranslate"><span class="pre">callback</span></code></a> after each iteration in
+<code class="docutils literal notranslate"><span class="pre">self.reconstruct</span></code>. This is e.g. required by the <a class="reference internal" href="dival.evaluation.html#module-dival.evaluation" title="dival.evaluation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">evaluation</span></code></a>
+module.</p>
 <dl class="attribute">
 <dt id="dival.reconstructors.IterativeReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.IterativeReconstructor.callback" title="Permalink to this definition">¶</a></dt>
@@ -503,6 +509,11 @@ The default implementation reads from the file
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="dival.reconstructors.IterativeReconstructor.HYPER_PARAMS">
+<code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'iterations': {'default': 100, 'retrain': False}}</em><a class="headerlink" href="#dival.reconstructors.IterativeReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="dival.reconstructors.IterativeReconstructor.__init__">
@@ -526,8 +537,10 @@ The default implementation reads from the file
 <li><p><strong>observation</strong> (<code class="xref py py-attr docutils literal notranslate"><span class="pre">observation_space</span></code> element-like) – The observation data.</p></li>
 <li><p><strong>out</strong> (<code class="xref py py-attr docutils literal notranslate"><span class="pre">reco_space</span></code> element-like, optional) – Array to which the result is written (in-place evaluation).
 If <cite>None</cite>, a new array is created (out-of-place evaluation).</p></li>
-<li><p><strong>callback</strong> (<code class="docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – New value of <a class="reference internal" href="#dival.reconstructors.IterativeReconstructor.callback" title="dival.reconstructors.IterativeReconstructor.callback"><code class="xref py py-attr docutils literal notranslate"><span class="pre">callback</span></code></a>. If <cite>None</cite>, the value of
-<a class="reference internal" href="#dival.reconstructors.IterativeReconstructor.callback" title="dival.reconstructors.IterativeReconstructor.callback"><code class="xref py py-attr docutils literal notranslate"><span class="pre">callback</span></code></a> is not modified.</p></li>
+<li><p><strong>callback</strong> (<code class="docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – Additional callback for this reconstruction that is temporarily
+composed with <a class="reference internal" href="#dival.reconstructors.IterativeReconstructor.callback" title="dival.reconstructors.IterativeReconstructor.callback"><code class="xref py py-attr docutils literal notranslate"><span class="pre">callback</span></code></a>, i.e. also called after each
+iteration.
+If <cite>None</cite>, just <a class="reference internal" href="#dival.reconstructors.IterativeReconstructor.callback" title="dival.reconstructors.IterativeReconstructor.callback"><code class="xref py py-attr docutils literal notranslate"><span class="pre">callback</span></code></a> is called.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
