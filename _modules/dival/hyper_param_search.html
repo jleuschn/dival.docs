@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.3
+                0.4.2
               </div>
             
           
@@ -183,14 +183,14 @@
 <span class="sd">including default options for optimization, are specified in the class</span>
 <span class="sd">attribute :attr:`~dival.Reconstructor.HYPER_PARAMS`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">hyperopt</span> <span class="k">import</span> <span class="n">hp</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">tpe</span><span class="p">,</span> <span class="n">Trials</span><span class="p">,</span> <span class="n">space_eval</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span> <span class="nn">dival.util.std_out_err_redirect_tqdm</span> <span class="k">import</span> <span class="n">std_out_err_redirect_tqdm</span>
-<span class="kn">from</span> <span class="nn">dival.measure</span> <span class="k">import</span> <span class="n">Measure</span>
-<span class="kn">from</span> <span class="nn">dival</span> <span class="k">import</span> <span class="n">LearnedReconstructor</span>
+<span class="kn">from</span> <span class="nn">hyperopt</span> <span class="kn">import</span> <span class="n">hp</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">tpe</span><span class="p">,</span> <span class="n">Trials</span><span class="p">,</span> <span class="n">space_eval</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">dival.util.std_out_err_redirect_tqdm</span> <span class="kn">import</span> <span class="n">std_out_err_redirect_tqdm</span>
+<span class="kn">from</span> <span class="nn">dival.measure</span> <span class="kn">import</span> <span class="n">Measure</span>
+<span class="kn">from</span> <span class="nn">dival</span> <span class="kn">import</span> <span class="n">LearnedReconstructor</span>
 
 
 <div class="viewcode-block" id="optimize_hyper_params"><a class="viewcode-back" href="../../dival.hyper_param_search.html#dival.hyper_param_search.optimize_hyper_params">[docs]</a><span class="k">def</span> <span class="nf">optimize_hyper_params</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">,</span> <span class="n">measure</span><span class="p">,</span>

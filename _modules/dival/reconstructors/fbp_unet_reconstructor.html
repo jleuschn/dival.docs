@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.3
+                0.4.2
               </div>
             
           
@@ -177,16 +177,16 @@
 <span class="sd">Provides the learned :class:`FBPUNetReconstructor` for the application of CT.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">ceil</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">odl.tomo</span> <span class="k">import</span> <span class="n">fbp_op</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">odl.tomo</span> <span class="kn">import</span> <span class="n">fbp_op</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="k">import</span> <span class="n">DataLoader</span>
-<span class="kn">from</span> <span class="nn">dival</span> <span class="k">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">LearnedReconstructor</span>
-<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="k">import</span> <span class="n">compare_psnr</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span> <span class="nn">dival</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">LearnedReconstructor</span>
+<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">compare_psnr</span>
 
 
 <div class="viewcode-block" id="generate_fbp_cache"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.generate_fbp_cache">[docs]</a><span class="k">def</span> <span class="nf">generate_fbp_cache</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -224,7 +224,7 @@
 
 <span class="sd">    Each sample is a pair of a FBP and a ground truth image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="CachedFBPDataset.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">filenames</span><span class="p">):</span>
+<div class="viewcode-block" id="CachedFBPDataset.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">filenames</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -290,7 +290,7 @@
 
 <span class="sd">    Each sample is a pair of a FBP and a ground truth image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FBPDataset.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">):</span>
+<div class="viewcode-block" id="FBPDataset.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -386,7 +386,7 @@
 <span class="sd">           `doi:10.1109/CVPR.2018.00984</span>
 <span class="sd">           &lt;https://doi.org/10.1109/CVPR.2018.00984&gt;`_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FBPUNetReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="FBPUNetReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">num_data_loader_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_pbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">fbp_impl</span><span class="o">=</span><span class="s1">&#39;astra_cuda&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -623,7 +623,7 @@
 
 
 <div class="viewcode-block" id="Skip"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.Skip">[docs]</a><span class="k">class</span> <span class="nc">Skip</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-<div class="viewcode-block" id="Skip.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.Skip.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">skip_channels</span><span class="p">):</span>
+<div class="viewcode-block" id="Skip.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.Skip.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">skip_channels</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Skip</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">skip_channels</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scales</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span>
@@ -652,7 +652,7 @@
 
 
 <div class="viewcode-block" id="DownBlock"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.DownBlock">[docs]</a><span class="k">class</span> <span class="nc">DownBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-<div class="viewcode-block" id="DownBlock.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.DownBlock.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="viewcode-block" id="DownBlock.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.DownBlock.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DownBlock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">to_pad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">kernel_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
@@ -669,7 +669,7 @@
 
 
 <div class="viewcode-block" id="InBlock"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.InBlock">[docs]</a><span class="k">class</span> <span class="nc">InBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-<div class="viewcode-block" id="InBlock.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.InBlock.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="viewcode-block" id="InBlock.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.InBlock.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">InBlock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">to_pad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">kernel_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
@@ -683,7 +683,7 @@
 
 
 <div class="viewcode-block" id="UpBlock"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.UpBlock">[docs]</a><span class="k">class</span> <span class="nc">UpBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-<div class="viewcode-block" id="UpBlock.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.UpBlock.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">skip_ch</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="viewcode-block" id="UpBlock.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.UpBlock.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">skip_ch</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">UpBlock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">to_pad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">kernel_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">skip</span> <span class="o">=</span> <span class="n">skip_ch</span> <span class="o">&gt;</span> <span class="mi">0</span>
@@ -719,7 +719,7 @@
 
 
 <div class="viewcode-block" id="Concat"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.Concat">[docs]</a><span class="k">class</span> <span class="nc">Concat</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-<div class="viewcode-block" id="Concat.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.Concat.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Concat.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.Concat.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Concat</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Concat.forward"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.Concat.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
@@ -743,7 +743,7 @@
 
 
 <div class="viewcode-block" id="OutBlock"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.OutBlock">[docs]</a><span class="k">class</span> <span class="nc">OutBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-<div class="viewcode-block" id="OutBlock.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.OutBlock.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">):</span>
+<div class="viewcode-block" id="OutBlock.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbp_unet_reconstructor.html#dival.reconstructors.fbp_unet_reconstructor.OutBlock.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">OutBlock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
@@ -751,7 +751,7 @@
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span></div>
 
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_modules</span><span class="p">)</span></div>
 </pre></div>
 

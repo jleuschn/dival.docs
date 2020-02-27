@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.3
+                0.4.2
               </div>
             
           
@@ -175,34 +175,13 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Provides the abstract reconstructor base class.&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">inspect</span> <span class="k">import</span> <span class="n">signature</span><span class="p">,</span> <span class="n">Parameter</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span><span class="p">,</span> <span class="n">Parameter</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
 
-<span class="k">class</span> <span class="nc">_ReconstructorMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">get_fget</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-            <span class="k">def</span> <span class="nf">fget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-            <span class="k">return</span> <span class="n">fget</span>
-
-        <span class="k">def</span> <span class="nf">get_fset</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-            <span class="k">def</span> <span class="nf">fset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
-            <span class="k">return</span> <span class="n">fset</span>
-
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">HYPER_PARAMS</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">isidentifier</span><span class="p">():</span>
-                <span class="n">fget</span> <span class="o">=</span> <span class="n">get_fget</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-                <span class="n">fset</span> <span class="o">=</span> <span class="n">get_fset</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;_fget_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">fget</span><span class="p">)</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;_fset_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">fset</span><span class="p">)</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="nb">property</span><span class="p">(</span><span class="n">fget</span><span class="p">,</span> <span class="n">fset</span><span class="p">))</span>
-
-
-<div class="viewcode-block" id="Reconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor">[docs]</a><span class="k">class</span> <span class="nc">Reconstructor</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_ReconstructorMeta</span><span class="p">):</span>
+<div class="viewcode-block" id="Reconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor">[docs]</a><span class="k">class</span> <span class="nc">Reconstructor</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Abstract reconstructor base class.</span>
 
 <span class="sd">    There are two ways of implementing a `Reconstructor` subclass:</span>
@@ -217,14 +196,6 @@
 <span class="sd">            - ``_reconstruct(self, observation, out=None)`` (optional</span>
 <span class="sd">              in-place)</span>
 
-<span class="sd">    The class attribute :attr:`HYPER_PARAMS` defines the hyper parameters of</span>
-<span class="sd">    the reconstructor class.</span>
-<span class="sd">    The current values for a reconstructor instance are given by the attribute</span>
-<span class="sd">    :attr:`hyper_params`.</span>
-<span class="sd">    Properties wrapping :attr:`hyper_params` are automatically created by the</span>
-<span class="sd">    metaclass (for hyper parameter names that are valid identifiers), such that</span>
-<span class="sd">    the hyper parameters can be written and read like instance attributes.</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    reco_space : :class:`odl.discr.DiscretizedSpace`, optional</span>
@@ -238,10 +209,6 @@
 <span class="sd">        Initialized automatically using the default values from</span>
 <span class="sd">        :attr:`HYPER_PARAMS` (but may be overridden by `hyper_params` passed</span>
 <span class="sd">        to :meth:`__init__`).</span>
-<span class="sd">        It is expected to have the same keys as :attr:`HYPER_PARAMS`.</span>
-<span class="sd">        The values for these keys in this dict are wrapped by properties with</span>
-<span class="sd">        the key as identifier (if possible), so an assignment to the property</span>
-<span class="sd">        changes the value in this dict and vice versa.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">HYPER_PARAMS</span> <span class="o">=</span> <span class="p">{}</span>
@@ -251,11 +218,6 @@
 <span class="sd">    reconstructor.</span>
 <span class="sd">    It should not be hidden by an instance attribute of the same name (i.e. by</span>
 <span class="sd">    assigning a value to `self.HYPER_PARAMS` in an instance of a subtype).</span>
-
-<span class="sd">    *Note:* in order to inherit :attr:`HYPER_PARAMS` from a super class, the</span>
-<span class="sd">    subclass should create a deep copy of it, i.e. execute</span>
-<span class="sd">    ``HYPER_PARAMS = copy.deepcopy(SuperReconstructorClass.HYPER_PARAMS)`` in</span>
-<span class="sd">    the class body.</span>
 
 <span class="sd">    The keys of this dict are the names of the hyper parameters, and each</span>
 <span class="sd">    value is a dict with the following fields.</span>
@@ -327,7 +289,7 @@
 <span class="sd">                                Uniform distribution over the ``&#39;range&#39;``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Reconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reco_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observation_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Reconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reco_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observation_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">hyper_params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span> <span class="o">=</span> <span class="n">reco_space</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">observation_space</span>
@@ -622,7 +584,7 @@
         <span class="p">}</span>
     <span class="p">})</span>
 
-<div class="viewcode-block" id="IterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.IterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="IterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.IterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -681,7 +643,7 @@
 <span class="sd">        Callback that is called after each iteration.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="StandardIterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.StandardIterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardIterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.StandardIterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -790,7 +752,7 @@
 <span class="sd">    fun_kwargs : dict</span>
 <span class="sd">        Keyword arguments to be passed to `function`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FunctionReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.FunctionReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">fun_args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fun_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="FunctionReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.FunctionReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">fun_args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fun_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>

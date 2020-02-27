@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.3
+                0.4.2
               </div>
             
           
@@ -203,13 +203,6 @@ in-place)</p></li>
 </li>
 </ul>
 </div></blockquote>
-<p>The class attribute <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS" title="dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HYPER_PARAMS</span></code></a> defines the hyper parameters of
-the reconstructor class.
-The current values for a reconstructor instance are given by the attribute
-<a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.hyper_params" title="dival.reconstructors.reconstructor.Reconstructor.hyper_params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyper_params</span></code></a>.
-Properties wrapping <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.hyper_params" title="dival.reconstructors.reconstructor.Reconstructor.hyper_params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyper_params</span></code></a> are automatically created by the
-metaclass (for hyper parameter names that are valid identifiers), such that
-the hyper parameters can be written and read like instance attributes.</p>
 <dl class="attribute">
 <dt id="dival.reconstructors.reconstructor.Reconstructor.reco_space">
 <code class="sig-name descname">reco_space</code><a class="headerlink" href="#dival.reconstructors.reconstructor.Reconstructor.reco_space" title="Permalink to this definition">¶</a></dt>
@@ -249,11 +242,7 @@ the hyper parameters can be written and read like instance attributes.</p>
 <dd><p>Current hyper parameter values.
 Initialized automatically using the default values from
 <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS" title="dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HYPER_PARAMS</span></code></a> (but may be overridden by <cite>hyper_params</cite> passed
-to <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.__init__" title="dival.reconstructors.reconstructor.Reconstructor.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>).
-It is expected to have the same keys as <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS" title="dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HYPER_PARAMS</span></code></a>.
-The values for these keys in this dict are wrapped by properties with
-the key as identifier (if possible), so an assignment to the property
-changes the value in this dict and vice versa.</p>
+to <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.__init__" title="dival.reconstructors.reconstructor.Reconstructor.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>dict</p>
@@ -269,10 +258,6 @@ changes the value in this dict and vice versa.</p>
 reconstructor.
 It should not be hidden by an instance attribute of the same name (i.e. by
 assigning a value to <cite>self.HYPER_PARAMS</cite> in an instance of a subtype).</p>
-<p><em>Note:</em> in order to inherit <a class="reference internal" href="#dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS" title="dival.reconstructors.reconstructor.Reconstructor.HYPER_PARAMS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HYPER_PARAMS</span></code></a> from a super class, the
-subclass should create a deep copy of it, i.e. execute
-<code class="docutils literal notranslate"><span class="pre">HYPER_PARAMS</span> <span class="pre">=</span> <span class="pre">copy.deepcopy(SuperReconstructorClass.HYPER_PARAMS)</span></code> in
-the class body.</p>
 <p>The keys of this dict are the names of the hyper parameters, and each
 value is a dict with the following fields.</p>
 <blockquote>
@@ -634,11 +619,6 @@ If <cite>None</cite>, just <a class="reference internal" href="#dival.reconstruc
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="dival.reconstructors.reconstructor.IterativeReconstructor.iterations">
-<em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.reconstructor.IterativeReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -722,11 +702,6 @@ If <cite>None</cite>, just <a class="reference internal" href="#dival.reconstruc
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="method">
-<dt id="dival.reconstructors.reconstructor.StandardIterativeReconstructor.iterations">
-<em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.reconstructor.StandardIterativeReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
