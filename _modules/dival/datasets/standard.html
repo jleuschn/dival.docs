@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.4
+                0.4.5
               </div>
             
           
@@ -282,8 +282,8 @@
         <span class="n">impl</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;impl&#39;</span><span class="p">,</span> <span class="s1">&#39;astra_cuda&#39;</span><span class="p">)</span>
         <span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">impl</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">get_reco_ray_trafo</span><span class="p">(</span><span class="n">impl</span><span class="o">=</span><span class="n">impl</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">reco_geometry</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">impl</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">get_reco_ray_trafo</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">reco_geometry</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">reco_ray_trafo</span> <span class="o">=</span> <span class="n">get_reco_ray_trafo</span><span class="p">(</span><span class="n">impl</span><span class="o">=</span><span class="n">impl</span><span class="p">)</span>
 
         <span class="k">class</span> <span class="nc">_ResizeOperator</span><span class="p">(</span><span class="n">odl</span><span class="o">.</span><span class="n">Operator</span><span class="p">):</span>

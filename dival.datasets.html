@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.4
+                0.4.5
               </div>
             
           
@@ -894,7 +894,7 @@ randomly.</p></li>
 
 <dl class="class">
 <dt id="dival.datasets.LoDoPaBDataset">
-<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.</code><code class="sig-name descname">LoDoPaBDataset</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em>, <em class="sig-param">impl='astra_cuda'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.</code><code class="sig-name descname">LoDoPaBDataset</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em>, <em class="sig-param">sorted_by_patient=False</em>, <em class="sig-param">impl='astra_cuda'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
 <p>The LoDoPaB-CT dataset, which is documented in the preprint
 <a class="reference external" href="https://arxiv.org/abs/1910.01113">https://arxiv.org/abs/1910.01113</a> hosted on
@@ -961,9 +961,34 @@ passed to <a class="reference internal" href="#dival.datasets.LoDoPaBDataset.__i
 <dd><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="dival.datasets.LoDoPaBDataset.sorted_by_patient">
+<code class="sig-name descname">sorted_by_patient</code><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.sorted_by_patient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the samples are sorted by patient id.
+Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dival.datasets.LoDoPaBDataset.rel_patient_ids">
+<code class="sig-name descname">rel_patient_ids</code><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.rel_patient_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relative patient ids of the samples in the original non-sorted order
+for each part, as returned by <a class="reference internal" href="#dival.datasets.LoDoPaBDataset.get_patient_ids" title="dival.datasets.LoDoPaBDataset.get_patient_ids"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LoDoPaBDataset.get_patient_ids()</span></code></a>.
+<cite>None</cite>, if the csv files are not found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>(dict of array) or <cite>None</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="dival.datasets.LoDoPaBDataset.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em>, <em class="sig-param">impl='astra_cuda'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em>, <em class="sig-param">sorted_by_patient=False</em>, <em class="sig-param">impl='astra_cuda'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -991,24 +1016,15 @@ was normalized.</p>
 If <code class="docutils literal notranslate"><span class="pre">observation_model</span> <span class="pre">==</span> <span class="pre">'post-log'</span></code>, a value greater than zero
 is required in order to avoid undefined values. The default is 0.1,
 both for <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code> and <code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code> model.</p></li>
+<li><p><strong>sorted_by_patient</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to sort the samples by patient id.
+Useful to resplit the dataset.
+See also <a class="reference internal" href="#dival.datasets.LoDoPaBDataset.get_indices_for_patient" title="dival.datasets.LoDoPaBDataset.get_indices_for_patient"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_indices_for_patient()</span></code></a>.
+Note that the slices of each patient are ordered randomly wrt.
+the z-location in any case.
+Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 <li><p><strong>impl</strong> ({<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                optional) – Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code> to
 construct <code class="xref py py-attr docutils literal notranslate"><span class="pre">ray_trafo</span></code>.</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="dival.datasets.LoDoPaBDataset.check_for_lodopab">
-<code class="sig-name descname">check_for_lodopab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.check_for_lodopab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.check_for_lodopab" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fast check whether first and last file of each dataset part exist
-under the configured data path.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>exists</strong> – Whether LoDoPaB seems to exist.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1037,7 +1053,7 @@ passed to <a class="reference internal" href="#dival.datasets.LoDoPaBDataset.__i
 
 <dl class="method">
 <dt id="dival.datasets.LoDoPaBDataset.get_ray_trafo">
-<code class="sig-name descname">get_ray_trafo</code><span class="sig-paren">(</span><em class="sig-param">impl=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_ray_trafo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.get_ray_trafo" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_ray_trafo</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_ray_trafo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.get_ray_trafo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the ray transform that is a noiseless version of the forward
 operator.</p>
 <dl class="field-list simple">
@@ -1157,6 +1173,115 @@ The values lie in the range <code class="docutils literal notranslate"><span cla
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(observation,</span> <span class="pre">ground_truth)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.LoDoPaBDataset.get_indices_for_patient">
+<code class="sig-name descname">get_indices_for_patient</code><span class="sig-paren">(</span><em class="sig-param">rel_patient_id</em>, <em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_indices_for_patient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.get_indices_for_patient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the indices of the samples from one patient.
+If <code class="docutils literal notranslate"><span class="pre">self.sorted_by_patient</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the indices will be
+subsequent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rel_patient_id</strong> (<em>int</em>) – Patient id, relative to the part.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – Whether to return the number of train, validation or test patients.
+Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>indices</strong> – The indices of the samples from the patient.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.LoDoPaBDataset.check_for_lodopab">
+<em class="property">static </em><code class="sig-name descname">check_for_lodopab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.check_for_lodopab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.check_for_lodopab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fast check whether first and last file of each dataset part exist
+under the configured data path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>exists</strong> – Whether LoDoPaB seems to exist.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.LoDoPaBDataset.get_num_patients">
+<em class="property">static </em><code class="sig-name descname">get_num_patients</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_num_patients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.get_num_patients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of patients in a dataset part.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – Whether to return the number of train, validation or test patients.
+Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.LoDoPaBDataset.get_patient_ids">
+<em class="property">static </em><code class="sig-name descname">get_patient_ids</code><span class="sig-paren">(</span><em class="sig-param">relative=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_patient_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.get_patient_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the (relative) patient id for all samples of all dataset parts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>relative</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use ids relative to the dataset part.
+The csv files store absolute indices, where
+“train_ids &lt; validation_ids &lt; test_ids”.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, these absolute indices are returned.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the smallest absolute id of the part is subtracted,
+giving zero-based (relative) patient ids.
+Default: <code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ids</strong> – For each part: an array with the (relative) patient ids for all
+samples (length: number of samples in the corresponding part).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict of array</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>OSError</strong> – An <cite>OSError</cite> is raised if one of the csv files containing the
+    patient ids is missing in the configured data path.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dival.datasets.LoDoPaBDataset.get_idx_sorted_by_patient">
+<em class="property">static </em><code class="sig-name descname">get_idx_sorted_by_patient</code><span class="sig-paren">(</span><em class="sig-param">ids=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_idx_sorted_by_patient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.get_idx_sorted_by_patient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return indices that allow access to each dataset part in patient id
+order.
+<em>Note:</em> in most cases this method should not be called directly. Rather
+specify <code class="docutils literal notranslate"><span class="pre">sorted_by_patient=True</span></code> to the constructor if applicable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ids</strong> (<em>dict of array-like</em><em>, </em><em>optional</em>) – Patient ids as returned by <a class="reference internal" href="#dival.datasets.LoDoPaBDataset.get_patient_ids" title="dival.datasets.LoDoPaBDataset.get_patient_ids"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_patient_ids()</span></code></a>. It is not
+relevant to this function whether they are relative.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>idx</strong> – Indices that allow access to each dataset part in patient id order.
+Each array value is an index into the samples in original order
+(as stored in the HDF5 files).
+I.e.: By iterating the samples with index <code class="docutils literal notranslate"><span class="pre">idx[part][i]</span></code> for
+<code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...</span></code> one first obtains all samples from one
+patient, then continues with the samples of the second patient, and
+so on.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict of array</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>OSError</strong> – An <cite>OSError</cite> is raised if <code class="docutils literal notranslate"><span class="pre">ids</span> <span class="pre">is</span> <span class="pre">None</span></code> and one of the csv files
+    containing the patient ids is missing in the configured data path.</p>
 </dd>
 </dl>
 </dd></dl>
