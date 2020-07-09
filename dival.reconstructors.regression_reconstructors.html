@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -180,11 +180,11 @@
   <div class="section" id="module-dival.reconstructors.regression_reconstructors">
 <span id="dival-reconstructors-regression-reconstructors-module"></span><h1>dival.reconstructors.regression_reconstructors module<a class="headerlink" href="#module-dival.reconstructors.regression_reconstructors" title="Permalink to this headline">¶</a></h1>
 <p>Provides reconstructors performing regression.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.regression_reconstructors.</code><code class="sig-name descname">LinRegReconstructor</code><span class="sig-paren">(</span><em class="sig-param">hyper_params=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.regression_reconstructors.</code><code class="sig-name descname">LinRegReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.LearnedReconstructor</span></code></a></p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.HYPER_PARAMS">
 <code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'l2_regularization': {'default': 0.0, 'range': [0.0, inf], 'retrain': True}}</em><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reconstructor learning and applying linear regression.</p>
@@ -193,7 +193,7 @@ Learns the entries of <code class="docutils literal notranslate"><span class="pr
 <code class="docutils literal notranslate"><span class="pre">A_inv</span> <span class="pre">=</span> <span class="pre">1/2N</span> <span class="pre">*</span> <span class="pre">sum_i</span> <span class="pre">||x_i</span> <span class="pre">-</span> <span class="pre">A_inv</span> <span class="pre">*</span> <span class="pre">y_i||^2</span> <span class="pre">+</span> <span class="pre">alpha/2</span> <span class="pre">*</span> <span class="pre">||A_inv||_F^2</span></code>,
 where (y_i, x_i) with i=1,…,N are pairs of observations and the
 corresponding ground truth.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.weights">
 <code class="sig-name descname">weights</code><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.weights" title="Permalink to this definition">¶</a></dt>
 <dd><p>The weight matrix.</p>
@@ -206,9 +206,9 @@ corresponding ground truth.</p>
 
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">hyper_params=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>hyper_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – A dict with no items or an item <code class="docutils literal notranslate"><span class="pre">'l2_regularization':</span> <span class="pre">float</span></code>.
@@ -217,9 +217,9 @@ Cf. <code class="xref py py-meth docutils literal notranslate"><span class="pre"
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.train">
-<code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param">dataset</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.train" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train the reconstructor with a dataset by adapting its parameters.</p>
 <p>Should only use the training data from <cite>dataset</cite>.</p>
 <dl class="field-list simple">
@@ -229,9 +229,9 @@ Cf. <code class="xref py py-meth docutils literal notranslate"><span class="pre"
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.save_params">
-<code class="sig-name descname">save_params</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save <a class="reference internal" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.weights" title="dival.reconstructors.regression_reconstructors.LinRegReconstructor.weights"><code class="xref py py-attr docutils literal notranslate"><span class="pre">weights</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">hyper_params</span></code> to files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -240,14 +240,14 @@ Cf. <code class="xref py py-meth docutils literal notranslate"><span class="pre"
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.l2_regularization">
 <em class="property">property </em><code class="sig-name descname">l2_regularization</code><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.l2_regularization" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.regression_reconstructors.LinRegReconstructor.load_params">
-<code class="sig-name descname">load_params</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/regression_reconstructors.html#LinRegReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load <a class="reference internal" href="#dival.reconstructors.regression_reconstructors.LinRegReconstructor.weights" title="dival.reconstructors.regression_reconstructors.LinRegReconstructor.weights"><code class="xref py py-attr docutils literal notranslate"><span class="pre">weights</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">hyper_params</span></code> from files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

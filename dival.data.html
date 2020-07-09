@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -177,13 +177,13 @@
             
   <div class="section" id="module-dival.data">
 <span id="dival-data-module"></span><h1>dival.data module<a class="headerlink" href="#module-dival.data" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="dival.data.DataPairs">
-<em class="property">class </em><code class="sig-prename descclassname">dival.data.</code><code class="sig-name descname">DataPairs</code><span class="sig-paren">(</span><em class="sig-param">observations</em>, <em class="sig-param">ground_truth=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.data.DataPairs" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.data.</code><code class="sig-name descname">DataPairs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">observations</span></em>, <em class="sig-param"><span class="n">ground_truth</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.data.DataPairs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Bundles <a class="reference internal" href="#dival.data.DataPairs.observations" title="dival.data.DataPairs.observations"><code class="xref py py-attr docutils literal notranslate"><span class="pre">observations</span></code></a> with <a class="reference internal" href="#dival.data.DataPairs.ground_truth" title="dival.data.DataPairs.ground_truth"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ground_truth</span></code></a>.
 Implements <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__len__()</span></code>.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.data.DataPairs.observations">
 <code class="sig-name descname">observations</code><a class="headerlink" href="#dival.data.DataPairs.observations" title="Permalink to this definition">¶</a></dt>
 <dd><p>The observations, possibly distorted or low-dimensional.</p>
@@ -194,7 +194,7 @@ Implements <code class="xref py py-meth docutils literal notranslate"><span clas
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.data.DataPairs.ground_truth">
 <code class="sig-name descname">ground_truth</code><a class="headerlink" href="#dival.data.DataPairs.ground_truth" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ground truth data (may be replaced with good quality references).
@@ -206,9 +206,9 @@ If not known, it may be omitted (<cite>None</cite>).</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.data.DataPairs.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">observations</em>, <em class="sig-param">ground_truth=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.data.DataPairs.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">observations</span></em>, <em class="sig-param"><span class="n">ground_truth</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/data.html#DataPairs.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.data.DataPairs.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 

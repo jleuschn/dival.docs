@@ -5,6 +5,7 @@ Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
    dival.datasets
    dival.reconstructors
@@ -14,6 +15,7 @@ Submodules
 ----------
 
 .. toctree::
+   :maxdepth: 4
 
    dival.config
    dival.data

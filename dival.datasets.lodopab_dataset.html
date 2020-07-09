@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -181,14 +181,14 @@
 <span id="dival-datasets-lodopab-dataset-module"></span><h1>dival.datasets.lodopab_dataset module<a class="headerlink" href="#module-dival.datasets.lodopab_dataset" title="Permalink to this headline">¶</a></h1>
 <p>Provides <cite>LoDoPaBDataset</cite>.</p>
 <p>Provides simple access to the <a class="reference external" href="https://zenodo.org/record/3384092">LoDoPaB-CT dataset</a> documented in an <a class="reference external" href="https://arxiv.org/abs/1910.01113">ArXiv preprint</a>.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="dival.datasets.lodopab_dataset.download_lodopab">
 <code class="sig-prename descclassname">dival.datasets.lodopab_dataset.</code><code class="sig-name descname">download_lodopab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#download_lodopab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.download_lodopab" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset">
-<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.lodopab_dataset.</code><code class="sig-name descname">LoDoPaBDataset</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em>, <em class="sig-param">sorted_by_patient=False</em>, <em class="sig-param">impl='astra_cuda'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.lodopab_dataset.</code><code class="sig-name descname">LoDoPaBDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_pt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_pt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">observation_model</span><span class="o">=</span><span class="default_value">'post-log'</span></em>, <em class="sig-param"><span class="n">min_photon_count</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sorted_by_patient</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">impl</span><span class="o">=</span><span class="default_value">'astra_cuda'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
 <p>The LoDoPaB-CT dataset, which is documented in the preprint
 <a class="reference external" href="https://arxiv.org/abs/1910.01113">https://arxiv.org/abs/1910.01113</a> hosted on
@@ -202,7 +202,7 @@ incident photons per pixel before attenuation is applied to the projection
 data. The images have a size of 362x362 px.</p>
 <p>A ray transform that corresponds to the noiseless forward operator is
 available via the <cite>get_ray_trafo</cite> method of this dataset.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.space">
 <code class="sig-name descname">space</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.space" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
@@ -219,43 +219,43 @@ passed to <a class="reference internal" href="#dival.datasets.lodopab_dataset.Lo
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.shape">
 <code class="sig-name descname">shape</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.shape" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">(362,</span> <span class="pre">362)</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.train_len">
 <code class="sig-name descname">train_len</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.train_len" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">35820</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.validation_len">
 <code class="sig-name descname">validation_len</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.validation_len" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">3522</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.test_len">
 <code class="sig-name descname">test_len</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.test_len" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">3553</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.random_access">
 <code class="sig-name descname">random_access</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.random_access" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.num_elements_per_sample">
 <code class="sig-name descname">num_elements_per_sample</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.num_elements_per_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.sorted_by_patient">
 <code class="sig-name descname">sorted_by_patient</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.sorted_by_patient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the samples are sorted by patient id.
@@ -267,7 +267,7 @@ Default: <code class="docutils literal notranslate"><span class="pre">False</spa
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.rel_patient_ids">
 <code class="sig-name descname">rel_patient_ids</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.rel_patient_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Relative patient ids of the samples in the original non-sorted order
@@ -280,9 +280,9 @@ for each part, as returned by <a class="reference internal" href="#dival.dataset
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">min_pt=None</em>, <em class="sig-param">max_pt=None</em>, <em class="sig-param">observation_model='post-log'</em>, <em class="sig-param">min_photon_count=None</em>, <em class="sig-param">sorted_by_patient=False</em>, <em class="sig-param">impl='astra_cuda'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_pt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_pt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">observation_model</span><span class="o">=</span><span class="default_value">'post-log'</span></em>, <em class="sig-param"><span class="n">min_photon_count</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sorted_by_patient</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">impl</span><span class="o">=</span><span class="default_value">'astra_cuda'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -323,9 +323,9 @@ construct <code class="xref py py-attr docutils literal notranslate"><span class
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.generator">
-<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.generator" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield pairs of low dose observations and (virtual) ground truth.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -345,9 +345,9 @@ passed to <a class="reference internal" href="#dival.datasets.lodopab_dataset.Lo
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_ray_trafo">
-<code class="sig-name descname">get_ray_trafo</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_ray_trafo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_ray_trafo" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_ray_trafo</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_ray_trafo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_ray_trafo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the ray transform that is a noiseless version of the forward
 operator.</p>
 <dl class="field-list simple">
@@ -365,9 +365,9 @@ operator.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample">
-<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get single sample of the dataset.
 Returns a pair of (virtual) ground truth and its low dose observation,
 of which either part can be left out by option.</p>
@@ -419,9 +419,9 @@ The values lie in the range <code class="docutils literal notranslate"><span cla
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_samples">
-<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_samples" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get slice of the dataset.
 Returns a pair of (virtual) ground truth data and its low dose
 observation data, of which either part can be left out by option.</p>
@@ -471,9 +471,9 @@ The values lie in the range <code class="docutils literal notranslate"><span cla
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_indices_for_patient">
-<code class="sig-name descname">get_indices_for_patient</code><span class="sig-paren">(</span><em class="sig-param">rel_patient_id</em>, <em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_indices_for_patient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_indices_for_patient" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_indices_for_patient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rel_patient_id</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_indices_for_patient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_indices_for_patient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the indices of the samples from one patient.
 If <code class="docutils literal notranslate"><span class="pre">self.sorted_by_patient</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the indices will be
 subsequent.</p>
@@ -494,7 +494,7 @@ Default is <code class="docutils literal notranslate"><span class="pre">'train'<
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.check_for_lodopab">
 <em class="property">static </em><code class="sig-name descname">check_for_lodopab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.check_for_lodopab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.check_for_lodopab" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fast check whether first and last file of each dataset part exist
@@ -509,9 +509,9 @@ under the configured data path.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_num_patients">
-<em class="property">static </em><code class="sig-name descname">get_num_patients</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_num_patients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_num_patients" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">get_num_patients</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_num_patients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_num_patients" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number of patients in a dataset part.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -521,9 +521,9 @@ Default is <code class="docutils literal notranslate"><span class="pre">'train'<
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_patient_ids">
-<em class="property">static </em><code class="sig-name descname">get_patient_ids</code><span class="sig-paren">(</span><em class="sig-param">relative=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_patient_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_patient_ids" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">get_patient_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">relative</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_patient_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_patient_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the (relative) patient id for all samples of all dataset parts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -549,9 +549,9 @@ samples (length: number of samples in the corresponding part).</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.get_idx_sorted_by_patient">
-<em class="property">static </em><code class="sig-name descname">get_idx_sorted_by_patient</code><span class="sig-paren">(</span><em class="sig-param">ids=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_idx_sorted_by_patient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_idx_sorted_by_patient" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">get_idx_sorted_by_patient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ids</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/lodopab_dataset.html#LoDoPaBDataset.get_idx_sorted_by_patient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.get_idx_sorted_by_patient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return indices that allow access to each dataset part in patient id
 order.
 <em>Note:</em> in most cases this method should not be called directly. Rather

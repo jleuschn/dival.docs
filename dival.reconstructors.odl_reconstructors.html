@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -180,15 +180,15 @@
   <div class="section" id="module-dival.reconstructors.odl_reconstructors">
 <span id="dival-reconstructors-odl-reconstructors-module"></span><h1>dival.reconstructors.odl_reconstructors module<a class="headerlink" href="#module-dival.reconstructors.odl_reconstructors" title="Permalink to this headline">¶</a></h1>
 <p>Provides wrappers for reconstruction methods of odl.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">FBPReconstructor</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">padding=True</em>, <em class="sig-param">hyper_params=None</em>, <em class="sig-param">pre_processor=None</em>, <em class="sig-param">post_processor=None</em>, <em class="sig-param">recompute_fbp_op=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#FBPReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">FBPReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">padding</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pre_processor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">post_processor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">recompute_fbp_op</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#FBPReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.Reconstructor</span></code></a></p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor.HYPER_PARAMS">
 <code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'filter_type': {'choices': ['Ram-Lak', 'Shepp-Logan', 'Cosine', 'Hamming', 'Hann'], 'default': 'Ram-Lak'}, 'frequency_scaling': {'default': 1.0, 'grid_search_options': {'num_samples': 11}, 'range': [0, 1]}}</em><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reconstructor applying filtered back-projection.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor.fbp_op">
 <code class="sig-name descname">fbp_op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.fbp_op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The operator applying filtered back-projection.
@@ -204,9 +204,9 @@ change).</p>
 
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">padding=True</em>, <em class="sig-param">hyper_params=None</em>, <em class="sig-param">pre_processor=None</em>, <em class="sig-param">post_processor=None</em>, <em class="sig-param">recompute_fbp_op=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#FBPReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">padding</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pre_processor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">post_processor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">recompute_fbp_op</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#FBPReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -229,24 +229,24 @@ only once, improving reconstruction time efficiency.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor.filter_type">
 <em class="property">property </em><code class="sig-name descname">filter_type</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.filter_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.FBPReconstructor.frequency_scaling">
 <em class="property">property </em><code class="sig-name descname">frequency_scaling</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.FBPReconstructor.frequency_scaling" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.CGReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">CGReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">op_is_symmetric=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#CGReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">CGReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">op_is_symmetric</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#CGReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Iterative reconstructor applying the conjugate gradient method.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
@@ -257,7 +257,7 @@ only once, improving reconstruction time efficiency.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -268,7 +268,7 @@ only once, improving reconstruction time efficiency.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -279,7 +279,7 @@ only once, improving reconstruction time efficiency.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -290,7 +290,7 @@ only once, improving reconstruction time efficiency.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.op_is_symmetric">
 <code class="sig-name descname">op_is_symmetric</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.op_is_symmetric" title="Permalink to this definition">¶</a></dt>
 <dd><p>If <code class="docutils literal notranslate"><span class="pre">False</span></code> (default), the normal equations are solved. If <code class="docutils literal notranslate"><span class="pre">True</span></code>,
@@ -303,9 +303,9 @@ solved directly.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">op_is_symmetric=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#CGReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">op_is_symmetric</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#CGReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.iterative.iterative.conjugate_gradient_normal</cite> (if
 <code class="docutils literal notranslate"><span class="pre">op_is_symmetric</span> <span class="pre">==</span> <span class="pre">False</span></code>) or
 <cite>odl.solvers.iterative.iterative.conjugate_gradient</cite> (if
@@ -329,19 +329,19 @@ equations is solved directly.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.CGReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.CGReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">GaussNewtonReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">zero_seq=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">GaussNewtonReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">zero_seq</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Iterative reconstructor applying the Gauss-Newton method.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
@@ -352,7 +352,7 @@ equations is solved directly.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -363,7 +363,7 @@ equations is solved directly.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maximum number of iterations.</p>
@@ -374,7 +374,7 @@ equations is solved directly.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.zero_seq">
 <code class="sig-name descname">zero_seq</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.zero_seq" title="Permalink to this definition">¶</a></dt>
 <dd><p>Zero sequence used for regularization.</p>
@@ -385,7 +385,7 @@ equations is solved directly.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -396,9 +396,9 @@ equations is solved directly.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">zero_seq=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">zero_seq</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.iterative.iterative.gauss_newton</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -414,19 +414,19 @@ The call <code class="docutils literal notranslate"><span class="pre">op.derivat
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">KaczmarzReconstructor</code><span class="sig-paren">(</span><em class="sig-param">ops</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">omega=1</em>, <em class="sig-param">random=False</em>, <em class="sig-param">projection=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">callback_loop='outer'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#KaczmarzReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">KaczmarzReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ops</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">omega</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">random</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">projection</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback_loop</span><span class="o">=</span><span class="default_value">'outer'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#KaczmarzReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Iterative reconstructor applying Kaczmarz’s method.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.ops">
 <code class="sig-name descname">ops</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.ops" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operators of the inverse problem.</p>
@@ -437,7 +437,7 @@ The call <code class="docutils literal notranslate"><span class="pre">op.derivat
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -448,7 +448,7 @@ The call <code class="docutils literal notranslate"><span class="pre">op.derivat
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -459,7 +459,7 @@ The call <code class="docutils literal notranslate"><span class="pre">op.derivat
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.omega">
 <code class="sig-name descname">omega</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.omega" title="Permalink to this definition">¶</a></dt>
 <dd><p>Relaxation parameter.
@@ -471,7 +471,7 @@ If a single float is given it is used for all operators.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.random">
 <code class="sig-name descname">random</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the order of the operators is randomized in each iteration.</p>
@@ -482,7 +482,7 @@ If a single float is given it is used for all operators.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.projection">
 <code class="sig-name descname">projection</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.projection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callable that can be used to modify the iterates in each iteration.</p>
@@ -493,7 +493,7 @@ If a single float is given it is used for all operators.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -504,7 +504,7 @@ If a single float is given it is used for all operators.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback_loop">
 <code class="sig-name descname">callback_loop</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback_loop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the <cite>callback</cite> should be called in the inner or outer loop.</p>
@@ -515,9 +515,9 @@ If a single float is given it is used for all operators.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ops</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">omega=1</em>, <em class="sig-param">random=False</em>, <em class="sig-param">projection=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">callback_loop='outer'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#KaczmarzReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ops</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">omega</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">random</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">projection</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback_loop</span><span class="o">=</span><span class="default_value">'outer'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#KaczmarzReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.iterative.iterative.kaczmarz</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -537,19 +537,19 @@ If a single float is given it is used for all operators.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">LandweberReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">omega=None</em>, <em class="sig-param">projection=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#LandweberReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">LandweberReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">omega</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">projection</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#LandweberReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Iterative reconstructor applying Landweber’s method.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
@@ -560,7 +560,7 @@ If a single float is given it is used for all operators.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -571,7 +571,7 @@ If a single float is given it is used for all operators.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -582,7 +582,7 @@ If a single float is given it is used for all operators.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.omega">
 <code class="sig-name descname">omega</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.omega" title="Permalink to this definition">¶</a></dt>
 <dd><p>Relaxation parameter.</p>
@@ -593,7 +593,7 @@ If a single float is given it is used for all operators.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.projection">
 <code class="sig-name descname">projection</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.projection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callable that can be used to modify the iterates in each iteration.</p>
@@ -604,7 +604,7 @@ If a single float is given it is used for all operators.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -615,9 +615,9 @@ If a single float is given it is used for all operators.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">omega=None</em>, <em class="sig-param">projection=None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#LandweberReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">omega</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">projection</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#LandweberReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.iterative.iterative.landweber</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -635,21 +635,21 @@ One argument is passed and expected be modified in-place.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.LandweberReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.LandweberReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">MLEMReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">noise='poisson'</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">sensitivities=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#MLEMReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">MLEMReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">noise</span><span class="o">=</span><span class="default_value">'poisson'</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sensitivities</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#MLEMReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Iterative reconstructor applying Maximum Likelihood Expectation
 Maximization.</p>
 <p>If multiple operators are given, Ordered Subsets MLEM is applied.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator(s) of the inverse problem.</p>
@@ -660,7 +660,7 @@ Maximization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -671,7 +671,7 @@ Maximization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -682,7 +682,7 @@ Maximization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.noise">
 <code class="sig-name descname">noise</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Noise model determining the variant of MLEM.</p>
@@ -693,7 +693,7 @@ Maximization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -704,7 +704,7 @@ Maximization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.sensitivities">
 <code class="sig-name descname">sensitivities</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.sensitivities" title="Permalink to this definition">¶</a></dt>
 <dd><p>Usable with <code class="docutils literal notranslate"><span class="pre">noise='poisson'</span></code>. The algorithm contains an <code class="docutils literal notranslate"><span class="pre">A^T</span> <span class="pre">1</span></code>
@@ -717,9 +717,9 @@ Default: <code class="docutils literal notranslate"><span class="pre">op[i].adjo
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">noise='poisson'</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">sensitivities=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#MLEMReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">noise</span><span class="o">=</span><span class="default_value">'poisson'</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sensitivities</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#MLEMReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.iterative.statistical.osmlem</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -740,21 +740,21 @@ Default: <code class="docutils literal notranslate"><span class="pre">op[i].adjo
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.MLEMReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.MLEMReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor">
 <em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">ISTAReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">gamma=0.001</em>, <em class="sig-param">reg=&lt;class 'odl.solvers.functional.default_functionals.L1Norm'&gt;</em>, <em class="sig-param">accelerated=True</em>, <em class="sig-param">lam=1.0</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ISTAReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Iterative reconstructor applying proximal gradient
 algorithm for convex optimization, also known as
 Iterative Soft-Thresholding Algorithm (ISTA).</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
@@ -765,7 +765,7 @@ Iterative Soft-Thresholding Algorithm (ISTA).</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -776,7 +776,7 @@ Iterative Soft-Thresholding Algorithm (ISTA).</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -787,7 +787,7 @@ Iterative Soft-Thresholding Algorithm (ISTA).</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.gamma">
 <code class="sig-name descname">gamma</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.gamma" title="Permalink to this definition">¶</a></dt>
 <dd><p>Step size parameter.</p>
@@ -798,7 +798,7 @@ Iterative Soft-Thresholding Algorithm (ISTA).</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.reg">
 <code class="sig-name descname">reg</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.reg" title="Permalink to this definition">¶</a></dt>
 <dd><p>The regularization operator of the inverse problem. Needs to have
@@ -810,7 +810,7 @@ Iterative Soft-Thresholding Algorithm (ISTA).</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.accelerated">
 <code class="sig-name descname">accelerated</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.accelerated" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates which algorithm to use. If <cite>False</cite>, then the “Iterative
@@ -823,7 +823,7 @@ accelerated version FISTA is used.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.lam">
 <code class="sig-name descname">lam</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.lam" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overrelaxation step size (default <code class="docutils literal notranslate"><span class="pre">1.0</span></code>).
@@ -836,7 +836,7 @@ the corresponding step size.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -847,7 +847,7 @@ the corresponding step size.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">gamma=0.001</em>, <em class="sig-param">reg=&lt;class 'odl.solvers.functional.default_functionals.L1Norm'&gt;</em>, <em class="sig-param">accelerated=True</em>, <em class="sig-param">lam=1.0</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ISTAReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls
@@ -876,21 +876,21 @@ the corresponding step size.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.ISTAReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ISTAReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.PDHGReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">PDHGReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#PDHGReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">PDHGReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#PDHGReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Primal-Dual Hybrid Gradient (PDHG) algorithm from the 2011 paper
 <a class="reference external" href="https://link.springer.com/article/10.1007/s10851-010-0251-1">https://link.springer.com/article/10.1007/s10851-010-0251-1</a> with TV
 regularization.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.PDHGReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
@@ -901,7 +901,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.PDHGReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -912,7 +912,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.PDHGReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -923,7 +923,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.PDHGReconstructor.lam">
 <code class="sig-name descname">lam</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor.lam" title="Permalink to this definition">¶</a></dt>
 <dd><p>TV-regularization rate (default <code class="docutils literal notranslate"><span class="pre">0.01</span></code>).</p>
@@ -934,7 +934,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.PDHGReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -945,9 +945,9 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.PDHGReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#PDHGReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#PDHGReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.nonsmooth.primal_dual_hybrid_gradient.pdhg</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -962,20 +962,20 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.PDHGReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.PDHGReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">DouglasRachfordReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#DouglasRachfordReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">DouglasRachfordReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#DouglasRachfordReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Douglas-Rachford primal-dual splitting algorithm from the 2012 paper
 <a class="reference external" href="https://arxiv.org/abs/1212.0326">https://arxiv.org/abs/1212.0326</a> with TV regularization.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
@@ -986,7 +986,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -997,7 +997,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -1008,7 +1008,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.lam">
 <code class="sig-name descname">lam</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.lam" title="Permalink to this definition">¶</a></dt>
 <dd><p>TV-regularization rate (default <code class="docutils literal notranslate"><span class="pre">0.01</span></code>).</p>
@@ -1019,7 +1019,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -1030,9 +1030,9 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#DouglasRachfordReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#DouglasRachfordReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.nonsmooth.douglas_rachford.douglas_rachford_pd</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1047,19 +1047,19 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">ForwardBackwardReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">tau=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ForwardBackwardReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">ForwardBackwardReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">tau</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ForwardBackwardReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>The forward-backward primal-dual splitting algorithm.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
@@ -1070,7 +1070,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -1081,7 +1081,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -1092,7 +1092,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.lam">
 <code class="sig-name descname">lam</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.lam" title="Permalink to this definition">¶</a></dt>
 <dd><p>TV-regularization rate (default <code class="docutils literal notranslate"><span class="pre">0.01</span></code>).</p>
@@ -1103,7 +1103,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.tau">
 <code class="sig-name descname">tau</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.tau" title="Permalink to this definition">¶</a></dt>
 <dd><p>Step-size like parameter for <code class="docutils literal notranslate"><span class="pre">f</span></code> (default is <code class="docutils literal notranslate"><span class="pre">0.01</span></code>).</p>
@@ -1114,7 +1114,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -1125,9 +1125,9 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">tau=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ForwardBackwardReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">tau</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ForwardBackwardReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.forward_backward_pd</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1143,20 +1143,20 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.ADMMReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">ADMMReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">tau=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ADMMReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">ADMMReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">tau</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ADMMReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Generic linearized ADMM method for convex problems. ADMM stands for
 ‘Alternating Direction Method of Multipliers’.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ADMMReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
@@ -1167,7 +1167,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ADMMReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -1178,7 +1178,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ADMMReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -1189,7 +1189,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ADMMReconstructor.lam">
 <code class="sig-name descname">lam</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor.lam" title="Permalink to this definition">¶</a></dt>
 <dd><p>TV-regularization weight (default <code class="docutils literal notranslate"><span class="pre">0.01</span></code>).</p>
@@ -1200,7 +1200,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ADMMReconstructor.tau">
 <code class="sig-name descname">tau</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor.tau" title="Permalink to this definition">¶</a></dt>
 <dd><p>Step-size like parameter for <code class="docutils literal notranslate"><span class="pre">f</span></code> (default is <code class="docutils literal notranslate"><span class="pre">0.01</span></code>).</p>
@@ -1211,7 +1211,7 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.ADMMReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -1222,9 +1222,9 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.ADMMReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">tau=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ADMMReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">tau</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#ADMMReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.nonsmooth.admm.admm_linearized</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1240,20 +1240,20 @@ regularization.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.ADMMReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.ADMMReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.BFGSReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">BFGSReconstructor</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#BFGSReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">BFGSReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#BFGSReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Quasi-Newton BFGS method to minimize a differentiable function. The
 TV regularization term is smoothed using the Moreau envelope.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.BFGSReconstructor.op">
 <code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor.op" title="Permalink to this definition">¶</a></dt>
 <dd><p>The forward operator of the inverse problem.</p>
@@ -1264,7 +1264,7 @@ TV regularization term is smoothed using the Moreau envelope.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.BFGSReconstructor.x0">
 <code class="sig-name descname">x0</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor.x0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initial value.</p>
@@ -1275,7 +1275,7 @@ TV regularization term is smoothed using the Moreau envelope.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.BFGSReconstructor.niter">
 <code class="sig-name descname">niter</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor.niter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of iterations.</p>
@@ -1286,7 +1286,7 @@ TV regularization term is smoothed using the Moreau envelope.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.BFGSReconstructor.lam">
 <code class="sig-name descname">lam</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor.lam" title="Permalink to this definition">¶</a></dt>
 <dd><p>TV-regularization weight (default <code class="docutils literal notranslate"><span class="pre">0.01</span></code>).</p>
@@ -1297,7 +1297,7 @@ TV regularization term is smoothed using the Moreau envelope.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.odl_reconstructors.BFGSReconstructor.callback">
 <code class="sig-name descname">callback</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor.callback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object that is called in each iteration.</p>
@@ -1308,9 +1308,9 @@ TV regularization term is smoothed using the Moreau envelope.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.BFGSReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">x0</em>, <em class="sig-param">niter</em>, <em class="sig-param">lam=0.01</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#BFGSReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">lam</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#BFGSReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.smooth.newton.bfgs_method</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1325,7 +1325,7 @@ TV regularization term is smoothed using the Moreau envelope.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.BFGSReconstructor.iterations">
 <em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.BFGSReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>

@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -182,9 +182,9 @@
 <p>Functions to create noise samples of different distributions.</p>
 <p>This module is a copy of <code class="xref py py-mod docutils literal notranslate"><span class="pre">odl.phantom.noise</span></code> that was modified to support
 random states instead of seeds.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="dival.util.odl_noise_random_state.white_noise">
-<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">white_noise</code><span class="sig-paren">(</span><em class="sig-param">space</em>, <em class="sig-param">mean=0</em>, <em class="sig-param">stddev=1</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#white_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.white_noise" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">white_noise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">space</span></em>, <em class="sig-param"><span class="n">mean</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">stddev</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#white_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.white_noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard gaussian noise in space, pointwise <code class="docutils literal notranslate"><span class="pre">N(mean,</span> <span class="pre">stddev**2)</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -217,46 +217,9 @@ For <cite>None</cite>, use the global numpy random state (i.e. functions in
 </div>
 </dd></dl>
 
-<dl class="function">
-<dt id="dival.util.odl_noise_random_state.uniform_noise">
-<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">uniform_noise</code><span class="sig-paren">(</span><em class="sig-param">space</em>, <em class="sig-param">low=0</em>, <em class="sig-param">high=1</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#uniform_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.uniform_noise" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uniformly distributed noise in <code class="docutils literal notranslate"><span class="pre">space</span></code>, pointwise <code class="docutils literal notranslate"><span class="pre">U(low,</span> <span class="pre">high)</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>space</strong> (<cite>TensorSpace</cite> or <cite>ProductSpace</cite>) – The space in which the noise is created.</p></li>
-<li><p><strong>low</strong> (<code class="docutils literal notranslate"><span class="pre">space.field</span></code> element or <code class="docutils literal notranslate"><span class="pre">space</span></code> <cite>element-like</cite>, optional) – The lower bound of the uniform noise. If a scalar, it is interpreted as
-<code class="docutils literal notranslate"><span class="pre">low</span> <span class="pre">*</span> <span class="pre">space.one()</span></code>.
-If <code class="docutils literal notranslate"><span class="pre">space</span></code> is complex, the real and imaginary parts are interpreted
-as their respective part of the noise.</p></li>
-<li><p><strong>high</strong> (<code class="docutils literal notranslate"><span class="pre">space.field</span></code> element or <code class="docutils literal notranslate"><span class="pre">space</span></code> <cite>element-like</cite>, optional) – The upper bound of the uniform noise. If a scalar, it is interpreted as
-<code class="docutils literal notranslate"><span class="pre">high</span> <span class="pre">*</span> <span class="pre">space.one()</span></code>.
-If <code class="docutils literal notranslate"><span class="pre">space</span></code> is complex, the real and imaginary parts are interpreted
-as their respective part of the noise.</p></li>
-<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random seed to use for generating the noise.
-For <cite>None</cite>, use the current seed.
-Only takes effect if <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">is</span> <span class="pre">None</span></code>.</p></li>
-<li><p><strong>random_state</strong> (<cite>numpy.random.RandomState</cite>, optional) – Random state to use for generating the noise.
-For <cite>None</cite>, use the global numpy random state (i.e. functions in
-<code class="docutils literal notranslate"><span class="pre">np.random</span></code>).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>white_noise</strong></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">space</span></code> element</p>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#dival.util.odl_noise_random_state.poisson_noise" title="dival.util.odl_noise_random_state.poisson_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">poisson_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.salt_pepper_noise" title="dival.util.odl_noise_random_state.salt_pepper_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">salt_pepper_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.white_noise" title="dival.util.odl_noise_random_state.white_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">white_noise()</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.random.normal()</span></code></p>
-</div>
-</dd></dl>
-
-<dl class="function">
+<dl class="py function">
 <dt id="dival.util.odl_noise_random_state.poisson_noise">
-<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">poisson_noise</code><span class="sig-paren">(</span><em class="sig-param">intensity</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#poisson_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.poisson_noise" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">poisson_noise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">intensity</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#poisson_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.poisson_noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Poisson distributed noise with given intensity.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -288,9 +251,9 @@ For <cite>None</cite>, use the global numpy random state (i.e. functions in
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="dival.util.odl_noise_random_state.salt_pepper_noise">
-<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">salt_pepper_noise</code><span class="sig-paren">(</span><em class="sig-param">vector</em>, <em class="sig-param">fraction=0.05</em>, <em class="sig-param">salt_vs_pepper=0.5</em>, <em class="sig-param">low_val=None</em>, <em class="sig-param">high_val=None</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#salt_pepper_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.salt_pepper_noise" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">salt_pepper_noise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vector</span></em>, <em class="sig-param"><span class="n">fraction</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">salt_vs_pepper</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">low_val</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">high_val</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#salt_pepper_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.salt_pepper_noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add salt and pepper noise to vector.</p>
 <p>Salt and pepper noise replaces random elements in <code class="docutils literal notranslate"><span class="pre">vector</span></code> with
 <code class="docutils literal notranslate"><span class="pre">low_val</span></code> or <code class="docutils literal notranslate"><span class="pre">high_val</span></code>.</p>
@@ -326,6 +289,43 @@ For <cite>None</cite>, use the global numpy random state (i.e. functions in
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="#dival.util.odl_noise_random_state.white_noise" title="dival.util.odl_noise_random_state.white_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">white_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.poisson_noise" title="dival.util.odl_noise_random_state.poisson_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">poisson_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.uniform_noise" title="dival.util.odl_noise_random_state.uniform_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">uniform_noise()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="dival.util.odl_noise_random_state.uniform_noise">
+<code class="sig-prename descclassname">dival.util.odl_noise_random_state.</code><code class="sig-name descname">uniform_noise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">space</span></em>, <em class="sig-param"><span class="n">low</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">high</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_noise_random_state.html#uniform_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_noise_random_state.uniform_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uniformly distributed noise in <code class="docutils literal notranslate"><span class="pre">space</span></code>, pointwise <code class="docutils literal notranslate"><span class="pre">U(low,</span> <span class="pre">high)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>space</strong> (<cite>TensorSpace</cite> or <cite>ProductSpace</cite>) – The space in which the noise is created.</p></li>
+<li><p><strong>low</strong> (<code class="docutils literal notranslate"><span class="pre">space.field</span></code> element or <code class="docutils literal notranslate"><span class="pre">space</span></code> <cite>element-like</cite>, optional) – The lower bound of the uniform noise. If a scalar, it is interpreted as
+<code class="docutils literal notranslate"><span class="pre">low</span> <span class="pre">*</span> <span class="pre">space.one()</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">space</span></code> is complex, the real and imaginary parts are interpreted
+as their respective part of the noise.</p></li>
+<li><p><strong>high</strong> (<code class="docutils literal notranslate"><span class="pre">space.field</span></code> element or <code class="docutils literal notranslate"><span class="pre">space</span></code> <cite>element-like</cite>, optional) – The upper bound of the uniform noise. If a scalar, it is interpreted as
+<code class="docutils literal notranslate"><span class="pre">high</span> <span class="pre">*</span> <span class="pre">space.one()</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">space</span></code> is complex, the real and imaginary parts are interpreted
+as their respective part of the noise.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Random seed to use for generating the noise.
+For <cite>None</cite>, use the current seed.
+Only takes effect if <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">is</span> <span class="pre">None</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<cite>numpy.random.RandomState</cite>, optional) – Random state to use for generating the noise.
+For <cite>None</cite>, use the global numpy random state (i.e. functions in
+<code class="docutils literal notranslate"><span class="pre">np.random</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>white_noise</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">space</span></code> element</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dival.util.odl_noise_random_state.poisson_noise" title="dival.util.odl_noise_random_state.poisson_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">poisson_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.salt_pepper_noise" title="dival.util.odl_noise_random_state.salt_pepper_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">salt_pepper_noise()</span></code></a>, <a class="reference internal" href="#dival.util.odl_noise_random_state.white_noise" title="dival.util.odl_noise_random_state.white_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">white_noise()</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.random.normal()</span></code></p>
 </div>
 </dd></dl>
 

@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -422,36 +422,36 @@
                             <span class="n">row</span><span class="p">[</span><span class="s1">&#39;task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
                             <span class="n">row</span><span class="p">[</span><span class="s1">&#39;sub_task_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
                             <span class="n">row_sub_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span>
-                        <span class="k">if</span> <span class="n">save_best_reconstructor</span><span class="p">:</span>
-                            <span class="k">def</span> <span class="nf">save_if_best_reconstructor</span><span class="p">(</span>
-                                    <span class="n">measure_values</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-                                <span class="n">measure</span> <span class="o">=</span> <span class="n">save_best_reconstructor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-                                    <span class="s1">&#39;measure&#39;</span><span class="p">,</span> <span class="n">measures</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-                                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                                    <span class="n">measure</span> <span class="o">=</span> <span class="n">Measure</span><span class="o">.</span><span class="n">get_by_short_name</span><span class="p">(</span>
-                                        <span class="n">measure</span><span class="p">)</span>
-                                <span class="n">loss_sign</span> <span class="o">=</span> <span class="p">(</span>
-                                    <span class="mi">1</span> <span class="k">if</span> <span class="n">measure</span><span class="o">.</span><span class="n">measure_type</span> <span class="o">==</span> <span class="s1">&#39;distance&#39;</span>
-                                    <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-                                <span class="n">cur_loss</span> <span class="o">=</span> <span class="p">(</span>
-                                    <span class="n">loss_sign</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">measure_values</span><span class="p">[</span>
-                                        <span class="n">measure</span><span class="o">.</span><span class="n">short_name</span><span class="p">]))</span>
-                                <span class="k">if</span> <span class="n">cur_loss</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="n">iterations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                                        <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span>
-                                            <span class="s1">&#39;iterations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iterations</span>
-                                    <span class="n">reconstructor</span><span class="o">.</span><span class="n">save_params</span><span class="p">(</span>
-                                        <span class="n">save_best_reconstructor</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
-                                    <span class="k">return</span> <span class="n">cur_loss</span>
-                                <span class="k">return</span> <span class="n">best_loss</span>
-                            <span class="n">best_loss</span> <span class="o">=</span> <span class="n">save_if_best_reconstructor</span><span class="p">(</span>
-                                <span class="n">row</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">])</span>
-                            <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                                <span class="k">for</span> <span class="n">row_iterates</span><span class="p">,</span> <span class="n">iterations</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
-                                        <span class="n">rows_iterates</span><span class="p">,</span> <span class="n">return_rows_iterates</span><span class="p">):</span>
-                                    <span class="n">best_loss</span> <span class="o">=</span> <span class="n">save_if_best_reconstructor</span><span class="p">(</span>
-                                        <span class="n">row_iterates</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">],</span>
-                                        <span class="n">iterations</span><span class="o">=</span><span class="n">iterations</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">save_best_reconstructor</span><span class="p">:</span>
+                                <span class="k">def</span> <span class="nf">save_if_best_reconstructor</span><span class="p">(</span>
+                                        <span class="n">measure_values</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                                    <span class="n">measure</span> <span class="o">=</span> <span class="n">save_best_reconstructor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                                        <span class="s1">&#39;measure&#39;</span><span class="p">,</span> <span class="n">measures</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                                        <span class="n">measure</span> <span class="o">=</span> <span class="n">Measure</span><span class="o">.</span><span class="n">get_by_short_name</span><span class="p">(</span>
+                                            <span class="n">measure</span><span class="p">)</span>
+                                    <span class="n">loss_sign</span> <span class="o">=</span> <span class="p">(</span>
+                                        <span class="mi">1</span> <span class="k">if</span> <span class="n">measure</span><span class="o">.</span><span class="n">measure_type</span> <span class="o">==</span> <span class="s1">&#39;distance&#39;</span>
+                                        <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                                    <span class="n">cur_loss</span> <span class="o">=</span> <span class="p">(</span>
+                                        <span class="n">loss_sign</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">measure_values</span><span class="p">[</span>
+                                            <span class="n">measure</span><span class="o">.</span><span class="n">short_name</span><span class="p">]))</span>
+                                    <span class="k">if</span> <span class="n">cur_loss</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
+                                        <span class="k">if</span> <span class="n">iterations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                                            <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">[</span>
+                                                <span class="s1">&#39;iterations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iterations</span>
+                                        <span class="n">reconstructor</span><span class="o">.</span><span class="n">save_params</span><span class="p">(</span>
+                                            <span class="n">save_best_reconstructor</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
+                                        <span class="k">return</span> <span class="n">cur_loss</span>
+                                    <span class="k">return</span> <span class="n">best_loss</span>
+                                <span class="n">best_loss</span> <span class="o">=</span> <span class="n">save_if_best_reconstructor</span><span class="p">(</span>
+                                    <span class="n">row</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">])</span>
+                                <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                                    <span class="k">for</span> <span class="n">row_iterates</span><span class="p">,</span> <span class="n">iterations</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                                            <span class="n">rows_iterates</span><span class="p">,</span> <span class="n">return_rows_iterates</span><span class="p">):</span>
+                                        <span class="n">best_loss</span> <span class="o">=</span> <span class="n">save_if_best_reconstructor</span><span class="p">(</span>
+                                            <span class="n">row_iterates</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">],</span>
+                                            <span class="n">iterations</span><span class="o">=</span><span class="n">iterations</span><span class="p">)</span>
                     <span class="n">reconstructor</span><span class="o">.</span><span class="n">hyper_params</span> <span class="o">=</span> <span class="n">orig_hyper_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
                     <span class="n">row_list</span> <span class="o">+=</span> <span class="n">row_sub_list</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -509,10 +509,18 @@
                 <span class="n">callbacks</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">iters_for_rows</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="n">store_after_iters</span> <span class="o">=</span> <span class="n">return_rows_iterates</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">store_after_iters</span><span class="p">:</span>
+                        <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;reporting a dummy zero reconstruction as &#39;</span>
+                             <span class="s1">&#39;zero-th iterate of `IterativeReconstructor`&#39;</span><span class="p">)</span>
+                        <span class="c1"># there is no general way to obtain the 0-th iterate,</span>
+                        <span class="c1"># the first callback call is after first iteration</span>
+                        <span class="n">iters_for_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reconstructor</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">())</span>
+                        <span class="n">store_after_iters</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
                     <span class="n">iterates_for_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iters_for_rows</span><span class="p">)</span>
                     <span class="n">callback_store_after</span> <span class="o">=</span> <span class="n">CallbackStoreAfter</span><span class="p">(</span>
                         <span class="n">iters_for_rows</span><span class="p">,</span>
-                        <span class="n">store_after_iters</span><span class="o">=</span><span class="n">return_rows_iterates</span><span class="p">)</span>
+                        <span class="n">store_after_iters</span><span class="o">=</span><span class="n">store_after_iters</span><span class="p">)</span>
                     <span class="n">callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">callback_store_after</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">save_iterates</span><span class="p">:</span>
                     <span class="n">iters</span> <span class="o">=</span> <span class="p">[]</span>

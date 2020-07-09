@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -183,7 +183,7 @@
 If the config file does not exist when the library is imported, it is created
 using default values.
 Changes made in <code class="docutils literal notranslate"><span class="pre">config.json</span></code> are loaded when the library is (re-)imported.</p>
-<dl class="data">
+<dl class="py data">
 <dt id="dival.config.CONFIG">
 <code class="sig-prename descclassname">dival.config.</code><code class="sig-name descname">CONFIG</code><em class="property"> = {'lodopab_dataset': {'data_path': '/localdata/low_dose_dataset'}}</em><a class="headerlink" href="#dival.config.CONFIG" title="Permalink to this definition">¶</a></dt>
 <dd><p>Global configuration dict.</p>
@@ -191,16 +191,16 @@ Changes made in <code class="docutils literal notranslate"><span class="pre">con
 configuration is loaded from <code class="docutils literal notranslate"><span class="pre">~/.dival/config.json</span></code>.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="dival.config.CONFIG_FILENAME">
 <code class="sig-prename descclassname">dival.config.</code><code class="sig-name descname">CONFIG_FILENAME</code><em class="property"> = '/home/jleuschn/.dival/config.json'</em><a class="headerlink" href="#dival.config.CONFIG_FILENAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>Path of the configuration file.
 The value is given by <code class="docutils literal notranslate"><span class="pre">'~/.dival/config.json'</span></code>, expanded and normalized.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="dival.config.get_config">
-<code class="sig-prename descclassname">dival.config.</code><code class="sig-name descname">get_config</code><span class="sig-paren">(</span><em class="sig-param">key_path='/'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/config.html#get_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.config.get_config" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.config.</code><code class="sig-name descname">get_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_path</span><span class="o">=</span><span class="default_value">'/'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/config.html#get_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.config.get_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return (sub-)configuration stored in config file.
 Note that values may differ from the current <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> variable if it was
 manipulated directly.</p>
@@ -218,9 +218,9 @@ returns the full configuration dict.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="dival.config.set_config">
-<code class="sig-prename descclassname">dival.config.</code><code class="sig-name descname">set_config</code><span class="sig-paren">(</span><em class="sig-param">key_path</em>, <em class="sig-param">value</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/config.html#set_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.config.set_config" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.config.</code><code class="sig-name descname">set_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_path</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/config.html#set_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.config.set_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates (sub-)configuration both in <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> variable and in config file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

@@ -5,6 +5,7 @@ Submodules
 ----------
 
 .. toctree::
+   :maxdepth: 4
 
    dival.datasets.dataset
    dival.datasets.ellipses_dataset

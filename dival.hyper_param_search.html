@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -183,9 +183,9 @@ supported.</p>
 <p>The hyper parameter specification of a reconstructor class, optionally
 including default options for optimization, are specified in the class
 attribute <a class="reference internal" href="dival.html#dival.Reconstructor.HYPER_PARAMS" title="dival.Reconstructor.HYPER_PARAMS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HYPER_PARAMS</span></code></a>.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="dival.hyper_param_search.optimize_hyper_params">
-<code class="sig-prename descclassname">dival.hyper_param_search.</code><code class="sig-name descname">optimize_hyper_params</code><span class="sig-paren">(</span><em class="sig-param">reconstructor</em>, <em class="sig-param">validation_data</em>, <em class="sig-param">measure</em>, <em class="sig-param">dataset=None</em>, <em class="sig-param">HYPER_PARAMS_override=None</em>, <em class="sig-param">hyperopt_max_evals=1000</em>, <em class="sig-param">hyperopt_max_evals_retrain=1000</em>, <em class="sig-param">hyperopt_rstate=None</em>, <em class="sig-param">show_progressbar=True</em>, <em class="sig-param">tqdm_file=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/hyper_param_search.html#optimize_hyper_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.hyper_param_search.optimize_hyper_params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.hyper_param_search.</code><code class="sig-name descname">optimize_hyper_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor</span></em>, <em class="sig-param"><span class="n">validation_data</span></em>, <em class="sig-param"><span class="n">measure</span></em>, <em class="sig-param"><span class="n">dataset</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">HYPER_PARAMS_override</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hyperopt_max_evals</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">hyperopt_max_evals_retrain</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">hyperopt_rstate</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show_progressbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">tqdm_file</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/hyper_param_search.html#optimize_hyper_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.hyper_param_search.optimize_hyper_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optimize hyper parameters of a reconstructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

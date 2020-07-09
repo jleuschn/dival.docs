@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -179,9 +179,9 @@
             
   <div class="section" id="module-dival.util.zenodo_download">
 <span id="dival-util-zenodo-download-module"></span><h1>dival.util.zenodo_download module<a class="headerlink" href="#module-dival.util.zenodo_download" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="dival.util.zenodo_download.download_file">
-<code class="sig-prename descclassname">dival.util.zenodo_download.</code><code class="sig-name descname">download_file</code><span class="sig-paren">(</span><em class="sig-param">url</em>, <em class="sig-param">filename=False</em>, <em class="sig-param">chunk_size=1024</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">md5sum=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/zenodo_download.html#download_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.zenodo_download.download_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.zenodo_download.</code><code class="sig-name descname">download_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">chunk_size</span><span class="o">=</span><span class="default_value">1024</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">md5sum</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/zenodo_download.html#download_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.zenodo_download.download_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download file with progressbar.</p>
 <p>Based on
 <a class="reference external" href="https://gist.github.com/ruxi/5d6803c116ec1130d484a4ab8c00c603">https://gist.github.com/ruxi/5d6803c116ec1130d484a4ab8c00c603</a>
@@ -207,9 +207,9 @@ given by the last part of <cite>url</cite>.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="dival.util.zenodo_download.input_yes_no">
-<code class="sig-prename descclassname">dival.util.zenodo_download.</code><code class="sig-name descname">input_yes_no</code><span class="sig-paren">(</span><em class="sig-param">default='y'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/zenodo_download.html#input_yes_no"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.zenodo_download.input_yes_no" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.zenodo_download.</code><code class="sig-name descname">input_yes_no</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">'y'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/zenodo_download.html#input_yes_no"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.zenodo_download.input_yes_no" title="Permalink to this definition">¶</a></dt>
 <dd><p>Demand user input y[es] or n[o].</p>
 <p>The user is asked repeatedly, until the input is valid.</p>
 <dl class="field-list simple">
@@ -225,9 +225,9 @@ given by the last part of <cite>url</cite>.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="dival.util.zenodo_download.download_zenodo_record">
-<code class="sig-prename descclassname">dival.util.zenodo_download.</code><code class="sig-name descname">download_zenodo_record</code><span class="sig-paren">(</span><em class="sig-param">record_id</em>, <em class="sig-param">base_path=''</em>, <em class="sig-param">md5sum_check=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/zenodo_download.html#download_zenodo_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.zenodo_download.download_zenodo_record" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.zenodo_download.</code><code class="sig-name descname">download_zenodo_record</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record_id</span></em>, <em class="sig-param"><span class="n">base_path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">md5sum_check</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/zenodo_download.html#download_zenodo_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.zenodo_download.download_zenodo_record" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download a zenodo record.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

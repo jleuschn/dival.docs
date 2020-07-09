@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -180,9 +180,9 @@
   <div class="section" id="module-dival.reconstructors.fbp_unet_reconstructor">
 <span id="dival-reconstructors-fbp-unet-reconstructor-module"></span><h1>dival.reconstructors.fbp_unet_reconstructor module<a class="headerlink" href="#module-dival.reconstructors.fbp_unet_reconstructor" title="Permalink to this headline">¶</a></h1>
 <p>Provides the learned <a class="reference internal" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor" title="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FBPUNetReconstructor</span></code></a> for the application of CT.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.generate_fbp_cache">
-<code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">generate_fbp_cache</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">part</em>, <em class="sig-param">filename</em>, <em class="sig-param">ray_trafo</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#generate_fbp_cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.generate_fbp_cache" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">generate_fbp_cache</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">part</span></em>, <em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#generate_fbp_cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.generate_fbp_cache" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write filtered back-projections for a CT dataset part to file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -198,15 +198,15 @@ By default, all samples are used.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">CachedFBPDataset</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">filenames</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">CachedFBPDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">filenames</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
 <p>Dataset combining the ground truth of a dataset with cached FBPs.</p>
 <p>Each sample is a pair of a FBP and a ground truth image.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">filenames</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">filenames</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -219,9 +219,9 @@ To generate the FBP files, <a class="reference internal" href="#dival.reconstruc
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_sample">
-<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get single sample by index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -253,9 +253,9 @@ If a tuple element is a bool, it has the following meaning:</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_samples">
-<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_samples" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get samples by slice or range.</p>
 <p>The default implementation calls <a class="reference internal" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_sample" title="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
 implements it.</p>
@@ -296,15 +296,15 @@ The samples are stacked in the first
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">FBPDataset</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">ray_trafo</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">FBPDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
 <p>Dataset computing filtered back-projections for a CT dataset on the fly.</p>
 <p>Each sample is a pair of a FBP and a ground truth image.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">ray_trafo</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -316,9 +316,9 @@ truth is taken directly from the dataset.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.generator">
-<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param">part='train'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.generator" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield data.</p>
 <p>The default implementation calls <a class="reference internal" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample" title="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
 implements it (i.e., supports random access).</p>
@@ -333,9 +333,9 @@ Default is <code class="docutils literal notranslate"><span class="pre">'train'<
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample">
-<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get single sample by index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -367,9 +367,9 @@ If a tuple element is a bool, it has the following meaning:</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_samples">
-<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">part='train'</em>, <em class="sig-param">out=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_samples" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get samples by slice or range.</p>
 <p>The default implementation calls <a class="reference internal" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample" title="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
 implements it.</p>
@@ -410,11 +410,11 @@ The samples are stacked in the first
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">FBPUNetReconstructor</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">scales=None</em>, <em class="sig-param">epochs=None</em>, <em class="sig-param">batch_size=None</em>, <em class="sig-param">num_data_loader_workers=8</em>, <em class="sig-param">use_cuda=True</em>, <em class="sig-param">show_pbar=True</em>, <em class="sig-param">fbp_impl='astra_cuda'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">FBPUNetReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">scales</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">epochs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fbp_impl</span><span class="o">=</span><span class="default_value">'astra_cuda'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.LearnedReconstructor</span></code></a></p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.HYPER_PARAMS">
 <code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'batch_size': {'default': 64, 'retrain': True}, 'epochs': {'default': 20, 'retrain': True}, 'scales': {'default': 5, 'retrain': True}}</em><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
 <dd><p>CT Reconstructor applying filtered back-projection followed by a
@@ -437,9 +437,9 @@ IEEE/CVF Conference on Computer Vision and Pattern Recognition.
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ray_trafo</em>, <em class="sig-param">scales=None</em>, <em class="sig-param">epochs=None</em>, <em class="sig-param">batch_size=None</em>, <em class="sig-param">num_data_loader_workers=8</em>, <em class="sig-param">use_cuda=True</em>, <em class="sig-param">show_pbar=True</em>, <em class="sig-param">fbp_impl='astra_cuda'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">scales</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">epochs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fbp_impl</span><span class="o">=</span><span class="default_value">'astra_cuda'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -459,54 +459,54 @@ ray transform and FBP operator.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_epochs">
 <code class="sig-name descname">get_epochs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.get_epochs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_epochs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_epochs">
-<code class="sig-name descname">set_epochs</code><span class="sig-paren">(</span><em class="sig-param">epochs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_epochs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_epochs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_epochs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">epochs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_epochs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_epochs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.epochs">
 <em class="property">property </em><code class="sig-name descname">epochs</code><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.epochs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_batch_size">
 <code class="sig-name descname">get_batch_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.get_batch_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_batch_size" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_batch_size">
-<code class="sig-name descname">set_batch_size</code><span class="sig-paren">(</span><em class="sig-param">batch_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_batch_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_batch_size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_batch_size</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch_size</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_batch_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_batch_size" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.batch_size">
 <em class="property">property </em><code class="sig-name descname">batch_size</code><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.batch_size" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_scales">
 <code class="sig-name descname">get_scales</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.get_scales"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_scales" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_scales">
-<code class="sig-name descname">set_scales</code><span class="sig-paren">(</span><em class="sig-param">scales</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_scales"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_scales" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_scales</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scales</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_scales"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_scales" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.scales">
 <em class="property">property </em><code class="sig-name descname">scales</code><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.scales" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.train">
-<code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param">dataset</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.train" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train the reconstructor with a dataset by adapting its parameters.</p>
 <p>Should only use the training data from <cite>dataset</cite>.</p>
 <dl class="field-list simple">
@@ -516,9 +516,9 @@ ray transform and FBP operator.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.save_params">
-<code class="sig-name descname">save_params</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save U-Net state to file using <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.save()</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -527,9 +527,9 @@ ray transform and FBP operator.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.load_params">
-<code class="sig-name descname">load_params</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load U-Net state from file using <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.load()</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -540,24 +540,24 @@ ray transform and FBP operator.</p></li>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.get_skip_model">
-<code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">get_skip_model</code><span class="sig-paren">(</span><em class="sig-param">scales=5</em>, <em class="sig-param">skip=4</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#get_skip_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.get_skip_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">get_skip_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scales</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">skip</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#get_skip_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.get_skip_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.Skip">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">Skip</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em>, <em class="sig-param">channels</em>, <em class="sig-param">skip_channels</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Skip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">Skip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">channels</span></em>, <em class="sig-param"><span class="n">skip_channels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Skip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.Skip.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em>, <em class="sig-param">channels</em>, <em class="sig-param">skip_channels</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Skip.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">channels</span></em>, <em class="sig-param"><span class="n">skip_channels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Skip.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.Skip.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Skip.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Skip.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -571,19 +571,19 @@ registered hooks while the latter silently ignores them.</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.DownBlock">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">DownBlock</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em>, <em class="sig-param">kernel_size=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#DownBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">DownBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#DownBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.DownBlock.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em>, <em class="sig-param">kernel_size=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#DownBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#DownBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.DownBlock.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#DownBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#DownBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -597,19 +597,19 @@ registered hooks while the latter silently ignores them.</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.InBlock">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">InBlock</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em>, <em class="sig-param">kernel_size=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#InBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">InBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#InBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.InBlock.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em>, <em class="sig-param">kernel_size=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#InBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#InBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.InBlock.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#InBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#InBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -623,19 +623,19 @@ registered hooks while the latter silently ignores them.</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.UpBlock">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">UpBlock</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em>, <em class="sig-param">skip_ch=4</em>, <em class="sig-param">kernel_size=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#UpBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">UpBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">skip_ch</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#UpBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.UpBlock.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em>, <em class="sig-param">skip_ch=4</em>, <em class="sig-param">kernel_size=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#UpBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">skip_ch</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#UpBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.UpBlock.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x1</em>, <em class="sig-param">x2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#UpBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x1</span></em>, <em class="sig-param"><span class="n">x2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#UpBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -649,19 +649,19 @@ registered hooks while the latter silently ignores them.</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.Concat">
 <em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">Concat</code><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Concat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Concat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.Concat.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Concat.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Concat.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.Concat.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">*inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Concat.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Concat.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">inputs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Concat.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Concat.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -675,19 +675,19 @@ registered hooks while the latter silently ignores them.</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.OutBlock">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">OutBlock</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#OutBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">OutBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#OutBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.OutBlock.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">in_ch</em>, <em class="sig-param">out_ch</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#OutBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#OutBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dival.reconstructors.fbp_unet_reconstructor.OutBlock.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#OutBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#OutBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">

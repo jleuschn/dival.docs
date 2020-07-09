@@ -5,6 +5,7 @@ Submodules
 ----------
 
 .. toctree::
+   :maxdepth: 4
 
    dival.reconstructors.fbp_unet_reconstructor
    dival.reconstructors.odl_reconstructors
