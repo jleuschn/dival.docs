@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,15 +36,10 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.evaluation module" href="dival.evaluation.html" />
-    <link rel="prev" title="dival.datasets.lodopab_dataset module" href="dival.datasets.lodopab_dataset.html" /> 
+    <link rel="prev" title="dival.datasets.reordered_dataset module" href="dival.datasets.reordered_dataset.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
           
 
           
@@ -62,7 +63,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.5.0
               </div>
             
           
@@ -79,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -91,24 +93,38 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dival.datasets.standard module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.input.html">dival.util.input module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
@@ -116,6 +132,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -154,7 +171,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="dival.datasets.html">dival.datasets package</a> &raquo;</li>
         
@@ -192,12 +209,22 @@
 transform with parallel beam geometry using 30 angles is applied,
 and white gaussian noise with a standard deviation of 2.5% (i.e.
 <code class="docutils literal notranslate"><span class="pre">0.025</span> <span class="pre">*</span> <span class="pre">mean(abs(observation))</span></code>) is added.</p>
-<p>The ray transform that corresponds to the (noiseless) forward
-operator is stored in the attribute <cite>ray_trafo</cite> of the dataset.</p>
 <p>In order to avoid the inverse crime, the ground truth images of
 shape (128, 128) are upscaled by bilinear interpolation to a
 resolution of (400, 400) before the ray transform is applied (whose
-discretization is different from the one of <cite>ray_trafo</cite>).</p>
+discretization is different from the one of <code class="xref py py-attr docutils literal notranslate"><span class="pre">ray_trafo</span></code>).</p>
+<dl>
+<dt>Attributes of the returned dataset:</dt><dd><dl>
+<dt><cite>ray_trafo</cite><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></span></dt><dd><p>Ray transform corresponding to the noiseless forward
+operator.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">get_ray_trafo(**kwargs)</span></code><span class="classifier">function</span></dt><dd><p>Function that returns a ray transform corresponding to the
+noiseless forward operator. Keyword arguments (e.g. <cite>impl</cite>)
+are forwarded to the <code class="xref py py-class docutils literal notranslate"><span class="pre">RayTransform</span></code> constructor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><p>The LoDoPaB-CT dataset, which is documented in the
 preprint <a class="reference external" href="https://arxiv.org/abs/1910.01113">https://arxiv.org/abs/1910.01113</a> hosted on
@@ -210,10 +237,21 @@ For simulation, a ray transform with parallel beam geometry using
 1000 angles and 513 detector pixels is used. Poisson noise
 corresponding to 4096 incident photons per pixel before attenuation
 is applied to the projection data.</p>
-<p>A ray transform that corresponds to the noiseless forward operator
-is available via
-<a class="reference internal" href="dival.datasets.html#dival.datasets.LoDoPaBDataset.get_ray_trafo" title="dival.datasets.LoDoPaBDataset.get_ray_trafo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_ray_trafo()</span></code></a> from this
-dataset.</p>
+<dl>
+<dt>Attributes of the returned dataset:</dt><dd><dl>
+<dt><cite>ray_trafo</cite><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></span></dt><dd><p>Ray transform corresponding to the noiseless forward
+operator.</p>
+</dd>
+</dl>
+</dd>
+<dt>Methods of the returned dataset:</dt><dd><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">get_ray_trafo(**kwargs)</span></code></dt><dd><p>Function that returns a ray transform corresponding to the
+noiseless forward operator. Keyword arguments (e.g. <cite>impl</cite>)
+are forwarded to the <code class="xref py py-class docutils literal notranslate"><span class="pre">RayTransform</span></code> constructor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd>
 </dl>
 </div></blockquote>
@@ -234,6 +272,9 @@ Supported parameters for the datasets are:</p>
 </dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code></dt><dd><dl>
+<dt>num_angles<span class="classifier">int, optional</span></dt><dd><p>Number of angles to use from the full 1000 angles.
+Must be a divisor of 1000.</p>
+</dd>
 <dt>observation_model<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'post-log'</span></code>, <code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code>}, optional</span></dt><dd><p>The observation model to use. Default is <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code>.</p>
 </dd>
 <dt>min_photon_count<span class="classifier">float, optional</span></dt><dd><p>Replacement value for a simulated photon count of zero.
@@ -241,6 +282,12 @@ If <code class="docutils literal notranslate"><span class="pre">observation_mode
 than zero is required in order to avoid undefined values.
 The default is 0.1, both for <code class="docutils literal notranslate"><span class="pre">'post-log'</span></code> and
 <code class="docutils literal notranslate"><span class="pre">'pre-log'</span></code> model.</p>
+</dd>
+<dt>sorted_by_patient<span class="classifier">bool, optional</span></dt><dd><p>Whether to sort the samples by patient id.
+Useful to resplit the dataset.
+Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></p>
 </dd>
 </dl>
 </dd>
@@ -272,7 +319,7 @@ It has an attribute <cite>standard_dataset_name</cite> that stores its name.</p>
         <a href="dival.evaluation.html" class="btn btn-neutral float-right" title="dival.evaluation module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dival.datasets.lodopab_dataset.html" class="btn btn-neutral float-left" title="dival.datasets.lodopab_dataset module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dival.datasets.reordered_dataset.html" class="btn btn-neutral float-left" title="dival.datasets.reordered_dataset module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -281,11 +328,19 @@ It has an attribute <cite>standard_dataset_name</cite> that stores its name.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -296,7 +351,6 @@ It has an attribute <cite>standard_dataset_name</cite> that stores its name.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,15 +36,10 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.reconstructors.reconstructor module" href="dival.reconstructors.reconstructor.html" />
-    <link rel="prev" title="dival.reconstructors.fbp_unet_reconstructor module" href="dival.reconstructors.fbp_unet_reconstructor.html" /> 
+    <link rel="prev" title="dival.reconstructors.learnedpd_reconstructor module" href="dival.reconstructors.learnedpd_reconstructor.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
           
 
           
@@ -62,7 +63,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.5.0
               </div>
             
           
@@ -79,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -91,24 +93,38 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.input.html">dival.util.input module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
@@ -116,6 +132,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -154,7 +171,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="dival.reconstructors.html">dival.reconstructors package</a> &raquo;</li>
         
@@ -338,7 +355,7 @@ equations is solved directly.</p></li>
 
 <dl class="py class">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">GaussNewtonReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">zero_seq</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.odl_reconstructors.</code><code class="sig-name descname">GaussNewtonReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">zero_seq_gen</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
 <p>Iterative reconstructor applying the Gauss-Newton method.</p>
 <dl class="py attribute">
@@ -375,12 +392,12 @@ equations is solved directly.</p></li>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.zero_seq">
-<code class="sig-name descname">zero_seq</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.zero_seq" title="Permalink to this definition">¶</a></dt>
-<dd><p>Zero sequence used for regularization.</p>
+<dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.zero_seq_gen">
+<code class="sig-name descname">zero_seq_gen</code><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.zero_seq_gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero sequence generator used for regularization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>iterable</p>
+<dd class="field-odd"><p>generator</p>
 </dd>
 </dl>
 </dd></dl>
@@ -398,7 +415,7 @@ equations is solved directly.</p></li>
 
 <dl class="py method">
 <dt id="dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">zero_seq</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">niter</span></em>, <em class="sig-param"><span class="n">zero_seq_gen</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/odl_reconstructors.html#GaussNewtonReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <cite>odl.solvers.iterative.iterative.gauss_newton</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -407,7 +424,8 @@ equations is solved directly.</p></li>
 The call <code class="docutils literal notranslate"><span class="pre">op.derivative(x).adjoint</span></code> must be valid.</p></li>
 <li><p><strong>x0</strong> (<code class="docutils literal notranslate"><span class="pre">op.domain</span></code> element) – Initial value.</p></li>
 <li><p><strong>niter</strong> (<em>int</em>) – Maximum number of iterations.</p></li>
-<li><p><strong>zero_seq</strong> (<em>iterable</em><em>, </em><em>optional</em>) – Zero sequence used for regularization.</p></li>
+<li><p><strong>zero_seq_gen</strong> (<em>generator</em><em>, </em><em>optional</em>) – Zero sequence generator used for regularization.
+Default: generator yielding 2^(-i).</p></li>
 <li><p><strong>callback</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>, optional) – Object that is called in each iteration.</p></li>
 </ul>
 </dd>
@@ -1345,7 +1363,7 @@ TV regularization term is smoothed using the Moreau envelope.</p>
         <a href="dival.reconstructors.reconstructor.html" class="btn btn-neutral float-right" title="dival.reconstructors.reconstructor module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dival.reconstructors.fbp_unet_reconstructor.html" class="btn btn-neutral float-left" title="dival.reconstructors.fbp_unet_reconstructor module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dival.reconstructors.learnedpd_reconstructor.html" class="btn btn-neutral float-left" title="dival.reconstructors.learnedpd_reconstructor module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1354,11 +1372,19 @@ TV regularization term is smoothed using the Moreau envelope.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1369,7 +1395,6 @@ TV regularization term is smoothed using the Moreau envelope.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

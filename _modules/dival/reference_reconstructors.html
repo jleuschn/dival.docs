@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.reference_reconstructors &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.input.html">dival.util.input module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.version.html">dival.version module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>dival.reference_reconstructors</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dival.reference_reconstructors</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">import_module</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">dival</span> <span class="kn">import</span> <span class="n">get_standard_dataset</span>
+<span class="kn">from</span> <span class="nn">dival.reconstructors</span> <span class="kn">import</span> <span class="n">LearnedReconstructor</span>
+<span class="kn">from</span> <span class="nn">dival.config</span> <span class="kn">import</span> <span class="n">CONFIG</span>
+<span class="kn">from</span> <span class="nn">dival.util.input</span> <span class="kn">import</span> <span class="n">input_yes_no</span>
+<span class="kn">from</span> <span class="nn">dival.util.download</span> <span class="kn">import</span> <span class="n">download_file</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span>
+        <span class="n">CONFIG</span><span class="p">[</span><span class="s1">&#39;reference_params&#39;</span><span class="p">][</span><span class="s1">&#39;data_path&#39;</span><span class="p">]))</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+        <span class="s1">&#39;Could not retrieve config value `reference_params/data_path`, &#39;</span>
+        <span class="s1">&#39;maybe the configuration (e.g. in ~/.dival/config.json) is corrupt.&#39;</span><span class="p">)</span>
+
+<span class="c1"># Currently, reference configurations map 1-to-1 to reconstructor types.</span>
+<span class="c1"># In the future multiple configurations using the same reconstructor type could</span>
+<span class="c1"># be useful, e.g. &#39;dip&#39; and &#39;diptv&#39; both using the type</span>
+<span class="c1"># `DeepImagePriorCTReconstructor`, but with &#39;dip&#39; restricted to ``gamma=0.``.</span>
+<span class="n">CONFIGURATIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;fbp&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;cls&#39;</span><span class="p">:</span> <span class="s1">&#39;FBPReconstructor&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="s1">&#39;dival.reconstructors.odl_reconstructors&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;datasets&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">]},</span>
+    <span class="s1">&#39;fbpunet&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;cls&#39;</span><span class="p">:</span> <span class="s1">&#39;FBPUNetReconstructor&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="s1">&#39;dival.reconstructors.fbpunet_reconstructor&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;datasets&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;learned_params_spec&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ext&#39;</span><span class="p">:</span> <span class="s1">&#39;.pt&#39;</span><span class="p">}},</span>
+    <span class="s1">&#39;iradonmap&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;cls&#39;</span><span class="p">:</span> <span class="s1">&#39;IRadonMapReconstructor&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="s1">&#39;dival.reconstructors.iradonmap_reconstructor&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;datasets&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;learned_params_spec&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ext&#39;</span><span class="p">:</span> <span class="s1">&#39;.pt&#39;</span><span class="p">}},</span>
+    <span class="s1">&#39;learnedgd&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;cls&#39;</span><span class="p">:</span> <span class="s1">&#39;LearnedGDReconstructor&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="s1">&#39;dival.reconstructors.learnedgd_reconstructor&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;datasets&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;learned_params_spec&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ext&#39;</span><span class="p">:</span> <span class="s1">&#39;.pt&#39;</span><span class="p">}},</span>
+    <span class="s1">&#39;learnedpd&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;cls&#39;</span><span class="p">:</span> <span class="s1">&#39;LearnedPDReconstructor&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="s1">&#39;dival.reconstructors.learnedpd_reconstructor&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;datasets&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;learned_params_spec&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ext&#39;</span><span class="p">:</span> <span class="s1">&#39;.pt&#39;</span><span class="p">}},</span>
+    <span class="s1">&#39;tvadam&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;cls&#39;</span><span class="p">:</span> <span class="s1">&#39;TVAdamCTReconstructor&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="s1">&#39;dival.reconstructors.tvadam_ct_reconstructor&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;datasets&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">]},</span>
+    <span class="s1">&#39;diptv&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;cls&#39;</span><span class="p">:</span> <span class="s1">&#39;DeepImagePriorCTReconstructor&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="s1">&#39;dival.reconstructors.dip_ct_reconstructor&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;datasets&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">]}</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Specification of reference configurations.</span>
+
+<span class="sd">For each configuration key name a dict with the following fields is</span>
+<span class="sd">specified:</span>
+
+<span class="sd">    ``&#39;type&#39;`` : dict</span>
+<span class="sd">        The reconstructor class, given by the following fields:</span>
+
+<span class="sd">            ``&#39;cls&#39;`` : str</span>
+<span class="sd">                The class name.</span>
+<span class="sd">            ``&#39;module&#39;`` : str</span>
+<span class="sd">                The module to import the class from.</span>
+
+<span class="sd">    ``&#39;datasets&#39;`` : list of str</span>
+<span class="sd">        List of standard dataset names the configuration is available for.</span>
+<span class="sd">    ``&#39;learned_params_spec&#39;`` : dict, optional</span>
+<span class="sd">        How learned parameters are stored.</span>
+<span class="sd">        See also :meth:`LearnedReconstructor.save_learned_params` and</span>
+<span class="sd">        :meth:`LearnedReconstructor.load_learned_params`.</span>
+<span class="sd">        Valid fields are:</span>
+
+<span class="sd">            ``&#39;ext&#39;`` : str, optional</span>
+<span class="sd">                A single file with the given extension (e.g. ``&#39;.pt&#39;``).</span>
+<span class="sd">                The param path (returned by :func:`get_params_path`) is</span>
+<span class="sd">                suffixed by this.</span>
+<span class="sd">            ``&#39;dir&#39;`` : ?, optional</span>
+<span class="sd">                A directory.</span>
+<span class="sd">                The param path (returned by :func:`get_params_path`) is equal</span>
+<span class="sd">                to the directory path.</span>
+<span class="sd">                *not implemented yet*</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">DATASETS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">List of standard datasets for which (some) reference reconstructor</span>
+<span class="sd">configurations are available.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">DATA_URL</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/jleuschn/supp.dival/raw/master/reference_params&#39;</span>
+
+<div class="viewcode-block" id="construct_reconstructor"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.construct_reconstructor">[docs]</a><span class="k">def</span> <span class="nf">construct_reconstructor</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Construct reference reconstructor.</span>
+<span class="sd">    </span>
+<span class="sd">    This function implements the constructors calls which are potentially</span>
+<span class="sd">    specific to each configuration.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor_key_name_or_type : str or type</span>
+<span class="sd">        Key name of configuration or reconstructor type.</span>
+<span class="sd">    dataset_name : str</span>
+<span class="sd">        Standard dataset name.</span>
+<span class="sd">    kwargs : dict</span>
+<span class="sd">        Keyword arguments.</span>
+<span class="sd">        For CT configurations this includes the ``&#39;impl&#39;`` used by</span>
+<span class="sd">        :class:`odl.tomo.RayTransform`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the configuration does not exist.</span>
+<span class="sd">    NotImplementedError</span>
+<span class="sd">        If construction is not implemented for the configuration.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    reconstructor : :class:`Reconstructor`</span>
+<span class="sd">        The reconstructor instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r_key_name</span><span class="p">,</span> <span class="n">r_type</span> <span class="o">=</span> <span class="n">validate_reconstructor_key_name_or_type</span><span class="p">(</span>
+        <span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">r_args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">r_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">dataset_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">]:</span>
+        <span class="n">impl</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;impl&#39;</span><span class="p">,</span> <span class="s1">&#39;astra_cuda&#39;</span><span class="p">)</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">get_standard_dataset</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">impl</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r_key_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;fbp&#39;</span><span class="p">,</span> <span class="s1">&#39;fbpunet&#39;</span><span class="p">,</span> <span class="s1">&#39;iradonmap&#39;</span><span class="p">,</span> <span class="s1">&#39;learnedgd&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;learnedpd&#39;</span><span class="p">,</span> <span class="s1">&#39;tvadam&#39;</span><span class="p">,</span> <span class="s1">&#39;diptv&#39;</span><span class="p">]:</span>
+            <span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_ray_trafo</span><span class="p">(</span><span class="n">impl</span><span class="o">=</span><span class="n">impl</span><span class="p">)</span>
+            <span class="n">r_args</span> <span class="o">=</span> <span class="p">[</span><span class="n">ray_trafo</span><span class="p">]</span>
+            <span class="n">r_kwargs</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{d}</span><span class="s1">_</span><span class="si">{r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s1">&#39;reconstructor construction is not implemented for reference &#39;</span>
+                <span class="s1">&#39;configuration </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> for dataset </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">&#39;</span>
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s1">&#39;reference reconstructor construction is not implemented for &#39;</span>
+            <span class="s1">&#39;dataset </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">))</span>
+    <span class="n">reconstructor</span> <span class="o">=</span> <span class="n">r_type</span><span class="p">(</span><span class="o">*</span><span class="n">r_args</span><span class="p">,</span> <span class="o">**</span><span class="n">r_kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reconstructor</span></div>
+
+<div class="viewcode-block" id="validate_reconstructor_key_name_or_type"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.validate_reconstructor_key_name_or_type">[docs]</a><span class="k">def</span> <span class="nf">validate_reconstructor_key_name_or_type</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span>
+                                            <span class="n">dataset_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate that a configuration exists and return both its key name</span>
+<span class="sd">    and the reconstructor type.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor_key_name_or_type : str or type</span>
+<span class="sd">        Key name of configuration or reconstructor type.</span>
+<span class="sd">    dataset_name : str</span>
+<span class="sd">        Standard dataset name.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the configuration does not exist.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    r_key_name : str</span>
+<span class="sd">        Key name of the configuration.</span>
+<span class="sd">    r_type : type</span>
+<span class="sd">        Reconstructor type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">r_key_name</span> <span class="o">=</span> <span class="n">reconstructor_key_name_or_type</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">r_key_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CONFIGURATIONS</span> <span class="ow">or</span>
+                <span class="n">dataset_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
+                <span class="n">CONFIGURATIONS</span><span class="p">[</span><span class="n">r_key_name</span><span class="p">][</span><span class="s1">&#39;datasets&#39;</span><span class="p">])):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unknown reference configuration </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> for &#39;</span>
+                             <span class="s1">&#39;dataset </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">))</span>
+        <span class="n">r_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="n">import_module</span><span class="p">(</span><span class="n">CONFIGURATIONS</span><span class="p">[</span><span class="n">r_key_name</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">][</span><span class="s1">&#39;module&#39;</span><span class="p">]),</span>
+            <span class="n">CONFIGURATIONS</span><span class="p">[</span><span class="n">r_key_name</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">][</span><span class="s1">&#39;cls&#39;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r_type</span> <span class="o">=</span> <span class="n">reconstructor_key_name_or_type</span>
+        <span class="n">r_key_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">CONFIGURATIONS</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                       <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">][</span><span class="s1">&#39;cls&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">r_type</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">and</span>
+                           <span class="n">dataset_name</span> <span class="ow">in</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;datasets&#39;</span><span class="p">])]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">r_key_names</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unknown reconstructor type </span><span class="si">{}</span><span class="s1"> for &#39;</span>
+                             <span class="s1">&#39;dataset </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">))</span>
+        <span class="n">r_key_name</span> <span class="o">=</span> <span class="n">r_key_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_key_names</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;There are multiple reference configurations for &#39;</span>
+                 <span class="s1">&#39;reconstructor type </span><span class="si">{}</span><span class="s1"> and dataset </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">{}</span><span class="s1">. &#39;</span>
+                 <span class="s1">&#39;Selecting </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> now. To select another one, please specify &#39;</span>
+                 <span class="s1">&#39;it by key name instead of reconstructor type.&#39;</span>
+                 <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">r_key_names</span><span class="p">,</span> <span class="n">r_key_name</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">r_key_name</span><span class="p">,</span> <span class="n">r_type</span></div>
+
+<div class="viewcode-block" id="get_params_path"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.get_params_path">[docs]</a><span class="k">def</span> <span class="nf">get_params_path</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return path of the parameters for a configuration.</span>
+<span class="sd">    It can be passed to :class:`Reconstructor.load_params` as a single argument</span>
+<span class="sd">    to load all parameters (hyper params and learned params).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor_key_name_or_type : str or type</span>
+<span class="sd">        Key name of configuration or reconstructor type.</span>
+<span class="sd">    dataset_name : str</span>
+<span class="sd">        Standard dataset name.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    params_path : str</span>
+<span class="sd">        Parameter path.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r_key_name</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">validate_reconstructor_key_name_or_type</span><span class="p">(</span>
+        <span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">params_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+                               <span class="s1">&#39;</span><span class="si">{d}</span><span class="s1">_</span><span class="si">{r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">params_path</span></div>
+
+<div class="viewcode-block" id="get_hyper_params_path"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.get_hyper_params_path">[docs]</a><span class="k">def</span> <span class="nf">get_hyper_params_path</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return path of the hyper parameters for a configuration.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor_key_name_or_type : str or type</span>
+<span class="sd">        Key name of configuration or reconstructor type.</span>
+<span class="sd">    dataset_name : str</span>
+<span class="sd">        Standard dataset name.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    hyper_params_path : str</span>
+<span class="sd">        Hyper parameter path.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r_key_name</span><span class="p">,</span> <span class="n">r_type</span> <span class="o">=</span> <span class="n">validate_reconstructor_key_name_or_type</span><span class="p">(</span>
+        <span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">r_type</span><span class="p">,</span> <span class="n">LearnedReconstructor</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="n">CONFIGURATIONS</span><span class="p">[</span><span class="n">r_key_name</span><span class="p">][</span><span class="s1">&#39;learned_params_spec&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;dir&#39;</span><span class="p">):</span>
+        <span class="n">hyper_params_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+            <span class="s1">&#39;</span><span class="si">{d}</span><span class="s1">_</span><span class="si">{r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">),</span>
+            <span class="s1">&#39;hyper_params.json&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># learned parameters in single file or no learned parameters</span>
+        <span class="n">hyper_params_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+            <span class="s1">&#39;</span><span class="si">{d}</span><span class="s1">_</span><span class="si">{r}</span><span class="s1">_hyper_params.json&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">hyper_params_path</span></div>
+
+<div class="viewcode-block" id="download_params"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.download_params">[docs]</a><span class="k">def</span> <span class="nf">download_params</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+                    <span class="n">include_learned</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download parameters for a configuration.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor_key_name_or_type : str or type</span>
+<span class="sd">        Key name of configuration or reconstructor type.</span>
+<span class="sd">    dataset_name : str</span>
+<span class="sd">        Standard dataset name.</span>
+<span class="sd">    include_learned : bool, optional</span>
+<span class="sd">        Whether to include learned parameters.</span>
+<span class="sd">        Otherwise only hyper parameters are downloaded.</span>
+<span class="sd">        Default: `True`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    NotImplementedError</span>
+<span class="sd">        If trying to download learned parameters that are stored in a</span>
+<span class="sd">        directory (instead of as a single file).</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If trying to download learned parameters for a configuration that</span>
+<span class="sd">        does not specify how they are stored (as a single file or in a</span>
+<span class="sd">        directory).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r_key_name</span><span class="p">,</span> <span class="n">r_type</span> <span class="o">=</span> <span class="n">validate_reconstructor_key_name_or_type</span><span class="p">(</span>
+        <span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">params_path</span> <span class="o">=</span> <span class="n">get_params_path</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">hyper_params_url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{b}</span><span class="s1">/</span><span class="si">{d}</span><span class="s1">/</span><span class="si">{d}</span><span class="s1">_</span><span class="si">{r}</span><span class="s1">_hyper_params.json&#39;</span>
+                        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="n">DATA_URL</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">))</span>
+    <span class="n">hyper_params_filename</span> <span class="o">=</span> <span class="n">params_path</span> <span class="o">+</span> <span class="s1">&#39;_hyper_params.json&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">hyper_params_filename</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hyper_params_url</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">include_learned</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">r_type</span><span class="p">,</span> <span class="n">LearnedReconstructor</span><span class="p">):</span>
+        <span class="n">learned_params_spec</span> <span class="o">=</span> <span class="n">CONFIGURATIONS</span><span class="p">[</span><span class="n">r_key_name</span><span class="p">][</span><span class="s1">&#39;learned_params_spec&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;ext&#39;</span> <span class="ow">in</span> <span class="n">learned_params_spec</span><span class="p">:</span>
+            <span class="n">ext</span> <span class="o">=</span> <span class="n">learned_params_spec</span><span class="p">[</span><span class="s1">&#39;ext&#39;</span><span class="p">]</span>
+            <span class="n">learned_params_url</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s1">&#39;</span><span class="si">{b}</span><span class="s1">/</span><span class="si">{d}</span><span class="s1">/</span><span class="si">{d}</span><span class="s1">_</span><span class="si">{r}{e}</span><span class="s1">&#39;</span>
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="n">DATA_URL</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">ext</span><span class="p">))</span>
+            <span class="n">learned_params_filename</span> <span class="o">=</span> <span class="n">params_path</span> <span class="o">+</span> <span class="n">ext</span>
+            <span class="n">download_file</span><span class="p">(</span><span class="n">learned_params_url</span><span class="p">,</span> <span class="n">learned_params_filename</span><span class="p">,</span>
+                          <span class="n">md5sum</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s1">&#39;dir&#39;</span> <span class="ow">in</span> <span class="n">learned_params_spec</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s1">&#39;automatic downloading of learned param directories is not &#39;</span>
+                <span class="s1">&#39;implemented yet&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;reference configuration </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> misses &#39;</span>
+                             <span class="s1">&#39;specification how learned params are stored&#39;</span>
+                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="download_hyper_params"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.download_hyper_params">[docs]</a><span class="k">def</span> <span class="nf">download_hyper_params</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download hyper parameters for a configuration.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor_key_name_or_type : str or type</span>
+<span class="sd">        Key name of configuration or reconstructor type.</span>
+<span class="sd">    dataset_name : str</span>
+<span class="sd">        Standard dataset name.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">download_params</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+                    <span class="n">include_learned</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="check_for_params"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.check_for_params">[docs]</a><span class="k">def</span> <span class="nf">check_for_params</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+                     <span class="n">include_learned</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_missing</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return whether the parameter file(s) can be found.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor_key_name_or_type : str or type</span>
+<span class="sd">        Key name of configuration or reconstructor type.</span>
+<span class="sd">    dataset_name : str</span>
+<span class="sd">        Standard dataset name.</span>
+<span class="sd">    include_learned : bool, optional</span>
+<span class="sd">        Whether to check for learned parameters, too.</span>
+<span class="sd">        Default: `True`.</span>
+<span class="sd">    return_missing : bool, optional</span>
+<span class="sd">        Whether to return a list of missing files as second return value.</span>
+<span class="sd">        Default: `False`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    NotImplementedError</span>
+<span class="sd">        If trying to check for learned parameters that are stored in a</span>
+<span class="sd">        directory (instead of as a single file).</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If trying to check for learned parameters for a configuration that</span>
+<span class="sd">        does not specify how they are stored (as a single file or in a</span>
+<span class="sd">        directory).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    params_exist : bool</span>
+<span class="sd">        Whether the parameter file(s) can be found.</span>
+<span class="sd">    missing : list of str, optional</span>
+<span class="sd">        List of missing files.</span>
+<span class="sd">        Only returned if `return_missing=True`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r_key_name</span><span class="p">,</span> <span class="n">r_type</span> <span class="o">=</span> <span class="n">validate_reconstructor_key_name_or_type</span><span class="p">(</span>
+        <span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">params_path</span> <span class="o">=</span> <span class="n">get_params_path</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">params_path</span> <span class="o">+</span> <span class="s1">&#39;_hyper_params.json&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">include_learned</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">r_type</span><span class="p">,</span> <span class="n">LearnedReconstructor</span><span class="p">):</span>
+        <span class="n">learned_params_spec</span> <span class="o">=</span> <span class="n">CONFIGURATIONS</span><span class="p">[</span><span class="n">r_key_name</span><span class="p">][</span><span class="s1">&#39;learned_params_spec&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;ext&#39;</span> <span class="ow">in</span> <span class="n">learned_params_spec</span><span class="p">:</span>
+            <span class="n">ext</span> <span class="o">=</span> <span class="n">learned_params_spec</span><span class="p">[</span><span class="s1">&#39;ext&#39;</span><span class="p">]</span>
+            <span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params_path</span> <span class="o">+</span> <span class="n">ext</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s1">&#39;dir&#39;</span> <span class="ow">in</span> <span class="n">learned_params_spec</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s1">&#39;checking for learned param directories is not implemented &#39;</span>
+                <span class="s1">&#39;yet&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;reference configuration </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> misses &#39;</span>
+                             <span class="s1">&#39;specification how learned params are stored&#39;</span>
+                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">))</span>
+    <span class="n">missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">f</span><span class="p">)]</span>
+    <span class="n">params_exist</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">missing</span>
+    <span class="k">return</span> <span class="n">params_exist</span><span class="p">,</span> <span class="n">missing</span> <span class="k">if</span> <span class="n">return_missing</span> <span class="k">else</span> <span class="n">params_exist</span></div>
+
+<div class="viewcode-block" id="check_for_hyper_params"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.check_for_hyper_params">[docs]</a><span class="k">def</span> <span class="nf">check_for_hyper_params</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return whether the hyper parameter file can be found.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor_key_name_or_type : str or type</span>
+<span class="sd">        Key name of configuration or reconstructor type.</span>
+<span class="sd">    dataset_name : str</span>
+<span class="sd">        Standard dataset name.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    params_exist : bool</span>
+<span class="sd">        Whether the hyper parameter file can be found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params_exist</span> <span class="o">=</span> <span class="n">check_for_hyper_params</span><span class="p">(</span>
+        <span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+        <span class="n">include_learned</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_missing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">params_exist</span></div>
+
+<div class="viewcode-block" id="get_reference_reconstructor"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.get_reference_reconstructor">[docs]</a><span class="k">def</span> <span class="nf">get_reference_reconstructor</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+                                <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a reference reconstructor.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reconstructor_key_name_or_type : str or type</span>
+<span class="sd">        Key name of configuration or reconstructor type.</span>
+<span class="sd">    dataset_name : str</span>
+<span class="sd">        Standard dataset name.</span>
+<span class="sd">    pretrained : bool, optional</span>
+<span class="sd">        Whether learned parameters should be loaded (if any).</span>
+<span class="sd">        Default: `True`.</span>
+<span class="sd">    kwargs : dict</span>
+<span class="sd">        Keyword arguments (passed to :func:`construct_reconstructor`).</span>
+<span class="sd">        For CT configurations this includes the ``&#39;impl&#39;`` used by</span>
+<span class="sd">        :class:`odl.tomo.RayTransform`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    RuntimeError</span>
+<span class="sd">        If parameter files are missing and the user chooses not to download.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    reconstructor : :class:`Reconstructor`</span>
+<span class="sd">        The reference reconstructor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r_key_name</span><span class="p">,</span> <span class="n">r_type</span> <span class="o">=</span> <span class="n">validate_reconstructor_key_name_or_type</span><span class="p">(</span>
+        <span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">params_exist</span><span class="p">,</span> <span class="n">missing</span> <span class="o">=</span> <span class="n">check_for_params</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
+        <span class="n">include_learned</span><span class="o">=</span><span class="n">pretrained</span><span class="p">,</span> <span class="n">return_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">params_exist</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reference configuration &#39;</span><span class="si">{}</span><span class="s2">&#39; for dataset &#39;</span><span class="si">{}</span><span class="s2">&#39; not found at the &quot;</span>
+              <span class="s2">&quot;configured path &#39;</span><span class="si">{}</span><span class="s2">&#39;. You can change this path with &quot;</span>
+              <span class="s2">&quot;``dival.config.set_config(&#39;reference_params/datapath&#39;, ...)``.&quot;</span>
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">DATA_PATH</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Missing files are: </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">missing</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Do you want to download it now? (y: download, n: cancel)&#39;</span><span class="p">)</span>
+        <span class="n">download</span> <span class="o">=</span> <span class="n">input_yes_no</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">download</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Reference configuration missing, cancelled&#39;</span><span class="p">)</span>
+        <span class="n">download_params</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">reconstructor</span> <span class="o">=</span> <span class="n">construct_reconstructor</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">params_path</span> <span class="o">=</span> <span class="n">get_params_path</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+    <span class="n">reconstructor</span><span class="o">.</span><span class="n">load_hyper_params</span><span class="p">(</span><span class="n">params_path</span> <span class="o">+</span> <span class="s1">&#39;_hyper_params.json&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pretrained</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">r_type</span><span class="p">,</span> <span class="n">LearnedReconstructor</span><span class="p">):</span>
+        <span class="n">reconstructor</span><span class="o">.</span><span class="n">load_learned_params</span><span class="p">(</span><span class="n">params_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reconstructor</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

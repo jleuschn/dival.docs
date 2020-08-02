@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -30,11 +36,6 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -50,7 +51,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Deep Inversion Validation Library
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
           
 
           
@@ -60,7 +61,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.5.0
               </div>
             
           
@@ -77,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,24 +91,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.data.html">dival.data module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.evaluation.html">dival.evaluation module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.measure.html">dival.measure module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.html">dival.reconstructors package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.html">dival.util package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.input.html">dival.util.input module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.version.html">dival.version module</a></li>
 </ul>
@@ -114,6 +130,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -152,7 +169,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -184,10 +201,11 @@
     <span class="n">forward_backward_pd</span><span class="p">,</span> <span class="n">GroupL1Norm</span><span class="p">,</span> <span class="n">MoreauEnvelope</span>
 <span class="kn">from</span> <span class="nn">odl.solvers.smooth</span> <span class="kn">import</span> <span class="n">newton</span>
 <span class="kn">from</span> <span class="nn">odl.solvers.iterative</span> <span class="kn">import</span> <span class="n">iterative</span><span class="p">,</span> <span class="n">statistical</span>
+<span class="kn">from</span> <span class="nn">odl.solvers.iterative.iterative</span> <span class="kn">import</span> <span class="n">exp_zero_seq</span>
 <span class="kn">from</span> <span class="nn">odl.solvers.nonsmooth</span> <span class="kn">import</span> <span class="n">proximal_gradient_solvers</span><span class="p">,</span>\
     <span class="n">primal_dual_hybrid_gradient</span><span class="p">,</span> <span class="n">douglas_rachford</span><span class="p">,</span> <span class="n">admm</span>
 <span class="kn">from</span> <span class="nn">odl.solvers.functional.functional</span> <span class="kn">import</span> <span class="n">Functional</span>
-<span class="kn">from</span> <span class="nn">dival</span> <span class="kn">import</span> <span class="n">Reconstructor</span><span class="p">,</span> <span class="n">IterativeReconstructor</span>
+<span class="kn">from</span> <span class="nn">dival.reconstructors</span> <span class="kn">import</span> <span class="n">Reconstructor</span><span class="p">,</span> <span class="n">IterativeReconstructor</span>
 
 
 <div class="viewcode-block" id="FBPReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.FBPReconstructor">[docs]</a><span class="k">class</span> <span class="nc">FBPReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
@@ -255,7 +273,10 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recompute_fbp_op</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fbp_op</span> <span class="o">=</span> <span class="n">fbp_op</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
                                  <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fbp_op</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fbp_op</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># out is e.g. numpy array, cannot be passed to fbp_op</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fbp_op</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_processor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_processor</span><span class="p">(</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -315,13 +336,18 @@
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_is_symmetric</span><span class="p">:</span>
-            <span class="n">iterative</span><span class="o">.</span><span class="n">conjugate_gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span>
+            <span class="n">iterative</span><span class="o">.</span><span class="n">conjugate_gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out_</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span>
                                          <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">iterative</span><span class="o">.</span><span class="n">conjugate_gradient_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span>
+            <span class="n">iterative</span><span class="o">.</span><span class="n">conjugate_gradient_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out_</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span>
                                                 <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -336,12 +362,13 @@
 <span class="sd">        Initial value.</span>
 <span class="sd">    niter : int</span>
 <span class="sd">        Maximum number of iterations.</span>
-<span class="sd">    zero_seq : iterable</span>
-<span class="sd">        Zero sequence used for regularization.</span>
+<span class="sd">    zero_seq_gen : generator</span>
+<span class="sd">        Zero sequence generator used for regularization.</span>
 <span class="sd">    callback : :class:`odl.solvers.util.callback.Callback` or `None`</span>
 <span class="sd">        Object that is called in each iteration.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="GaussNewtonReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">niter</span><span class="p">,</span> <span class="n">zero_seq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="GaussNewtonReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.GaussNewtonReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">niter</span><span class="p">,</span> <span class="n">zero_seq_gen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calls `odl.solvers.iterative.iterative.gauss_newton`.</span>
 
@@ -354,27 +381,32 @@
 <span class="sd">            Initial value.</span>
 <span class="sd">        niter : int</span>
 <span class="sd">            Maximum number of iterations.</span>
-<span class="sd">        zero_seq : iterable, optional</span>
-<span class="sd">            Zero sequence used for regularization.</span>
+<span class="sd">        zero_seq_gen : generator, optional</span>
+<span class="sd">            Zero sequence generator used for regularization.</span>
+<span class="sd">            Default: generator yielding 2^(-i).</span>
 <span class="sd">        callback : :class:`odl.solvers.util.callback.Callback`, optional</span>
 <span class="sd">            Object that is called in each iteration.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x0</span> <span class="o">=</span> <span class="n">x0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">niter</span> <span class="o">=</span> <span class="n">niter</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">zero_seq</span> <span class="o">=</span> <span class="n">zero_seq</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zero_seq_gen</span> <span class="o">=</span> <span class="n">zero_seq_gen</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">reco_space</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span> <span class="n">observation_space</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">range</span><span class="p">,</span>
             <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
-        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;callback&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">}</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_seq</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;zero_seq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_seq</span>
-        <span class="n">iterative</span><span class="o">.</span><span class="n">gauss_newton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
-                               <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">zero_seq</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zero_seq_gen</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_seq_gen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span>
+                    <span class="n">exp_zero_seq</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
+        <span class="n">iterative</span><span class="o">.</span><span class="n">gauss_newton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out_</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
+                               <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">,</span> <span class="n">zero_seq</span><span class="o">=</span><span class="n">zero_seq</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -441,10 +473,15 @@
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
-        <span class="n">iterative</span><span class="o">.</span><span class="n">kaczmarz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ops</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">iterative</span><span class="o">.</span><span class="n">kaczmarz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ops</span><span class="p">,</span> <span class="n">out_</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_loop</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -499,9 +536,14 @@
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
-        <span class="n">iterative</span><span class="o">.</span><span class="n">landweber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">iterative</span><span class="o">.</span><span class="n">landweber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out_</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -566,13 +608,18 @@
             <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">os_mode</span><span class="p">:</span>
             <span class="n">observation</span> <span class="o">=</span> <span class="p">[</span><span class="n">observation</span><span class="p">]</span>
-        <span class="n">statistical</span><span class="o">.</span><span class="n">osmlem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
+        <span class="n">statistical</span><span class="o">.</span><span class="n">osmlem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">out_</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
                            <span class="n">noise</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">noise</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">,</span>
                            <span class="n">sensitivities</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sensitivities</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -666,17 +713,22 @@
         <span class="c1"># switched in odl compared to the usage in the FISTA paper</span>
         <span class="c1"># (https://epubs.siam.org/doi/abs/10.1137/080716542).</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
         <span class="n">l2_norm_sq_trans</span> <span class="o">=</span> <span class="n">L2NormSquared</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">range</span><span class="p">)</span><span class="o">.</span><span class="n">translated</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
         <span class="n">discrepancy</span> <span class="o">=</span> <span class="n">l2_norm_sq_trans</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">accelerated</span><span class="p">:</span>
             <span class="n">proximal_gradient_solvers</span><span class="o">.</span><span class="n">proximal_gradient</span><span class="p">(</span>
-                <span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span> <span class="n">discrepancy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
+                <span class="n">out_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span> <span class="n">discrepancy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
                 <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lam</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">proximal_gradient_solvers</span><span class="o">.</span><span class="n">accelerated_proximal_gradient</span><span class="p">(</span>
-                <span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span> <span class="n">discrepancy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
+                <span class="n">out_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span> <span class="n">discrepancy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
                 <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lam</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -727,7 +779,10 @@
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
         <span class="n">gradient</span> <span class="o">=</span> <span class="n">Gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
         <span class="n">L</span> <span class="o">=</span> <span class="n">BroadcastOperator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">gradient</span><span class="p">)</span>
         <span class="n">f</span> <span class="o">=</span> <span class="n">ZeroFunctional</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
@@ -735,8 +790,10 @@
         <span class="n">l1_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lam</span> <span class="o">*</span> <span class="n">L1Norm</span><span class="p">(</span><span class="n">gradient</span><span class="o">.</span><span class="n">range</span><span class="p">)</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">SeparableSum</span><span class="p">(</span><span class="n">l2_norm</span><span class="p">,</span> <span class="n">l1_norm</span><span class="p">)</span>
         <span class="n">tau</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">primal_dual_hybrid_gradient</span><span class="o">.</span><span class="n">pdhg_stepsize</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
-        <span class="n">primal_dual_hybrid_gradient</span><span class="o">.</span><span class="n">pdhg</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
+        <span class="n">primal_dual_hybrid_gradient</span><span class="o">.</span><span class="n">pdhg</span><span class="p">(</span><span class="n">out_</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
                                          <span class="n">tau</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -786,7 +843,10 @@
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
         <span class="n">gradient</span> <span class="o">=</span> <span class="n">Gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
         <span class="n">L</span> <span class="o">=</span> <span class="n">BroadcastOperator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">gradient</span><span class="p">)</span>
         <span class="n">f</span> <span class="o">=</span> <span class="n">ZeroFunctional</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
@@ -794,8 +854,10 @@
         <span class="n">l1_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lam</span> <span class="o">*</span> <span class="n">L1Norm</span><span class="p">(</span><span class="n">gradient</span><span class="o">.</span><span class="n">range</span><span class="p">)</span>
         <span class="n">g</span> <span class="o">=</span> <span class="p">[</span><span class="n">l2_norm</span><span class="p">,</span> <span class="n">l1_norm</span><span class="p">]</span>
         <span class="n">tau</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">douglas_rachford</span><span class="o">.</span><span class="n">douglas_rachford_pd_stepsize</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
-        <span class="n">douglas_rachford</span><span class="o">.</span><span class="n">douglas_rachford_pd</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span>
+        <span class="n">douglas_rachford</span><span class="o">.</span><span class="n">douglas_rachford_pd</span><span class="p">(</span><span class="n">out_</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span>
                                              <span class="n">sigma</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -850,7 +912,10 @@
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
         <span class="n">gradient</span> <span class="o">=</span> <span class="n">Gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
         <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">gradient</span><span class="p">]</span>
         <span class="n">f</span> <span class="o">=</span> <span class="n">ZeroFunctional</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
@@ -863,9 +928,10 @@
         <span class="n">sigma_gradient</span> <span class="o">=</span> <span class="mf">45.0</span> <span class="o">/</span> <span class="n">gradient_norm</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="n">sigma</span> <span class="o">=</span> <span class="p">[</span><span class="n">sigma_ray_trafo</span><span class="p">,</span> <span class="n">sigma_gradient</span><span class="p">]</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">ZeroFunctional</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
-        <span class="n">forward_backward_pd</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span>
+        <span class="n">forward_backward_pd</span><span class="p">(</span><span class="n">out_</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
-
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -921,7 +987,10 @@
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
         <span class="n">gradient</span> <span class="o">=</span> <span class="n">Gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
         <span class="n">L</span> <span class="o">=</span> <span class="n">BroadcastOperator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">gradient</span><span class="p">)</span>
         <span class="n">f</span> <span class="o">=</span> <span class="n">ZeroFunctional</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
@@ -930,8 +999,10 @@
         <span class="n">g</span> <span class="o">=</span> <span class="n">SeparableSum</span><span class="p">(</span><span class="n">l2_norm</span><span class="p">,</span> <span class="n">l1_norm</span><span class="p">)</span>
         <span class="n">op_norm</span> <span class="o">=</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">power_method_opnorm</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
         <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">*</span> <span class="n">op_norm</span> <span class="o">**</span> <span class="mi">2</span>
-        <span class="n">admm</span><span class="o">.</span><span class="n">admm_linearized</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span>
+        <span class="n">admm</span><span class="o">.</span><span class="n">admm_linearized</span><span class="p">(</span><span class="n">out_</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span>
                              <span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -981,7 +1052,10 @@
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
+        <span class="n">out_</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+        <span class="n">out_</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x0</span>
         <span class="n">l2_norm</span> <span class="o">=</span> <span class="n">L2NormSquared</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">range</span><span class="p">)</span>
         <span class="n">discrepancy</span> <span class="o">=</span> <span class="n">l2_norm</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">-</span> <span class="n">observation</span><span class="p">)</span>
         <span class="n">gradient</span> <span class="o">=</span> <span class="n">Gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
@@ -991,9 +1065,11 @@
         <span class="n">f</span> <span class="o">=</span> <span class="n">discrepancy</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lam</span> <span class="o">*</span> <span class="n">regularizer</span>
         <span class="n">opnorm</span> <span class="o">=</span> <span class="n">power_method_opnorm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">)</span>
         <span class="n">hessinv_estimate</span> <span class="o">=</span> <span class="n">ScalingOperator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">opnorm</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">newton</span><span class="o">.</span><span class="n">bfgs_method</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
+        <span class="n">newton</span><span class="o">.</span><span class="n">bfgs_method</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">out_</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">niter</span><span class="p">,</span>
                            <span class="n">hessinv_estimate</span><span class="o">=</span><span class="n">hessinv_estimate</span><span class="p">,</span>
                            <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out_</span>
         <span class="k">return</span> <span class="n">out</span></div>
 </pre></div>
 
@@ -1007,11 +1083,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1022,7 +1106,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

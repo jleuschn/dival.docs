@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -30,11 +36,6 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -50,7 +51,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Deep Inversion Validation Library
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
           
 
           
@@ -60,7 +61,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.5.0
               </div>
             
           
@@ -77,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,24 +91,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.data.html">dival.data module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.evaluation.html">dival.evaluation module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.measure.html">dival.measure module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.html">dival.reconstructors package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.html">dival.util package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.input.html">dival.util.input module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.version.html">dival.version module</a></li>
 </ul>
@@ -114,6 +130,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -152,7 +169,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -202,7 +219,7 @@
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="nb">property</span><span class="p">(</span><span class="n">fget</span><span class="p">,</span> <span class="n">fset</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="Reconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor">[docs]</a><span class="k">class</span> <span class="nc">Reconstructor</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_ReconstructorMeta</span><span class="p">):</span>
+<div class="viewcode-block" id="Reconstructor"><a class="viewcode-back" href="../../../dival.html#dival.Reconstructor">[docs]</a><span class="k">class</span> <span class="nc">Reconstructor</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_ReconstructorMeta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Abstract reconstructor base class.</span>
 
 <span class="sd">    There are two ways of implementing a `Reconstructor` subclass:</span>
@@ -327,7 +344,7 @@
 <span class="sd">                                Uniform distribution over the ``&#39;range&#39;``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Reconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reco_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observation_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Reconstructor.__init__"><a class="viewcode-back" href="../../../dival.html#dival.Reconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reco_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observation_space</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">hyper_params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span> <span class="o">=</span> <span class="n">reco_space</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">observation_space</span>
@@ -337,7 +354,7 @@
         <span class="k">if</span> <span class="n">hyper_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">hyper_params</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Reconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Reconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.html#dival.Reconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reconstruct input data from observation data.</span>
 
 <span class="sd">        The default implementation calls `_reconstruct`, automatically choosing</span>
@@ -372,6 +389,7 @@
             <span class="n">reco</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reconstruct</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">reco</span>
+                <span class="n">reco</span> <span class="o">=</span> <span class="n">out</span>
         <span class="k">return</span> <span class="n">reco</span></div>
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -390,7 +408,7 @@
                                   <span class="s2">&quot;implement either &#39;reconstruct&#39; or &quot;</span>
                                   <span class="s2">&quot;&#39;_reconstruct&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
-<div class="viewcode-block" id="Reconstructor.save_hyper_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.save_hyper_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_hyper_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="Reconstructor.save_hyper_params"><a class="viewcode-back" href="../../../dival.html#dival.Reconstructor.save_hyper_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_hyper_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save hyper parameters to JSON file.</span>
 <span class="sd">        See also :meth:`load_hyper_params`.</span>
 
@@ -404,7 +422,7 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Reconstructor.load_hyper_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.load_hyper_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_hyper_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="Reconstructor.load_hyper_params"><a class="viewcode-back" href="../../../dival.html#dival.Reconstructor.load_hyper_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_hyper_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load hyper parameters from JSON file.</span>
 <span class="sd">        See also :meth:`save_hyper_params`.</span>
 
@@ -423,7 +441,7 @@
                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">hyper_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">hyper_params</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Reconstructor.save_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.save_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Reconstructor.save_params"><a class="viewcode-back" href="../../../dival.html#dival.Reconstructor.save_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save all parameters to file.</span>
 <span class="sd">        E.g. for learned reconstructors, both hyper parameters and learned</span>
 <span class="sd">        parameters should be included.</span>
@@ -433,19 +451,37 @@
 <span class="sd">        Subclasses must reimplement this method in order to include non-hyper</span>
 <span class="sd">        parameters.</span>
 
+<span class="sd">        Implementations should derive a sensible default for</span>
+<span class="sd">        `hyper_params_path` from `path`, such that all parameters can be saved</span>
+<span class="sd">        and loaded by specifying only `path`.</span>
+<span class="sd">        Recommended patterns are:</span>
+
+<span class="sd">            - if non-hyper parameters are stored in a single file and `path`</span>
+<span class="sd">              specifies it without file ending:</span>
+<span class="sd">              ``hyper_params_path=path + &#39;_hyper_params.json&#39;``</span>
+<span class="sd">            - if non-hyper parameters are stored in a directory:</span>
+<span class="sd">              ``hyper_params_path=os.path.join(path, &#39;hyper_params.json&#39;)``.</span>
+<span class="sd">            - if there are no non-hyper parameters, this default implementation</span>
+<span class="sd">              can be used:</span>
+<span class="sd">              ``hyper_params_path=path + &#39;_hyper_params.json&#39;``</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        path : str[, optional]</span>
-<span class="sd">            Path at which all non-hyper parameters should be saved.</span>
+<span class="sd">            Path at which all (non-hyper) parameters should be saved.</span>
 <span class="sd">            This argument is required if the reconstructor has non-hyper</span>
-<span class="sd">            parameters.</span>
-<span class="sd">            Implementations should either use it as a file path or as a</span>
-<span class="sd">            directory path for multiple files (the dir should be created by</span>
-<span class="sd">            this method if it does not exist).</span>
+<span class="sd">            parameters or hyper_params_path is omitted.</span>
+<span class="sd">            If the reconstructor has non-hyper parameters, the implementation</span>
+<span class="sd">            may interpret it as a file path or as a directory path for multiple</span>
+<span class="sd">            files (the dir should be created by this method if it does not</span>
+<span class="sd">            exist).</span>
+<span class="sd">            If the implementation expects a file path, it should accept it</span>
+<span class="sd">            without file ending.</span>
 <span class="sd">        hyper_params_path : str, optional</span>
 <span class="sd">            Path of the file in which the hyper parameters should be saved.</span>
 <span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
-<span class="sd">            If not specified, it should be determined from `path`.</span>
+<span class="sd">            If not specified, it should be determined from `path` (see</span>
+<span class="sd">            method description above).</span>
 <span class="sd">            The default implementation saves to the file</span>
 <span class="sd">            ``path + &#39;_hyper_params.json&#39;``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -453,16 +489,15 @@
         <span class="k">if</span> <span class="n">hp_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s1">&#39;either a directory `path` or a filename &#39;</span>
-                    <span class="s1">&#39;`hyper_params_path` required (in default implementation &#39;</span>
-                    <span class="s1">&#39;of `Reconstructor.save_params`)&#39;</span><span class="p">)</span>
+                    <span class="s1">&#39;either `path` or `hyper_params_path` required (in &#39;</span>
+                    <span class="s1">&#39;default implementation of `Reconstructor.save_params`)&#39;</span><span class="p">)</span>
             <span class="n">hp_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;_hyper_params.json&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">hp_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">hyper_params_path</span> <span class="k">if</span> <span class="n">hyper_params_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">)</span>
                        <span class="k">else</span> <span class="n">hyper_params_path</span> <span class="o">+</span> <span class="s1">&#39;.json&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save_hyper_params</span><span class="p">(</span><span class="n">hp_path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Reconstructor.load_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.Reconstructor.load_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Reconstructor.load_params"><a class="viewcode-back" href="../../../dival.html#dival.Reconstructor.load_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load of parameters from file.</span>
 <span class="sd">        E.g. for learned reconstructors, both hyper parameters and learned</span>
 <span class="sd">        parameters should be included.</span>
@@ -472,22 +507,25 @@
 <span class="sd">        Subclasses must reimplement this method in order to include non-hyper</span>
 <span class="sd">        parameters.</span>
 
+<span class="sd">        See :meth:`save_params` for recommended patterns to derive a default</span>
+<span class="sd">        `hyper_params_path` from `path`.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        path : str[, optional]</span>
-<span class="sd">            Path at which the parameters are stored.</span>
+<span class="sd">            Path at which all (non-hyper) parameters are stored.</span>
 <span class="sd">            This argument is required if the reconstructor has non-hyper</span>
-<span class="sd">            parameters.</span>
-<span class="sd">            Depending on the implementation, this may be a file path or a</span>
-<span class="sd">            directory path for multiple files.</span>
+<span class="sd">            parameters or hyper_params_path is omitted.</span>
+<span class="sd">            If the reconstructor has non-hyper parameters, the implementation</span>
+<span class="sd">            may interpret it as a file path or as a directory path for multiple</span>
+<span class="sd">            files.</span>
+<span class="sd">            If the implementation expects a file path, it should accept it</span>
+<span class="sd">            without file ending.</span>
 <span class="sd">        hyper_params_path : str, optional</span>
 <span class="sd">            Path of the file in which the hyper parameters are stored.</span>
 <span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
-<span class="sd">            If not specified, it should be determined from `path`. If `path`</span>
-<span class="sd">            is interpreted as a directory, the default for `hyper_params_path`</span>
-<span class="sd">            should be some file in this directory; otherwise, if `path` is used</span>
-<span class="sd">            as a single file name, the default for `hyper_params_path` should</span>
-<span class="sd">            be a file in the same directory as this file.</span>
+<span class="sd">            If not specified, it should be determined from `path` (see</span>
+<span class="sd">            description of :meth:`save_params`).</span>
 <span class="sd">            The default implementation reads from the file</span>
 <span class="sd">            ``path + &#39;_hyper_params.json&#39;``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -495,9 +533,8 @@
         <span class="k">if</span> <span class="n">hp_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s1">&#39;either a directory `path` or a filename &#39;</span>
-                    <span class="s1">&#39;`hyper_params_path` required (in default implementation &#39;</span>
-                    <span class="s1">&#39;of `Reconstructor.save_params`)&#39;</span><span class="p">)</span>
+                    <span class="s1">&#39;either `path` or `hyper_params_path` required (in &#39;</span>
+                    <span class="s1">&#39;default implementation of `Reconstructor.save_params`)&#39;</span><span class="p">)</span>
             <span class="n">hp_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;_hyper_params.json&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">hp_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">hyper_params_path</span> <span class="k">if</span> <span class="n">hyper_params_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">)</span>
@@ -505,11 +542,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">load_hyper_params</span><span class="p">(</span><span class="n">hp_path</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="LearnedReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor">[docs]</a><span class="k">class</span> <span class="nc">LearnedReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
-<div class="viewcode-block" id="LearnedReconstructor.train"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+<div class="viewcode-block" id="LearnedReconstructor"><a class="viewcode-back" href="../../../dival.html#dival.LearnedReconstructor">[docs]</a><span class="k">class</span> <span class="nc">LearnedReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="LearnedReconstructor.train"><a class="viewcode-back" href="../../../dival.html#dival.LearnedReconstructor.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Train the reconstructor with a dataset by adapting its parameters.</span>
 
-<span class="sd">        Should only use the training data from `dataset`.</span>
+<span class="sd">        Should only use the training and validation data from `dataset`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -518,22 +555,30 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="LearnedReconstructor.save_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.save_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LearnedReconstructor.save_params"><a class="viewcode-back" href="../../../dival.html#dival.LearnedReconstructor.save_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save all parameters to file.</span>
 
 <span class="sd">        Calls :meth:`save_hyper_params` and :meth:`save_learned_params`, where</span>
 <span class="sd">        :meth:`save_learned_params` should be implemented by the subclass.</span>
+
+<span class="sd">        This implementation assumes that `path` is interpreted as a single</span>
+<span class="sd">        file name, preferably specified without file ending.</span>
+<span class="sd">        If `path` is a directory, the subclass needs to reimplement this method</span>
+<span class="sd">        in order to follow the recommended default value pattern:</span>
+<span class="sd">        ``hyper_params_path=os.path.join(path, &#39;hyper_params.json&#39;)``.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        path : str</span>
 <span class="sd">            Path at which the learned parameters should be saved.</span>
 <span class="sd">            Passed to :meth:`save_learned_params`.</span>
+<span class="sd">            If the implementation interprets it as a file path, it is</span>
+<span class="sd">            preferred to exclude the file ending (otherwise the default</span>
+<span class="sd">            value of `hyper_params_path` is suboptimal).</span>
 <span class="sd">        hyper_params_path : str, optional</span>
 <span class="sd">            Path of the file in which the hyper parameters should be saved.</span>
 <span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
-<span class="sd">            If not specified, it should be determined from `path`.</span>
-<span class="sd">            The default implementation saves to the file</span>
+<span class="sd">            If not specified, this implementation saves to the file</span>
 <span class="sd">            ``path + &#39;_hyper_params.json&#39;``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">hp_path</span> <span class="o">=</span> <span class="n">hyper_params_path</span>
@@ -545,22 +590,30 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">save_hyper_params</span><span class="p">(</span><span class="n">hp_path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save_learned_params</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LearnedReconstructor.load_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.load_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LearnedReconstructor.load_params"><a class="viewcode-back" href="../../../dival.html#dival.LearnedReconstructor.load_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">hyper_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load all parameters from file.</span>
 
 <span class="sd">        Calls :meth:`load_hyper_params` and :meth:`load_learned_params`, where</span>
 <span class="sd">        :meth:`load_learned_params` should be implemented by the subclass.</span>
+
+<span class="sd">        This implementation assumes that `path` is interpreted as a single</span>
+<span class="sd">        file name, preferably specified without file ending.</span>
+<span class="sd">        If `path` is a directory, the subclass needs to reimplement this method</span>
+<span class="sd">        in order to follow the recommended default value pattern:</span>
+<span class="sd">        ``hyper_params_path=os.path.join(path, &#39;hyper_params.json&#39;)``.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        path : str</span>
 <span class="sd">            Path at which the parameters are stored.</span>
 <span class="sd">            Passed to :meth:`load_learned_params`.</span>
+<span class="sd">            If the implementation interprets it as a file path, it is</span>
+<span class="sd">            preferred to exclude the file ending (otherwise the default</span>
+<span class="sd">            value of `hyper_params_path` is suboptimal).</span>
 <span class="sd">        hyper_params_path : str, optional</span>
 <span class="sd">            Path of the file in which the hyper parameters are stored.</span>
 <span class="sd">            The ending ``&#39;.json&#39;`` is automatically appended if not included.</span>
-<span class="sd">            If not specified, it should be determined from `path`.</span>
-<span class="sd">            The default implementation reads from the file</span>
+<span class="sd">            If not specified, this implementation reads from the file</span>
 <span class="sd">            ``path + &#39;_hyper_params.json&#39;``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">hp_path</span> <span class="o">=</span> <span class="n">hyper_params_path</span>
@@ -572,7 +625,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">load_hyper_params</span><span class="p">(</span><span class="n">hp_path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_learned_params</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LearnedReconstructor.save_learned_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.save_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_learned_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="LearnedReconstructor.save_learned_params"><a class="viewcode-back" href="../../../dival.html#dival.LearnedReconstructor.save_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_learned_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save learned parameters to file.</span>
 
 <span class="sd">        Parameters</span>
@@ -582,10 +635,12 @@
 <span class="sd">            Implementations may interpret this as a file path or as a directory</span>
 <span class="sd">            path for multiple files (which then should be created if it does</span>
 <span class="sd">            not exist).</span>
+<span class="sd">            If the implementation expects a file path, it should accept it</span>
+<span class="sd">            without file ending.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="LearnedReconstructor.load_learned_params"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.LearnedReconstructor.load_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_learned_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="LearnedReconstructor.load_learned_params"><a class="viewcode-back" href="../../../dival.html#dival.LearnedReconstructor.load_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_learned_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load learned parameters from file.</span>
 
 <span class="sd">        Parameters</span>
@@ -594,11 +649,13 @@
 <span class="sd">            Path at which the learned parameters are stored.</span>
 <span class="sd">            Implementations may interpret this as a file path or as a directory</span>
 <span class="sd">            path for multiple files.</span>
+<span class="sd">            If the implementation expects a file path, it should accept it</span>
+<span class="sd">            without file ending.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 
 
-<div class="viewcode-block" id="IterativeReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.IterativeReconstructor">[docs]</a><span class="k">class</span> <span class="nc">IterativeReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="IterativeReconstructor"><a class="viewcode-back" href="../../../dival.html#dival.IterativeReconstructor">[docs]</a><span class="k">class</span> <span class="nc">IterativeReconstructor</span><span class="p">(</span><span class="n">Reconstructor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Iterative reconstructor base class.</span>
 <span class="sd">    It is recommended to use :class:`StandardIterativeReconstructor` as a base</span>
 <span class="sd">    class for iterative reconstructors if suitable, which provides some default</span>
@@ -622,7 +679,7 @@
         <span class="p">}</span>
     <span class="p">})</span>
 
-<div class="viewcode-block" id="IterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.IterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="IterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.html#dival.IterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -632,7 +689,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="IterativeReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.IterativeReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="IterativeReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.html#dival.IterativeReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reconstruct input data from observation data.</span>
 
 <span class="sd">        Same as :meth:`Reconstructor.reconstruct`, but with additional optional</span>
@@ -666,7 +723,7 @@
         <span class="k">return</span> <span class="n">reconstruction</span></div></div>
 
 
-<div class="viewcode-block" id="StandardIterativeReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.StandardIterativeReconstructor">[docs]</a><span class="k">class</span> <span class="nc">StandardIterativeReconstructor</span><span class="p">(</span><span class="n">IterativeReconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardIterativeReconstructor"><a class="viewcode-back" href="../../../dival.html#dival.StandardIterativeReconstructor">[docs]</a><span class="k">class</span> <span class="nc">StandardIterativeReconstructor</span><span class="p">(</span><span class="n">IterativeReconstructor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Standard iterative reconstructor base class.</span>
 
 <span class="sd">    Provides a default implementation that only requires subclasses to</span>
@@ -681,7 +738,7 @@
 <span class="sd">        Callback that is called after each iteration.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="StandardIterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.StandardIterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardIterativeReconstructor.__init__"><a class="viewcode-back" href="../../../dival.html#dival.StandardIterativeReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -723,7 +780,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-<div class="viewcode-block" id="StandardIterativeReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.reconstructors.reconstructor.html#dival.StandardIterativeReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_iter</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<div class="viewcode-block" id="StandardIterativeReconstructor.reconstruct"><a class="viewcode-back" href="../../../dival.html#dival.StandardIterativeReconstructor.reconstruct">[docs]</a>    <span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_iter</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                     <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reconstruct input data from observation data.</span>
 
@@ -821,11 +878,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -836,7 +901,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

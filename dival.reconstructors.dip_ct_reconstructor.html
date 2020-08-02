@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.reconstructors.dip_ct_reconstructor module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.reconstructors.fbpunet_reconstructor module" href="dival.reconstructors.fbpunet_reconstructor.html" />
+    <link rel="prev" title="dival.reconstructors package" href="dival.reconstructors.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.input.html">dival.util.input module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="dival.reconstructors.html">dival.reconstructors package</a> &raquo;</li>
+        
+      <li>dival.reconstructors.dip_ct_reconstructor module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.reconstructors.dip_ct_reconstructor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dival.reconstructors.dip_ct_reconstructor">
+<span id="dival-reconstructors-dip-ct-reconstructor-module"></span><h1>dival.reconstructors.dip_ct_reconstructor module<a class="headerlink" href="#module-dival.reconstructors.dip_ct_reconstructor" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.dip_ct_reconstructor.</code><code class="sig-name descname">DeepImagePriorCTReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">callback_func</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback_func_interval</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">torch_manual_seed</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/dip_ct_reconstructor.html#DeepImagePriorCTReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
+<p>CT reconstructor applying DIP with TV regularization (see <a class="footnote-reference brackets" href="#id4" id="id1">2</a>).
+The DIP was introduced in <a class="footnote-reference brackets" href="#id3" id="id2">1</a>.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>V. Lempitsky, A. Vedaldi, and D. Ulyanov, 2018, “Deep Image Prior”.
+IEEE/CVF Conference on Computer Vision and Pattern Recognition.
+<a class="reference external" href="https://doi.org/10.1109/CVPR.2018.00984">https://doi.org/10.1109/CVPR.2018.00984</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>D. Otero Baguer, J. Leuschner, M. Schmidt, 2020, “Computed
+Tomography Reconstruction Using Deep Image Prior and Learned
+Reconstruction Methods”. Inverse Problems.
+<a class="reference external" href="https://doi.org/10.1088/1361-6420/aba415">https://doi.org/10.1088/1361-6420/aba415</a></p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.HYPER_PARAMS">
+<code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'channels': {'default': [128, 128, 128, 128, 128]}, 'gamma': {'default': 0.0001, 'grid_search_options': {'num_samples': 20}, 'range': [1e-07, 1.0]}, 'iterations': {'default': 5000, 'range': [1, 50000]}, 'loss_function': {'choices': ['mse', 'poisson'], 'default': 'mse'}, 'lr': {'default': 0.001, 'range': [1e-05, 0.1]}, 'mu_max': {'default': 81.35858, 'range': [1.0, 10000.0]}, 'photons_per_pixel': {'default': 4096, 'range': [1000, 10000]}, 'scales': {'choices': [3, 4, 5, 6, 7], 'default': 4}, 'skip_channels': {'default': [4, 4, 4, 4, 4]}}</em><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">callback_func</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback_func_interval</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">torch_manual_seed</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/dip_ct_reconstructor.html#DeepImagePriorCTReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ray_trafo</strong> (<cite>odl.tomo.operators.RayTransform</cite>) – The forward operator</p></li>
+<li><p><strong>callback_func</strong> (<em>callable</em><em>, </em><em>optional</em>) – Callable with signature
+<code class="docutils literal notranslate"><span class="pre">callback_func(iteration,</span> <span class="pre">reconstruction,</span> <span class="pre">loss)</span></code> that is called
+after every <cite>callback_func_interval</cite> iterations, starting
+after the first iteration. It is additionally called after the
+last iteration.
+Note that it differs from the inherited
+<cite>IterativeReconstructor.callback</cite> (which is also supported) in that
+the latter is of type <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>,
+which only receives the reconstruction, such that the loss would
+have to be recomputed.</p></li>
+<li><p><strong>callback_func_interval</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of iterations between calls to <cite>callback_func</cite>.
+Default: <cite>100</cite>.</p></li>
+<li><p><strong>show_pbar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show a tqdm progress bar during reconstruction.</p></li>
+<li><p><strong>torch_manual_seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Fixed seed to set by <code class="docutils literal notranslate"><span class="pre">torch.manual_seed</span></code> before reconstruction.
+The default is <cite>10</cite>. It can be set to <cite>None</cite> or <cite>False</cite> to disable
+the manual seed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.get_activation">
+<code class="sig-name descname">get_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">layer_index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/dip_ct_reconstructor.html#DeepImagePriorCTReconstructor.get_activation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.get_activation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.channels">
+<em class="property">property </em><code class="sig-name descname">channels</code><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.channels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.gamma">
+<em class="property">property </em><code class="sig-name descname">gamma</code><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.gamma" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.iterations">
+<em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.loss_function">
+<em class="property">property </em><code class="sig-name descname">loss_function</code><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.loss_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.lr">
+<em class="property">property </em><code class="sig-name descname">lr</code><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.lr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.mu_max">
+<em class="property">property </em><code class="sig-name descname">mu_max</code><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.mu_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.photons_per_pixel">
+<em class="property">property </em><code class="sig-name descname">photons_per_pixel</code><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.photons_per_pixel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.scales">
+<em class="property">property </em><code class="sig-name descname">scales</code><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.scales" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.skip_channels">
+<em class="property">property </em><code class="sig-name descname">skip_channels</code><a class="headerlink" href="#dival.reconstructors.dip_ct_reconstructor.DeepImagePriorCTReconstructor.skip_channels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.reconstructors.fbpunet_reconstructor.html" class="btn btn-neutral float-right" title="dival.reconstructors.fbpunet_reconstructor module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.reconstructors.html" class="btn btn-neutral float-left" title="dival.reconstructors package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

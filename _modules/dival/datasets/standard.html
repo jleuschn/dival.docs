@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -30,11 +36,6 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -50,7 +51,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Deep Inversion Validation Library
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
           
 
           
@@ -60,7 +61,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.5.0
               </div>
             
           
@@ -77,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,24 +91,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.data.html">dival.data module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.evaluation.html">dival.evaluation module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.measure.html">dival.measure module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.html">dival.reconstructors package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbp_unet_reconstructor.html">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.html">dival.util package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.input.html">dival.util.input module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.version.html">dival.version module</a></li>
 </ul>
@@ -114,6 +130,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -152,7 +169,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -175,17 +192,19 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Provides standard datasets for benchmarking.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">resize</span>
 <span class="kn">import</span> <span class="nn">odl</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.ellipses_dataset</span> <span class="kn">import</span> <span class="n">EllipsesDataset</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.lodopab_dataset</span> <span class="kn">import</span> <span class="n">LoDoPaBDataset</span>
+<span class="kn">from</span> <span class="nn">dival.datasets.angle_subset_dataset</span> <span class="kn">import</span> <span class="n">get_angle_subset_dataset</span>
 
 
 <span class="n">STANDARD_DATASET_NAMES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="get_standard_dataset"><a class="viewcode-back" href="../../../dival.datasets.standard.html#dival.get_standard_dataset">[docs]</a><span class="k">def</span> <span class="nf">get_standard_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="get_standard_dataset"><a class="viewcode-back" href="../../../dival.html#dival.get_standard_dataset">[docs]</a><span class="k">def</span> <span class="nf">get_standard_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a standard dataset by name.</span>
 
@@ -199,13 +218,19 @@
 <span class="sd">            and white gaussian noise with a standard deviation of 2.5% (i.e.</span>
 <span class="sd">            ``0.025 * mean(abs(observation))``) is added.</span>
 
-<span class="sd">            The ray transform that corresponds to the (noiseless) forward</span>
-<span class="sd">            operator is stored in the attribute `ray_trafo` of the dataset.</span>
-
 <span class="sd">            In order to avoid the inverse crime, the ground truth images of</span>
 <span class="sd">            shape (128, 128) are upscaled by bilinear interpolation to a</span>
 <span class="sd">            resolution of (400, 400) before the ray transform is applied (whose</span>
-<span class="sd">            discretization is different from the one of `ray_trafo`).</span>
+<span class="sd">            discretization is different from the one of :attr:`ray_trafo`).</span>
+<span class="sd">            </span>
+<span class="sd">            Attributes of the returned dataset:</span>
+<span class="sd">                `ray_trafo` : :class:`odl.tomo.RayTransform`</span>
+<span class="sd">                    Ray transform corresponding to the noiseless forward</span>
+<span class="sd">                    operator.</span>
+<span class="sd">                ``get_ray_trafo(**kwargs)`` : function</span>
+<span class="sd">                    Function that returns a ray transform corresponding to the</span>
+<span class="sd">                    noiseless forward operator. Keyword arguments (e.g. `impl`)</span>
+<span class="sd">                    are forwarded to the :class:`RayTransform` constructor.</span>
 
 <span class="sd">        ``&#39;lodopab&#39;``</span>
 <span class="sd">            The LoDoPaB-CT dataset, which is documented in the</span>
@@ -221,11 +246,16 @@
 <span class="sd">            1000 angles and 513 detector pixels is used. Poisson noise</span>
 <span class="sd">            corresponding to 4096 incident photons per pixel before attenuation</span>
 <span class="sd">            is applied to the projection data.</span>
-
-<span class="sd">            A ray transform that corresponds to the noiseless forward operator</span>
-<span class="sd">            is available via</span>
-<span class="sd">            :meth:`~dival.datasets.LoDoPaBDataset.get_ray_trafo` from this</span>
-<span class="sd">            dataset.</span>
+<span class="sd">            </span>
+<span class="sd">            Attributes of the returned dataset:</span>
+<span class="sd">                `ray_trafo` : :class:`odl.tomo.RayTransform`</span>
+<span class="sd">                    Ray transform corresponding to the noiseless forward</span>
+<span class="sd">                    operator.</span>
+<span class="sd">            Methods of the returned dataset:</span>
+<span class="sd">                ``get_ray_trafo(**kwargs)``</span>
+<span class="sd">                    Function that returns a ray transform corresponding to the</span>
+<span class="sd">                    noiseless forward operator. Keyword arguments (e.g. `impl`)</span>
+<span class="sd">                    are forwarded to the :class:`RayTransform` constructor.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -243,6 +273,9 @@
 <span class="sd">                    Seeds to use for random ellipse generation, passed to</span>
 <span class="sd">                    :class:`.EllipsesDataset`.</span>
 <span class="sd">            ``&#39;lodopab&#39;``</span>
+<span class="sd">                num_angles : int, optional</span>
+<span class="sd">                    Number of angles to use from the full 1000 angles.</span>
+<span class="sd">                    Must be a divisor of 1000.</span>
 <span class="sd">                observation_model : {``&#39;post-log&#39;``, ``&#39;pre-log&#39;``}, optional</span>
 <span class="sd">                    The observation model to use. Default is ``&#39;post-log&#39;``.</span>
 <span class="sd">                min_photon_count : float, optional</span>
@@ -251,6 +284,13 @@
 <span class="sd">                    than zero is required in order to avoid undefined values.</span>
 <span class="sd">                    The default is 0.1, both for ``&#39;post-log&#39;`` and</span>
 <span class="sd">                    ``&#39;pre-log&#39;`` model.</span>
+<span class="sd">                sorted_by_patient : bool, optional</span>
+<span class="sd">                    Whether to sort the samples by patient id.</span>
+<span class="sd">                    Useful to resplit the dataset.</span>
+<span class="sd">                    Default: ``False``.</span>
+<span class="sd">                impl : {``&#39;skimage&#39;``, ``&#39;astra_cpu&#39;``, ``&#39;astra_cuda&#39;``},\</span>
+<span class="sd">                        optional</span>
+<span class="sd">                    Implementation passed to :class:`odl.tomo.RayTransform`</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -307,11 +347,27 @@
         <span class="n">dataset</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">reco_ray_trafo</span>
 
     <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">:</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">LoDoPaBDataset</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">num_angles</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;num_angles&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">lodopab_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;observation_model&#39;</span><span class="p">,</span> <span class="s1">&#39;min_photon_count&#39;</span><span class="p">,</span> <span class="s1">&#39;sorted_by_patient&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;impl&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">lodopab_kwargs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">LoDoPaBDataset</span><span class="p">(</span><span class="o">**</span><span class="n">lodopab_kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">num_angles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">get_angle_subset_dataset</span><span class="p">(</span>
+                <span class="n">dataset</span><span class="p">,</span> <span class="n">num_angles</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;impl&#39;</span><span class="p">,</span> <span class="s1">&#39;astra_cuda&#39;</span><span class="p">))</span>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown dataset &#39;</span><span class="si">{}</span><span class="s2">&#39;. Known standard datasets are </span><span class="si">{}</span><span class="s2">&quot;</span>
                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">STANDARD_DATASET_NAMES</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;unused keyword arguments: </span><span class="si">{}</span><span class="s1">&#39;</span>
+             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
 
     <span class="n">dataset</span><span class="o">.</span><span class="n">standard_dataset_name</span> <span class="o">=</span> <span class="n">name</span>
     <span class="k">return</span> <span class="n">dataset</span></div>
@@ -327,11 +383,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Johannes Leuschner, Maximilian Schmidt
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -342,7 +406,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

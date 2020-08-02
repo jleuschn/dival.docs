@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.datasets.fbp_dataset module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.datasets.lodopab_dataset module" href="dival.datasets.lodopab_dataset.html" />
+    <link rel="prev" title="dival.datasets.ellipses_dataset module" href="dival.datasets.ellipses_dataset.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.datasets.fbp_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.input.html">dival.util.input module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="dival.datasets.html">dival.datasets package</a> &raquo;</li>
+        
+      <li>dival.datasets.fbp_dataset module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.datasets.fbp_dataset.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dival.datasets.fbp_dataset">
+<span id="dival-datasets-fbp-dataset-module"></span><h1>dival.datasets.fbp_dataset module<a class="headerlink" href="#module-dival.datasets.fbp_dataset" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="dival.datasets.fbp_dataset.generate_fbp_cache_files">
+<code class="sig-prename descclassname">dival.datasets.fbp_dataset.</code><code class="sig-name descname">generate_fbp_cache_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">cache_files</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filter_type</span><span class="o">=</span><span class="default_value">'Hann'</span></em>, <em class="sig-param"><span class="n">frequency_scaling</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/fbp_dataset.html#generate_fbp_cache_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.fbp_dataset.generate_fbp_cache_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate cache files for a CT dataset, whereby FBPs are precomputed
+from the observations.</p>
+<p>The cache files can be accessed by a <code class="xref py py-class docutils literal notranslate"><span class="pre">CachedDataset</span></code>, which can
+be obtained by <a class="reference internal" href="#dival.datasets.fbp_dataset.get_cached_fbp_dataset" title="dival.datasets.fbp_dataset.get_cached_fbp_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_cached_fbp_dataset()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – CT dataset with observation and ground truth pairs.
+The FBPs are computed from the observations.</p></li>
+<li><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>) – Ray transform from which the FBP operator is constructed.</p></li>
+<li><p><strong>cache_files</strong> (dict of 2-tuple of (str or <cite>None</cite>)) – <p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">cached_dataset.generate_cache_files()</span></code>.</p>
+<p>As an example, to cache the FBPs (but not the ground truths) for parts
+<code class="docutils literal notranslate"><span class="pre">'train'</span></code> and <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span>      <span class="p">(</span><span class="s1">&#39;cache_train_fbp.npy&#39;</span><span class="p">,</span>      <span class="kc">None</span><span class="p">),</span>
+ <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;cache_validation_fbp.npy&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>size</strong> (<em>dict of int</em><em>, </em><em>optional</em>) – Numbers of samples to cache for each dataset part.
+If a field is omitted or has value <cite>None</cite>, all samples are cached.
+Default: <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p></li>
+<li><p><strong>filter_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Filter type accepted by <code class="xref py py-func docutils literal notranslate"><span class="pre">odl.tomo.fbp_op()</span></code>.
+Default: <code class="docutils literal notranslate"><span class="pre">'Hann'</span></code>.</p></li>
+<li><p><strong>frequency_scaling</strong> (<em>float</em><em>, </em><em>optional</em>) – Relative cutoff frequency passed to <code class="xref py py-func docutils literal notranslate"><span class="pre">odl.tomo.fbp_op()</span></code>.
+Default: <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="dival.datasets.fbp_dataset.get_cached_fbp_dataset">
+<code class="sig-prename descclassname">dival.datasets.fbp_dataset.</code><code class="sig-name descname">get_cached_fbp_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">cache_files</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filter_type</span><span class="o">=</span><span class="default_value">'Hann'</span></em>, <em class="sig-param"><span class="n">frequency_scaling</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/fbp_dataset.html#get_cached_fbp_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.fbp_dataset.get_cached_fbp_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="xref py py-class docutils literal notranslate"><span class="pre">CachedDataset</span></code> with FBP and ground truth pairs
+corresponding to the passed CT dataset.</p>
+<p>See <a class="reference internal" href="#dival.datasets.fbp_dataset.generate_fbp_cache_files" title="dival.datasets.fbp_dataset.generate_fbp_cache_files"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_fbp_cache_files()</span></code></a> for generating the cache files.</p>
+<p>If for a dataset part no FBP cache is specified, these FBPs are
+computed from the observations on the fly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – CT dataset with observation and ground truth pairs.
+For all parts and components, for which caches are specified,
+the samples of this dataset are ignored.</p></li>
+<li><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>) – Ray transform from which the FBP operator is constructed that is called
+if an FBP cache is missing.</p></li>
+<li><p><strong>cache_files</strong> (dict of 2-tuple of (str or <cite>None</cite>)) – <p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">cached_dataset.CachedDataset()</span></code>.</p>
+<p>As an example, to use caches for the FBPs (but not the ground truths)
+for parts <code class="docutils literal notranslate"><span class="pre">'train'</span></code> and <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span>      <span class="p">(</span><span class="s1">&#39;cache_train_fbp.npy&#39;</span><span class="p">,</span>      <span class="kc">None</span><span class="p">),</span>
+ <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;cache_validation_fbp.npy&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>size</strong> (<em>dict of int</em><em>, </em><em>optional</em>) – Numbers of samples for each part.
+If a field is omitted or has value <cite>None</cite>, all available samples
+are used, which may be less than the number of samples in the
+original dataset if the cache contains fewer samples.
+Default: <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p></li>
+<li><p><strong>filter_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Filter type accepted by <code class="xref py py-func docutils literal notranslate"><span class="pre">odl.tomo.fbp_op()</span></code>.
+Default: <code class="docutils literal notranslate"><span class="pre">'Hann'</span></code>.</p></li>
+<li><p><strong>frequency_scaling</strong> (<em>float</em><em>, </em><em>optional</em>) – Relative cutoff frequency passed to <code class="xref py py-func docutils literal notranslate"><span class="pre">odl.tomo.fbp_op()</span></code>.
+Default: <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cached_fbp_dataset</strong> – Dataset with FBP and ground truth pairs that uses the specified cache
+files.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">CachedDataset</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.datasets.fbp_dataset.FBPDataset">
+<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.fbp_dataset.</code><code class="sig-name descname">FBPDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">filter_type</span><span class="o">=</span><span class="default_value">'Hann'</span></em>, <em class="sig-param"><span class="n">frequency_scaling</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/fbp_dataset.html#FBPDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.fbp_dataset.FBPDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
+<p>Dataset computing filtered back-projections for a CT dataset on the fly.</p>
+<p>Each sample is a pair of a FBP and a ground truth image.</p>
+<dl class="py method">
+<dt id="dival.datasets.fbp_dataset.FBPDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">filter_type</span><span class="o">=</span><span class="default_value">'Hann'</span></em>, <em class="sig-param"><span class="n">frequency_scaling</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/fbp_dataset.html#FBPDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.fbp_dataset.FBPDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – CT dataset. FBPs are computed from the observations, the ground
+truth is taken directly from the dataset.</p></li>
+<li><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>) – Ray transform from which the FBP operator is constructed.</p></li>
+<li><p><strong>filter_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Filter type accepted by <code class="xref py py-func docutils literal notranslate"><span class="pre">odl.tomo.fbp_op()</span></code>.
+Default: <code class="docutils literal notranslate"><span class="pre">'Hann'</span></code>.</p></li>
+<li><p><strong>frequency_scaling</strong> (<em>float</em><em>, </em><em>optional</em>) – Relative cutoff frequency passed to <code class="xref py py-func docutils literal notranslate"><span class="pre">odl.tomo.fbp_op()</span></code>.
+Default: <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.datasets.fbp_dataset.FBPDataset.generator">
+<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/fbp_dataset.html#FBPDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.fbp_dataset.FBPDataset.generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield data.</p>
+<p>The default implementation calls <a class="reference internal" href="#dival.datasets.fbp_dataset.FBPDataset.get_sample" title="dival.datasets.fbp_dataset.FBPDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
+implements it (i.e., supports random access).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – Whether to yield train, validation or test data.
+Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><strong>data</strong> (<em>odl element or tuple of odl elements</em>) – Sample of the dataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.datasets.fbp_dataset.FBPDataset.get_sample">
+<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/fbp_dataset.html#FBPDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.fbp_dataset.FBPDataset.get_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get single sample by index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – Index of the sample.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (array-like or tuple of (array-like or bool) or <cite>None</cite>) – <p>Array(s) (or e.g. odl element(s)) to which the sample is written.
+A tuple should be passed, if the dataset returns two or more arrays
+per sample (i.e. pairs, …).
+If a tuple element is a bool, it has the following meaning:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">True</span></code></dt><dd><p>Create a new array and return it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">False</span></code></dt><dd><p>Do not return this array, i.e. <cite>None</cite> is returned.</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
+<code class="docutils literal notranslate"><span class="pre">out=(True,</span> <span class="pre">False)</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.datasets.fbp_dataset.FBPDataset.get_samples">
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/fbp_dataset.html#FBPDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.fbp_dataset.FBPDataset.get_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get samples by slice or range.</p>
+<p>The default implementation calls <a class="reference internal" href="#dival.datasets.fbp_dataset.FBPDataset.get_sample" title="dival.datasets.fbp_dataset.FBPDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
+implements it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>slice</em><em> or </em><em>range</em>) – Indexes of the samples.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (array-like or tuple of (array-like or bool) or <cite>None</cite>) – <p>Array(s) (or e.g. odl element(s)) to which the sample is written.
+The first dimension must match the number of samples requested.
+A tuple should be passed, if the dataset returns two or more arrays
+per sample (i.e. pairs, …).
+If a tuple element is a bool, it has the following meaning:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">True</span></code></dt><dd><p>Create a new array and return it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">False</span></code></dt><dd><p>Do not return this array, i.e. <cite>None</cite> is returned.</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>samples</strong> – If the dataset has multiple arrays per sample, a tuple holding
+arrays is returned.
+E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
+<code class="docutils literal notranslate"><span class="pre">out=(True,</span> <span class="pre">False)</span></code>.
+The samples are stacked in the first
+(additional) dimension of each array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.datasets.lodopab_dataset.html" class="btn btn-neutral float-right" title="dival.datasets.lodopab_dataset module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.datasets.ellipses_dataset.html" class="btn btn-neutral float-left" title="dival.datasets.ellipses_dataset module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
