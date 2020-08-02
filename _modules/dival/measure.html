@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.5.1
               </div>
             
           
@@ -108,6 +108,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
@@ -210,7 +214,7 @@
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
 
-<div class="viewcode-block" id="Measure"><a class="viewcode-back" href="../../dival.html#dival.Measure">[docs]</a><span class="k">class</span> <span class="nc">Measure</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="Measure"><a class="viewcode-back" href="../../dival.measure.html#dival.Measure">[docs]</a><span class="k">class</span> <span class="nc">Measure</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Abstract base class for measures used for evaluation.</span>
 
 <span class="sd">    In subclasses, either :meth:`__init__` should be inherited or it should</span>
@@ -247,7 +251,7 @@
 <span class="sd">    key.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Measure.__init__"><a class="viewcode-back" href="../../dival.html#dival.Measure.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">short_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Measure.__init__"><a class="viewcode-back" href="../../dival.measure.html#dival.Measure.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">short_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -272,7 +276,7 @@
                  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">old_short_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">short_name</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">measure_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">short_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="Measure.apply"><a class="viewcode-back" href="../../dival.html#dival.Measure.apply">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="Measure.apply"><a class="viewcode-back" href="../../dival.measure.html#dival.Measure.apply">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reconstruction</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the value of this measure.</span>
 
@@ -295,7 +299,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">reconstruction</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Measure.get_by_short_name"><a class="viewcode-back" href="../../dival.html#dival.Measure.get_by_short_name">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Measure.get_by_short_name"><a class="viewcode-back" href="../../dival.measure.html#dival.Measure.get_by_short_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_by_short_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">short_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return :class:`.Measure` instance with given short name by registry</span>
@@ -322,7 +326,7 @@
         <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ground_truth</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Measure.as_operator_for_fixed_ground_truth"><a class="viewcode-back" href="../../dival.html#dival.Measure.as_operator_for_fixed_ground_truth">[docs]</a>    <span class="k">def</span> <span class="nf">as_operator_for_fixed_ground_truth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">):</span>
+<div class="viewcode-block" id="Measure.as_operator_for_fixed_ground_truth"><a class="viewcode-back" href="../../dival.measure.html#dival.Measure.as_operator_for_fixed_ground_truth">[docs]</a>    <span class="k">def</span> <span class="nf">as_operator_for_fixed_ground_truth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return an odl operator that can be applied to different reconstructions</span>
 <span class="sd">        for fixed ground truth.</span>

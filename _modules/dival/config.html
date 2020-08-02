@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.5.1
               </div>
             
           
@@ -108,6 +108,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
@@ -236,7 +240,7 @@
     <span class="n">CONFIG</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_fp</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="get_config"><a class="viewcode-back" href="../../dival.html#dival.get_config">[docs]</a><span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="n">key_path</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="get_config"><a class="viewcode-back" href="../../dival.config.html#dival.get_config">[docs]</a><span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="n">key_path</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return (sub-)configuration stored in config file.</span>
 <span class="sd">    Note that values may differ from the current ``CONFIG`` variable if it was</span>
@@ -262,7 +266,7 @@
     <span class="k">return</span> <span class="n">sub_config</span></div>
 
 
-<div class="viewcode-block" id="set_config"><a class="viewcode-back" href="../../dival.html#dival.set_config">[docs]</a><span class="k">def</span> <span class="nf">set_config</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="set_config"><a class="viewcode-back" href="../../dival.config.html#dival.set_config">[docs]</a><span class="k">def</span> <span class="nf">set_config</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Updates (sub-)configuration both in ``CONFIG`` variable and in config file.</span>
 

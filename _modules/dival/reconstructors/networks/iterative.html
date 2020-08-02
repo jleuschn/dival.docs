@@ -1,0 +1,366 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.reconstructors.networks.iterative &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.input.html">dival.util.input module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dival.version.html">dival.version module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dival.reconstructors.networks.iterative</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dival.reconstructors.networks.iterative</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+
+<div class="viewcode-block" id="IterativeBlock"><a class="viewcode-back" href="../../../../dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeBlock">[docs]</a><span class="k">class</span> <span class="nc">IterativeBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="IterativeBlock.__init__"><a class="viewcode-back" href="../../../../dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeBlock.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_in</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_out</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_memory</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_layer</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">internal_ch</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                 <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">batch_norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">prelu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lrelu_coeff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IterativeBlock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">kernel_size</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="p">(</span><span class="n">kernel_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">modules</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">batch_norm</span><span class="p">:</span>
+            <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">n_in</span> <span class="o">+</span> <span class="n">n_memory</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layer</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">input_ch</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_in</span> <span class="o">+</span> <span class="n">n_memory</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">internal_ch</span>
+            <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">input_ch</span><span class="p">,</span> <span class="n">internal_ch</span><span class="p">,</span>
+                                     <span class="n">kernel_size</span><span class="o">=</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">padding</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">batch_norm</span><span class="p">:</span>
+                <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">internal_ch</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">prelu</span><span class="p">:</span>
+                <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">PReLU</span><span class="p">(</span><span class="n">internal_ch</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="n">lrelu_coeff</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">internal_ch</span><span class="p">,</span> <span class="n">n_out</span> <span class="o">+</span> <span class="n">n_memory</span><span class="p">,</span>
+                                 <span class="n">kernel_size</span><span class="o">=</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">padding</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">modules</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="n">lrelu_coeff</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># remove?</span></div>
+
+<div class="viewcode-block" id="IterativeBlock.forward"><a class="viewcode-back" href="../../../../dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeBlock.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">upd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">block</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">upd</span></div></div>
+
+
+<div class="viewcode-block" id="IterativeNet"><a class="viewcode-back" href="../../../../dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeNet">[docs]</a><span class="k">class</span> <span class="nc">IterativeNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="IterativeNet.__init__"><a class="viewcode-back" href="../../../../dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeNet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">,</span> <span class="n">n_memory</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">op_adj</span><span class="p">,</span> <span class="n">op_init</span><span class="p">,</span> <span class="n">op_reg</span><span class="p">,</span>
+                 <span class="n">use_sigmoid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_layer</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">internal_ch</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                 <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">batch_norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">prelu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lrelu_coeff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IterativeNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_memory</span> <span class="o">=</span> <span class="n">n_memory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_adj</span> <span class="o">=</span> <span class="n">op_adj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_init</span> <span class="o">=</span> <span class="n">op_init</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_reg</span> <span class="o">=</span> <span class="n">op_reg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_sigmoid</span> <span class="o">=</span> <span class="n">use_sigmoid</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">IterativeBlock</span><span class="p">(</span>
+                <span class="n">n_in</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_out</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_memory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_memory</span><span class="p">,</span> <span class="n">n_layer</span><span class="o">=</span><span class="n">n_layer</span><span class="p">,</span>
+                <span class="n">internal_ch</span><span class="o">=</span><span class="n">internal_ch</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="n">kernel_size</span><span class="p">,</span>
+                <span class="n">batch_norm</span><span class="o">=</span><span class="n">batch_norm</span><span class="p">,</span> <span class="n">prelu</span><span class="o">=</span><span class="n">prelu</span><span class="p">,</span> <span class="n">lrelu_coeff</span><span class="o">=</span><span class="n">lrelu_coeff</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="IterativeNet.forward"><a class="viewcode-back" href="../../../../dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeNet.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">it</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_init</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_init</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">operator</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+                            <span class="n">device</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_memory</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span>
+                        <span class="n">device</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">n_iter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="k">if</span> <span class="n">it</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span><span class="p">,</span> <span class="n">it</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
+            <span class="n">grad_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_adj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">grad_reg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_reg</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">update</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">grad_x</span><span class="p">,</span> <span class="n">grad_reg</span><span class="p">,</span> <span class="n">s</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">x</span> <span class="o">+=</span> <span class="n">update</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">update</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:,</span> <span class="o">...</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_sigmoid</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span></div></div>
+
+
+<div class="viewcode-block" id="PrimalDualNet"><a class="viewcode-back" href="../../../../dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.PrimalDualNet">[docs]</a><span class="k">class</span> <span class="nc">PrimalDualNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="PrimalDualNet.__init__"><a class="viewcode-back" href="../../../../dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.PrimalDualNet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">op_adj</span><span class="p">,</span> <span class="n">op_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_primal</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_dual</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                 <span class="n">use_sigmoid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_layer</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">internal_ch</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                 <span class="n">batch_norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">prelu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lrelu_coeff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PrimalDualNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_adj</span> <span class="o">=</span> <span class="n">op_adj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_init</span> <span class="o">=</span> <span class="n">op_init</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_primal</span> <span class="o">=</span> <span class="n">n_primal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_dual</span> <span class="o">=</span> <span class="n">n_dual</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_sigmoid</span> <span class="o">=</span> <span class="n">use_sigmoid</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">primal_blocks</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dual_blocks</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dual_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">IterativeBlock</span><span class="p">(</span>
+                <span class="n">n_in</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_out</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_memory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_dual</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_layer</span><span class="o">=</span><span class="n">n_layer</span><span class="p">,</span>
+                <span class="n">internal_ch</span><span class="o">=</span><span class="n">internal_ch</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="n">kernel_size</span><span class="p">,</span>
+                <span class="n">batch_norm</span><span class="o">=</span><span class="n">batch_norm</span><span class="p">,</span> <span class="n">prelu</span><span class="o">=</span><span class="n">prelu</span><span class="p">,</span> <span class="n">lrelu_coeff</span><span class="o">=</span><span class="n">lrelu_coeff</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">primal_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">IterativeBlock</span><span class="p">(</span>
+                <span class="n">n_in</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_out</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_memory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_primal</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_layer</span><span class="o">=</span><span class="n">n_layer</span><span class="p">,</span>
+                <span class="n">internal_ch</span><span class="o">=</span><span class="n">internal_ch</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="n">kernel_size</span><span class="p">,</span>
+                <span class="n">batch_norm</span><span class="o">=</span><span class="n">batch_norm</span><span class="p">,</span> <span class="n">prelu</span><span class="o">=</span><span class="n">prelu</span><span class="p">,</span> <span class="n">lrelu_coeff</span><span class="o">=</span><span class="n">lrelu_coeff</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="PrimalDualNet.forward"><a class="viewcode-back" href="../../../../dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.PrimalDualNet.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">primal_cur</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_primal</span><span class="p">,</span>
+                                 <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">operator</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+                                 <span class="n">device</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_init</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">primal_cur</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_init</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># broadcast across dim=1</span>
+        <span class="n">dual_cur</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dual</span><span class="p">,</span>
+                               <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">op_adj</span><span class="o">.</span><span class="n">operator</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+                               <span class="n">device</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span><span class="p">):</span>
+            <span class="n">primal_evalop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">primal_cur</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+            <span class="n">dual_update</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">dual_cur</span><span class="p">,</span> <span class="n">primal_evalop</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">dual_update</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dual_blocks</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">dual_update</span><span class="p">)</span>
+            <span class="n">dual_cur</span> <span class="o">=</span> <span class="n">dual_cur</span> <span class="o">+</span> <span class="n">dual_update</span>
+            <span class="c1"># NB: currently only linear op supported</span>
+            <span class="c1">#     for non-linear op: [d/dx self.op(primal_cur[0:1, ...])]*</span>
+            <span class="n">dual_evalop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_adj</span><span class="p">(</span><span class="n">dual_cur</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+            <span class="n">primal_update</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">primal_cur</span><span class="p">,</span> <span class="n">dual_evalop</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">primal_update</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">primal_blocks</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">primal_update</span><span class="p">)</span>
+            <span class="n">primal_cur</span> <span class="o">=</span> <span class="n">primal_cur</span> <span class="o">+</span> <span class="n">primal_update</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">primal_cur</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_sigmoid</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

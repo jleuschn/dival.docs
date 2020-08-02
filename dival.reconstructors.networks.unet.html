@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.reconstructors.networks.unet module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.reconstructors.dip_ct_reconstructor module" href="dival.reconstructors.dip_ct_reconstructor.html" />
+    <link rel="prev" title="dival.reconstructors.networks.iterative module" href="dival.reconstructors.networks.iterative.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.networks.unet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.input.html">dival.util.input module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="dival.reconstructors.html">dival.reconstructors package</a> &raquo;</li>
+        
+          <li><a href="dival.reconstructors.networks.html">dival.reconstructors.networks package</a> &raquo;</li>
+        
+      <li>dival.reconstructors.networks.unet module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.reconstructors.networks.unet.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dival.reconstructors.networks.unet">
+<span id="dival-reconstructors-networks-unet-module"></span><h1>dival.reconstructors.networks.unet module<a class="headerlink" href="#module-dival.reconstructors.networks.unet" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="dival.reconstructors.networks.unet.get_unet_model">
+<code class="sig-prename descclassname">dival.reconstructors.networks.unet.</code><code class="sig-name descname">get_unet_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">out_ch</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">scales</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">skip</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">channels</span><span class="o">=</span><span class="default_value">32, 32, 64, 64, 128, 128</span></em>, <em class="sig-param"><span class="n">use_sigmoid</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#get_unet_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.get_unet_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.networks.unet.UNet">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.networks.unet.</code><code class="sig-name descname">UNet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">channels</span></em>, <em class="sig-param"><span class="n">skip_channels</span></em>, <em class="sig-param"><span class="n">use_sigmoid</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#UNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.UNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.UNet.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">channels</span></em>, <em class="sig-param"><span class="n">skip_channels</span></em>, <em class="sig-param"><span class="n">use_sigmoid</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#UNet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.UNet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.UNet.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#UNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.UNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.networks.unet.DownBlock">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.networks.unet.</code><code class="sig-name descname">DownBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#DownBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.DownBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.DownBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#DownBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.DownBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.DownBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#DownBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.DownBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.networks.unet.InBlock">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.networks.unet.</code><code class="sig-name descname">InBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#InBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.InBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.InBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#InBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.InBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.InBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#InBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.InBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.networks.unet.UpBlock">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.networks.unet.</code><code class="sig-name descname">UpBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">skip_ch</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#UpBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.UpBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.UpBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">skip_ch</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#UpBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.UpBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.UpBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x1</span></em>, <em class="sig-param"><span class="n">x2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#UpBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.UpBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.networks.unet.Concat">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.networks.unet.</code><code class="sig-name descname">Concat</code><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#Concat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.Concat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.Concat.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#Concat.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.Concat.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.Concat.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">inputs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#Concat.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.Concat.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.networks.unet.OutBlock">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.networks.unet.</code><code class="sig-name descname">OutBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#OutBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.OutBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.OutBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#OutBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.OutBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.networks.unet.OutBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/unet.html#OutBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.unet.OutBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.reconstructors.dip_ct_reconstructor.html" class="btn btn-neutral float-right" title="dival.reconstructors.dip_ct_reconstructor module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.reconstructors.networks.iterative.html" class="btn btn-neutral float-left" title="dival.reconstructors.networks.iterative module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

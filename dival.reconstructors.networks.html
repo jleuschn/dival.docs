@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>dival.util.torch_losses module &mdash; Deep Inversion Validation Library  documentation</title>
+  <title>dival.reconstructors.networks package &mdash; Deep Inversion Validation Library  documentation</title>
   
 
   
@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dival.util.zenodo_download module" href="dival.util.zenodo_download.html" />
-    <link rel="prev" title="dival.util.std_out_err_redirect_tqdm module" href="dival.util.std_out_err_redirect_tqdm.html" /> 
+    <link rel="next" title="dival.reconstructors.networks.iradonmap module" href="dival.reconstructors.networks.iradonmap.html" />
+    <link rel="prev" title="dival.reconstructors package" href="dival.reconstructors.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -110,7 +110,16 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.networks package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dival.reconstructors.networks">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
@@ -128,7 +137,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
@@ -177,15 +186,15 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="dival.util.html">dival.util package</a> &raquo;</li>
+          <li><a href="dival.reconstructors.html">dival.reconstructors package</a> &raquo;</li>
         
-      <li>dival.util.torch_losses module</li>
+      <li>dival.reconstructors.networks package</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/dival.util.torch_losses.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dival.reconstructors.networks.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -198,59 +207,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-dival.util.torch_losses">
-<span id="dival-util-torch-losses-module"></span><h1>dival.util.torch_losses module<a class="headerlink" href="#module-dival.util.torch_losses" title="Permalink to this headline">¶</a></h1>
-<p>Provides custom loss functions for PyTorch.</p>
-<dl class="py function">
-<dt id="dival.util.torch_losses.tv_loss">
-<code class="sig-prename descclassname">dival.util.torch_losses.</code><code class="sig-name descname">tv_loss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/torch_losses.html#tv_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.torch_losses.tv_loss" title="Permalink to this definition">¶</a></dt>
-<dd><p>Isotropic TV loss similar to the one in <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>) – Tensor of which to compute the isotropic TV w.r.t. its last two axes.</p>
-</dd>
-</dl>
-<p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Total_variation_denoising">https://en.wikipedia.org/wiki/Total_variation_denoising</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="dival.util.torch_losses.poisson_loss">
-<code class="sig-prename descclassname">dival.util.torch_losses.</code><code class="sig-name descname">poisson_loss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_pred</span></em>, <em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">photons_per_pixel</span><span class="o">=</span><span class="default_value">4096</span></em>, <em class="sig-param"><span class="n">mu_max</span><span class="o">=</span><span class="default_value">81.35858</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/torch_losses.html#poisson_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.torch_losses.poisson_loss" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loss corresponding to Poisson regression (cf. <a class="footnote-reference brackets" href="#id5" id="id3">2</a>) for post-log CT data.
-The default parameters are based on the LoDoPaB dataset creation
-(cf. <a class="footnote-reference brackets" href="#id6" id="id4">3</a>).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Authors</dt>
-<dd class="field-odd"><p>Sören Dittmer &lt;<a class="reference external" href="mailto:sdittmer&#37;&#52;&#48;math&#46;uni-bremen&#46;de">sdittmer<span>&#64;</span>math<span>&#46;</span>uni-bremen<span>&#46;</span>de</a>&gt;</p>
-</dd>
-<dt class="field-even">Parameters</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>y_pred</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>) – Predicted observation (post-log, normalized by <cite>mu_max</cite>).</p></li>
-<li><p><strong>y_true</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>) – True observation (post-log, normalized by <cite>mu_max</cite>).</p></li>
-<li><p><strong>photons_per_pixel</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – Mean number of photons per detector pixel for an unattenuated beam.
-Default: <cite>4096</cite>.</p></li>
-<li><p><strong>mu_max</strong> (<em>float</em><em>, </em><em>optional</em>) – Normalization factor, by which <cite>y_pred</cite> and <cite>y_true</cite> have
-been divided (this function will multiply by it accordingly).
-Default: <code class="docutils literal notranslate"><span class="pre">dival.util.constants.MU_MAX</span></code>.</p></li>
+  <div class="section" id="dival-reconstructors-networks-package">
+<h1>dival.reconstructors.networks package<a class="headerlink" href="#dival-reconstructors-networks-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
 </ul>
-</dd>
-</dl>
-<p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
-<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_regression">https://en.wikipedia.org/wiki/Poisson_regression</a></p>
-</dd>
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
-<dd><p><a class="reference external" href="https://github.com/jleuschn/lodopab_tech_ref/blob/master/create_dataset.py">https://github.com/jleuschn/lodopab_tech_ref/blob/master/create_dataset.py</a></p>
-</dd>
-</dl>
-</dd></dl>
-
+</div>
+</div>
+<div class="section" id="module-dival.reconstructors.networks">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dival.reconstructors.networks" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -261,10 +232,10 @@ Default: <code class="docutils literal notranslate"><span class="pre">dival.util
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dival.util.zenodo_download.html" class="btn btn-neutral float-right" title="dival.util.zenodo_download module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dival.reconstructors.networks.iradonmap.html" class="btn btn-neutral float-right" title="dival.reconstructors.networks.iradonmap module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dival.util.std_out_err_redirect_tqdm.html" class="btn btn-neutral float-left" title="dival.util.std_out_err_redirect_tqdm module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dival.reconstructors.html" class="btn btn-neutral float-left" title="dival.reconstructors package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

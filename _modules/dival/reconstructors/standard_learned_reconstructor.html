@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.5.1
               </div>
             
           
@@ -108,6 +108,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
@@ -209,7 +213,7 @@
 <span class="kn">from</span> <span class="nn">dival.measure</span> <span class="kn">import</span> <span class="n">PSNR</span>
 
 
-<div class="viewcode-block" id="StandardLearnedReconstructor"><a class="viewcode-back" href="../../../dival.html#dival.StandardLearnedReconstructor">[docs]</a><span class="k">class</span> <span class="nc">StandardLearnedReconstructor</span><span class="p">(</span><span class="n">LearnedReconstructor</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardLearnedReconstructor"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor">[docs]</a><span class="k">class</span> <span class="nc">StandardLearnedReconstructor</span><span class="p">(</span><span class="n">LearnedReconstructor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Standard learned reconstructor base class.</span>
 
@@ -259,7 +263,7 @@
         <span class="p">}</span>
     <span class="p">})</span>
 
-<div class="viewcode-block" id="StandardLearnedReconstructor.__init__"><a class="viewcode-back" href="../../../dival.html#dival.StandardLearnedReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">hyper_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_data_loader_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<div class="viewcode-block" id="StandardLearnedReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">hyper_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_data_loader_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
                  <span class="n">use_cuda</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_pbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">log_num_validation_samples</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">save_best_learned_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">torch_manual_seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -325,7 +329,7 @@
             <span class="k">return</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">opnorm</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_normed_op</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_normed_op</span>
 
-<div class="viewcode-block" id="StandardLearnedReconstructor.eval"><a class="viewcode-back" href="../../../dival.html#dival.StandardLearnedReconstructor.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_data</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardLearnedReconstructor.eval"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 
         <span class="n">running_psnr</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -337,7 +341,7 @@
 
         <span class="k">return</span> <span class="n">running_psnr</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="StandardLearnedReconstructor.train"><a class="viewcode-back" href="../../../dival.html#dival.StandardLearnedReconstructor.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardLearnedReconstructor.train"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_manual_seed</span><span class="p">:</span>
             <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">torch_manual_seed</span><span class="p">)</span>
         <span class="c1"># create PyTorch datasets</span>
@@ -488,14 +492,14 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best val psnr: </span><span class="si">{:4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">best_psnr</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">best_model_wts</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="StandardLearnedReconstructor.init_model"><a class="viewcode-back" href="../../../dival.html#dival.StandardLearnedReconstructor.init_model">[docs]</a>    <span class="k">def</span> <span class="nf">init_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardLearnedReconstructor.init_model"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.init_model">[docs]</a>    <span class="k">def</span> <span class="nf">init_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize :attr:`model`.</span>
 <span class="sd">        Called in :meth:`train` at the beginning.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="StandardLearnedReconstructor.init_optimizer"><a class="viewcode-back" href="../../../dival.html#dival.StandardLearnedReconstructor.init_optimizer">[docs]</a>    <span class="k">def</span> <span class="nf">init_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_train</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardLearnedReconstructor.init_optimizer"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.init_optimizer">[docs]</a>    <span class="k">def</span> <span class="nf">init_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_train</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the optimizer.</span>
 <span class="sd">        Called in :meth:`train`, after calling :meth:`init_model` and before</span>
@@ -508,7 +512,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="StandardLearnedReconstructor.init_scheduler"><a class="viewcode-back" href="../../../dival.html#dival.StandardLearnedReconstructor.init_scheduler">[docs]</a>    <span class="k">def</span> <span class="nf">init_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_train</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardLearnedReconstructor.init_scheduler"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.init_scheduler">[docs]</a>    <span class="k">def</span> <span class="nf">init_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_train</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the learning rate scheduler.</span>
 <span class="sd">        Called in :meth:`train`, after calling :meth:`init_optimizer`.</span>
@@ -535,11 +539,11 @@
             <span class="n">reconstruction</span> <span class="o">=</span> <span class="n">reco_tensor</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reco_space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">reconstruction</span><span class="p">)</span>
 
-<div class="viewcode-block" id="StandardLearnedReconstructor.save_learned_params"><a class="viewcode-back" href="../../../dival.html#dival.StandardLearnedReconstructor.save_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_learned_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardLearnedReconstructor.save_learned_params"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.save_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">save_learned_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pt&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;.pt&#39;</span>
         <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="StandardLearnedReconstructor.load_learned_params"><a class="viewcode-back" href="../../../dival.html#dival.StandardLearnedReconstructor.load_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_learned_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">force_parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="StandardLearnedReconstructor.load_learned_params"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.load_learned_params">[docs]</a>    <span class="k">def</span> <span class="nf">load_learned_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">force_parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pt&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;.pt&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_model</span><span class="p">()</span>
         <span class="n">map_location</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;cuda:0&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span> <span class="ow">and</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>

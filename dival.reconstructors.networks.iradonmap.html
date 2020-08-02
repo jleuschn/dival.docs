@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>dival.reconstructors.tvadam_ct_reconstructor module &mdash; Deep Inversion Validation Library  documentation</title>
+  <title>dival.reconstructors.networks.iradonmap module &mdash; Deep Inversion Validation Library  documentation</title>
   
 
   
@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dival.reference_reconstructors module" href="dival.reference_reconstructors.html" />
-    <link rel="prev" title="dival.reconstructors.standard_learned_reconstructor module" href="dival.reconstructors.standard_learned_reconstructor.html" /> 
+    <link rel="next" title="dival.reconstructors.networks.iterative module" href="dival.reconstructors.networks.iterative.html" />
+    <link rel="prev" title="dival.reconstructors.networks package" href="dival.reconstructors.networks.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -111,14 +111,14 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.networks.iradonmap module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
@@ -179,13 +179,15 @@
         
           <li><a href="dival.reconstructors.html">dival.reconstructors package</a> &raquo;</li>
         
-      <li>dival.reconstructors.tvadam_ct_reconstructor module</li>
+          <li><a href="dival.reconstructors.networks.html">dival.reconstructors.networks package</a> &raquo;</li>
+        
+      <li>dival.reconstructors.networks.iradonmap module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/dival.reconstructors.tvadam_ct_reconstructor.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dival.reconstructors.networks.iradonmap.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -198,81 +200,66 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-dival.reconstructors.tvadam_ct_reconstructor">
-<span id="dival-reconstructors-tvadam-ct-reconstructor-module"></span><h1>dival.reconstructors.tvadam_ct_reconstructor module<a class="headerlink" href="#module-dival.reconstructors.tvadam_ct_reconstructor" title="Permalink to this headline">¶</a></h1>
-<dl class="py class">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.tvadam_ct_reconstructor.</code><code class="sig-name descname">TVAdamCTReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">callback_func</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback_func_interval</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/tvadam_ct_reconstructor.html#TVAdamCTReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.IterativeReconstructor" title="dival.reconstructors.reconstructor.IterativeReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.IterativeReconstructor</span></code></a></p>
-<p>CT reconstructor minimizing a TV-functional with the Adam optimizer.</p>
-<dl class="py attribute">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.HYPER_PARAMS">
-<code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'gamma': {'default': 0.0001, 'grid_search_options': {'num_samples': 20}, 'range': [1e-07, 1.0]}, 'init_filter_type': {'default': 'Hann'}, 'init_frequency_scaling': {'default': 0.1}, 'iterations': {'default': 5000, 'range': [1, 50000]}, 'loss_function': {'choices': ['mse', 'poisson'], 'default': 'mse'}, 'lr': {'default': 0.001, 'range': [1e-05, 0.1]}, 'mu_max': {'default': 81.35858}, 'photons_per_pixel': {'default': 4096}}</em><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+  <div class="section" id="module-dival.reconstructors.networks.iradonmap">
+<span id="dival-reconstructors-networks-iradonmap-module"></span><h1>dival.reconstructors.networks.iradonmap module<a class="headerlink" href="#module-dival.reconstructors.networks.iradonmap" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="dival.reconstructors.networks.iradonmap.get_iradonmap_model">
+<code class="sig-prename descclassname">dival.reconstructors.networks.iradonmap.</code><code class="sig-name descname">get_iradonmap_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">fully_learned</span></em>, <em class="sig-param"><span class="n">scales</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">skip</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">channels</span><span class="o">=</span><span class="default_value">32, 32, 64, 64, 128, 128</span></em>, <em class="sig-param"><span class="n">use_sigmoid</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">use_norm</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">coord_mat</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#get_iradonmap_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.get_iradonmap_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py class">
+<dt id="dival.reconstructors.networks.iradonmap.IRadonMap">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.networks.iradonmap.</code><code class="sig-name descname">IRadonMap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">post_process</span></em>, <em class="sig-param"><span class="n">fully_learned</span></em>, <em class="sig-param"><span class="n">coord_mat</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#IRadonMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.IRadonMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="py method">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">callback_func</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback_func_interval</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/tvadam_ct_reconstructor.html#TVAdamCTReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ray_trafo</strong> (<cite>odl.tomo.operators.RayTransform</cite>) – The forward operator</p></li>
-<li><p><strong>callback_func</strong> (<em>callable</em><em>, </em><em>optional</em>) – Callable with signature
-<code class="docutils literal notranslate"><span class="pre">callback_func(iteration,</span> <span class="pre">reconstruction,</span> <span class="pre">loss)</span></code> that is called
-after every <cite>callback_func_interval</cite> iterations, starting
-after the first iteration. It is additionally called after the
-last iteration.
-Note that it differs from the inherited
-<cite>IterativeReconstructor.callback</cite> (which is also supported) in that
-the latter is of type <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code>,
-which only receives the reconstruction, such that the loss would
-have to be recomputed.</p></li>
-<li><p><strong>callback_func_interval</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of iterations between calls to <cite>callback_func</cite>.
-Default: <cite>100</cite>.</p></li>
-<li><p><strong>show_pbar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show a tqdm progress bar during reconstruction.</p></li>
-</ul>
-</dd>
-</dl>
+<dt id="dival.reconstructors.networks.iradonmap.IRadonMap.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">post_process</span></em>, <em class="sig-param"><span class="n">fully_learned</span></em>, <em class="sig-param"><span class="n">coord_mat</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#IRadonMap.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.IRadonMap.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.gamma">
-<em class="property">property </em><code class="sig-name descname">gamma</code><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.gamma" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="dival.reconstructors.networks.iradonmap.IRadonMap.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#IRadonMap.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.IRadonMap.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.networks.iradonmap.LearnedBackprojection">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.networks.iradonmap.</code><code class="sig-name descname">LearnedBackprojection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">use_weights</span></em>, <em class="sig-param"><span class="n">coord_mat</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#LearnedBackprojection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.LearnedBackprojection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.networks.iradonmap.LearnedBackprojection.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">use_weights</span></em>, <em class="sig-param"><span class="n">coord_mat</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#LearnedBackprojection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.LearnedBackprojection.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.init_filter_type">
-<em class="property">property </em><code class="sig-name descname">init_filter_type</code><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.init_filter_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="dival.reconstructors.networks.iradonmap.LearnedBackprojection.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sinogram</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#LearnedBackprojection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.LearnedBackprojection.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.init_frequency_scaling">
-<em class="property">property </em><code class="sig-name descname">init_frequency_scaling</code><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.init_frequency_scaling" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.iterations">
-<em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.iterations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.loss_function">
-<em class="property">property </em><code class="sig-name descname">loss_function</code><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.loss_function" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.lr">
-<em class="property">property </em><code class="sig-name descname">lr</code><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.lr" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.mu_max">
-<em class="property">property </em><code class="sig-name descname">mu_max</code><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.mu_max" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.photons_per_pixel">
-<em class="property">property </em><code class="sig-name descname">photons_per_pixel</code><a class="headerlink" href="#dival.reconstructors.tvadam_ct_reconstructor.TVAdamCTReconstructor.photons_per_pixel" title="Permalink to this definition">¶</a></dt>
+<dt id="dival.reconstructors.networks.iradonmap.LearnedBackprojection.calc_coord_mat">
+<code class="sig-name descname">calc_coord_mat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#LearnedBackprojection.calc_coord_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.LearnedBackprojection.calc_coord_mat" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -287,10 +274,10 @@ Default: <cite>100</cite>.</p></li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dival.reference_reconstructors.html" class="btn btn-neutral float-right" title="dival.reference_reconstructors module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dival.reconstructors.networks.iterative.html" class="btn btn-neutral float-right" title="dival.reconstructors.networks.iterative module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dival.reconstructors.standard_learned_reconstructor.html" class="btn btn-neutral float-left" title="dival.reconstructors.standard_learned_reconstructor module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dival.reconstructors.networks.html" class="btn btn-neutral float-left" title="dival.reconstructors.networks package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

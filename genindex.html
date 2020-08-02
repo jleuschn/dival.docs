@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.5.1
               </div>
             
           
@@ -108,6 +108,10 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
@@ -294,6 +298,28 @@
 </li>
         <li><a href="dival.reconstructors.learnedpd_reconstructor.html#dival.reconstructors.learnedpd_reconstructor.LearnedPDReconstructor.__init__">(dival.reconstructors.learnedpd_reconstructor.LearnedPDReconstructor method)</a>
 </li>
+        <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.IRadonMap.__init__">(dival.reconstructors.networks.iradonmap.IRadonMap method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.LearnedBackprojection.__init__">(dival.reconstructors.networks.iradonmap.LearnedBackprojection method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeBlock.__init__">(dival.reconstructors.networks.iterative.IterativeBlock method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeNet.__init__">(dival.reconstructors.networks.iterative.IterativeNet method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.PrimalDualNet.__init__">(dival.reconstructors.networks.iterative.PrimalDualNet method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.Concat.__init__">(dival.reconstructors.networks.unet.Concat method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.DownBlock.__init__">(dival.reconstructors.networks.unet.DownBlock method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.InBlock.__init__">(dival.reconstructors.networks.unet.InBlock method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.OutBlock.__init__">(dival.reconstructors.networks.unet.OutBlock method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UNet.__init__">(dival.reconstructors.networks.unet.UNet method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UpBlock.__init__">(dival.reconstructors.networks.unet.UpBlock method)</a>
+</li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ADMMReconstructor.__init__">(dival.reconstructors.odl_reconstructors.ADMMReconstructor method)</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.BFGSReconstructor.__init__">(dival.reconstructors.odl_reconstructors.BFGSReconstructor method)</a>
@@ -451,6 +477,8 @@
         <li><a href="dival.datasets.cached_dataset.html#dival.datasets.cached_dataset.CachedDataset">(class in dival.datasets.cached_dataset)</a>
 </li>
       </ul></li>
+      <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.LearnedBackprojection.calc_coord_mat">calc_coord_mat() (dival.reconstructors.networks.iradonmap.LearnedBackprojection method)</a>
+</li>
       <li><a href="dival.html#dival.IterativeReconstructor.callback">callback (dival.IterativeReconstructor attribute)</a>
 
       <ul>
@@ -512,6 +540,8 @@
 </li>
       </ul></li>
       <li><a href="dival.reference_reconstructors.html#dival.reference_reconstructors.check_for_params">check_for_params() (in module dival.reference_reconstructors)</a>
+</li>
+      <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.Concat">Concat (class in dival.reconstructors.networks.unet)</a>
 </li>
       <li><a href="dival.config.html#dival.config.CONFIG">CONFIG (in module dival.config)</a>
 </li>
@@ -702,8 +732,6 @@
         <li><a href="dival.reconstructors.dip_ct_reconstructor.html#module-dival.reconstructors.dip_ct_reconstructor">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     dival.reconstructors.fbpunet_reconstructor
 
@@ -725,11 +753,41 @@
         <li><a href="dival.reconstructors.learnedgd_reconstructor.html#module-dival.reconstructors.learnedgd_reconstructor">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     dival.reconstructors.learnedpd_reconstructor
 
       <ul>
         <li><a href="dival.reconstructors.learnedpd_reconstructor.html#module-dival.reconstructors.learnedpd_reconstructor">module</a>
+</li>
+      </ul></li>
+      <li>
+    dival.reconstructors.networks
+
+      <ul>
+        <li><a href="dival.reconstructors.networks.html#module-dival.reconstructors.networks">module</a>
+</li>
+      </ul></li>
+      <li>
+    dival.reconstructors.networks.iradonmap
+
+      <ul>
+        <li><a href="dival.reconstructors.networks.iradonmap.html#module-dival.reconstructors.networks.iradonmap">module</a>
+</li>
+      </ul></li>
+      <li>
+    dival.reconstructors.networks.iterative
+
+      <ul>
+        <li><a href="dival.reconstructors.networks.iterative.html#module-dival.reconstructors.networks.iterative">module</a>
+</li>
+      </ul></li>
+      <li>
+    dival.reconstructors.networks.unet
+
+      <ul>
+        <li><a href="dival.reconstructors.networks.unet.html#module-dival.reconstructors.networks.unet">module</a>
 </li>
       </ul></li>
       <li>
@@ -853,6 +911,8 @@
       </ul></li>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.DouglasRachfordReconstructor">DouglasRachfordReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
 </li>
+      <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.DownBlock">DownBlock (class in dival.reconstructors.networks.unet)</a>
+</li>
       <li><a href="dival.util.download.html#dival.util.download.download_file">download_file() (in module dival.util.download)</a>
 </li>
       <li><a href="dival.reference_reconstructors.html#dival.reference_reconstructors.download_hyper_params">download_hyper_params() (in module dival.reference_reconstructors)</a>
@@ -931,10 +991,34 @@
       </ul></li>
       <li><a href="dival.util.std_out_err_redirect_tqdm.html#dival.util.std_out_err_redirect_tqdm.DummyTqdmFile.flush">flush() (dival.util.std_out_err_redirect_tqdm.DummyTqdmFile method)</a>
 </li>
-      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor">ForwardBackwardReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
+      <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.IRadonMap.forward">forward() (dival.reconstructors.networks.iradonmap.IRadonMap method)</a>
+
+      <ul>
+        <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.LearnedBackprojection.forward">(dival.reconstructors.networks.iradonmap.LearnedBackprojection method)</a>
 </li>
+        <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeBlock.forward">(dival.reconstructors.networks.iterative.IterativeBlock method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeNet.forward">(dival.reconstructors.networks.iterative.IterativeNet method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.PrimalDualNet.forward">(dival.reconstructors.networks.iterative.PrimalDualNet method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.Concat.forward">(dival.reconstructors.networks.unet.Concat method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.DownBlock.forward">(dival.reconstructors.networks.unet.DownBlock method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.InBlock.forward">(dival.reconstructors.networks.unet.InBlock method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.OutBlock.forward">(dival.reconstructors.networks.unet.OutBlock method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UNet.forward">(dival.reconstructors.networks.unet.UNet method)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UpBlock.forward">(dival.reconstructors.networks.unet.UpBlock method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ForwardBackwardReconstructor">ForwardBackwardReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
+</li>
       <li><a href="dival.reconstructors.fbpunet_reconstructor.html#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.frequency_scaling">frequency_scaling() (dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor property)</a>
 
       <ul>
@@ -1065,6 +1149,8 @@
         <li><a href="dival.datasets.html#dival.datasets.LoDoPaBDataset.get_indices_for_patient">(dival.datasets.LoDoPaBDataset method)</a>
 </li>
       </ul></li>
+      <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.get_iradonmap_model">get_iradonmap_model() (in module dival.reconstructors.networks.iradonmap)</a>
+</li>
       <li><a href="dival.html#dival.Dataset.get_len">get_len() (dival.Dataset method)</a>
 
       <ul>
@@ -1213,6 +1299,8 @@
         <li><a href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset.get_train_len">(dival.datasets.dataset.Dataset method)</a>
 </li>
       </ul></li>
+      <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.get_unet_model">get_unet_model() (in module dival.reconstructors.networks.unet)</a>
+</li>
       <li><a href="dival.html#dival.Dataset.get_validation_generator">get_validation_generator() (dival.Dataset method)</a>
 
       <ul>
@@ -1303,6 +1391,8 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.InBlock">InBlock (class in dival.reconstructors.networks.unet)</a>
+</li>
       <li><a href="dival.reconstructors.fbpunet_reconstructor.html#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.init_bias_zero">init_bias_zero() (dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor property)</a>
 </li>
       <li><a href="dival.reconstructors.learnedgd_reconstructor.html#dival.reconstructors.learnedgd_reconstructor.LearnedGDReconstructor.init_fbp">init_fbp() (dival.reconstructors.learnedgd_reconstructor.LearnedGDReconstructor property)</a>
@@ -1369,16 +1459,18 @@
 </li>
       <li><a href="dival.reconstructors.learnedgd_reconstructor.html#dival.reconstructors.learnedgd_reconstructor.LearnedGDReconstructor.init_weight_xavier_normal">init_weight_xavier_normal() (dival.reconstructors.learnedgd_reconstructor.LearnedGDReconstructor property)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.util.input.html#dival.util.input.input_yes_no">input_yes_no() (in module dival.util.input)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.reconstructors.learnedgd_reconstructor.html#dival.reconstructors.learnedgd_reconstructor.LearnedGDReconstructor.internal_ch">internal_ch() (dival.reconstructors.learnedgd_reconstructor.LearnedGDReconstructor property)</a>
 
       <ul>
         <li><a href="dival.reconstructors.learnedpd_reconstructor.html#dival.reconstructors.learnedpd_reconstructor.LearnedPDReconstructor.internal_ch">(dival.reconstructors.learnedpd_reconstructor.LearnedPDReconstructor property)</a>
 </li>
       </ul></li>
+      <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.IRadonMap">IRadonMap (class in dival.reconstructors.networks.iradonmap)</a>
+</li>
       <li><a href="dival.reconstructors.iradonmap_reconstructor.html#dival.reconstructors.iradonmap_reconstructor.IRadonMapReconstructor">IRadonMapReconstructor (class in dival.reconstructors.iradonmap_reconstructor)</a>
 </li>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.ISTAReconstructor">ISTAReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
@@ -1423,6 +1515,10 @@
         <li><a href="dival.html#dival.StandardIterativeReconstructor.iterations">(dival.StandardIterativeReconstructor property)</a>
 </li>
       </ul></li>
+      <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeBlock">IterativeBlock (class in dival.reconstructors.networks.iterative)</a>
+</li>
+      <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeNet">IterativeNet (class in dival.reconstructors.networks.iterative)</a>
+</li>
       <li><a href="dival.html#dival.IterativeReconstructor">IterativeReconstructor (class in dival)</a>
 
       <ul>
@@ -1472,6 +1568,8 @@
 </li>
       </ul></li>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.LandweberReconstructor">LandweberReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
+</li>
+      <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.LearnedBackprojection">LearnedBackprojection (class in dival.reconstructors.networks.iradonmap)</a>
 </li>
       <li><a href="dival.reconstructors.learnedgd_reconstructor.html#dival.reconstructors.learnedgd_reconstructor.LearnedGDReconstructor">LearnedGDReconstructor (class in dival.reconstructors.learnedgd_reconstructor)</a>
 </li>
@@ -1660,6 +1758,14 @@
         <li><a href="dival.reconstructors.learnedgd_reconstructor.html#module-dival.reconstructors.learnedgd_reconstructor">dival.reconstructors.learnedgd_reconstructor</a>
 </li>
         <li><a href="dival.reconstructors.learnedpd_reconstructor.html#module-dival.reconstructors.learnedpd_reconstructor">dival.reconstructors.learnedpd_reconstructor</a>
+</li>
+        <li><a href="dival.reconstructors.networks.html#module-dival.reconstructors.networks">dival.reconstructors.networks</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iradonmap.html#module-dival.reconstructors.networks.iradonmap">dival.reconstructors.networks.iradonmap</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iterative.html#module-dival.reconstructors.networks.iterative">dival.reconstructors.networks.iterative</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#module-dival.reconstructors.networks.unet">dival.reconstructors.networks.unet</a>
 </li>
         <li><a href="dival.reconstructors.odl_reconstructors.html#module-dival.reconstructors.odl_reconstructors">dival.reconstructors.odl_reconstructors</a>
 </li>
@@ -1906,6 +2012,8 @@
 </li>
       <li><a href="dival.hyper_param_search.html#dival.hyper_param_search.optimize_hyper_params">optimize_hyper_params() (in module dival.hyper_param_search)</a>
 </li>
+      <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.OutBlock">OutBlock (class in dival.reconstructors.networks.unet)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -1930,10 +2038,10 @@
 </li>
       <li><a href="dival.evaluation.html#dival.evaluation.ResultTable.plot_performance">plot_performance() (dival.evaluation.ResultTable method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.evaluation.html#dival.evaluation.ResultTable.plot_reconstruction">plot_reconstruction() (dival.evaluation.ResultTable method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.util.torch_losses.html#dival.util.torch_losses.poisson_loss">poisson_loss() (in module dival.util.torch_losses)</a>
 </li>
       <li><a href="dival.util.odl_noise_random_state.html#dival.util.odl_noise_random_state.poisson_noise">poisson_noise() (in module dival.util.odl_noise_random_state)</a>
@@ -1944,6 +2052,8 @@
         <li><a href="dival.reconstructors.learnedpd_reconstructor.html#dival.reconstructors.learnedpd_reconstructor.LearnedPDReconstructor.prelu">(dival.reconstructors.learnedpd_reconstructor.LearnedPDReconstructor property)</a>
 </li>
       </ul></li>
+      <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.PrimalDualNet">PrimalDualNet (class in dival.reconstructors.networks.iterative)</a>
+</li>
       <li><a href="dival.evaluation.html#dival.evaluation.ResultTable.print_summary">print_summary() (dival.evaluation.ResultTable method)</a>
 </li>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.projection">projection (dival.reconstructors.odl_reconstructors.KaczmarzReconstructor attribute)</a>
@@ -2308,10 +2418,16 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UNet">UNet (class in dival.reconstructors.networks.unet)</a>
+</li>
       <li><a href="dival.util.odl_utility.html#dival.util.odl_utility.uniform_discr_element">uniform_discr_element() (in module dival.util.odl_utility)</a>
 </li>
       <li><a href="dival.util.odl_noise_random_state.html#dival.util.odl_noise_random_state.uniform_noise">uniform_noise() (in module dival.util.odl_noise_random_state)</a>
 </li>
+      <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UpBlock">UpBlock (class in dival.reconstructors.networks.unet)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.reconstructors.fbpunet_reconstructor.html#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.use_sigmoid">use_sigmoid() (dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor property)</a>
 
       <ul>
