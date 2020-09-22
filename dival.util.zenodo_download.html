@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.version module" href="dival.version.html" />
-    <link rel="prev" title="dival.util.torch_losses module" href="dival.util.torch_losses.html" /> 
+    <link rel="prev" title="dival.util.torch_utility module" href="dival.util.torch_utility.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.6
               </div>
             
           
@@ -129,6 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_utility.html">dival.util.torch_utility module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
@@ -202,14 +203,24 @@
 <span id="dival-util-zenodo-download-module"></span><h1>dival.util.zenodo_download module<a class="headerlink" href="#module-dival.util.zenodo_download" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="dival.util.zenodo_download.download_zenodo_record">
-<code class="sig-prename descclassname">dival.util.zenodo_download.</code><code class="sig-name descname">download_zenodo_record</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record_id</span></em>, <em class="sig-param"><span class="n">base_path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">md5sum_check</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/zenodo_download.html#download_zenodo_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.zenodo_download.download_zenodo_record" title="Permalink to this definition">¶</a></dt>
-<dd><p>Download a zenodo record.</p>
+<code class="sig-prename descclassname">dival.util.zenodo_download.</code><code class="sig-name descname">download_zenodo_record</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record_id</span></em>, <em class="sig-param"><span class="n">base_path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">md5sum_check</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">auto_yes</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/zenodo_download.html#download_zenodo_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.zenodo_download.download_zenodo_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download a zenodo record.
+Unfortunately, downloads cannot be resumed, so this method is only
+recommended for stable internet connections.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>record_id</strong> (<em>str</em>) – Record id.</p></li>
 <li><p><strong>base_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to store the downloaded files in. Default is the current folder.</p></li>
-<li><p><strong>md5sum_check</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to check the MD5 sum of each downloaded file.</p></li>
+<li><p><strong>md5sum_check</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to check the MD5 sum of each downloaded file.
+Default: <cite>True</cite></p></li>
+<li><p><strong>auto_yes</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to answer user input questions with “y” by default.
+User input questions are:
+If <code class="docutils literal notranslate"><span class="pre">md5sum_check=True</span></code>, in case of a checksum mismatch: whether to
+retry downloading.
+If <code class="docutils literal notranslate"><span class="pre">md5sum_check=False</span></code>, in case of an existing file of correct size:
+whether to re-download.
+Default: <cite>False</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -235,7 +246,7 @@ returned value is always <code class="docutils literal notranslate"><span class=
         <a href="dival.version.html" class="btn btn-neutral float-right" title="dival.version module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dival.util.torch_losses.html" class="btn btn-neutral float-left" title="dival.util.torch_losses module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dival.util.torch_utility.html" class="btn btn-neutral float-left" title="dival.util.torch_utility module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

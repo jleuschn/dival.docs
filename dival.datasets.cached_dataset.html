@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.6
               </div>
             
           
@@ -129,6 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_utility.html">dival.util.torch_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
@@ -202,7 +203,7 @@
 <span id="dival-datasets-cached-dataset-module"></span><h1>dival.datasets.cached_dataset module<a class="headerlink" href="#module-dival.datasets.cached_dataset" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="dival.datasets.cached_dataset.generate_cache_files">
-<code class="sig-prename descclassname">dival.datasets.cached_dataset.</code><code class="sig-name descname">generate_cache_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">cache_files</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#generate_cache_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.cached_dataset.generate_cache_files" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.datasets.cached_dataset.</code><code class="sig-name descname">generate_cache_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">cache_files</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">flush_interval</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#generate_cache_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.cached_dataset.generate_cache_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate cache files for <a class="reference internal" href="#dival.datasets.cached_dataset.CachedDataset" title="dival.datasets.cached_dataset.CachedDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">CachedDataset</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -226,6 +227,9 @@ observations for parts <code class="docutils literal notranslate"><span class="p
 <li><p><strong>size</strong> (<em>dict of int</em><em>, </em><em>optional</em>) – Numbers of samples to cache for each dataset part.
 If a field is omitted or has value <cite>None</cite>, all samples are cached.
 Default: <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p></li>
+<li><p><strong>flush_interval</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of samples to retrieve before flushing to file (using memmap).
+This amount of samples should fit into the systems main memory (RAM).
+If <code class="docutils literal notranslate"><span class="pre">-1</span></code>, each file content is only flushed once at the end.</p></li>
 </ul>
 </dd>
 </dl>

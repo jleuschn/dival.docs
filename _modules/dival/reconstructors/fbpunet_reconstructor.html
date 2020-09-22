@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.6
               </div>
             
           
@@ -127,6 +127,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.torch_utility.html">dival.util.torch_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dival.version.html">dival.version module</a></li>
 </ul>
@@ -287,7 +288,7 @@
                  <span class="s1">&#39;by setting the attribute &#39;</span>
                  <span class="s1">&#39;``dataset.fbp_dataset = get_cached_fbp_dataset(...)``.&#39;</span><span class="p">)</span>
             <span class="n">fbp_dataset</span> <span class="o">=</span> <span class="n">FBPDataset</span><span class="p">(</span>
-                <span class="n">dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">filter_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_type</span><span class="p">,</span>
+                <span class="n">dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_normed_op</span><span class="p">,</span> <span class="n">filter_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_type</span><span class="p">,</span>
                 <span class="n">frequency_scaling</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">frequency_scaling</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">fbp_dataset</span><span class="o">.</span><span class="n">supports_random_access</span><span class="p">():</span>

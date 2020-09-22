@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.6
               </div>
             
           
@@ -129,6 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_utility.html">dival.util.torch_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
@@ -220,16 +221,12 @@
 <dl class="py method">
 <dt id="dival.reconstructors.networks.iradonmap.IRadonMap.forward">
 <code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#IRadonMap.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.IRadonMap.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dival.reconstructors.networks.iradonmap.IRadonMap.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.IRadonMap.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -246,20 +243,16 @@ registered hooks while the latter silently ignores them.</p>
 <dl class="py method">
 <dt id="dival.reconstructors.networks.iradonmap.LearnedBackprojection.forward">
 <code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sinogram</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#LearnedBackprojection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.LearnedBackprojection.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt id="dival.reconstructors.networks.iradonmap.LearnedBackprojection.calc_coord_mat">
 <code class="sig-name descname">calc_coord_mat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/networks/iradonmap.html#LearnedBackprojection.calc_coord_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.LearnedBackprojection.calc_coord_mat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dival.reconstructors.networks.iradonmap.LearnedBackprojection.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#dival.reconstructors.networks.iradonmap.LearnedBackprojection.training" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

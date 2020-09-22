@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.6
               </div>
             
           
@@ -129,6 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_utility.html">dival.util.torch_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
@@ -202,7 +203,7 @@
 <span id="dival-util-download-module"></span><h1>dival.util.download module<a class="headerlink" href="#module-dival.util.download" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="dival.util.download.download_file">
-<code class="sig-prename descclassname">dival.util.download.</code><code class="sig-name descname">download_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">chunk_size</span><span class="o">=</span><span class="default_value">1024</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">md5sum</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/download.html#download_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.download.download_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dival.util.download.</code><code class="sig-name descname">download_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">chunk_size</span><span class="o">=</span><span class="default_value">1024</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">md5sum</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/download.html#download_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.download.download_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download file with progressbar.</p>
 <p>Based on
 <a class="reference external" href="https://gist.github.com/ruxi/5d6803c116ec1130d484a4ab8c00c603">https://gist.github.com/ruxi/5d6803c116ec1130d484a4ab8c00c603</a>
@@ -214,9 +215,12 @@
 <li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Local destination filename (including path).
 By default, the file is stored under the current folder and the name
 given by the last part of <cite>url</cite>.</p></li>
-<li><p><strong>chunk_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of bytes in a chunk.</p></li>
-<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to print additional information.</p></li>
-<li><p><strong>md5sum</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to compute and return the MD5 checksum (hex-digest).</p></li>
+<li><p><strong>chunk_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of bytes in a chunk.
+Default: <cite>1024</cite></p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to print additional information.
+Default: <cite>False</cite></p></li>
+<li><p><strong>md5sum</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to compute and return the MD5 checksum (hex-digest).
+Default: <cite>True</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -224,6 +228,27 @@ given by the last part of <cite>url</cite>.</p></li>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>str or <cite>None</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="dival.util.download.compute_md5sum">
+<code class="sig-prename descclassname">dival.util.download.</code><code class="sig-name descname">compute_md5sum</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/download.html#compute_md5sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.download.compute_md5sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute MD5 checksum of an existing file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Filename including path.</p></li>
+<li><p><strong>show_pbar</strong> (<em>str</em>) – Show tqdm progress bar.
+Default: <cite>True</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>md5sum</strong> – Hex-digest of the MD5 hash.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>

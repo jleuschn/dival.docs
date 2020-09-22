@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.6
               </div>
             
           
@@ -127,6 +127,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_utility.html">dival.util.torch_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
@@ -378,6 +379,10 @@
 </li>
         <li><a href="dival.util.std_out_err_redirect_tqdm.html#dival.util.std_out_err_redirect_tqdm.DummyTqdmFile.__init__">(dival.util.std_out_err_redirect_tqdm.DummyTqdmFile method)</a>
 </li>
+        <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule.__init__">(dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule method)</a>
+</li>
+        <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DModule.__init__">(dival.util.torch_utility.TorchRayTrafoParallel2DModule method)</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -517,10 +522,10 @@
       </ul></li>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.KaczmarzReconstructor.callback_loop">callback_loop (dival.reconstructors.odl_reconstructors.KaczmarzReconstructor attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.util.odl_utility.html#dival.util.odl_utility.CallbackStore">CallbackStore (class in dival.util.odl_utility)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.util.odl_utility.html#dival.util.odl_utility.CallbackStoreAfter">CallbackStoreAfter (class in dival.util.odl_utility)</a>
 </li>
       <li><a href="dival.reconstructors.odl_reconstructors.html#dival.reconstructors.odl_reconstructors.CGReconstructor">CGReconstructor (class in dival.reconstructors.odl_reconstructors)</a>
@@ -540,6 +545,8 @@
 </li>
       </ul></li>
       <li><a href="dival.reference_reconstructors.html#dival.reference_reconstructors.check_for_params">check_for_params() (in module dival.reference_reconstructors)</a>
+</li>
+      <li><a href="dival.util.download.html#dival.util.download.compute_md5sum">compute_md5sum() (in module dival.util.download)</a>
 </li>
       <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.Concat">Concat (class in dival.reconstructors.networks.unet)</a>
 </li>
@@ -896,6 +903,13 @@
 </li>
       </ul></li>
       <li>
+    dival.util.torch_utility
+
+      <ul>
+        <li><a href="dival.util.torch_utility.html#module-dival.util.torch_utility">module</a>
+</li>
+      </ul></li>
+      <li>
     dival.util.zenodo_download
 
       <ul>
@@ -1013,6 +1027,10 @@
         <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UNet.forward">(dival.reconstructors.networks.unet.UNet method)</a>
 </li>
         <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UpBlock.forward">(dival.reconstructors.networks.unet.UpBlock method)</a>
+</li>
+        <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule.forward">(dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule method)</a>
+</li>
+        <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DModule.forward">(dival.util.torch_utility.TorchRayTrafoParallel2DModule method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1191,14 +1209,14 @@
         <li><a href="dival.datasets.html#dival.datasets.LoDoPaBDataset.get_ray_trafo">(dival.datasets.LoDoPaBDataset method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.html#dival.get_reference_reconstructor">get_reference_reconstructor() (in module dival)</a>
 
       <ul>
         <li><a href="dival.reference_reconstructors.html#dival.reference_reconstructors.get_reference_reconstructor">(in module dival.reference_reconstructors)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dival.html#dival.Dataset.get_sample">get_sample() (dival.Dataset method)</a>
 
       <ul>
@@ -1283,6 +1301,10 @@
         <li><a href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset.get_test_len">(dival.datasets.dataset.Dataset method)</a>
 </li>
       </ul></li>
+      <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.get_torch_ray_trafo_parallel_2d">get_torch_ray_trafo_parallel_2d() (in module dival.util.torch_utility)</a>
+</li>
+      <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.get_torch_ray_trafo_parallel_2d_adjoint">get_torch_ray_trafo_parallel_2d_adjoint() (in module dival.util.torch_utility)</a>
+</li>
       <li><a href="dival.html#dival.Dataset.get_train_generator">get_train_generator() (dival.Dataset method)</a>
 
       <ul>
@@ -1625,6 +1647,8 @@
         <li><a href="dival.reconstructors.regression_reconstructors.html#dival.reconstructors.regression_reconstructors.LinRegReconstructor.load_params">(dival.reconstructors.regression_reconstructors.LinRegReconstructor method)</a>
 </li>
       </ul></li>
+      <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.load_state_dict_convert_data_parallel">load_state_dict_convert_data_parallel() (in module dival.util.torch_utility)</a>
+</li>
       <li><a href="dival.datasets.html#dival.datasets.LoDoPaBDataset">LoDoPaBDataset (class in dival.datasets)</a>
 
       <ul>
@@ -1796,6 +1820,8 @@
         <li><a href="dival.util.std_out_err_redirect_tqdm.html#module-dival.util.std_out_err_redirect_tqdm">dival.util.std_out_err_redirect_tqdm</a>
 </li>
         <li><a href="dival.util.torch_losses.html#module-dival.util.torch_losses">dival.util.torch_losses</a>
+</li>
+        <li><a href="dival.util.torch_utility.html#module-dival.util.torch_utility">dival.util.torch_utility</a>
 </li>
         <li><a href="dival.util.zenodo_download.html#module-dival.util.zenodo_download">dival.util.zenodo_download</a>
 </li>
@@ -2372,6 +2398,10 @@
       </ul></li>
       <li><a href="dival.evaluation.html#dival.evaluation.ResultTable.to_string">to_string() (dival.evaluation.ResultTable method)</a>
 </li>
+      <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule">TorchRayTrafoParallel2DAdjointModule (class in dival.util.torch_utility)</a>
+</li>
+      <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DModule">TorchRayTrafoParallel2DModule (class in dival.util.torch_utility)</a>
+</li>
       <li><a href="dival.html#dival.LearnedReconstructor.train">train() (dival.LearnedReconstructor method)</a>
 
       <ul>
@@ -2406,6 +2436,34 @@
         <li><a href="dival.datasets.lodopab_dataset.html#dival.datasets.lodopab_dataset.LoDoPaBDataset.train_len">(dival.datasets.lodopab_dataset.LoDoPaBDataset attribute)</a>
 </li>
         <li><a href="dival.datasets.html#dival.datasets.LoDoPaBDataset.train_len">(dival.datasets.LoDoPaBDataset attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.IRadonMap.training">training (dival.reconstructors.networks.iradonmap.IRadonMap attribute)</a>
+
+      <ul>
+        <li><a href="dival.reconstructors.networks.iradonmap.html#dival.reconstructors.networks.iradonmap.LearnedBackprojection.training">(dival.reconstructors.networks.iradonmap.LearnedBackprojection attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeBlock.training">(dival.reconstructors.networks.iterative.IterativeBlock attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.IterativeNet.training">(dival.reconstructors.networks.iterative.IterativeNet attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.iterative.html#dival.reconstructors.networks.iterative.PrimalDualNet.training">(dival.reconstructors.networks.iterative.PrimalDualNet attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.Concat.training">(dival.reconstructors.networks.unet.Concat attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.DownBlock.training">(dival.reconstructors.networks.unet.DownBlock attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.InBlock.training">(dival.reconstructors.networks.unet.InBlock attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.OutBlock.training">(dival.reconstructors.networks.unet.OutBlock attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UNet.training">(dival.reconstructors.networks.unet.UNet attribute)</a>
+</li>
+        <li><a href="dival.reconstructors.networks.unet.html#dival.reconstructors.networks.unet.UpBlock.training">(dival.reconstructors.networks.unet.UpBlock attribute)</a>
+</li>
+        <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule.training">(dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule attribute)</a>
+</li>
+        <li><a href="dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DModule.training">(dival.util.torch_utility.TorchRayTrafoParallel2DModule attribute)</a>
 </li>
       </ul></li>
       <li><a href="dival.util.torch_losses.html#dival.util.torch_losses.tv_loss">tv_loss() (in module dival.util.torch_losses)</a>

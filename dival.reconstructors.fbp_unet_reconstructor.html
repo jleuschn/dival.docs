@@ -1,0 +1,759 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.reconstructors.fbp_unet_reconstructor module &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dival.reference_reconstructors module" href="dival.reference_reconstructors.html" />
+    <link rel="prev" title="dival.reconstructors.tvadam_ct_reconstructor module" href="dival.reconstructors.tvadam_ct_reconstructor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.fbp_unet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.input.html">dival.util.input module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.torch_utility.html">dival.util.torch_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>dival.reconstructors.fbp_unet_reconstructor module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dival.reconstructors.fbp_unet_reconstructor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dival.reconstructors.fbp_unet_reconstructor">
+<span id="dival-reconstructors-fbp-unet-reconstructor-module"></span><h1>dival.reconstructors.fbp_unet_reconstructor module<a class="headerlink" href="#module-dival.reconstructors.fbp_unet_reconstructor" title="Permalink to this headline">¶</a></h1>
+<p>Provides the learned <a class="reference internal" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor" title="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FBPUNetReconstructor</span></code></a> for the application of CT.</p>
+<dl class="py function">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.generate_fbp_cache">
+<code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">generate_fbp_cache</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">part</span></em>, <em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#generate_fbp_cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.generate_fbp_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write filtered back-projections for a CT dataset part to file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – CT dataset from which the observations are used.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}) – The data part.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The filename to store the FBP cache at (ending <code class="docutils literal notranslate"><span class="pre">.npy</span></code>).</p></li>
+<li><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>) – Ray transform from which the FBP operator is constructed.</p></li>
+<li><p><strong>size</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of samples to use from the dataset.
+By default, all samples are used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">CachedFBPDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">filenames</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
+<p>Dataset combining the ground truth of a dataset with cached FBPs.</p>
+<p>Each sample is a pair of a FBP and a ground truth image.</p>
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">filenames</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – CT dataset from which the ground truth is used.</p></li>
+<li><p><strong>filenames</strong> (<em>dict</em>) – Cached FBP filenames for the dataset parts.
+The part (<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, …) is the key to the dict.
+To generate the FBP files, <a class="reference internal" href="#dival.reconstructors.fbp_unet_reconstructor.generate_fbp_cache" title="dival.reconstructors.fbp_unet_reconstructor.generate_fbp_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_fbp_cache()</span></code></a> can be used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_sample">
+<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get single sample by index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – Index of the sample.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (array-like or tuple of (array-like or bool) or <cite>None</cite>) – <p>Array(s) (or e.g. odl element(s)) to which the sample is written.
+A tuple should be passed, if the dataset returns two or more arrays
+per sample (i.e. pairs, …).
+If a tuple element is a bool, it has the following meaning:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">True</span></code></dt><dd><p>Create a new array and return it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">False</span></code></dt><dd><p>Do not return this array, i.e. <cite>None</cite> is returned.</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
+<code class="docutils literal notranslate"><span class="pre">out=(True,</span> <span class="pre">False)</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_samples">
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#CachedFBPDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get samples by slice or range.</p>
+<p>The default implementation calls <a class="reference internal" href="#dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_sample" title="dival.reconstructors.fbp_unet_reconstructor.CachedFBPDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
+implements it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>slice</em><em> or </em><em>range</em>) – Indexes of the samples.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (array-like or tuple of (array-like or bool) or <cite>None</cite>) – <p>Array(s) (or e.g. odl element(s)) to which the sample is written.
+The first dimension must match the number of samples requested.
+A tuple should be passed, if the dataset returns two or more arrays
+per sample (i.e. pairs, …).
+If a tuple element is a bool, it has the following meaning:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">True</span></code></dt><dd><p>Create a new array and return it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">False</span></code></dt><dd><p>Do not return this array, i.e. <cite>None</cite> is returned.</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>samples</strong> – If the dataset has multiple arrays per sample, a tuple holding
+arrays is returned.
+E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
+<code class="docutils literal notranslate"><span class="pre">out=(True,</span> <span class="pre">False)</span></code>.
+The samples are stacked in the first
+(additional) dimension of each array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">FBPDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
+<p>Dataset computing filtered back-projections for a CT dataset on the fly.</p>
+<p>Each sample is a pair of a FBP and a ground truth image.</p>
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">ray_trafo</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – CT dataset. FBPs are computed from the observations, the ground
+truth is taken directly from the dataset.</p></li>
+<li><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>) – Ray transform from which the FBP operator is constructed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.generator">
+<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield data.</p>
+<p>The default implementation calls <a class="reference internal" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample" title="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
+implements it (i.e., supports random access).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – Whether to yield train, validation or test data.
+Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><strong>data</strong> (<em>odl element or tuple of odl elements</em>) – Sample of the dataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample">
+<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get single sample by index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – Index of the sample.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (array-like or tuple of (array-like or bool) or <cite>None</cite>) – <p>Array(s) (or e.g. odl element(s)) to which the sample is written.
+A tuple should be passed, if the dataset returns two or more arrays
+per sample (i.e. pairs, …).
+If a tuple element is a bool, it has the following meaning:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">True</span></code></dt><dd><p>Create a new array and return it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">False</span></code></dt><dd><p>Do not return this array, i.e. <cite>None</cite> is returned.</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
+<code class="docutils literal notranslate"><span class="pre">out=(True,</span> <span class="pre">False)</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_samples">
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get samples by slice or range.</p>
+<p>The default implementation calls <a class="reference internal" href="#dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample" title="dival.reconstructors.fbp_unet_reconstructor.FBPDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
+implements it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>slice</em><em> or </em><em>range</em>) – Indexes of the samples.</p></li>
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>out</strong> (array-like or tuple of (array-like or bool) or <cite>None</cite>) – <p>Array(s) (or e.g. odl element(s)) to which the sample is written.
+The first dimension must match the number of samples requested.
+A tuple should be passed, if the dataset returns two or more arrays
+per sample (i.e. pairs, …).
+If a tuple element is a bool, it has the following meaning:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">True</span></code></dt><dd><p>Create a new array and return it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">False</span></code></dt><dd><p>Do not return this array, i.e. <cite>None</cite> is returned.</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>samples</strong> – If the dataset has multiple arrays per sample, a tuple holding
+arrays is returned.
+E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
+<code class="docutils literal notranslate"><span class="pre">out=(True,</span> <span class="pre">False)</span></code>.
+The samples are stacked in the first
+(additional) dimension of each array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">FBPUNetReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">scales</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">epochs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fbp_impl</span><span class="o">=</span><span class="default_value">'astra_cuda'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.LearnedReconstructor</span></code></a></p>
+<dl class="py attribute">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.HYPER_PARAMS">
+<code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'batch_size': {'default': 64, 'retrain': True}, 'epochs': {'default': 20, 'retrain': True}, 'scales': {'default': 5, 'retrain': True}}</em><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>CT Reconstructor applying filtered back-projection followed by a
+postprocessing U-Net (cf. <a class="footnote-reference brackets" href="#id3" id="id1">1</a>).
+The U-Net architecture is similar to the one in <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>K. H. Jin, M. T. McCann, E. Froustey, et al., 2017,
+“Deep Convolutional Neural Network for Inverse Problems in Imaging”.
+IEEE Transactions on Image Processing.
+<a class="reference external" href="https://doi.org/10.1109/TIP.2017.2713099">doi:10.1109/TIP.2017.2713099</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>V. Lempitsky, A. Vedaldi, and D. Ulyanov, 2018,
+“Deep Image Prior”.
+IEEE/CVF Conference on Computer Vision and Pattern Recognition.
+<a class="reference external" href="https://doi.org/10.1109/CVPR.2018.00984">doi:10.1109/CVPR.2018.00984</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">scales</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">epochs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fbp_impl</span><span class="o">=</span><span class="default_value">'astra_cuda'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>) – Ray transform from which the FBP operator is constructed.</p></li>
+<li><p><strong>scales</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of scales in the U-Net (a hyper parameter).</p></li>
+<li><p><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of epochs to train (a hyper parameter).</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Batch size (a hyper parameter).</p></li>
+<li><p><strong>num_data_loader_workers</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel workers to use for loading data.</p></li>
+<li><p><strong>use_cuda</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use cuda for the U-Net.</p></li>
+<li><p><strong>show_pbar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show tqdm progress bars during the epochs.</p></li>
+<li><p><strong>fbp_impl</strong> (<em>str</em><em>, </em><em>optional</em>) – The backend implementation passed to
+<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code> in case no <cite>ray_trafo</cite> is specified.
+Then <code class="docutils literal notranslate"><span class="pre">dataset.get_ray_trafo(impl=fbp_impl)</span></code> is used to get the
+ray transform and FBP operator.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_epochs">
+<code class="sig-name descname">get_epochs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.get_epochs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_epochs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_epochs">
+<code class="sig-name descname">set_epochs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">epochs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_epochs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_epochs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.epochs">
+<em class="property">property </em><code class="sig-name descname">epochs</code><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.epochs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_batch_size">
+<code class="sig-name descname">get_batch_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.get_batch_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_batch_size">
+<code class="sig-name descname">set_batch_size</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch_size</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_batch_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.batch_size">
+<em class="property">property </em><code class="sig-name descname">batch_size</code><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_scales">
+<code class="sig-name descname">get_scales</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.get_scales"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.get_scales" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_scales">
+<code class="sig-name descname">set_scales</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scales</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.set_scales"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.set_scales" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.scales">
+<em class="property">property </em><code class="sig-name descname">scales</code><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.scales" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.train">
+<code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the reconstructor with a dataset by adapting its parameters.</p>
+<p>Should only use the training and validation data from <cite>dataset</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – The dataset from which the training data should be used.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.save_params">
+<code class="sig-name descname">save_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.save_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.save_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save U-Net state to file using <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.save()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Filename (ending <code class="docutils literal notranslate"><span class="pre">.pt</span></code>).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.load_params">
+<code class="sig-name descname">load_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#FBPUNetReconstructor.load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.FBPUNetReconstructor.load_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load U-Net state from file using <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.load()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Filename (ending <code class="docutils literal notranslate"><span class="pre">.pt</span></code>).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.get_skip_model">
+<code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">get_skip_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scales</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">skip</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#get_skip_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.get_skip_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.Skip">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">Skip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">channels</span></em>, <em class="sig-param"><span class="n">skip_channels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Skip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.Skip.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">channels</span></em>, <em class="sig-param"><span class="n">skip_channels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Skip.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.Skip.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Skip.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.Skip.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Skip.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.DownBlock">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">DownBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#DownBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.DownBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#DownBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.DownBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#DownBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.DownBlock.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.DownBlock.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.InBlock">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">InBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#InBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.InBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#InBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.InBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#InBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.InBlock.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.InBlock.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.UpBlock">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">UpBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">skip_ch</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#UpBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.UpBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em>, <em class="sig-param"><span class="n">skip_ch</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#UpBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.UpBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x1</span></em>, <em class="sig-param"><span class="n">x2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#UpBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.UpBlock.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.UpBlock.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.Concat">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">Concat</code><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Concat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Concat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.Concat.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Concat.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Concat.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.Concat.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">inputs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#Concat.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Concat.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.Concat.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.Concat.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.OutBlock">
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbp_unet_reconstructor.</code><code class="sig-name descname">OutBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#OutBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.OutBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_ch</span></em>, <em class="sig-param"><span class="n">out_ch</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#OutBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.OutBlock.training">
+<code class="sig-name descname">training</code><em class="property">: bool</em><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.reconstructors.fbp_unet_reconstructor.OutBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbp_unet_reconstructor.html#OutBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbp_unet_reconstructor.OutBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dival.reference_reconstructors.html" class="btn btn-neutral float-right" title="dival.reference_reconstructors module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dival.reconstructors.tvadam_ct_reconstructor.html" class="btn btn-neutral float-left" title="dival.reconstructors.tvadam_ct_reconstructor module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

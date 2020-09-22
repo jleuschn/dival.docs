@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.6
               </div>
             
           
@@ -127,6 +127,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dival.util.torch_utility.html">dival.util.torch_utility module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dival.version.html">dival.version module</a></li>
 </ul>
@@ -577,7 +578,7 @@
                              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_key_name</span><span class="p">))</span>
     <span class="n">missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">f</span><span class="p">)]</span>
     <span class="n">params_exist</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">missing</span>
-    <span class="k">return</span> <span class="n">params_exist</span><span class="p">,</span> <span class="n">missing</span> <span class="k">if</span> <span class="n">return_missing</span> <span class="k">else</span> <span class="n">params_exist</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">params_exist</span><span class="p">,</span> <span class="n">missing</span><span class="p">)</span> <span class="k">if</span> <span class="n">return_missing</span> <span class="k">else</span> <span class="n">params_exist</span></div>
 
 <div class="viewcode-block" id="check_for_hyper_params"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.check_for_hyper_params">[docs]</a><span class="k">def</span> <span class="nf">check_for_hyper_params</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>

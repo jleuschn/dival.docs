@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dival.util.torch_utility &mdash; Deep Inversion Validation Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.config.html">dival.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.data.html">dival.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.html">dival.datasets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.cached_dataset.html">dival.datasets.cached_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.lodopab_dataset.html">dival.datasets.lodopab_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.reordered_dataset.html">dival.datasets.reordered_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.datasets.standard.html">dival.datasets.standard module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.evaluation.html">dival.evaluation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.measure.html">dival.measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.html">dival.reconstructors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.iradonmap_reconstructor.html">dival.reconstructors.iradonmap_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedgd_reconstructor.html">dival.reconstructors.learnedgd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.learnedpd_reconstructor.html">dival.reconstructors.learnedpd_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.networks.html">dival.reconstructors.networks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.networks.iradonmap.html">dival.reconstructors.networks.iradonmap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.networks.iterative.html">dival.reconstructors.networks.iterative module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.networks.unet.html">dival.reconstructors.networks.unet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.html">dival.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.constants.html">dival.util.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.download.html">dival.util.download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.input.html">dival.util.input module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.odl_utility.html">dival.util.odl_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.plot.html">dival.util.plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.torch_utility.html">dival.util.torch_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dival.version.html">dival.version module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Deep Inversion Validation Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dival.util.torch_utility</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dival.util.torch_utility</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Provides utilities related to PyTorch.</span>
+
+<span class="sd">The classes and functions</span>
+
+<span class="sd">    :class:`TorchRayTrafoParallel2DModule`</span>
+<span class="sd">    :class:`TorchRayTrafoParallel2DAdjointModule`</span>
+<span class="sd">    :func:`get_torch_ray_trafo_parallel_2d`</span>
+<span class="sd">    :func:`get_torch_ray_trafo_parallel_2d_adjoint`.</span>
+
+<span class="sd">in this module rely on the</span>
+<span class="sd">`tomosipo &lt;https://github.com/ahendriksen/tomosipo&gt;`_ library and experimental</span>
+<span class="sd">astra features available in version 1.9.9.dev4 using CUDA.</span>
+<span class="sd">In order to instantiate or call these classes and functions, all of these</span>
+<span class="sd">requirements need to be fulfilled, otherwise an :class:`ImportError` is raised.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">tomosipo</span> <span class="k">as</span> <span class="nn">ts</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">TOMOSIPO_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">MISSING_TOMOSIPO_MESSAGE</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;Missing optional dependency </span><span class="se">\&#39;</span><span class="s1">tomosipo</span><span class="se">\&#39;</span><span class="s1">. The latest development &#39;</span>
+        <span class="s1">&#39;version can be installed via &#39;</span>
+        <span class="s1">&#39;`pip install git+https://github.com/ahendriksen/tomosipo@develop`&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">TOMOSIPO_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="kn">from</span> <span class="nn">tomosipo.odl</span> <span class="kn">import</span> <span class="p">(</span>
+        <span class="n">from_odl</span><span class="p">,</span> <span class="n">parallel_2d_to_3d_geometry</span><span class="p">,</span> <span class="n">discretized_space_2d_to_3d</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">tomosipo.torch_support</span> <span class="kn">import</span> <span class="n">to_autograd</span>
+<span class="kn">from</span> <span class="nn">odl.tomo.backends.astra_cuda</span> <span class="kn">import</span> <span class="n">astra_cuda_bp_scaling_factor</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">astra</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">ASTRA_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">ASTRA_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="TorchRayTrafoParallel2DModule"><a class="viewcode-back" href="../../../dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DModule">[docs]</a><span class="k">class</span> <span class="nc">TorchRayTrafoParallel2DModule</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Torch module applying a 2D parallel-beam ray transform using tomosipo that</span>
+<span class="sd">    calls the direct forward projection routine of astra, which avoids copying</span>
+<span class="sd">    between GPU and CPU (available in 1.9.9.dev4).</span>
+
+<span class="sd">    All 2D transforms are computed using a single 3D transform.</span>
+<span class="sd">    To this end the used tomosipo operator is renewed in :meth:`forward`</span>
+<span class="sd">    everytime the product of batch and channel dimensions of the current batch</span>
+<span class="sd">    differs compared to the previous batch, or compared to the value of</span>
+<span class="sd">    `init_z_shape` specified to :meth:`init` for the first batch.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TorchRayTrafoParallel2DModule.__init__"><a class="viewcode-back" href="../../../dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DModule.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="n">init_z_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ray_trafo : :class:`odl.tomo.RayTransform`</span>
+<span class="sd">            Ray transform</span>
+<span class="sd">        init_z_shape : int, optional</span>
+<span class="sd">            Initial guess for the number of 2D transforms per batch, i.e. the</span>
+<span class="sd">            product of batch and channel dimensions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">TOMOSIPO_AVAILABLE</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">MISSING_TOMOSIPO_MESSAGE</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ASTRA_AVAILABLE</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Astra is not available.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">astra</span><span class="o">.</span><span class="n">use_cuda</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Astra is not able to use CUDA.&#39;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">ray_trafo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_construct_operator</span><span class="p">(</span><span class="n">init_z_shape</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_construct_operator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z_shape</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">torch_ray_trafo</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">get_torch_ray_trafo_parallel_2d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="n">z_shape</span><span class="o">=</span><span class="n">z_shape</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_z_shape</span> <span class="o">=</span> <span class="n">z_shape</span>
+
+<div class="viewcode-block" id="TorchRayTrafoParallel2DModule.forward"><a class="viewcode-back" href="../../../dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DModule.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">z_shape</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_z_shape</span> <span class="o">!=</span> <span class="n">z_shape</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_construct_operator</span><span class="p">(</span><span class="n">z_shape</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">z_shape</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_ray_trafo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">z_shape</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+        <span class="k">return</span> <span class="n">x</span></div></div>
+
+<div class="viewcode-block" id="TorchRayTrafoParallel2DAdjointModule"><a class="viewcode-back" href="../../../dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule">[docs]</a><span class="k">class</span> <span class="nc">TorchRayTrafoParallel2DAdjointModule</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Torch module applying the adjoint of a 2D parallel-beam ray transform</span>
+<span class="sd">    using tomosipo that calls the direct backward projection routine of astra,</span>
+<span class="sd">    which avoids copying between GPU and CPU (available in 1.9.9.dev4).</span>
+
+<span class="sd">    All 2D transforms are computed using a single 3D transform.</span>
+<span class="sd">    To this end the used tomosipo operator is renewed in :meth:`forward`</span>
+<span class="sd">    everytime the product of batch and channel dimensions of the current batch</span>
+<span class="sd">    differs compared to the previous batch, or compared to the value of</span>
+<span class="sd">    `init_z_shape` specified to :meth:`init` for the first batch.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TorchRayTrafoParallel2DAdjointModule.__init__"><a class="viewcode-back" href="../../../dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="n">init_z_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ray_trafo : :class:`odl.tomo.RayTransform`</span>
+<span class="sd">            Ray transform</span>
+<span class="sd">        init_z_shape : int, optional</span>
+<span class="sd">            Initial guess for the number of 2D transforms per batch, i.e. the</span>
+<span class="sd">            product of batch and channel dimensions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">TOMOSIPO_AVAILABLE</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">MISSING_TOMOSIPO_MESSAGE</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ASTRA_AVAILABLE</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Astra is not available.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">astra</span><span class="o">.</span><span class="n">use_cuda</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Astra is not able to use CUDA.&#39;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">ray_trafo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_construct_operator</span><span class="p">(</span><span class="n">init_z_shape</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_construct_operator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z_shape</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">torch_ray_trafo_adjoint</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">get_torch_ray_trafo_parallel_2d_adjoint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="p">,</span>
+                                                    <span class="n">z_shape</span><span class="o">=</span><span class="n">z_shape</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_z_shape</span> <span class="o">=</span> <span class="n">z_shape</span>
+
+<div class="viewcode-block" id="TorchRayTrafoParallel2DAdjointModule.forward"><a class="viewcode-back" href="../../../dival.util.torch_utility.html#dival.util.torch_utility.TorchRayTrafoParallel2DAdjointModule.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">z_shape</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_z_shape</span> <span class="o">!=</span> <span class="n">z_shape</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_construct_operator</span><span class="p">(</span><span class="n">z_shape</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">z_shape</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_ray_trafo_adjoint</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">z_shape</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+        <span class="k">return</span> <span class="n">x</span></div></div>
+
+<div class="viewcode-block" id="get_torch_ray_trafo_parallel_2d"><a class="viewcode-back" href="../../../dival.util.torch_utility.html#dival.util.torch_utility.get_torch_ray_trafo_parallel_2d">[docs]</a><span class="k">def</span> <span class="nf">get_torch_ray_trafo_parallel_2d</span><span class="p">(</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="n">z_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a torch autograd-enabled function from a 2D parallel-beam</span>
+<span class="sd">    :class:`odl.tomo.RayTransform` using tomosipo that calls the direct</span>
+<span class="sd">    forward projection routine of astra, which avoids copying between GPU and</span>
+<span class="sd">    CPU (available in 1.9.9.dev4).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ray_trafo : :class:`odl.tomo.RayTransform`</span>
+<span class="sd">        Ray transform</span>
+<span class="sd">    z_shape : int, optional</span>
+<span class="sd">        Channel dimension.</span>
+<span class="sd">        Default: ``1``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    torch_ray_trafo : callable</span>
+<span class="sd">        Torch autograd-enabled function applying the parallel-beam forward</span>
+<span class="sd">        projection.</span>
+<span class="sd">        Input and output have a trivial leading batch dimension and a channel</span>
+<span class="sd">        dimension specified by `z_shape` (default ``1``), i.e. the</span>
+<span class="sd">        input shape is ``(1, z_shape) + ray_trafo.domain.shape`` and the</span>
+<span class="sd">        output shape is ``(1, z_shape) + ray_trafo.range.shape``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">TOMOSIPO_AVAILABLE</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">MISSING_TOMOSIPO_MESSAGE</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ASTRA_AVAILABLE</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Astra is not available.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">astra</span><span class="o">.</span><span class="n">use_cuda</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Astra is not able to use CUDA.&#39;</span><span class="p">)</span>
+    <span class="n">vg</span> <span class="o">=</span> <span class="n">from_odl</span><span class="p">(</span><span class="n">discretized_space_2d_to_3d</span><span class="p">(</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
+                                             <span class="n">z_shape</span><span class="o">=</span><span class="n">z_shape</span><span class="p">))</span>
+    <span class="n">pg</span> <span class="o">=</span> <span class="n">from_odl</span><span class="p">(</span><span class="n">parallel_2d_to_3d_geometry</span><span class="p">(</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">geometry</span><span class="p">,</span>
+                                             <span class="n">det_z_shape</span><span class="o">=</span><span class="n">z_shape</span><span class="p">))</span>
+    <span class="n">ts_op</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">operator</span><span class="p">(</span><span class="n">vg</span><span class="p">,</span> <span class="n">pg</span><span class="p">)</span>
+    <span class="n">torch_ray_trafo</span> <span class="o">=</span> <span class="n">to_autograd</span><span class="p">(</span><span class="n">ts_op</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">torch_ray_trafo</span></div>
+
+<div class="viewcode-block" id="get_torch_ray_trafo_parallel_2d_adjoint"><a class="viewcode-back" href="../../../dival.util.torch_utility.html#dival.util.torch_utility.get_torch_ray_trafo_parallel_2d_adjoint">[docs]</a><span class="k">def</span> <span class="nf">get_torch_ray_trafo_parallel_2d_adjoint</span><span class="p">(</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="n">z_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a torch autograd-enabled function from a 2D parallel-beam</span>
+<span class="sd">    :class:`odl.tomo.RayTransform` using tomosipo that calls the direct</span>
+<span class="sd">    backward projection routine of astra, which avoids copying between GPU and</span>
+<span class="sd">    CPU (available in 1.9.9.dev4).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ray_trafo : :class:`odl.tomo.RayTransform`</span>
+<span class="sd">        Ray transform</span>
+<span class="sd">    z_shape : int, optional</span>
+<span class="sd">        Batch dimension.</span>
+<span class="sd">        Default: ``1``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    torch_ray_trafo_adjoint : callable</span>
+<span class="sd">        Torch autograd-enabled function applying the parallel-beam backward</span>
+<span class="sd">        projection.</span>
+<span class="sd">        Input and output have a trivial leading batch dimension and a channel</span>
+<span class="sd">        dimension specified by `z_shape` (default ``1``), i.e. the</span>
+<span class="sd">        input shape is ``(1, z_shape) + ray_trafo.range.shape`` and the</span>
+<span class="sd">        output shape is ``(1, z_shape) + ray_trafo.domain.shape``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">TOMOSIPO_AVAILABLE</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">MISSING_TOMOSIPO_MESSAGE</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ASTRA_AVAILABLE</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Astra is not available.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">astra</span><span class="o">.</span><span class="n">use_cuda</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Astra is not able to use CUDA.&#39;</span><span class="p">)</span>
+    <span class="n">vg</span> <span class="o">=</span> <span class="n">from_odl</span><span class="p">(</span><span class="n">discretized_space_2d_to_3d</span><span class="p">(</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
+                                             <span class="n">z_shape</span><span class="o">=</span><span class="n">z_shape</span><span class="p">))</span>
+    <span class="n">pg</span> <span class="o">=</span> <span class="n">from_odl</span><span class="p">(</span><span class="n">parallel_2d_to_3d_geometry</span><span class="p">(</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">geometry</span><span class="p">,</span>
+                                             <span class="n">det_z_shape</span><span class="o">=</span><span class="n">z_shape</span><span class="p">))</span>
+    <span class="n">ts_op</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">operator</span><span class="p">(</span><span class="n">vg</span><span class="p">,</span> <span class="n">pg</span><span class="p">)</span>
+    <span class="n">torch_ray_trafo_adjoint_ts</span> <span class="o">=</span> <span class="n">to_autograd</span><span class="p">(</span><span class="n">ts_op</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">scaling_factor</span> <span class="o">=</span> <span class="n">astra_cuda_bp_scaling_factor</span><span class="p">(</span>
+        <span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">torch_ray_trafo_adjoint</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">scaling_factor</span> <span class="o">*</span> <span class="n">torch_ray_trafo_adjoint_ts</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">torch_ray_trafo_adjoint</span></div>
+
+<div class="viewcode-block" id="load_state_dict_convert_data_parallel"><a class="viewcode-back" href="../../../dival.util.torch_utility.html#dival.util.torch_utility.load_state_dict_convert_data_parallel">[docs]</a><span class="k">def</span> <span class="nf">load_state_dict_convert_data_parallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">state_dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a state dict into a model, while automatically converting the weight</span>
+<span class="sd">    names if :attr:`model` is a :class:`nn.DataParallel`-model but the stored</span>
+<span class="sd">    state dict stems from a non-data-parallel model, or vice versa.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model : nn.Module</span>
+<span class="sd">        Torch model that should load the state dict.</span>
+<span class="sd">    state_dict : dict</span>
+<span class="sd">        Torch state dict</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    RuntimeError</span>
+<span class="sd">        If there are missing or unexpected keys in the state dict.</span>
+<span class="sd">        This error is not raised when conversion of the weight names succeeds.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">missing_keys</span><span class="p">,</span> <span class="n">unexpected_keys</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span>
+        <span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">missing_keys</span> <span class="ow">or</span> <span class="n">unexpected_keys</span><span class="p">:</span>
+        <span class="c1"># since directly loading failed, assume now that state_dict&#39;s</span>
+        <span class="c1"># keys are named in the other way compared to type(model)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">):</span>
+            <span class="n">state_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;module.&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="p">):</span> <span class="n">v</span>
+                          <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+            <span class="n">missing_keys2</span><span class="p">,</span> <span class="n">unexpected_keys2</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">missing_keys2</span> <span class="ow">or</span> <span class="n">unexpected_keys2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_keys2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_keys</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                        <span class="s1">&#39;Failed to load learned weights. Missing keys (in &#39;</span>
+                        <span class="s1">&#39;case of prefixing with </span><span class="se">\&#39;</span><span class="s1">module.</span><span class="se">\&#39;</span><span class="s1">, which lead to &#39;</span>
+                        <span class="s1">&#39;fewer missing keys):</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span>
+                        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                            <span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">missing_keys2</span><span class="p">))))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                        <span class="s1">&#39;Failed to load learned weights (also when trying &#39;</span>
+                        <span class="s1">&#39;with additional </span><span class="se">\&#39;</span><span class="s1">module.</span><span class="se">\&#39;</span><span class="s1"> prefix). Missing &#39;</span>
+                        <span class="s1">&#39;keys:</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span>
+                        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                            <span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">missing_keys</span><span class="p">))))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;module.&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">state_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;module.&#39;</span><span class="p">):]:</span> <span class="n">v</span>
+                              <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+                <span class="n">missing_keys2</span><span class="p">,</span> <span class="n">unexpected_keys2</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span>
+                                               <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">missing_keys2</span> <span class="ow">or</span> <span class="n">unexpected_keys2</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_keys2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_keys</span><span class="p">):</span>
+                        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                            <span class="s1">&#39;Failed to load learned weights. Missing keys (in &#39;</span>
+                            <span class="s1">&#39;case of removing </span><span class="se">\&#39;</span><span class="s1">module.</span><span class="se">\&#39;</span><span class="s1"> prefix, which lead &#39;</span>
+                            <span class="s1">&#39;to fewer missing keys):</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span>
+                            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                                <span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">missing_keys2</span><span class="p">))))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                            <span class="s1">&#39;Failed to load learned weights (also when &#39;</span>
+                            <span class="s1">&#39;removing </span><span class="se">\&#39;</span><span class="s1">module.</span><span class="se">\&#39;</span><span class="s1"> prefix). Missing keys:</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span>
+                            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                                <span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">missing_keys</span><span class="p">))))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                    <span class="s1">&#39;Failed to load learned weights. Missing keys:</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span>
+                    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">missing_keys</span><span class="p">))))</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
