@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.6
+                0.5.7
               </div>
             
           
@@ -202,7 +202,8 @@
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">from</span> <span class="nn">odl.tomo</span> <span class="kn">import</span> <span class="n">fbp_op</span>
 
-<span class="kn">from</span> <span class="nn">dival.reconstructors</span> <span class="kn">import</span> <span class="n">StandardLearnedReconstructor</span>
+<span class="kn">from</span> <span class="nn">dival.reconstructors.standard_learned_reconstructor</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">StandardLearnedReconstructor</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">dival.reconstructors.networks.unet</span> <span class="kn">import</span> <span class="n">UNet</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.fbp_dataset</span> <span class="kn">import</span> <span class="n">FBPDataset</span>
 
@@ -316,7 +317,10 @@
 
 <div class="viewcode-block" id="FBPUNetReconstructor.init_scheduler"><a class="viewcode-back" href="../../../dival.reconstructors.fbpunet_reconstructor.html#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.init_scheduler">[docs]</a>    <span class="k">def</span> <span class="nf">init_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_train</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;cosine&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">CosineAnnealingLR</span><span class="p">(</span>
+            <span class="c1"># need to set private self._scheduler because self.scheduler</span>
+            <span class="c1"># property accesses hyper parameter of same name,</span>
+            <span class="c1"># i.e. self.hyper_params[&#39;scheduler&#39;]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">CosineAnnealingLR</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="p">,</span>
                 <span class="n">T_max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">,</span>
                 <span class="n">eta_min</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr_min</span><span class="p">)</span>

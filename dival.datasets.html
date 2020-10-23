@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.6
+                0.5.7
               </div>
             
           
@@ -618,6 +618,23 @@ raised.</p>
 <li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
 <li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pairs (from beginning). If <cite>None</cite>, all available data
 is used (the default).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.datasets.Dataset.get_data_pairs_per_index">
+<code class="sig-name descname">get_data_pairs_per_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_data_pairs_per_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.Dataset.get_data_pairs_per_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return specific samples from data part as <a class="reference internal" href="dival.data.html#dival.data.DataPairs" title="dival.data.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a> object.</p>
+<p>Only supports datasets with two elements per sample.</p>
+<p>For datasets not supporting random access, samples are extracted from
+<a class="reference internal" href="#dival.datasets.Dataset.generator" title="dival.datasets.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>, which can be computationally expensive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>index</strong> (<em>int</em><em> or </em><em>list of int</em><em>, </em><em>optional</em>) – Indices of the samples in the data part. Default is <code class="docutils literal notranslate"><span class="pre">'[0]'</span></code>.</p></li>
 </ul>
 </dd>
 </dl>

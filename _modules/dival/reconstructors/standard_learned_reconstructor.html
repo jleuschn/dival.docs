@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.6
+                0.5.7
               </div>
             
           
@@ -208,7 +208,12 @@
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
-<span class="kn">from</span> <span class="nn">torch.utils.tensorboard</span> <span class="kn">import</span> <span class="n">SummaryWriter</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">torch.utils.tensorboard</span> <span class="kn">import</span> <span class="n">SummaryWriter</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">TENSORBOARD_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">TENSORBOARD_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="kn">from</span> <span class="nn">torch.optim.lr_scheduler</span> <span class="kn">import</span> <span class="n">CyclicLR</span><span class="p">,</span> <span class="n">OneCycleLR</span>
 
 <span class="kn">from</span> <span class="nn">dival.reconstructors</span> <span class="kn">import</span> <span class="n">LearnedReconstructor</span>
@@ -308,6 +313,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">save_best_learned_params_path</span> <span class="o">=</span> <span class="n">save_best_learned_params_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">torch_manual_seed</span> <span class="o">=</span> <span class="n">torch_manual_seed</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_opnorm</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -376,14 +383,18 @@
                          <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset_validation</span><span class="p">)}</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">init_scheduler</span><span class="p">(</span><span class="n">dataset_train</span><span class="o">=</span><span class="n">dataset_train</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">schedule_every_batch</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="p">,</span> <span class="p">(</span><span class="n">CyclicLR</span><span class="p">,</span> <span class="n">OneCycleLR</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span><span class="p">,</span> <span class="p">(</span><span class="n">CyclicLR</span><span class="p">,</span> <span class="n">OneCycleLR</span><span class="p">))</span>
 
         <span class="n">best_model_wts</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">())</span>
         <span class="n">best_psnr</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">TENSORBOARD_AVAILABLE</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                    <span class="s1">&#39;Missing tensorboard. Please install it or disable &#39;</span>
+                    <span class="s1">&#39;logging by specifying `log_dir=None`.&#39;</span><span class="p">)</span>
             <span class="n">writer</span> <span class="o">=</span> <span class="n">SummaryWriter</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="n">max_queue</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">validation_samples</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_data_pairs</span><span class="p">(</span>
                 <span class="s1">&#39;validation&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_num_validation_samples</span><span class="p">)</span>
@@ -412,7 +423,7 @@
                         <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
 
                         <span class="c1"># zero the parameter gradients</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 
                         <span class="c1"># forward</span>
                         <span class="c1"># track gradients only if in train phase</span>
@@ -425,10 +436,10 @@
                                 <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
                                 <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">clip_grad_norm_</span><span class="p">(</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">max_norm</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-                                <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
                                         <span class="n">schedule_every_batch</span><span class="p">):</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 
                         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
                             <span class="n">labels_</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
@@ -446,13 +457,16 @@
                             <span class="n">step</span> <span class="o">=</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">*</span> <span class="n">ceil</span><span class="p">(</span><span class="n">dataset_sizes</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span>
                                                  <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
                                     <span class="o">+</span> <span class="n">ceil</span><span class="p">(</span><span class="n">running_size</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">))</span>
-                            <span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s1">&#39;loss/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phase</span><span class="p">),</span>
-                                              <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">running_loss</span><span class="o">/</span><span class="n">running_size</span><span class="p">),</span> <span class="n">step</span><span class="p">)</span>
-                            <span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s1">&#39;psnr/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phase</span><span class="p">),</span>
-                                              <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">running_psnr</span><span class="o">/</span><span class="n">running_size</span><span class="p">),</span> <span class="n">step</span><span class="p">)</span>
+                            <span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span>
+                                <span class="s1">&#39;loss/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phase</span><span class="p">),</span>
+                                <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">running_loss</span><span class="o">/</span><span class="n">running_size</span><span class="p">),</span> <span class="n">step</span><span class="p">)</span>
+                            <span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span>
+                                <span class="s1">&#39;psnr/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phase</span><span class="p">),</span>
+                                <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">running_psnr</span><span class="o">/</span><span class="n">running_size</span><span class="p">),</span> <span class="n">step</span><span class="p">)</span>
 
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">schedule_every_batch</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                            <span class="ow">and</span> <span class="ow">not</span> <span class="n">schedule_every_batch</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 
                     <span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">running_loss</span> <span class="o">/</span> <span class="n">dataset_sizes</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span>
                     <span class="n">epoch_psnr</span> <span class="o">=</span> <span class="n">running_psnr</span> <span class="o">/</span> <span class="n">dataset_sizes</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span>
@@ -513,7 +527,20 @@
 <span class="sd">        dataset_train : :class:`torch.utils.data.Dataset`</span>
 <span class="sd">            The training (torch) dataset constructed in :meth:`train`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :class:`torch.optim.Optimizer` :</span>
+<span class="sd">        The optimizer, usually set by :meth:`init_optimizer`, which gets called</span>
+<span class="sd">        in :meth:`train`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span>
+
+    <span class="nd">@optimizer</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span> <span class="o">=</span> <span class="n">value</span>
 
 <div class="viewcode-block" id="StandardLearnedReconstructor.init_scheduler"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.init_scheduler">[docs]</a>    <span class="k">def</span> <span class="nf">init_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_train</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -525,10 +552,23 @@
 <span class="sd">        dataset_train : :class:`torch.utils.data.Dataset`</span>
 <span class="sd">            The training (torch) dataset constructed in :meth:`train`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">OneCycleLR</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">max_lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">OneCycleLR</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span><span class="p">,</span> <span class="n">max_lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span>
             <span class="n">steps_per_epoch</span><span class="o">=</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset_train</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">),</span>
             <span class="n">epochs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        torch learning rate scheduler :</span>
+<span class="sd">        The scheduler, usually set by :meth:`init_scheduler`, which gets called</span>
+<span class="sd">        in :meth:`train`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span>
+
+    <span class="nd">@scheduler</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>

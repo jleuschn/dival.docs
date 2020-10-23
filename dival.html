@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.6
+                0.5.7
               </div>
             
           
@@ -586,6 +586,23 @@ raised.</p>
 <li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
 <li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pairs (from beginning). If <cite>None</cite>, all available data
 is used (the default).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.Dataset.get_data_pairs_per_index">
+<code class="sig-name descname">get_data_pairs_per_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.get_data_pairs_per_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.get_data_pairs_per_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return specific samples from data part as <a class="reference internal" href="#dival.DataPairs" title="dival.DataPairs"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPairs</span></code></a> object.</p>
+<p>Only supports datasets with two elements per sample.</p>
+<p>For datasets not supporting random access, samples are extracted from
+<a class="reference internal" href="#dival.Dataset.generator" title="dival.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>, which can be computationally expensive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
+<li><p><strong>index</strong> (<em>int</em><em> or </em><em>list of int</em><em>, </em><em>optional</em>) – Indices of the samples in the data part. Default is <code class="docutils literal notranslate"><span class="pre">'[0]'</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1958,6 +1975,14 @@ calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.
 </dd></dl>
 
 <dl class="py method">
+<dt id="dival.StandardLearnedReconstructor.optimizer">
+<em class="property">property </em><code class="sig-name descname">optimizer</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.optimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code>:
+The optimizer, usually set by <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_optimizer" title="dival.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a>, which gets called
+in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="dival.StandardLearnedReconstructor.init_scheduler">
 <code class="sig-name descname">init_scheduler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_train</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_scheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor.init_scheduler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the learning rate scheduler.
@@ -1968,6 +1993,34 @@ Called in <a class="reference internal" href="#dival.StandardLearnedReconstructo
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt id="dival.StandardLearnedReconstructor.scheduler">
+<em class="property">property </em><code class="sig-name descname">scheduler</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.scheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>torch learning rate scheduler:
+The scheduler, usually set by <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_scheduler" title="dival.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>, which gets called
+in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.StandardLearnedReconstructor.batch_size">
+<em class="property">property </em><code class="sig-name descname">batch_size</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.StandardLearnedReconstructor.epochs">
+<em class="property">property </em><code class="sig-name descname">epochs</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.epochs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.StandardLearnedReconstructor.lr">
+<em class="property">property </em><code class="sig-name descname">lr</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.lr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.StandardLearnedReconstructor.normalize_by_opnorm">
+<em class="property">property </em><code class="sig-name descname">normalize_by_opnorm</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.normalize_by_opnorm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt id="dival.StandardLearnedReconstructor.save_learned_params">
@@ -2015,26 +2068,6 @@ Convert to plain weight names.</p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="dival.StandardLearnedReconstructor.batch_size">
-<em class="property">property </em><code class="sig-name descname">batch_size</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.batch_size" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.StandardLearnedReconstructor.epochs">
-<em class="property">property </em><code class="sig-name descname">epochs</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.epochs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.StandardLearnedReconstructor.lr">
-<em class="property">property </em><code class="sig-name descname">lr</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.lr" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.StandardLearnedReconstructor.normalize_by_opnorm">
-<em class="property">property </em><code class="sig-name descname">normalize_by_opnorm</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.normalize_by_opnorm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
