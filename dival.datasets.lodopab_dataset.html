@@ -222,8 +222,26 @@ For simulation, a ray transform with parallel beam geometry using 1000
 angles and 513 detector pixels is used. Poisson noise corresponding to 4096
 incident photons per pixel before attenuation is applied to the projection
 data. The images have a size of 362x362 px.</p>
-<p>A ray transform that corresponds to the noiseless forward operator is
-available via the <cite>get_ray_trafo</cite> method of this dataset.</p>
+<p>An ODL ray transform that corresponds to the noiseless forward operator can
+be obtained via the <cite>get_ray_trafo</cite> method of this dataset.
+Additionally, the <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.ray_trafo" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.ray_trafo"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ray_trafo</span></code></a> attribute holds a ray transform
+instance, which is created during <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.
+<em>Note:</em> By default, the <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code> implementation backend is used,
+which requires both astra and a CUDA-enabled GPU being available.
+You can choose a different backend by passing <code class="docutils literal notranslate"><span class="pre">impl='skimage'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">impl='astra_cpu'</span></code>.</p>
+<p>Further functionalities:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>converting the stored post-log observations to pre-log observations
+on the fly (cf. <cite>observation_model</cite> parameter of <a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>)</p></li>
+<li><p>sorting by patient ids (cf. <code class="docutils literal notranslate"><span class="pre">sorted_by_patient</span></code> parameter of
+<a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>)</p></li>
+<li><p>changing the zero photon count replacement value of <code class="docutils literal notranslate"><span class="pre">0.1</span></code> used for
+pre-log observations (cf. <code class="docutils literal notranslate"><span class="pre">min_photon_count</span></code> parameter of
+<a class="reference internal" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__" title="dival.datasets.lodopab_dataset.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>)</p></li>
+</ul>
+</div></blockquote>
 <dl class="py attribute">
 <dt id="dival.datasets.lodopab_dataset.LoDoPaBDataset.space">
 <code class="sig-name descname">space</code><a class="headerlink" href="#dival.datasets.lodopab_dataset.LoDoPaBDataset.space" title="Permalink to this definition">¶</a></dt>

@@ -610,7 +610,7 @@ is used (the default).</p></li>
 
 <dl class="py method">
 <dt id="dival.Dataset.create_torch_dataset">
-<code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a torch dataset wrapper for one part of this dataset.</p>
 <p>If <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, samples are
 fetched from <a class="reference internal" href="#dival.Dataset.generator" title="dival.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>. The index passed to
@@ -627,6 +627,8 @@ multiple workers.</p>
 <li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
 <li><p><strong>reshape</strong> (tuple of (tuple or <cite>None</cite>), optional) – Shapes to which the elements of each sample will be reshaped.
 If <cite>None</cite> is passed for an element, no reshape is applied.</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – Transform to be applied on each sample, useful for augmentation.
+Default: <cite>None</cite>, i.e. no transform.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1955,18 +1957,42 @@ The forward operator, normalized if
 </dd></dl>
 
 <dl class="py method">
+<dt id="dival.StandardLearnedReconstructor.init_transform">
+<code class="sig-name descname">init_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor.init_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the transform that is applied on each sample, e.g. for data
+augmentation.
+This default implementation disables the transform by assigning <cite>None</cite>.
+Called in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> at the beginning, i.e. before calling
+<a class="reference internal" href="#dival.StandardLearnedReconstructor.init_model" title="dival.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a>, <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_optimizer" title="dival.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a> and <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_scheduler" title="dival.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a>) – The dival dataset passed to <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.StandardLearnedReconstructor.transform">
+<em class="property">property </em><code class="sig-name descname">transform</code><a class="headerlink" href="#dival.StandardLearnedReconstructor.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>callable:
+Transform that is applied on each sample, usually set by
+<a class="reference internal" href="#dival.StandardLearnedReconstructor.init_transform" title="dival.StandardLearnedReconstructor.init_transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_transform()</span></code></a>, which gets called in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="dival.StandardLearnedReconstructor.init_model">
 <code class="sig-name descname">init_model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor.init_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize <a class="reference internal" href="#dival.StandardLearnedReconstructor.model" title="dival.StandardLearnedReconstructor.model"><code class="xref py py-attr docutils literal notranslate"><span class="pre">model</span></code></a>.
-Called in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> at the beginning.</p>
+Called in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> after calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_transform" title="dival.StandardLearnedReconstructor.init_transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_transform()</span></code></a>, but
+before calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_optimizer" title="dival.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a> and <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_scheduler" title="dival.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="dival.StandardLearnedReconstructor.init_optimizer">
 <code class="sig-name descname">init_optimizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_train</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor.init_optimizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the optimizer.
-Called in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>, after calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_model" title="dival.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a> and before
-calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_scheduler" title="dival.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>.</p>
+Called in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>, after calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_transform" title="dival.StandardLearnedReconstructor.init_transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_transform()</span></code></a> and
+<a class="reference internal" href="#dival.StandardLearnedReconstructor.init_model" title="dival.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a>, but before calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_scheduler" title="dival.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>dataset_train</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code>) – The training (torch) dataset constructed in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
@@ -1986,7 +2012,8 @@ in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train
 <dt id="dival.StandardLearnedReconstructor.init_scheduler">
 <code class="sig-name descname">init_scheduler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_train</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_scheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor.init_scheduler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the learning rate scheduler.
-Called in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>, after calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_optimizer" title="dival.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a>.</p>
+Called in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>, after calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_transform" title="dival.StandardLearnedReconstructor.init_transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_transform()</span></code></a>,
+<a class="reference internal" href="#dival.StandardLearnedReconstructor.init_model" title="dival.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a> and <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_optimizer" title="dival.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>dataset_train</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code>) – The training (torch) dataset constructed in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>

@@ -478,7 +478,7 @@
         <span class="n">data_pairs</span> <span class="o">=</span> <span class="n">DataPairs</span><span class="p">(</span><span class="n">observations</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data_pairs</span></div>
 
-<div class="viewcode-block" id="Dataset.create_torch_dataset"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.create_torch_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">create_torch_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.create_torch_dataset"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.Dataset.create_torch_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">create_torch_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a torch dataset wrapper for one part of this dataset.</span>
 
@@ -500,17 +500,22 @@
 <span class="sd">        reshape : tuple of (tuple or `None`), optional</span>
 <span class="sd">            Shapes to which the elements of each sample will be reshaped.</span>
 <span class="sd">            If `None` is passed for an element, no reshape is applied.</span>
+<span class="sd">        transform : callable, optional</span>
+<span class="sd">            Transform to be applied on each sample, useful for augmentation.</span>
+<span class="sd">            Default: `None`, i.e. no transform.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">TorchDataset</span>
         <span class="kn">import</span> <span class="nn">torch</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">supports_random_access</span><span class="p">():</span>
             <span class="k">class</span> <span class="nc">RandomAccessTorchDataset</span><span class="p">(</span><span class="n">TorchDataset</span><span class="p">):</span>
-                <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">part</span> <span class="o">=</span> <span class="n">part</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">reshape</span> <span class="o">=</span> <span class="n">reshape</span> <span class="ow">or</span> <span class="p">(</span>
                         <span class="p">(</span><span class="kc">None</span><span class="p">,)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_num_elements_per_sample</span><span class="p">())</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
 
                 <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">part</span><span class="p">)</span>
@@ -526,18 +531,24 @@
                         <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                             <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
                         <span class="n">tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-                    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensors</span><span class="p">)</span> <span class="k">if</span> <span class="n">mult_elem</span> <span class="k">else</span> <span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">sample</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensors</span><span class="p">)</span> <span class="k">if</span> <span class="n">mult_elem</span> <span class="k">else</span> <span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">sample</span>
 
-            <span class="n">dataset</span> <span class="o">=</span> <span class="n">RandomAccessTorchDataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="n">reshape</span><span class="p">)</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">RandomAccessTorchDataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="n">reshape</span><span class="p">,</span>
+                                               <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">class</span> <span class="nc">GeneratorTorchDataset</span><span class="p">(</span><span class="n">TorchDataset</span><span class="p">):</span>
-                <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">part</span> <span class="o">=</span> <span class="n">part</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">part</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">part</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">reshape</span> <span class="o">=</span> <span class="n">reshape</span> <span class="ow">or</span> <span class="p">(</span>
                         <span class="p">(</span><span class="kc">None</span><span class="p">,)</span> <span class="o">*</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_num_elements_per_sample</span><span class="p">())</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
 
                 <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
@@ -557,9 +568,13 @@
                         <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                             <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
                         <span class="n">tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-                    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensors</span><span class="p">)</span> <span class="k">if</span> <span class="n">mult_elem</span> <span class="k">else</span> <span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">sample</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensors</span><span class="p">)</span> <span class="k">if</span> <span class="n">mult_elem</span> <span class="k">else</span> <span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">sample</span>
 
-            <span class="n">dataset</span> <span class="o">=</span> <span class="n">GeneratorTorchDataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="n">reshape</span><span class="p">)</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">GeneratorTorchDataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="n">reshape</span><span class="p">,</span>
+                                            <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">dataset</span></div>
 
@@ -798,6 +813,11 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Dataset of pairs generated from a ground truth generator by applying a</span>
 <span class="sd">    forward operator and noise.</span>
+
+<span class="sd">    *NB:* This dataset class does not allow for random access. Supporting</span>
+<span class="sd">    random access would require to restore the same random generator state each</span>
+<span class="sd">    time the same sample is being accessed if a fixed noise realization should</span>
+<span class="sd">    be used for each sample.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="ObservationGroundTruthPairDataset.__init__"><a class="viewcode-back" href="../../../dival.datasets.dataset.html#dival.ObservationGroundTruthPairDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ground_truth_gen</span><span class="p">,</span> <span class="n">forward_op</span><span class="p">,</span> <span class="n">post_processor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">train_len</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validation_len</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_len</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>

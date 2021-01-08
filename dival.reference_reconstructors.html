@@ -251,7 +251,9 @@ configurations are available.</p>
 <dl class="py function">
 <dt id="dival.reference_reconstructors.construct_reconstructor">
 <code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">construct_reconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#construct_reconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.construct_reconstructor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct reference reconstructor.</p>
+<dd><p>Construct reference reconstructor object (not loading parameters).</p>
+<p>Note: see :func:get_reference_reconstructor to retrieve a reference
+reconstructor with optimized parameters.</p>
 <p>This function implements the constructors calls which are potentially
 specific to each configuration.</p>
 <dl class="field-list simple">

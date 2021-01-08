@@ -215,17 +215,91 @@ problems written in python.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a>([space])</p></td>
 <td><p>Dataset base class.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reconstructor</span></code></a>([reco_space, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="dival.reference_reconstructors.html#dival.reference_reconstructors.get_reference_reconstructor" title="dival.reference_reconstructors.get_reference_reconstructor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_reference_reconstructor</span></code></a>(…[, pretrained])</p></td>
+<td><p>Return a reference reconstructor.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.Reconstructor" title="dival.reconstructors.reconstructor.Reconstructor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reconstructor</span></code></a>([reco_space, …])</p></td>
 <td><p>Abstract reconstructor base class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Measure</span></code></a>([short_name])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="dival.measure.html#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Measure</span></code></a>([short_name])</p></td>
 <td><p>Abstract base class for measures used for evaluation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dival.evaluation.html#dival.evaluation.TaskTable" title="dival.evaluation.TaskTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TaskTable</span></code></a>([name])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="dival.evaluation.html#dival.evaluation.TaskTable" title="dival.evaluation.TaskTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TaskTable</span></code></a>([name])</p></td>
 <td><p>Task table containing reconstruction tasks to evaluate.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="section" id="standard-datasets">
+<h2>Standard datasets<a class="headerlink" href="#standard-datasets" title="Permalink to this headline">¶</a></h2>
+<p>One main goal of this library is to provide public standard datasets suitable
+for deep learning.
+Currently, the following datasets are included:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code>:</dt><dd><p>A typical synthetical CT dataset with ellipse phantoms.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'lodopab'</span></code>:</dt><dd><p>The public <a class="reference external" href="https://doi.org/10.5281/zenodo.3384092">LoDoPaB-CT dataset</a>,
+based on real CT reconstructions from the public
+<a class="reference external" href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">LIDC-IDRI</a>
+dataset. See also the
+<a class="reference internal" href="dival.datasets.lodopab_dataset.html#dival.datasets.lodopab_dataset.LoDoPaBDataset" title="dival.datasets.lodopab_dataset.LoDoPaBDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoDoPaBDataset</span></code></a> class.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>These datasets can be accessed by calling <a class="reference internal" href="dival.html#dival.get_standard_dataset" title="dival.get_standard_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">dival.get_standard_dataset()</span></code></a>,
+e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dival</span> <span class="kn">import</span> <span class="n">get_standard_dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">get_standard_dataset</span><span class="p">(</span><span class="s1">&#39;ellipses&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>Note on astra and CUDA:</em> The CT datasets come with a <code class="docutils literal notranslate"><span class="pre">ray_trafo</span></code> attribute
+providing the forward operator.
+There are different backend implementations for it, the default is
+<code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>. This requires both the
+<a class="reference external" href="https://www.astra-toolbox.com/">astra-toolbox</a> and a CUDA-enabled GPU being
+available. In order to use the (slow) scikit-image backend instead, you can
+pass <code class="docutils literal notranslate"><span class="pre">impl='skimage'</span></code> to <code class="docutils literal notranslate"><span class="pre">get_standard_dataset</span></code>. If astra is available but
+CUDA is not, <code class="docutils literal notranslate"><span class="pre">impl='astra_cpu'</span></code> is preferred.
+The latest development version of astra can be installed with
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">astra-toolbox</span> <span class="pre">-c</span> <span class="pre">astra-toolbox/label/dev</span></code>.</p>
+</div>
+<div class="section" id="reference-reconstructors">
+<h2>Reference reconstructors<a class="headerlink" href="#reference-reconstructors" title="Permalink to this headline">¶</a></h2>
+<p>For some reconstructor classes on some standard datasets reference
+configurations are provided.
+These configurations include hyper parameters and pretrained learned parameters
+for a <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">LearnedReconstructor</span></code></a>.</p>
+<p>A reference reconstructor can be retrieved by calling
+<a class="reference internal" href="dival.html#dival.get_reference_reconstructor" title="dival.get_reference_reconstructor"><code class="xref py py-func docutils literal notranslate"><span class="pre">dival.get_reference_reconstructor()</span></code></a>, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dival</span> <span class="kn">import</span> <span class="n">get_reference_reconstructor</span>
+<span class="n">reconstructor</span> <span class="o">=</span> <span class="n">get_reference_reconstructor</span><span class="p">(</span><span class="s1">&#39;fbp&#39;</span><span class="p">,</span> <span class="s1">&#39;ellipses&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We are happy to receive your feedback (e.g. via
+<a class="reference external" href="https://github.com/jleuschn/dival/issues">github issues</a>) if you think a
+reference configuration should be improved or another reconstructor should be
+included.</p>
+</div>
+<div class="section" id="metrics-for-image-reconstruction">
+<h2>Metrics for image reconstruction<a class="headerlink" href="#metrics-for-image-reconstruction" title="Permalink to this headline">¶</a></h2>
+<p>To evaluate image reconstruction performance on datasets that include ground
+truth images, full-reference methods like <a class="reference internal" href="dival.measure.html#dival.measure.PSNR" title="dival.measure.PSNR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PSNR</span></code></a> and
+<a class="reference internal" href="dival.measure.html#dival.measure.SSIM" title="dival.measure.SSIM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SSIM</span></code></a> can be used.</p>
+<p>Both PSNR and SSIM depend on the data range, which is the difference between
+the maximum and the minimum possible values.
+While e.g. <a class="reference external" href="https://scikit-image.org/">scikit-image</a>
+uses a global data range of <code class="docutils literal notranslate"><span class="pre">1.0</span></code> for PSNR and <code class="docutils literal notranslate"><span class="pre">2.0</span></code> for SSIM by default
+(in case of a floating point data type), an image-dependent default value is
+used in dival. If no data range is specified explicitly, it is determined as
+<code class="docutils literal notranslate"><span class="pre">np.max(gt)-np.min(gt)</span></code> from the respective ground truth image <code class="docutils literal notranslate"><span class="pre">gt</span></code>.
+While we consider it to be a drawback of this approach that the metric differs
+for different ground truth images, it has the benefit to be quite flexible
+in absence of a priori knowledge. If known, we recommend specifying the data
+range explicitly.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -331,6 +405,7 @@ problems written in python.</p>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.zenodo_download.html">dival.util.zenodo_download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
+</div>
 </div>
 </div>
 

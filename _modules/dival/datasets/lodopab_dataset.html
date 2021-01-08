@@ -285,8 +285,24 @@
 <span class="sd">    incident photons per pixel before attenuation is applied to the projection</span>
 <span class="sd">    data. The images have a size of 362x362 px.</span>
 
-<span class="sd">    A ray transform that corresponds to the noiseless forward operator is</span>
-<span class="sd">    available via the `get_ray_trafo` method of this dataset.</span>
+<span class="sd">    An ODL ray transform that corresponds to the noiseless forward operator can</span>
+<span class="sd">    be obtained via the `get_ray_trafo` method of this dataset.</span>
+<span class="sd">    Additionally, the :attr:`ray_trafo` attribute holds a ray transform</span>
+<span class="sd">    instance, which is created during :meth:`__init__`.</span>
+<span class="sd">    *Note:* By default, the ``&#39;astra_cuda&#39;`` implementation backend is used,</span>
+<span class="sd">    which requires both astra and a CUDA-enabled GPU being available.</span>
+<span class="sd">    You can choose a different backend by passing ``impl=&#39;skimage&#39;`` or</span>
+<span class="sd">    ``impl=&#39;astra_cpu&#39;``.</span>
+
+<span class="sd">    Further functionalities:</span>
+
+<span class="sd">        * converting the stored post-log observations to pre-log observations</span>
+<span class="sd">          on the fly (cf. `observation_model` parameter of :meth:`__init__`)</span>
+<span class="sd">        * sorting by patient ids (cf. ``sorted_by_patient`` parameter of</span>
+<span class="sd">          :meth:`__init__`)</span>
+<span class="sd">        * changing the zero photon count replacement value of ``0.1`` used for</span>
+<span class="sd">          pre-log observations (cf. ``min_photon_count`` parameter of</span>
+<span class="sd">          :meth:`__init__`)</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>

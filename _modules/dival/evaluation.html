@@ -470,7 +470,8 @@
                                     <span class="n">row</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">])</span>
                                 <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                                     <span class="k">for</span> <span class="n">row_iterates</span><span class="p">,</span> <span class="n">iterations</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
-                                            <span class="n">rows_iterates</span><span class="p">,</span> <span class="n">return_rows_iterates</span><span class="p">):</span>
+                                            <span class="n">rows_iterates</span><span class="p">,</span>
+                                            <span class="n">return_rows_iterates</span><span class="p">):</span>
                                         <span class="n">best_loss</span> <span class="o">=</span> <span class="n">save_if_best_reconstructor</span><span class="p">(</span>
                                             <span class="n">row_iterates</span><span class="p">[</span><span class="s1">&#39;measure_values&#39;</span><span class="p">],</span>
                                             <span class="n">iterations</span><span class="o">=</span><span class="n">iterations</span><span class="p">)</span>
@@ -515,7 +516,7 @@
         <span class="c1"># row [, rows_iterates] : dict or (dict, list of dict)</span>
         <span class="c1">#     The resulting row, and if `return_rows_iterates` is specified,</span>
         <span class="c1">#     as second output a list of rows for the iterates.</span>
-        <span class="n">reconstructions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">reconstructions</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">save_reconstructions</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">IterativeReconstructor</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">save_iterates</span><span class="p">:</span>
                 <span class="n">iterates</span> <span class="o">=</span> <span class="p">[]</span>
@@ -524,6 +525,8 @@
             <span class="n">save_iterates_step</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;save_iterates_step&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">iterates_for_rows</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">measure_values</span> <span class="o">=</span> <span class="p">{</span><span class="n">m</span><span class="o">.</span><span class="n">short_name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">}</span>
 
         <span class="k">for</span> <span class="n">observation</span><span class="p">,</span> <span class="n">ground_truth</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">observations</span><span class="p">,</span>
                                              <span class="n">test_data</span><span class="o">.</span><span class="n">ground_truth</span><span class="p">):</span>
@@ -571,13 +574,13 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">reconstruction</span> <span class="o">=</span> <span class="n">reconstructor</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
 
-            <span class="n">reconstructions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reconstruction</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">:</span>
+                <span class="n">measure_values</span><span class="p">[</span><span class="n">measure</span><span class="o">.</span><span class="n">short_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">measure</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">reconstruction</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">))</span>
+            
+            <span class="k">if</span> <span class="n">save_reconstructions</span><span class="p">:</span>
+                <span class="n">reconstructions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reconstruction</span><span class="p">)</span>
 
-        <span class="n">measure_values</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">:</span>
-            <span class="n">measure_values</span><span class="p">[</span><span class="n">measure</span><span class="o">.</span><span class="n">short_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">measure</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
-                    <span class="n">reconstructions</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">ground_truth</span><span class="p">)]</span>
         <span class="n">misc</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reconstructor</span><span class="p">,</span> <span class="n">IterativeReconstructor</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">save_iterates</span><span class="p">:</span>
@@ -592,8 +595,6 @@
                <span class="s1">&#39;test_data&#39;</span><span class="p">:</span> <span class="n">test_data</span><span class="p">,</span>
                <span class="s1">&#39;measure_values&#39;</span><span class="p">:</span> <span class="n">measure_values</span><span class="p">,</span>
                <span class="s1">&#39;misc&#39;</span><span class="p">:</span> <span class="n">misc</span><span class="p">}</span>
-        <span class="k">if</span> <span class="n">save_reconstructions</span><span class="p">:</span>
-            <span class="n">row</span><span class="p">[</span><span class="s1">&#39;reconstructions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reconstructions</span>
         <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># create rows for iterates given by return_rows_iterates</span>
             <span class="n">rows_iterates</span> <span class="o">=</span> <span class="p">[]</span>
@@ -628,6 +629,8 @@
                                 <span class="s1">&#39;test_data&#39;</span><span class="p">:</span> <span class="n">test_data</span><span class="p">,</span>
                                 <span class="s1">&#39;measure_values&#39;</span><span class="p">:</span> <span class="n">measure_values_iterates</span><span class="p">,</span>
                                 <span class="s1">&#39;misc&#39;</span><span class="p">:</span> <span class="n">misc_iterates</span><span class="p">}</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">save_reconstructions</span><span class="p">:</span>
+                    <span class="n">row_iterates</span><span class="p">[</span><span class="s1">&#39;reconstructions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="n">rows_iterates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row_iterates</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">row</span> <span class="k">if</span> <span class="n">return_rows_iterates</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">rows_iterates</span><span class="p">)</span>
 

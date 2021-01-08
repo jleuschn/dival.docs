@@ -354,10 +354,14 @@
 <div class="viewcode-block" id="StandardLearnedReconstructor.train"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_manual_seed</span><span class="p">:</span>
             <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">torch_manual_seed</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_transform</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>
+
         <span class="c1"># create PyTorch datasets</span>
         <span class="n">dataset_train</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">create_torch_dataset</span><span class="p">(</span>
             <span class="n">part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="n">dataset</span><span class="o">.</span><span class="n">space</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
-                                   <span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="n">dataset</span><span class="o">.</span><span class="n">space</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+                                   <span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="n">dataset</span><span class="o">.</span><span class="n">space</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_transform</span><span class="p">)</span>
 
         <span class="n">dataset_validation</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">create_torch_dataset</span><span class="p">(</span>
             <span class="n">part</span><span class="o">=</span><span class="s1">&#39;validation&#39;</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="n">dataset</span><span class="o">.</span><span class="n">space</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
@@ -509,18 +513,47 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best val psnr: </span><span class="si">{:4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">best_psnr</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">best_model_wts</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="StandardLearnedReconstructor.init_transform"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.init_transform">[docs]</a>    <span class="k">def</span> <span class="nf">init_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the transform that is applied on each sample, e.g. for data</span>
+<span class="sd">        augmentation.</span>
+<span class="sd">        This default implementation disables the transform by assigning `None`.</span>
+<span class="sd">        Called in :meth:`train` at the beginning, i.e. before calling</span>
+<span class="sd">        :meth:`init_model`, :meth:`init_optimizer` and :meth:`init_scheduler`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset : :class:`dival.datasets.dataset.Dataset`</span>
+<span class="sd">            The dival dataset passed to :meth:`train`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        callable :</span>
+<span class="sd">        Transform that is applied on each sample, usually set by</span>
+<span class="sd">        :meth:`init_transform`, which gets called in :meth:`train`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span>
+
+    <span class="nd">@transform</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span> <span class="o">=</span> <span class="n">value</span>
+
 <div class="viewcode-block" id="StandardLearnedReconstructor.init_model"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.init_model">[docs]</a>    <span class="k">def</span> <span class="nf">init_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize :attr:`model`.</span>
-<span class="sd">        Called in :meth:`train` at the beginning.</span>
+<span class="sd">        Called in :meth:`train` after calling :meth:`init_transform`, but</span>
+<span class="sd">        before calling :meth:`init_optimizer` and :meth:`init_scheduler`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="StandardLearnedReconstructor.init_optimizer"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.init_optimizer">[docs]</a>    <span class="k">def</span> <span class="nf">init_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_train</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the optimizer.</span>
-<span class="sd">        Called in :meth:`train`, after calling :meth:`init_model` and before</span>
-<span class="sd">        calling :meth:`init_scheduler`.</span>
+<span class="sd">        Called in :meth:`train`, after calling :meth:`init_transform` and</span>
+<span class="sd">        :meth:`init_model`, but before calling :meth:`init_scheduler`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -545,7 +578,8 @@
 <div class="viewcode-block" id="StandardLearnedReconstructor.init_scheduler"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.init_scheduler">[docs]</a>    <span class="k">def</span> <span class="nf">init_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_train</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the learning rate scheduler.</span>
-<span class="sd">        Called in :meth:`train`, after calling :meth:`init_optimizer`.</span>
+<span class="sd">        Called in :meth:`train`, after calling :meth:`init_transform`,</span>
+<span class="sd">        :meth:`init_model` and :meth:`init_optimizer`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

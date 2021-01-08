@@ -256,7 +256,8 @@ If <cite>None</cite> is passed, the matrix is computed in <a class="reference in
 <dt id="dival.reconstructors.iradonmap_reconstructor.IRadonMapReconstructor.init_model">
 <code class="sig-name descname">init_model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/iradonmap_reconstructor.html#IRadonMapReconstructor.init_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.iradonmap_reconstructor.IRadonMapReconstructor.init_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize <code class="xref py py-attr docutils literal notranslate"><span class="pre">model</span></code>.
-Called in <code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code> at the beginning.</p>
+Called in <code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code> after calling <code class="xref py py-meth docutils literal notranslate"><span class="pre">init_transform()</span></code>, but
+before calling <code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">

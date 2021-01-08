@@ -295,8 +295,11 @@
 <div class="viewcode-block" id="construct_reconstructor"><a class="viewcode-back" href="../../dival.reference_reconstructors.html#dival.construct_reconstructor">[docs]</a><span class="k">def</span> <span class="nf">construct_reconstructor</span><span class="p">(</span><span class="n">reconstructor_key_name_or_type</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span>
                             <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Construct reference reconstructor.</span>
-<span class="sd">    </span>
+<span class="sd">    Construct reference reconstructor object (not loading parameters).</span>
+
+<span class="sd">    Note: see :func:get_reference_reconstructor to retrieve a reference</span>
+<span class="sd">    reconstructor with optimized parameters.</span>
+
 <span class="sd">    This function implements the constructors calls which are potentially</span>
 <span class="sd">    specific to each configuration.</span>
 

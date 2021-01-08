@@ -642,7 +642,7 @@ is used (the default).</p></li>
 
 <dl class="py method">
 <dt id="dival.datasets.Dataset.create_torch_dataset">
-<code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a torch dataset wrapper for one part of this dataset.</p>
 <p>If <a class="reference internal" href="#dival.datasets.Dataset.supports_random_access" title="dival.datasets.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, samples are
 fetched from <a class="reference internal" href="#dival.datasets.Dataset.generator" title="dival.datasets.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>. The index passed to
@@ -659,6 +659,8 @@ multiple workers.</p>
 <li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
 <li><p><strong>reshape</strong> (tuple of (tuple or <cite>None</cite>), optional) – Shapes to which the elements of each sample will be reshaped.
 If <cite>None</cite> is passed for an element, no reshape is applied.</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – Transform to be applied on each sample, useful for augmentation.
+Default: <cite>None</cite>, i.e. no transform.</p></li>
 </ul>
 </dd>
 </dl>
@@ -822,6 +824,10 @@ functionality may depend on it.</p>
 <dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
 <p>Dataset of pairs generated from a ground truth generator by applying a
 forward operator and noise.</p>
+<p><em>NB:</em> This dataset class does not allow for random access. Supporting
+random access would require to restore the same random generator state each
+time the same sample is being accessed if a fixed noise realization should
+be used for each sample.</p>
 <dl class="py method">
 <dt id="dival.datasets.ObservationGroundTruthPairDataset.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ground_truth_gen</span></em>, <em class="sig-param"><span class="n">forward_op</span></em>, <em class="sig-param"><span class="n">post_processor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">train_len</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">validation_len</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">test_len</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">domain</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">noise_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">noise_kwargs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">noise_seeds</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#ObservationGroundTruthPairDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.ObservationGroundTruthPairDataset.__init__" title="Permalink to this definition">¶</a></dt>
@@ -983,8 +989,26 @@ For simulation, a ray transform with parallel beam geometry using 1000
 angles and 513 detector pixels is used. Poisson noise corresponding to 4096
 incident photons per pixel before attenuation is applied to the projection
 data. The images have a size of 362x362 px.</p>
-<p>A ray transform that corresponds to the noiseless forward operator is
-available via the <cite>get_ray_trafo</cite> method of this dataset.</p>
+<p>An ODL ray transform that corresponds to the noiseless forward operator can
+be obtained via the <cite>get_ray_trafo</cite> method of this dataset.
+Additionally, the <a class="reference internal" href="#dival.datasets.LoDoPaBDataset.ray_trafo" title="dival.datasets.LoDoPaBDataset.ray_trafo"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ray_trafo</span></code></a> attribute holds a ray transform
+instance, which is created during <a class="reference internal" href="#dival.datasets.LoDoPaBDataset.__init__" title="dival.datasets.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.
+<em>Note:</em> By default, the <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code> implementation backend is used,
+which requires both astra and a CUDA-enabled GPU being available.
+You can choose a different backend by passing <code class="docutils literal notranslate"><span class="pre">impl='skimage'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">impl='astra_cpu'</span></code>.</p>
+<p>Further functionalities:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>converting the stored post-log observations to pre-log observations
+on the fly (cf. <cite>observation_model</cite> parameter of <a class="reference internal" href="#dival.datasets.LoDoPaBDataset.__init__" title="dival.datasets.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>)</p></li>
+<li><p>sorting by patient ids (cf. <code class="docutils literal notranslate"><span class="pre">sorted_by_patient</span></code> parameter of
+<a class="reference internal" href="#dival.datasets.LoDoPaBDataset.__init__" title="dival.datasets.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>)</p></li>
+<li><p>changing the zero photon count replacement value of <code class="docutils literal notranslate"><span class="pre">0.1</span></code> used for
+pre-log observations (cf. <code class="docutils literal notranslate"><span class="pre">min_photon_count</span></code> parameter of
+<a class="reference internal" href="#dival.datasets.LoDoPaBDataset.__init__" title="dival.datasets.LoDoPaBDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>)</p></li>
+</ul>
+</div></blockquote>
 <dl class="py attribute">
 <dt id="dival.datasets.LoDoPaBDataset.space">
 <code class="sig-name descname">space</code><a class="headerlink" href="#dival.datasets.LoDoPaBDataset.space" title="Permalink to this definition">¶</a></dt>

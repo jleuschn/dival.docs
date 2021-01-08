@@ -463,7 +463,7 @@ is used (the default).</p></li>
 
 <dl class="py method">
 <dt id="dival.datasets.dataset.Dataset.create_torch_dataset">
-<code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.dataset.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.dataset.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a torch dataset wrapper for one part of this dataset.</p>
 <p>If <a class="reference internal" href="#dival.datasets.dataset.Dataset.supports_random_access" title="dival.datasets.dataset.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, samples are
 fetched from <a class="reference internal" href="#dival.datasets.dataset.Dataset.generator" title="dival.datasets.dataset.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>. The index passed to
@@ -480,6 +480,8 @@ multiple workers.</p>
 <li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
 <li><p><strong>reshape</strong> (tuple of (tuple or <cite>None</cite>), optional) – Shapes to which the elements of each sample will be reshaped.
 If <cite>None</cite> is passed for an element, no reshape is applied.</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – Transform to be applied on each sample, useful for augmentation.
+Default: <cite>None</cite>, i.e. no transform.</p></li>
 </ul>
 </dd>
 </dl>
@@ -617,6 +619,10 @@ performed which tries to get the first sample by random access.</p>
 <dd><p>Bases: <a class="reference internal" href="#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
 <p>Dataset of pairs generated from a ground truth generator by applying a
 forward operator and noise.</p>
+<p><em>NB:</em> This dataset class does not allow for random access. Supporting
+random access would require to restore the same random generator state each
+time the same sample is being accessed if a fixed noise realization should
+be used for each sample.</p>
 <dl class="py method">
 <dt id="dival.datasets.dataset.ObservationGroundTruthPairDataset.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ground_truth_gen</span></em>, <em class="sig-param"><span class="n">forward_op</span></em>, <em class="sig-param"><span class="n">post_processor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">train_len</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">validation_len</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">test_len</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">domain</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">noise_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">noise_kwargs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">noise_seeds</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#ObservationGroundTruthPairDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.dataset.ObservationGroundTruthPairDataset.__init__" title="Permalink to this definition">¶</a></dt>
