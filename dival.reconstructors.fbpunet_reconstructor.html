@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -203,7 +203,7 @@
 <span id="dival-reconstructors-fbpunet-reconstructor-module"></span><h1>dival.reconstructors.fbpunet_reconstructor module<a class="headerlink" href="#module-dival.reconstructors.fbpunet_reconstructor" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbpunet_reconstructor.</code><code class="sig-name descname">FBPUNetReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbpunet_reconstructor.html#FBPUNetReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.fbpunet_reconstructor.</code><code class="sig-name descname">FBPUNetReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">allow_multiple_workers_without_random_access</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbpunet_reconstructor.html#FBPUNetReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.standard_learned_reconstructor.html#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor</span></code></a></p>
 <p>CT reconstructor applying filtered back-projection followed by a
 postprocessing U-Net (e.g. <a class="footnote-reference brackets" href="#id2" id="id1">1</a>).</p>
@@ -223,11 +223,15 @@ IEEE Transactions on Image Processing.
 
 <dl class="py method">
 <dt id="dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbpunet_reconstructor.html#FBPUNetReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="n">allow_multiple_workers_without_random_access</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/fbpunet_reconstructor.html#FBPUNetReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>) – Ray transform (the forward operator).</p></li>
+<li><p><strong>allow_multiple_workers_without_random_access</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether for datasets without support for random access
+a specification of <code class="docutils literal notranslate"><span class="pre">num_data_loader_workers</span> <span class="pre">&gt;</span> <span class="pre">1</span></code> is honored.
+If <cite>False</cite> (the default), the value is overridden by <code class="docutils literal notranslate"><span class="pre">1</span></code> for
+generator-only datasets.</p></li>
 <li><p><strong>keyword arguments are passed to super</strong><strong>(</strong><strong>)</strong><strong>__init__</strong><strong>(</strong><strong>)</strong><strong></strong> (<em>Further</em>) – </p></li>
 </ul>
 </dd>

@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -269,10 +269,17 @@ Supported parameters for the datasets are:</p>
 <blockquote>
 <div><dl>
 <dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><dl>
-<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></p>
+<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>
+Default: <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>.</p>
 </dd>
 <dt>fixed_seeds<span class="classifier">dict or bool, optional</span></dt><dd><p>Seeds to use for random ellipse generation, passed to
-<a class="reference internal" href="dival.datasets.ellipses_dataset.html#dival.datasets.ellipses_dataset.EllipsesDataset" title="dival.datasets.ellipses_dataset.EllipsesDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">EllipsesDataset</span></code></a>.</p>
+<a class="reference internal" href="dival.datasets.ellipses_dataset.html#dival.datasets.ellipses_dataset.EllipsesDataset.__init__" title="dival.datasets.ellipses_dataset.EllipsesDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EllipsesDataset.__init__()</span></code></a>.
+Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt>fixed_noise_seeds<span class="classifier">dict or bool, optional</span></dt><dd><p>Seeds to use for noise generation, passed as <cite>noise_seeds</cite>
+to <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.GroundTruthDataset.create_pair_dataset" title="dival.datasets.dataset.GroundTruthDataset.create_pair_dataset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GroundTruthDataset.create_pair_dataset()</span></code></a>.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code> is passed (the default), the seeds
+<code class="docutils literal notranslate"><span class="pre">{'train':</span> <span class="pre">1,</span> <span class="pre">'validation':</span> <span class="pre">2,</span> <span class="pre">'test':</span> <span class="pre">3}</span></code> are used.</p>
 </dd>
 </dl>
 </dd>
@@ -292,7 +299,8 @@ The default is 0.1, both for <code class="docutils literal notranslate"><span cl
 Useful to resplit the dataset.
 Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </dd>
-<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></p>
+<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>
+Default: <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>.</p>
 </dd>
 </dl>
 </dd>

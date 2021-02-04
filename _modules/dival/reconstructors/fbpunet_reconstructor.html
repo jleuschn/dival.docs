@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -267,35 +267,50 @@
         <span class="p">}</span>
     <span class="p">})</span>
 
-<div class="viewcode-block" id="FBPUNetReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbpunet_reconstructor.html#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="FBPUNetReconstructor.__init__"><a class="viewcode-back" href="../../../dival.reconstructors.fbpunet_reconstructor.html#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span>
+                 <span class="n">allow_multiple_workers_without_random_access</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        ray_trafo : :class:`odl.tomo.RayTransform`</span>
 <span class="sd">            Ray transform (the forward operator).</span>
+<span class="sd">        allow_multiple_workers_without_random_access : bool, optional</span>
+<span class="sd">            Whether for datasets without support for random access</span>
+<span class="sd">            a specification of ``num_data_loader_workers &gt; 1`` is honored.</span>
+<span class="sd">            If `False` (the default), the value is overridden by ``1`` for</span>
+<span class="sd">            generator-only datasets.</span>
 
 <span class="sd">        Further keyword arguments are passed to ``super().__init__()``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allow_multiple_workers_without_random_access</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">allow_multiple_workers_without_random_access</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ray_trafo</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FBPUNetReconstructor.train"><a class="viewcode-back" href="../../../dival.reconstructors.fbpunet_reconstructor.html#dival.reconstructors.fbpunet_reconstructor.FBPUNetReconstructor.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fbp_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">fbp_dataset</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Training FBPUNetReconstructor with no cached FBP dataset.&#39;</span>
+            <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Training FBPUNetReconstructor with no cached FBP dataset. &#39;</span>
                  <span class="s1">&#39;Will compute the FBPs on the fly. For faster training, &#39;</span>
                  <span class="s1">&#39;consider precomputing the FBPs with &#39;</span>
-                 <span class="s1">&#39;`generate_fbp_cache_files(...)` and pass them to `train()` &#39;</span>
-                 <span class="s1">&#39;by setting the attribute &#39;</span>
+                 <span class="s1">&#39;`generate_fbp_cache_files(...)` and passing them to &#39;</span>
+                 <span class="s1">&#39;`train()` by setting the attribute &#39;</span>
                  <span class="s1">&#39;``dataset.fbp_dataset = get_cached_fbp_dataset(...)``.&#39;</span><span class="p">)</span>
             <span class="n">fbp_dataset</span> <span class="o">=</span> <span class="n">FBPDataset</span><span class="p">(</span>
                 <span class="n">dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_normed_op</span><span class="p">,</span> <span class="n">filter_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_type</span><span class="p">,</span>
                 <span class="n">frequency_scaling</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">frequency_scaling</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">fbp_dataset</span><span class="o">.</span><span class="n">supports_random_access</span><span class="p">():</span>
-            <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Dataset does not support random access. Shuffling will not &#39;</span>
-                 <span class="s1">&#39;work, and only 1 worker will be used for data loading.&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">num_data_loader_workers</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_multiple_workers_without_random_access</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_data_loader_workers</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Overriding number of workers with 1 for a dataset &#39;</span>
+                         <span class="s1">&#39;not supporting random access. To force a higher &#39;</span>
+                         <span class="s1">&#39;number of workers, specify &#39;</span>
+                         <span class="s1">&#39;`allow_multiple_workers_without_random_access=True` &#39;</span>
+                         <span class="s1">&#39;to `FBPUNetReconstructor.__init__()`.&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">num_data_loader_workers</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">num_data_loader_workers</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fbp_dataset</span><span class="p">)</span></div>
 

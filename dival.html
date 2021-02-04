@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -612,15 +612,18 @@ is used (the default).</p></li>
 <dt id="dival.Dataset.create_torch_dataset">
 <code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a torch dataset wrapper for one part of this dataset.</p>
-<p>If <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, samples are
-fetched from <a class="reference internal" href="#dival.Dataset.generator" title="dival.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>. The index passed to
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> of the
-returned dataset will be ignored, and parallel data loading (with
-multiple workers) is not applicable.</p>
-<p>If <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <cite>True</cite>, samples are looked
-up using <a class="reference internal" href="#dival.Dataset.get_sample" title="dival.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>. For datasets that support parallel calls
-to <a class="reference internal" href="#dival.Dataset.get_sample" title="dival.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>, the returned torch dataset can be used by
-multiple workers.</p>
+<p>If <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, a subclass of
+of <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.IterableDataset</span></code> is returned that fetches
+samples via <a class="reference internal" href="#dival.Dataset.generator" title="dival.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>.
+<em>Note:</em> When using torch’s DataLoader with multiple workers you might
+want to individually configure the datasets for each worker, see the
+<a class="reference external" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset">PyTorch docs on IterableDataset</a>.
+For this purpose it can be useful to modify the wrapped dival dataset
+in <code class="xref py py-func docutils literal notranslate"><span class="pre">worker_init_fn()</span></code>, which can be accessed there via
+<code class="docutils literal notranslate"><span class="pre">torch.utils.data.get_worker_info().dataset.dataset</span></code>.</p>
+<p>If <a class="reference internal" href="#dival.Dataset.supports_random_access" title="dival.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <cite>True</cite>, a subclass of
+of <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code> is returned that retrieves
+samples using <a class="reference internal" href="#dival.Dataset.get_sample" title="dival.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -630,6 +633,14 @@ If <cite>None</cite> is passed for an element, no reshape is applied.</p></li>
 <li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – Transform to be applied on each sample, useful for augmentation.
 Default: <cite>None</cite>, i.e. no transform.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dataset</strong> – The torch dataset wrapping this dataset.
+The wrapped dival dataset is assigned to the attribute
+<code class="docutils literal notranslate"><span class="pre">dataset.dataset</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code> or                 <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.IterableDataset</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -827,10 +838,17 @@ Supported parameters for the datasets are:</p>
 <blockquote>
 <div><dl>
 <dt><code class="docutils literal notranslate"><span class="pre">'ellipses'</span></code></dt><dd><dl>
-<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></p>
+<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>
+Default: <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>.</p>
 </dd>
 <dt>fixed_seeds<span class="classifier">dict or bool, optional</span></dt><dd><p>Seeds to use for random ellipse generation, passed to
-<a class="reference internal" href="dival.datasets.ellipses_dataset.html#dival.datasets.ellipses_dataset.EllipsesDataset" title="dival.datasets.ellipses_dataset.EllipsesDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">EllipsesDataset</span></code></a>.</p>
+<a class="reference internal" href="dival.datasets.ellipses_dataset.html#dival.datasets.ellipses_dataset.EllipsesDataset.__init__" title="dival.datasets.ellipses_dataset.EllipsesDataset.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EllipsesDataset.__init__()</span></code></a>.
+Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt>fixed_noise_seeds<span class="classifier">dict or bool, optional</span></dt><dd><p>Seeds to use for noise generation, passed as <cite>noise_seeds</cite>
+to <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.GroundTruthDataset.create_pair_dataset" title="dival.datasets.dataset.GroundTruthDataset.create_pair_dataset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GroundTruthDataset.create_pair_dataset()</span></code></a>.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code> is passed (the default), the seeds
+<code class="docutils literal notranslate"><span class="pre">{'train':</span> <span class="pre">1,</span> <span class="pre">'validation':</span> <span class="pre">2,</span> <span class="pre">'test':</span> <span class="pre">3}</span></code> are used.</p>
 </dd>
 </dl>
 </dd>
@@ -850,7 +868,8 @@ The default is 0.1, both for <code class="docutils literal notranslate"><span cl
 Useful to resplit the dataset.
 Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </dd>
-<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code></p>
+<dt>impl<span class="classifier">{<code class="docutils literal notranslate"><span class="pre">'skimage'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>},                        optional</span></dt><dd><p>Implementation passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>
+Default: <code class="docutils literal notranslate"><span class="pre">'astra_cuda'</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -1858,7 +1877,7 @@ documentation of the options.</p></li>
 
 <dl class="py class">
 <dt id="dival.StandardLearnedReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.</code><code class="sig-name descname">StandardLearnedReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log_num_validation_samples</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">save_best_learned_params_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">torch_manual_seed</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dival.</code><code class="sig-name descname">StandardLearnedReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log_num_validation_samples</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">save_best_learned_params_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">torch_manual_seed</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">shuffle</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">worker_init_fn</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.LearnedReconstructor</span></code></a></p>
 <p>Standard learned reconstructor base class.</p>
 <p>Provides a default implementation that only requires subclasses to
@@ -1904,7 +1923,7 @@ See also <a class="reference internal" href="#dival.StandardLearnedReconstructor
 
 <dl class="py method">
 <dt id="dival.StandardLearnedReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log_num_validation_samples</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">save_best_learned_params_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">torch_manual_seed</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log_num_validation_samples</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">save_best_learned_params_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">torch_manual_seed</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">shuffle</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">worker_init_fn</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1921,6 +1940,13 @@ calling <a class="reference internal" href="#dival.StandardLearnedReconstructor.
 <li><p><strong>torch_manual_seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Fixed seed to set by <code class="docutils literal notranslate"><span class="pre">torch.manual_seed</span></code> before training.
 The default is <cite>1</cite>. It can be set to <cite>None</cite> or <cite>False</cite> to disable
 the manual seed.</p></li>
+<li><p><strong>shuffle</strong> ({<code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">True</span></code>}, optional) – Whether to use shuffling when loading data.
+When <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> is specified (the default), <code class="docutils literal notranslate"><span class="pre">True</span></code> is used iff
+the dataset passed to <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> supports random access.</p></li>
+<li><p><strong>worker_init_fn</strong> (<em>callable</em><em>, </em><em>optional</em>) – Callable <cite>worker_init_fn</cite> passed to
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.utils.data.DataLoader.__init__()</span></code>, which can be used to
+configure the dataset copies for different worker instances
+(cf. <a class="reference external" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset">torch’s IterableDataset docs</a>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -1959,9 +1985,15 @@ The forward operator, normalized if
 <dl class="py method">
 <dt id="dival.StandardLearnedReconstructor.init_transform">
 <code class="sig-name descname">init_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.StandardLearnedReconstructor.init_transform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize the transform that is applied on each sample, e.g. for data
-augmentation.
-This default implementation disables the transform by assigning <cite>None</cite>.
+<dd><p>Initialize the transform (<code class="xref py py-attr docutils literal notranslate"><span class="pre">_transform</span></code>) that is applied on each
+training sample, e.g. for data augmentation.
+In the default implementation of <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>, it is passed to
+<a class="reference internal" href="#dival.Dataset.create_torch_dataset" title="dival.Dataset.create_torch_dataset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Dataset.create_torch_dataset()</span></code></a> when creating the training (but
+not the validation) torch dataset, which applies the transform to the
+(tuple of) torch tensor(s) right before returning, i.e. after reshaping
+to <code class="docutils literal notranslate"><span class="pre">(1,)</span> <span class="pre">+</span> <span class="pre">orig_shape</span></code>.</p>
+<p>The default implementation of this method disables the transform by
+assigning <cite>None</cite>.
 Called in <a class="reference internal" href="#dival.StandardLearnedReconstructor.train" title="dival.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> at the beginning, i.e. before calling
 <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_model" title="dival.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a>, <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_optimizer" title="dival.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a> and <a class="reference internal" href="#dival.StandardLearnedReconstructor.init_scheduler" title="dival.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>.</p>
 <dl class="field-list simple">

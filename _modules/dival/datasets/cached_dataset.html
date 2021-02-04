@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -404,8 +404,11 @@
             <span class="n">out_dataset</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
                 <span class="p">(</span><span class="n">out_orig</span> <span class="k">if</span> <span class="n">cache</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">False</span>
                  <span class="k">for</span> <span class="n">out_orig</span><span class="p">,</span> <span class="n">cache</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">part</span><span class="p">])))</span>
-            <span class="n">from_dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_sample</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="n">part</span><span class="p">,</span>
-                                                   <span class="n">out</span><span class="o">=</span><span class="n">out_dataset</span><span class="p">)</span>
+            <span class="n">from_dataset</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_sample</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="n">part</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out_dataset</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">o_d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">o_d</span> <span class="ow">in</span> <span class="n">out_dataset</span><span class="p">)</span> <span class="k">else</span>
+                <span class="p">(</span><span class="kc">None</span><span class="p">,)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_elements_per_sample</span><span class="p">)</span>  <span class="c1"># avoids</span>
+                                 <span class="c1"># NotImplementedError if all values are cached</span>
             <span class="n">sample</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">from_d</span><span class="p">,</span> <span class="n">cache</span><span class="p">,</span> <span class="n">out_</span><span class="p">,</span> <span class="n">space</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
                     <span class="n">from_dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">part</span><span class="p">],</span> <span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">):</span>
@@ -442,8 +445,11 @@
             <span class="n">out_dataset</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
                 <span class="p">(</span><span class="n">out_orig</span> <span class="k">if</span> <span class="n">cache</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">False</span>
                  <span class="k">for</span> <span class="n">out_orig</span><span class="p">,</span> <span class="n">cache</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">part</span><span class="p">])))</span>
-            <span class="n">from_dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="n">part</span><span class="p">,</span>
-                                                    <span class="n">out</span><span class="o">=</span><span class="n">out_dataset</span><span class="p">)</span>
+            <span class="n">from_dataset</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="n">part</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out_dataset</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">o_d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">o_d</span> <span class="ow">in</span> <span class="n">out_dataset</span><span class="p">)</span> <span class="k">else</span>
+                <span class="p">(</span><span class="kc">None</span><span class="p">,)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_elements_per_sample</span><span class="p">)</span>  <span class="c1"># avoids</span>
+                                 <span class="c1"># NotImplementedError if all values are cached</span>
             <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">from_d</span><span class="p">,</span> <span class="n">cache</span><span class="p">,</span> <span class="n">out_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">from_dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">part</span><span class="p">],</span> <span class="n">out</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">cache</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

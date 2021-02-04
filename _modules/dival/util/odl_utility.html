@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -206,6 +206,7 @@
 <span class="kn">from</span> <span class="nn">odl.solvers.util.callback</span> <span class="kn">import</span> <span class="n">Callback</span>
 <span class="kn">from</span> <span class="nn">odl.util</span> <span class="kn">import</span> <span class="n">signature_string</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">resize</span>
 
 
 <div class="viewcode-block" id="uniform_discr_element"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.uniform_discr_element">[docs]</a><span class="k">def</span> <span class="nf">uniform_discr_element</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -475,6 +476,85 @@
                    <span class="p">(</span><span class="s1">&#39;store_after_iters&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">store_after_iters</span><span class="p">,</span> <span class="p">[])]</span>
         <span class="n">inner_str</span> <span class="o">=</span> <span class="n">signature_string</span><span class="p">([],</span> <span class="n">optargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">inner_str</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ResizeOperator"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.ResizeOperator">[docs]</a><span class="k">class</span> <span class="nc">ResizeOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+<div class="viewcode-block" id="ResizeOperator.__init__"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.ResizeOperator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reco_space</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_shape</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">shape</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">space</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">element</span><span class="p">(</span>
+            <span class="n">resize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_shape</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="RayBackProjection"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.RayBackProjection">[docs]</a><span class="k">class</span> <span class="nc">RayBackProjection</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adjoint of the discrete Ray transform between L^p spaces.</span>
+
+<span class="sd">    This class is copied and modified from</span>
+<span class="sd">    `odl &lt;https://github.com/odlgroup/odl/blob/25ec783954a85c2294ad5b76414f8c7c3cd2785d/odl/tomo/operators/ray_trafo.py#L324&gt;`_.</span>
+
+<span class="sd">    This main-scope class definition is used by</span>
+<span class="sd">    :func:`patch_ray_trafo_for_pickling` to make a ray transform object</span>
+<span class="sd">    pickleable by replacing its :attr:`_adjoint` attribute with an instance of</span>
+<span class="sd">    this class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="RayBackProjection.__init__"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.RayBackProjection.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray_trafo</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">ray_trafo</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Backprojection.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : DiscretizedSpaceElement</span>
+<span class="sd">            A sinogram. Must be an element of</span>
+<span class="sd">            `RayTransform.range` (domain of `RayBackProjection`).</span>
+<span class="sd">        out : `RayBackProjection.domain` element, optional</span>
+<span class="sd">            A volume to which the result of this evaluation is</span>
+<span class="sd">            written.</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Extra keyword arguments, passed on to the</span>
+<span class="sd">            implementation backend.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        DiscretizedSpaceElement</span>
+<span class="sd">            Result of the transform in the domain</span>
+<span class="sd">            of `RayProjection`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">get_impl</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">use_cache</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">call_backward</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">geometry</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">adjoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ray_trafo</span></div>
+
+
+<div class="viewcode-block" id="patch_ray_trafo_for_pickling"><a class="viewcode-back" href="../../../dival.util.odl_utility.html#dival.util.odl_utility.patch_ray_trafo_for_pickling">[docs]</a><span class="k">def</span> <span class="nf">patch_ray_trafo_for_pickling</span><span class="p">(</span><span class="n">ray_trafo</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make an object of type :class:`odl.tomo.operators.RayTransform` pickleable</span>
+<span class="sd">    by overwriting the :attr:`_adjoint` (which originally has a local class</span>
+<span class="sd">    type) with a :class:`dival.util.torch_utility.RayBackProjection` object.</span>
+<span class="sd">    This can be required for multiprocessing.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ray_trafo : :class:`odl.tomo.operators.RayTransform`</span>
+<span class="sd">        The ray transform to patch for pickling.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="n">ray_trafo</span><span class="o">.</span><span class="n">_extra_kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ray_trafo</span><span class="o">.</span><span class="n">range</span>
+    <span class="n">ray_trafo</span><span class="o">.</span><span class="n">_adjoint</span> <span class="o">=</span> <span class="n">RayBackProjection</span><span class="p">(</span>
+        <span class="n">ray_trafo</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">ray_trafo</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span> <span class="n">linear</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span></div>
 </pre></div>
 
            </div>

@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -383,6 +383,93 @@ Default: new list (<code class="docutils literal notranslate"><span class="pre">
 <dd><p>Clear the results list.</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.util.odl_utility.ResizeOperator">
+<em class="property">class </em><code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">ResizeOperator</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#ResizeOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.ResizeOperator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<dl class="py method">
+<dt id="dival.util.odl_utility.ResizeOperator.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reco_space</span></em>, <em class="sig-param"><span class="n">space</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#ResizeOperator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.ResizeOperator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a new instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>domain</strong> (<cite>Set</cite>) – The domain of this operator, i.e., the set of elements to
+which this operator can be applied</p></li>
+<li><p><strong>range</strong> (<cite>Set</cite>) – The range of this operator, i.e., the set this operator
+maps to</p></li>
+<li><p><strong>linear</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the operator is considered as linear. In this
+case, <code class="docutils literal notranslate"><span class="pre">domain</span></code> and <code class="docutils literal notranslate"><span class="pre">range</span></code> have to be instances of
+<cite>LinearSpace</cite>, or <cite>Field</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="dival.util.odl_utility.RayBackProjection">
+<em class="property">class </em><code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">RayBackProjection</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#RayBackProjection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<p>Adjoint of the discrete Ray transform between L^p spaces.</p>
+<p>This class is copied and modified from
+<a class="reference external" href="https://github.com/odlgroup/odl/blob/25ec783954a85c2294ad5b76414f8c7c3cd2785d/odl/tomo/operators/ray_trafo.py#L324">odl</a>.</p>
+<p>This main-scope class definition is used by
+<a class="reference internal" href="#dival.util.odl_utility.patch_ray_trafo_for_pickling" title="dival.util.odl_utility.patch_ray_trafo_for_pickling"><code class="xref py py-func docutils literal notranslate"><span class="pre">patch_ray_trafo_for_pickling()</span></code></a> to make a ray transform object
+pickleable by replacing its <code class="xref py py-attr docutils literal notranslate"><span class="pre">_adjoint</span></code> attribute with an instance of
+this class.</p>
+<dl class="py method">
+<dt id="dival.util.odl_utility.RayBackProjection.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#RayBackProjection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a new instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>domain</strong> (<cite>Set</cite>) – The domain of this operator, i.e., the set of elements to
+which this operator can be applied</p></li>
+<li><p><strong>range</strong> (<cite>Set</cite>) – The range of this operator, i.e., the set this operator
+maps to</p></li>
+<li><p><strong>linear</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the operator is considered as linear. In this
+case, <code class="docutils literal notranslate"><span class="pre">domain</span></code> and <code class="docutils literal notranslate"><span class="pre">range</span></code> have to be instances of
+<cite>LinearSpace</cite>, or <cite>Field</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dival.util.odl_utility.RayBackProjection.geometry">
+<em class="property">property </em><code class="sig-name descname">geometry</code><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection.geometry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="dival.util.odl_utility.RayBackProjection.adjoint">
+<em class="property">property </em><code class="sig-name descname">adjoint</code><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection.adjoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjoint of this operator (abstract).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>OpNotImplementedError</strong> – Since the adjoint cannot be default implemented.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="dival.util.odl_utility.patch_ray_trafo_for_pickling">
+<code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">patch_ray_trafo_for_pickling</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#patch_ray_trafo_for_pickling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.patch_ray_trafo_for_pickling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an object of type <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.operators.RayTransform</span></code> pickleable
+by overwriting the <code class="xref py py-attr docutils literal notranslate"><span class="pre">_adjoint</span></code> (which originally has a local class
+type) with a <code class="xref py py-class docutils literal notranslate"><span class="pre">dival.util.torch_utility.RayBackProjection</span></code> object.
+This can be required for multiprocessing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.operators.RayTransform</span></code>) – The ray transform to patch for pickling.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

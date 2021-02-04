@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -465,15 +465,18 @@ is used (the default).</p></li>
 <dt id="dival.datasets.dataset.Dataset.create_torch_dataset">
 <code class="sig-name descname">create_torch_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/dataset.html#Dataset.create_torch_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.dataset.Dataset.create_torch_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a torch dataset wrapper for one part of this dataset.</p>
-<p>If <a class="reference internal" href="#dival.datasets.dataset.Dataset.supports_random_access" title="dival.datasets.dataset.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, samples are
-fetched from <a class="reference internal" href="#dival.datasets.dataset.Dataset.generator" title="dival.datasets.dataset.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>. The index passed to
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> of the
-returned dataset will be ignored, and parallel data loading (with
-multiple workers) is not applicable.</p>
-<p>If <a class="reference internal" href="#dival.datasets.dataset.Dataset.supports_random_access" title="dival.datasets.dataset.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <cite>True</cite>, samples are looked
-up using <a class="reference internal" href="#dival.datasets.dataset.Dataset.get_sample" title="dival.datasets.dataset.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>. For datasets that support parallel calls
-to <a class="reference internal" href="#dival.datasets.dataset.Dataset.get_sample" title="dival.datasets.dataset.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>, the returned torch dataset can be used by
-multiple workers.</p>
+<p>If <a class="reference internal" href="#dival.datasets.dataset.Dataset.supports_random_access" title="dival.datasets.dataset.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>, a subclass of
+of <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.IterableDataset</span></code> is returned that fetches
+samples via <a class="reference internal" href="#dival.datasets.dataset.Dataset.generator" title="dival.datasets.dataset.Dataset.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generator()</span></code></a>.
+<em>Note:</em> When using torch’s DataLoader with multiple workers you might
+want to individually configure the datasets for each worker, see the
+<a class="reference external" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset">PyTorch docs on IterableDataset</a>.
+For this purpose it can be useful to modify the wrapped dival dataset
+in <code class="xref py py-func docutils literal notranslate"><span class="pre">worker_init_fn()</span></code>, which can be accessed there via
+<code class="docutils literal notranslate"><span class="pre">torch.utils.data.get_worker_info().dataset.dataset</span></code>.</p>
+<p>If <a class="reference internal" href="#dival.datasets.dataset.Dataset.supports_random_access" title="dival.datasets.dataset.Dataset.supports_random_access"><code class="xref py py-meth docutils literal notranslate"><span class="pre">supports_random_access()</span></code></a> returns <cite>True</cite>, a subclass of
+of <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code> is returned that retrieves
+samples using <a class="reference internal" href="#dival.datasets.dataset.Dataset.get_sample" title="dival.datasets.dataset.Dataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -483,6 +486,14 @@ If <cite>None</cite> is passed for an element, no reshape is applied.</p></li>
 <li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – Transform to be applied on each sample, useful for augmentation.
 Default: <cite>None</cite>, i.e. no transform.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dataset</strong> – The torch dataset wrapping this dataset.
+The wrapped dival dataset is assigned to the attribute
+<code class="docutils literal notranslate"><span class="pre">dataset.dataset</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code> or                 <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.IterableDataset</span></code></p>
 </dd>
 </dl>
 </dd></dl>

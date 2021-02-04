@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -275,7 +275,7 @@
                  <span class="n">use_cuda</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_pbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">log_num_validation_samples</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">save_best_learned_params_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">torch_manual_seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                 <span class="n">shuffle</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">worker_init_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -300,6 +300,15 @@
 <span class="sd">            Fixed seed to set by ``torch.manual_seed`` before training.</span>
 <span class="sd">            The default is `1`. It can be set to `None` or `False` to disable</span>
 <span class="sd">            the manual seed.</span>
+<span class="sd">        shuffle : {``&#39;auto&#39;``, ``False``, ``True``}, optional</span>
+<span class="sd">            Whether to use shuffling when loading data.</span>
+<span class="sd">            When ``&#39;auto&#39;`` is specified (the default), ``True`` is used iff</span>
+<span class="sd">            the dataset passed to :meth:`train` supports random access.</span>
+<span class="sd">        worker_init_fn : callable, optional</span>
+<span class="sd">            Callable `worker_init_fn` passed to</span>
+<span class="sd">            :meth:`torch.utils.data.DataLoader.__init__`, which can be used to</span>
+<span class="sd">            configure the dataset copies for different worker instances</span>
+<span class="sd">            (cf. `torch&#39;s IterableDataset docs &lt;https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset&gt;`_)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">reco_space</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
                          <span class="n">observation_space</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">range</span><span class="p">,</span>
@@ -312,6 +321,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">log_num_validation_samples</span> <span class="o">=</span> <span class="n">log_num_validation_samples</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save_best_learned_params_path</span> <span class="o">=</span> <span class="n">save_best_learned_params_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">torch_manual_seed</span> <span class="o">=</span> <span class="n">torch_manual_seed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span> <span class="o">=</span> <span class="n">shuffle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_init_fn</span> <span class="o">=</span> <span class="n">worker_init_fn</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span> <span class="o">=</span> <span class="kc">None</span>
@@ -374,14 +385,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">init_optimizer</span><span class="p">(</span><span class="n">dataset_train</span><span class="o">=</span><span class="n">dataset_train</span><span class="p">)</span>
 
         <span class="c1"># create PyTorch dataloaders</span>
-        <span class="n">data_loaders</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">DataLoader</span><span class="p">(</span>
-            <span class="n">dataset_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
-            <span class="n">num_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_data_loader_workers</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">shuffle</span> <span class="o">=</span> <span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">supports_random_access</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span> <span class="o">==</span> <span class="s1">&#39;auto&#39;</span>
+                   <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span><span class="p">)</span>
+        <span class="n">data_loaders</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">DataLoader</span><span class="p">(</span>
+                <span class="n">dataset_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+                <span class="n">num_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_data_loader_workers</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span>
+                <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">worker_init_fn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">worker_init_fn</span><span class="p">),</span>
             <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="n">DataLoader</span><span class="p">(</span>
                 <span class="n">dataset_validation</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
-                <span class="n">num_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_data_loader_workers</span><span class="p">,</span>
-                <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">)}</span>
+                <span class="n">num_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_data_loader_workers</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span>
+                <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">worker_init_fn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">worker_init_fn</span><span class="p">)}</span>
 
         <span class="n">dataset_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset_train</span><span class="p">),</span>
                          <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset_validation</span><span class="p">)}</span>
@@ -515,9 +529,16 @@
 
 <div class="viewcode-block" id="StandardLearnedReconstructor.init_transform"><a class="viewcode-back" href="../../../dival.reconstructors.standard_learned_reconstructor.html#dival.StandardLearnedReconstructor.init_transform">[docs]</a>    <span class="k">def</span> <span class="nf">init_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize the transform that is applied on each sample, e.g. for data</span>
-<span class="sd">        augmentation.</span>
-<span class="sd">        This default implementation disables the transform by assigning `None`.</span>
+<span class="sd">        Initialize the transform (:attr:`_transform`) that is applied on each</span>
+<span class="sd">        training sample, e.g. for data augmentation.</span>
+<span class="sd">        In the default implementation of :meth:`train`, it is passed to</span>
+<span class="sd">        :meth:`Dataset.create_torch_dataset` when creating the training (but</span>
+<span class="sd">        not the validation) torch dataset, which applies the transform to the</span>
+<span class="sd">        (tuple of) torch tensor(s) right before returning, i.e. after reshaping</span>
+<span class="sd">        to ``(1,) + orig_shape``.</span>
+
+<span class="sd">        The default implementation of this method disables the transform by</span>
+<span class="sd">        assigning `None`.</span>
 <span class="sd">        Called in :meth:`train` at the beginning, i.e. before calling</span>
 <span class="sd">        :meth:`init_model`, :meth:`init_optimizer` and :meth:`init_scheduler`.</span>
 

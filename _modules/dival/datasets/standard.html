@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -198,12 +198,13 @@
 <span class="sd">&quot;&quot;&quot;Provides standard datasets for benchmarking.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">resize</span>
 <span class="kn">import</span> <span class="nn">odl</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.ellipses_dataset</span> <span class="kn">import</span> <span class="n">EllipsesDataset</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.lodopab_dataset</span> <span class="kn">import</span> <span class="n">LoDoPaBDataset</span>
 <span class="kn">from</span> <span class="nn">dival.datasets.angle_subset_dataset</span> <span class="kn">import</span> <span class="n">get_angle_subset_dataset</span>
+<span class="kn">from</span> <span class="nn">dival.util.odl_utility</span> <span class="kn">import</span> <span class="n">ResizeOperator</span>
 
 
 <span class="n">STANDARD_DATASET_NAMES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ellipses&#39;</span><span class="p">,</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">]</span>
@@ -274,9 +275,16 @@
 <span class="sd">                impl : {``&#39;skimage&#39;``, ``&#39;astra_cpu&#39;``, ``&#39;astra_cuda&#39;``},\</span>
 <span class="sd">                        optional</span>
 <span class="sd">                    Implementation passed to :class:`odl.tomo.RayTransform`</span>
+<span class="sd">                    Default: ``&#39;astra_cuda&#39;``.</span>
 <span class="sd">                fixed_seeds : dict or bool, optional</span>
 <span class="sd">                    Seeds to use for random ellipse generation, passed to</span>
-<span class="sd">                    :class:`.EllipsesDataset`.</span>
+<span class="sd">                    :meth:`.EllipsesDataset.__init__`.</span>
+<span class="sd">                    Default: ``False``.</span>
+<span class="sd">                fixed_noise_seeds : dict or bool, optional</span>
+<span class="sd">                    Seeds to use for noise generation, passed as `noise_seeds`</span>
+<span class="sd">                    to :meth:`.GroundTruthDataset.create_pair_dataset`.</span>
+<span class="sd">                    If ``True`` is passed (the default), the seeds</span>
+<span class="sd">                    ``{&#39;train&#39;: 1, &#39;validation&#39;: 2, &#39;test&#39;: 3}`` are used.</span>
 <span class="sd">            ``&#39;lodopab&#39;``</span>
 <span class="sd">                num_angles : int, optional</span>
 <span class="sd">                    Number of angles to use from the full 1000 angles.</span>
@@ -296,6 +304,7 @@
 <span class="sd">                impl : {``&#39;skimage&#39;``, ``&#39;astra_cpu&#39;``, ``&#39;astra_cuda&#39;``},\</span>
 <span class="sd">                        optional</span>
 <span class="sd">                    Implementation passed to :class:`odl.tomo.RayTransform`</span>
+<span class="sd">                    Default: ``&#39;astra_cuda&#39;``.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -327,28 +336,26 @@
         <span class="n">impl</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;impl&#39;</span><span class="p">,</span> <span class="s1">&#39;astra_cuda&#39;</span><span class="p">)</span>
         <span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">impl</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">get_reco_ray_trafo</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">reco_geometry</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">reco_ray_trafo</span> <span class="o">=</span> <span class="n">get_reco_ray_trafo</span><span class="p">(</span><span class="n">impl</span><span class="o">=</span><span class="n">impl</span><span class="p">)</span>
-
-        <span class="k">class</span> <span class="nc">_ResizeOperator</span><span class="p">(</span><span class="n">odl</span><span class="o">.</span><span class="n">Operator</span><span class="p">):</span>
-            <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">space</span><span class="p">)</span>
-
-            <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
-                <span class="n">out</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">resize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">IM_SHAPE</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+        <span class="n">reco_ray_trafo</span> <span class="o">=</span> <span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">reco_geometry</span><span class="p">,</span>
+                                               <span class="n">impl</span><span class="o">=</span><span class="n">impl</span><span class="p">)</span>
 
         <span class="c1"># forward operator</span>
-        <span class="n">resize_op</span> <span class="o">=</span> <span class="n">_ResizeOperator</span><span class="p">()</span>
+        <span class="n">resize_op</span> <span class="o">=</span> <span class="n">ResizeOperator</span><span class="p">(</span><span class="n">reco_space</span><span class="p">,</span> <span class="n">space</span><span class="p">)</span>
         <span class="n">forward_op</span> <span class="o">=</span> <span class="n">ray_trafo</span> <span class="o">*</span> <span class="n">resize_op</span>
+
+        <span class="n">noise_seeds</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;fixed_noise_seeds&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">noise_seeds</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="n">noise_seeds</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+                           <span class="k">if</span> <span class="n">noise_seeds</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
 
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">ellipses_dataset</span><span class="o">.</span><span class="n">create_pair_dataset</span><span class="p">(</span>
             <span class="n">forward_op</span><span class="o">=</span><span class="n">forward_op</span><span class="p">,</span> <span class="n">noise_type</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
             <span class="n">noise_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;relative_stddev&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
                           <span class="s1">&#39;stddev&#39;</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">},</span>
-            <span class="n">noise_seeds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="n">noise_seeds</span><span class="o">=</span><span class="n">noise_seeds</span><span class="p">)</span>
 
-        <span class="n">dataset</span><span class="o">.</span><span class="n">get_ray_trafo</span> <span class="o">=</span> <span class="n">get_reco_ray_trafo</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">get_ray_trafo</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">odl</span><span class="o">.</span><span class="n">tomo</span><span class="o">.</span><span class="n">RayTransform</span><span class="p">,</span>
+                                        <span class="n">reco_space</span><span class="p">,</span> <span class="n">reco_geometry</span><span class="p">)</span>
         <span class="n">dataset</span><span class="o">.</span><span class="n">ray_trafo</span> <span class="o">=</span> <span class="n">reco_ray_trafo</span>
 
     <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;lodopab&#39;</span><span class="p">:</span>

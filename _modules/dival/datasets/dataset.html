@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5.8
+                0.6.0
               </div>
             
           
@@ -482,16 +482,19 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a torch dataset wrapper for one part of this dataset.</span>
 
-<span class="sd">        If :meth:`supports_random_access` returns ``False``, samples are</span>
-<span class="sd">        fetched from :meth:`generator`. The index passed to</span>
-<span class="sd">        :meth:`~torch.utils.data.dataset.Dataset.__getitem__` of the</span>
-<span class="sd">        returned dataset will be ignored, and parallel data loading (with</span>
-<span class="sd">        multiple workers) is not applicable.</span>
+<span class="sd">        If :meth:`supports_random_access` returns ``False``, a subclass of</span>
+<span class="sd">        of :class:`torch.utils.data.IterableDataset` is returned that fetches</span>
+<span class="sd">        samples via :meth:`generator`.</span>
+<span class="sd">        *Note:* When using torch&#39;s DataLoader with multiple workers you might</span>
+<span class="sd">        want to individually configure the datasets for each worker, see the</span>
+<span class="sd">        `PyTorch docs on IterableDataset &lt;https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset&gt;`_.</span>
+<span class="sd">        For this purpose it can be useful to modify the wrapped dival dataset</span>
+<span class="sd">        in :func:`worker_init_fn`, which can be accessed there via</span>
+<span class="sd">        ``torch.utils.data.get_worker_info().dataset.dataset``.</span>
 
-<span class="sd">        If :meth:`supports_random_access` returns `True`, samples are looked</span>
-<span class="sd">        up using :meth:`get_sample`. For datasets that support parallel calls</span>
-<span class="sd">        to :meth:`get_sample`, the returned torch dataset can be used by</span>
-<span class="sd">        multiple workers.</span>
+<span class="sd">        If :meth:`supports_random_access` returns `True`, a subclass of</span>
+<span class="sd">        of :class:`torch.utils.data.Dataset` is returned that retrieves</span>
+<span class="sd">        samples using :meth:`get_sample`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -503,76 +506,22 @@
 <span class="sd">        transform : callable, optional</span>
 <span class="sd">            Transform to be applied on each sample, useful for augmentation.</span>
 <span class="sd">            Default: `None`, i.e. no transform.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dataset : :class:`torch.utils.data.Dataset` or \</span>
+<span class="sd">                :class:`torch.utils.data.IterableDataset`</span>
+<span class="sd">            The torch dataset wrapping this dataset.</span>
+<span class="sd">            The wrapped dival dataset is assigned to the attribute</span>
+<span class="sd">            ``dataset.dataset``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">TorchDataset</span>
-        <span class="kn">import</span> <span class="nn">torch</span>
+        <span class="kn">from</span> <span class="nn">dival.util.torch_utility</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">RandomAccessTorchDataset</span><span class="p">,</span> <span class="n">GeneratorTorchDataset</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">supports_random_access</span><span class="p">():</span>
-            <span class="k">class</span> <span class="nc">RandomAccessTorchDataset</span><span class="p">(</span><span class="n">TorchDataset</span><span class="p">):</span>
-                <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                             <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">part</span> <span class="o">=</span> <span class="n">part</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">reshape</span> <span class="o">=</span> <span class="n">reshape</span> <span class="ow">or</span> <span class="p">(</span>
-                        <span class="p">(</span><span class="kc">None</span><span class="p">,)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_num_elements_per_sample</span><span class="p">())</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
-
-                <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">part</span><span class="p">)</span>
-
-                <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-                    <span class="n">arrays</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_sample</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">part</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">part</span><span class="p">)</span>
-                    <span class="n">mult_elem</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">mult_elem</span><span class="p">:</span>
-                        <span class="n">arrays</span> <span class="o">=</span> <span class="p">(</span><span class="n">arrays</span><span class="p">,)</span>
-                    <span class="n">tensors</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">for</span> <span class="n">arr</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reshape</span><span class="p">):</span>
-                        <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
-                        <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                            <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
-                        <span class="n">tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-                    <span class="n">sample</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensors</span><span class="p">)</span> <span class="k">if</span> <span class="n">mult_elem</span> <span class="k">else</span> <span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
-                    <span class="k">return</span> <span class="n">sample</span>
-
             <span class="n">dataset</span> <span class="o">=</span> <span class="n">RandomAccessTorchDataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="n">reshape</span><span class="p">,</span>
                                                <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">class</span> <span class="nc">GeneratorTorchDataset</span><span class="p">(</span><span class="n">TorchDataset</span><span class="p">):</span>
-                <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                             <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">part</span> <span class="o">=</span> <span class="n">part</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">part</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">part</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">reshape</span> <span class="o">=</span> <span class="n">reshape</span> <span class="ow">or</span> <span class="p">(</span>
-                        <span class="p">(</span><span class="kc">None</span><span class="p">,)</span> <span class="o">*</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_num_elements_per_sample</span><span class="p">())</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
-
-                <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
-
-                <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">arrays</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">)</span>
-                    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">part</span><span class="p">)</span>
-                        <span class="n">arrays</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">)</span>
-                    <span class="n">mult_elem</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">mult_elem</span><span class="p">:</span>
-                        <span class="n">arrays</span> <span class="o">=</span> <span class="p">(</span><span class="n">arrays</span><span class="p">,)</span>
-                    <span class="n">tensors</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">for</span> <span class="n">arr</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reshape</span><span class="p">):</span>
-                        <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
-                        <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                            <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
-                        <span class="n">tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-                    <span class="n">sample</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensors</span><span class="p">)</span> <span class="k">if</span> <span class="n">mult_elem</span> <span class="k">else</span> <span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
-                    <span class="k">return</span> <span class="n">sample</span>
-
             <span class="n">dataset</span> <span class="o">=</span> <span class="n">GeneratorTorchDataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="n">reshape</span><span class="p">,</span>
                                             <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
 
