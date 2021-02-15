@@ -30,7 +30,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -205,10 +204,10 @@
 <dl class="py function">
 <dt id="dival.util.torch_losses.tv_loss">
 <code class="sig-prename descclassname">dival.util.torch_losses.</code><code class="sig-name descname">tv_loss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/torch_losses.html#tv_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.torch_losses.tv_loss" title="Permalink to this definition">¶</a></dt>
-<dd><p>Isotropic TV loss similar to the one in <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<dd><p>Anisotropic TV loss similar to the one in <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>) – Tensor of which to compute the isotropic TV w.r.t. its last two axes.</p>
+<dd class="field-odd"><p><strong>x</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>) – Tensor of which to compute the anisotropic TV w.r.t. its last two axes.</p>
 </dd>
 </dl>
 <p class="rubric">References</p>
@@ -231,7 +230,9 @@ The default parameters are based on the LoDoPaB dataset creation
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>y_pred</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>) – Predicted observation (post-log, normalized by <cite>mu_max</cite>).</p></li>
+<li><p><strong>y_pred</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>) – Predicted observation (post-log, normalized by <cite>mu_max</cite>).
+Each entry specifies the mean of a Poisson distribution, with respect
+to which the likelihood of the observation <code class="docutils literal notranslate"><span class="pre">y_true</span></code> is considered.</p></li>
 <li><p><strong>y_true</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>) – True observation (post-log, normalized by <cite>mu_max</cite>).</p></li>
 <li><p><strong>photons_per_pixel</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – Mean number of photons per detector pixel for an unattenuated beam.
 Default: <cite>4096</cite>.</p></li>

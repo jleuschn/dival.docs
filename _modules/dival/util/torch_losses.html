@@ -30,7 +30,6 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
@@ -203,12 +202,12 @@
 
 <div class="viewcode-block" id="tv_loss"><a class="viewcode-back" href="../../../dival.util.torch_losses.html#dival.util.torch_losses.tv_loss">[docs]</a><span class="k">def</span> <span class="nf">tv_loss</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Isotropic TV loss similar to the one in [1]_.</span>
+<span class="sd">    Anisotropic TV loss similar to the one in [1]_.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    x : :class:`torch.Tensor`</span>
-<span class="sd">        Tensor of which to compute the isotropic TV w.r.t. its last two axes.</span>
+<span class="sd">        Tensor of which to compute the anisotropic TV w.r.t. its last two axes.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
@@ -232,6 +231,8 @@
 <span class="sd">    ----------</span>
 <span class="sd">    y_pred : :class:`torch.Tensor`</span>
 <span class="sd">        Predicted observation (post-log, normalized by `mu_max`).</span>
+<span class="sd">        Each entry specifies the mean of a Poisson distribution, with respect</span>
+<span class="sd">        to which the likelihood of the observation ``y_true`` is considered.</span>
 <span class="sd">    y_true : :class:`torch.Tensor`</span>
 <span class="sd">        True observation (post-log, normalized by `mu_max`).</span>
 <span class="sd">    photons_per_pixel : int or float, optional</span>
