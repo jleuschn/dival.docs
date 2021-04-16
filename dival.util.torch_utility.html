@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>dival.util.torch_utility module &mdash; Deep Inversion Validation Library  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,6 +33,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -52,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Deep Inversion Validation Library
+            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
           
 
           
@@ -62,7 +66,7 @@
             
             
               <div class="version">
-                0.6.0
+                0.6.1
               </div>
             
           
@@ -171,6 +175,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -184,7 +190,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="_sources/dival.util.torch_utility.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -215,8 +221,8 @@ In order to instantiate or call these classes and functions, all of these
 requirements need to be fulfilled, otherwise an <code class="xref py py-class docutils literal notranslate"><span class="pre">ImportError</span></code> is raised.</p>
 <dl class="py class">
 <dt id="dival.util.torch_utility.RandomAccessTorchDataset">
-<em class="property">class </em><code class="sig-prename descclassname">dival.util.torch_utility.</code><code class="sig-name descname">RandomAccessTorchDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">part</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/torch_utility.html#RandomAccessTorchDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.torch_utility.RandomAccessTorchDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.utils.data.dataset.T_co</span></code>]</p>
+<em class="property">class </em><code class="sig-prename descclassname">dival.util.torch_utility.</code><code class="sig-name descname">RandomAccessTorchDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/torch_utility.html#RandomAccessTorchDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.torch_utility.RandomAccessTorchDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
 <dl class="py method">
 <dt id="dival.util.torch_utility.RandomAccessTorchDataset.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">part</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/torch_utility.html#RandomAccessTorchDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.torch_utility.RandomAccessTorchDataset.__init__" title="Permalink to this definition">¶</a></dt>
@@ -227,8 +233,8 @@ requirements need to be fulfilled, otherwise an <code class="xref py py-class do
 
 <dl class="py class">
 <dt id="dival.util.torch_utility.GeneratorTorchDataset">
-<em class="property">class </em><code class="sig-prename descclassname">dival.util.torch_utility.</code><code class="sig-name descname">GeneratorTorchDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">part</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/torch_utility.html#GeneratorTorchDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.torch_utility.GeneratorTorchDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.utils.data.dataset.T_co</span></code>]</p>
+<em class="property">class </em><code class="sig-prename descclassname">dival.util.torch_utility.</code><code class="sig-name descname">GeneratorTorchDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/torch_utility.html#GeneratorTorchDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.torch_utility.GeneratorTorchDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.IterableDataset</span></code></p>
 <dl class="py method">
 <dt id="dival.util.torch_utility.GeneratorTorchDataset.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">part</span></em>, <em class="sig-param"><span class="n">reshape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/torch_utility.html#GeneratorTorchDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.torch_utility.GeneratorTorchDataset.__init__" title="Permalink to this definition">¶</a></dt>
@@ -421,37 +427,29 @@ state dict stems from a non-data-parallel model, or vice versa.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="dival.util.zenodo_download.html" class="btn btn-neutral float-right" title="dival.util.zenodo_download module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="dival.util.torch_losses.html" class="btn btn-neutral float-left" title="dival.util.torch_losses module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="dival.util.zenodo_download.html" class="btn btn-neutral float-right" title="dival.util.zenodo_download module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dival.util.torch_losses.html" class="btn btn-neutral float-left" title="dival.util.torch_losses module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann
+        &#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
