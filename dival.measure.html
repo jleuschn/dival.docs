@@ -1,97 +1,49 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>dival.measure module &mdash; Deep Inversion Validation Library  documentation</title>
-  
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bcb77441" />
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.reconstructors package" href="dival.reconstructors.html" />
     <link rel="prev" title="dival.hyper_param_search module" href="dival.hyper_param_search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            Deep Inversion Validation Library
           </a>
-
-          
-            
-            
-              <div class="version">
-                0.6.1
-              </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
@@ -106,7 +58,64 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.standard.html">dival.datasets.standard module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.evaluation.html">dival.evaluation module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.hyper_param_search.html">dival.hyper_param_search module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.measure module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.measure module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dival.measure.gen_unique_name"><code class="docutils literal notranslate"><span class="pre">gen_unique_name()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.measure.Measure"><code class="docutils literal notranslate"><span class="pre">Measure</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.Measure.measure_type"><code class="docutils literal notranslate"><span class="pre">Measure.measure_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.Measure.short_name"><code class="docutils literal notranslate"><span class="pre">Measure.short_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.Measure.name"><code class="docutils literal notranslate"><span class="pre">Measure.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.Measure.description"><code class="docutils literal notranslate"><span class="pre">Measure.description</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">Measure.measure_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">Measure.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Measure.description</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.Measure.measure_dict"><code class="docutils literal notranslate"><span class="pre">Measure.measure_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.Measure.__init__"><code class="docutils literal notranslate"><span class="pre">Measure.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">Measure.short_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.Measure.apply"><code class="docutils literal notranslate"><span class="pre">Measure.apply()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.Measure.get_by_short_name"><code class="docutils literal notranslate"><span class="pre">Measure.get_by_short_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.Measure.as_operator_for_fixed_ground_truth"><code class="docutils literal notranslate"><span class="pre">Measure.as_operator_for_fixed_ground_truth()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.measure.L2Measure"><code class="docutils literal notranslate"><span class="pre">L2Measure</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.L2Measure.measure_type"><code class="docutils literal notranslate"><span class="pre">L2Measure.measure_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.L2Measure.short_name"><code class="docutils literal notranslate"><span class="pre">L2Measure.short_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.L2Measure.name"><code class="docutils literal notranslate"><span class="pre">L2Measure.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.L2Measure.description"><code class="docutils literal notranslate"><span class="pre">L2Measure.description</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.L2Measure.apply"><code class="docutils literal notranslate"><span class="pre">L2Measure.apply()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.measure.MSEMeasure"><code class="docutils literal notranslate"><span class="pre">MSEMeasure</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.MSEMeasure.measure_type"><code class="docutils literal notranslate"><span class="pre">MSEMeasure.measure_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.MSEMeasure.short_name"><code class="docutils literal notranslate"><span class="pre">MSEMeasure.short_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.MSEMeasure.name"><code class="docutils literal notranslate"><span class="pre">MSEMeasure.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.MSEMeasure.description"><code class="docutils literal notranslate"><span class="pre">MSEMeasure.description</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.MSEMeasure.apply"><code class="docutils literal notranslate"><span class="pre">MSEMeasure.apply()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.measure.MSE"><code class="docutils literal notranslate"><span class="pre">MSE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.measure.PSNRMeasure"><code class="docutils literal notranslate"><span class="pre">PSNRMeasure</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.PSNRMeasure.data_range"><code class="docutils literal notranslate"><span class="pre">PSNRMeasure.data_range</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.PSNRMeasure.measure_type"><code class="docutils literal notranslate"><span class="pre">PSNRMeasure.measure_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.PSNRMeasure.short_name"><code class="docutils literal notranslate"><span class="pre">PSNRMeasure.short_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.PSNRMeasure.name"><code class="docutils literal notranslate"><span class="pre">PSNRMeasure.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.PSNRMeasure.description"><code class="docutils literal notranslate"><span class="pre">PSNRMeasure.description</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.PSNRMeasure.__init__"><code class="docutils literal notranslate"><span class="pre">PSNRMeasure.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.PSNRMeasure.apply"><code class="docutils literal notranslate"><span class="pre">PSNRMeasure.apply()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.measure.PSNR"><code class="docutils literal notranslate"><span class="pre">PSNR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.measure.SSIMMeasure"><code class="docutils literal notranslate"><span class="pre">SSIMMeasure</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.SSIMMeasure.measure_type"><code class="docutils literal notranslate"><span class="pre">SSIMMeasure.measure_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.SSIMMeasure.short_name"><code class="docutils literal notranslate"><span class="pre">SSIMMeasure.short_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.SSIMMeasure.name"><code class="docutils literal notranslate"><span class="pre">SSIMMeasure.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.SSIMMeasure.description"><code class="docutils literal notranslate"><span class="pre">SSIMMeasure.description</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.SSIMMeasure.__init__"><code class="docutils literal notranslate"><span class="pre">SSIMMeasure.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.measure.SSIMMeasure.apply"><code class="docutils literal notranslate"><span class="pre">SSIMMeasure.apply()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.measure.SSIM"><code class="docutils literal notranslate"><span class="pre">SSIM</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.html">dival.reconstructors package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.dip_ct_reconstructor.html">dival.reconstructors.dip_ct_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.fbpunet_reconstructor.html">dival.reconstructors.fbpunet_reconstructor module</a></li>
@@ -137,167 +146,126 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Deep Inversion Validation Library</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>dival.measure module</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">dival.measure module</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/dival.measure.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="module-dival.measure">
-<span id="dival-measure-module"></span><h1>dival.measure module<a class="headerlink" href="#module-dival.measure" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="module-dival.measure">
+<span id="dival-measure-module"></span><h1>dival.measure module<a class="headerlink" href="#module-dival.measure" title="Link to this heading"></a></h1>
 <p>Provides the abstract <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> base class and some popular measures.</p>
 <p>Measure instances are identified by a unique <a class="reference internal" href="#id3" title="dival.measure.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>, which
 is used by the <a class="reference internal" href="dival.evaluation.html#module-dival.evaluation" title="dival.evaluation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">evaluation</span></code></a> module.</p>
 <dl class="py function">
-<dt id="dival.measure.gen_unique_name">
-<code class="sig-prename descclassname">dival.measure.</code><code class="sig-name descname">gen_unique_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name_orig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#gen_unique_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.gen_unique_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.gen_unique_name">
+<span class="sig-prename descclassname"><span class="pre">dival.measure.</span></span><span class="sig-name descname"><span class="pre">gen_unique_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_orig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#gen_unique_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.gen_unique_name" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt id="dival.measure.Measure">
-<em class="property">class </em><code class="sig-prename descclassname">dival.measure.</code><code class="sig-name descname">Measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">short_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.Measure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dt class="sig sig-object py" id="dival.measure.Measure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.measure.</span></span><span class="sig-name descname"><span class="pre">Measure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.Measure" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>Abstract base class for measures used for evaluation.</p>
 <p>In subclasses, either <a class="reference internal" href="#dival.measure.Measure.__init__" title="dival.measure.Measure.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a> should be inherited or it should
 call <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> in order to register the <a class="reference internal" href="#id3" title="dival.measure.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>
 and to ensure it is unique.</p>
 <dl class="py attribute">
-<dt id="dival.measure.Measure.measure_type">
-<code class="sig-name descname">measure_type</code><a class="headerlink" href="#dival.measure.Measure.measure_type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.Measure.measure_type">
+<span class="sig-name descname"><span class="pre">measure_type</span></span><a class="headerlink" href="#dival.measure.Measure.measure_type" title="Link to this definition"></a></dt>
 <dd><p>The measure type.
 Measures with type <code class="docutils literal notranslate"><span class="pre">'distance'</span></code> should attain small values if the
 reconstruction is good. Measures with type <code class="docutils literal notranslate"><span class="pre">'quality'</span></code> should attain
 large values if the reconstruction is good.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>{<code class="docutils literal notranslate"><span class="pre">'distance'</span></code>, <code class="docutils literal notranslate"><span class="pre">'quality'</span></code>}</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.Measure.short_name">
-<code class="sig-name descname">short_name</code><a class="headerlink" href="#dival.measure.Measure.short_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.Measure.short_name">
+<span class="sig-name descname"><span class="pre">short_name</span></span><a class="headerlink" href="#dival.measure.Measure.short_name" title="Link to this definition"></a></dt>
 <dd><p>Short name of the measure, used as identifier (key in
 <a class="reference internal" href="#dival.measure.Measure.measure_dict" title="dival.measure.Measure.measure_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_dict</span></code></a>).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.Measure.name">
-<code class="sig-name descname">name</code><a class="headerlink" href="#dival.measure.Measure.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.Measure.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#dival.measure.Measure.name" title="Link to this definition"></a></dt>
 <dd><p>Name of the measure.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.Measure.description">
-<code class="sig-name descname">description</code><a class="headerlink" href="#dival.measure.Measure.description" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.Measure.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#dival.measure.Measure.description" title="Link to this definition"></a></dt>
 <dd><p>Description of the measure.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id0">
-<code class="sig-name descname">measure_type</code><em class="property"> = None</em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">measure_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd><p>Class attribute, default value for <a class="reference internal" href="#id0" title="dival.measure.Measure.measure_type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_type</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id1">
-<code class="sig-name descname">name</code><em class="property"> = ''</em><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd><p>Class attribute, default value for <a class="reference internal" href="#id1" title="dival.measure.Measure.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id2">
-<code class="sig-name descname">description</code><em class="property"> = ''</em><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
 <dd><p>Class attribute, default value for <a class="reference internal" href="#id2" title="dival.measure.Measure.description"><code class="xref py py-attr docutils literal notranslate"><span class="pre">description</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.Measure.measure_dict">
-<code class="sig-name descname">measure_dict</code><em class="property"> = {'l2': &lt;dival.measure.L2Measure object&gt;, 'mse': &lt;dival.measure.MSEMeasure object&gt;, 'psnr': &lt;dival.measure.PSNRMeasure object&gt;, 'ssim': &lt;dival.measure.SSIMMeasure object&gt;}</em><a class="headerlink" href="#dival.measure.Measure.measure_dict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.Measure.measure_dict">
+<span class="sig-name descname"><span class="pre">measure_dict</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'l2':</span> <span class="pre">&lt;dival.measure.L2Measure</span> <span class="pre">object&gt;,</span> <span class="pre">'mse':</span> <span class="pre">&lt;dival.measure.MSEMeasure</span> <span class="pre">object&gt;,</span> <span class="pre">'psnr':</span> <span class="pre">&lt;dival.measure.PSNRMeasure</span> <span class="pre">object&gt;,</span> <span class="pre">'ssim':</span> <span class="pre">&lt;dival.measure.SSIMMeasure</span> <span class="pre">object&gt;}</span></em><a class="headerlink" href="#dival.measure.Measure.measure_dict" title="Link to this definition"></a></dt>
 <dd><p>Class attribute, registry of all measures with their <a class="reference internal" href="#id3" title="dival.measure.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a> as
 key.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.Measure.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">short_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.Measure.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.Measure.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.Measure.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>short_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The short name of this measure, used as identifier in
 <a class="reference internal" href="#dival.measure.Measure.measure_dict" title="dival.measure.Measure.measure_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_dict</span></code></a>.
 If <cite>None</cite> is passed and <a class="reference internal" href="#id3" title="dival.measure.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a> was not set by the
@@ -309,60 +277,60 @@ short name is generated by appending a suffix of format <code class="docutils li
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id3">
-<code class="sig-name descname">short_name</code><em class="property"> = ''</em><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">short_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
 <dd><p>Class attribute, default value for <a class="reference internal" href="#id3" title="dival.measure.Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.Measure.apply">
-<em class="property">abstract </em><code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstruction</span></em>, <em class="sig-param"><span class="n">ground_truth</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.Measure.apply" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.Measure.apply">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstruction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ground_truth</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.Measure.apply" title="Link to this definition"></a></dt>
 <dd><p>Calculate the value of this measure.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstruction</strong> (<em>odl element</em>) – The reconstruction.</p></li>
 <li><p><strong>ground_truth</strong> (<em>odl element</em>) – The ground truth to compare with.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>value</strong> – The value of this measure for the given <cite>reconstruction</cite> and
 <cite>ground_truth</cite>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.Measure.get_by_short_name">
-<em class="property">classmethod </em><code class="sig-name descname">get_by_short_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">short_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.get_by_short_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.Measure.get_by_short_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.Measure.get_by_short_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_by_short_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.get_by_short_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.Measure.get_by_short_name" title="Link to this definition"></a></dt>
 <dd><p>Return <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a> instance with given short name by registry
 lookup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>short_name</strong> (<em>str</em>) – Short name, identifier in <a class="reference internal" href="#dival.measure.Measure.measure_dict" title="dival.measure.Measure.measure_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_dict</span></code></a>.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>measure</strong> – The instance.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.Measure.as_operator_for_fixed_ground_truth">
-<code class="sig-name descname">as_operator_for_fixed_ground_truth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ground_truth</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.as_operator_for_fixed_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.Measure.as_operator_for_fixed_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.Measure.as_operator_for_fixed_ground_truth">
+<span class="sig-name descname"><span class="pre">as_operator_for_fixed_ground_truth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ground_truth</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#Measure.as_operator_for_fixed_ground_truth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.Measure.as_operator_for_fixed_ground_truth" title="Link to this definition"></a></dt>
 <dd><p>Return an odl operator that can be applied to different reconstructions
 for fixed ground truth.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>op</strong> – odl operator.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>odl operator</p>
 </dd>
 </dl>
@@ -371,46 +339,50 @@ for fixed ground truth.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.measure.L2Measure">
-<em class="property">class </em><code class="sig-prename descclassname">dival.measure.</code><code class="sig-name descname">L2Measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">short_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#L2Measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.L2Measure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.measure.Measure</span></code></a></p>
+<dt class="sig sig-object py" id="dival.measure.L2Measure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.measure.</span></span><span class="sig-name descname"><span class="pre">L2Measure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#L2Measure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.L2Measure" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a></p>
 <p>The euclidean (l2) distance measure.</p>
 <dl class="py attribute">
-<dt id="dival.measure.L2Measure.measure_type">
-<code class="sig-name descname">measure_type</code><em class="property"> = 'distance'</em><a class="headerlink" href="#dival.measure.L2Measure.measure_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.L2Measure.measure_type">
+<span class="sig-name descname"><span class="pre">measure_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'distance'</span></em><a class="headerlink" href="#dival.measure.L2Measure.measure_type" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.L2Measure.measure_type" title="dival.measure.L2Measure.measure_type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_type</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.L2Measure.short_name">
-<code class="sig-name descname">short_name</code><em class="property"> = 'l2'</em><a class="headerlink" href="#dival.measure.L2Measure.short_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.L2Measure.short_name">
+<span class="sig-name descname"><span class="pre">short_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'l2'</span></em><a class="headerlink" href="#dival.measure.L2Measure.short_name" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.L2Measure.short_name" title="dival.measure.L2Measure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.L2Measure.name">
-<code class="sig-name descname">name</code><em class="property"> = 'euclidean distance'</em><a class="headerlink" href="#dival.measure.L2Measure.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.L2Measure.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'euclidean</span> <span class="pre">distance'</span></em><a class="headerlink" href="#dival.measure.L2Measure.name" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.L2Measure.name" title="dival.measure.L2Measure.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.L2Measure.description">
-<code class="sig-name descname">description</code><em class="property"> = 'distance given by sqrt(sum((reconstruction-ground_truth)**2))'</em><a class="headerlink" href="#dival.measure.L2Measure.description" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.L2Measure.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'distance</span> <span class="pre">given</span> <span class="pre">by</span> <span class="pre">sqrt(sum((reconstruction-ground_truth)**2))'</span></em><a class="headerlink" href="#dival.measure.L2Measure.description" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.L2Measure.description" title="dival.measure.L2Measure.description"><code class="xref py py-attr docutils literal notranslate"><span class="pre">description</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.L2Measure.apply">
-<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstruction</span></em>, <em class="sig-param"><span class="n">ground_truth</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#L2Measure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.L2Measure.apply" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.L2Measure.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstruction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ground_truth</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#L2Measure.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.L2Measure.apply" title="Link to this definition"></a></dt>
 <dd><p>Calculate the value of this measure.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstruction</strong> (<em>odl element</em>) – The reconstruction.</p></li>
 <li><p><strong>ground_truth</strong> (<em>odl element</em>) – The ground truth to compare with.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>value</strong> – The value of this measure for the given <cite>reconstruction</cite> and
 <cite>ground_truth</cite>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -419,46 +391,50 @@ for fixed ground truth.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.measure.MSEMeasure">
-<em class="property">class </em><code class="sig-prename descclassname">dival.measure.</code><code class="sig-name descname">MSEMeasure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">short_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#MSEMeasure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.MSEMeasure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.measure.Measure</span></code></a></p>
+<dt class="sig sig-object py" id="dival.measure.MSEMeasure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.measure.</span></span><span class="sig-name descname"><span class="pre">MSEMeasure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#MSEMeasure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.MSEMeasure" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a></p>
 <p>The mean squared error distance measure.</p>
 <dl class="py attribute">
-<dt id="dival.measure.MSEMeasure.measure_type">
-<code class="sig-name descname">measure_type</code><em class="property"> = 'distance'</em><a class="headerlink" href="#dival.measure.MSEMeasure.measure_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.MSEMeasure.measure_type">
+<span class="sig-name descname"><span class="pre">measure_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'distance'</span></em><a class="headerlink" href="#dival.measure.MSEMeasure.measure_type" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.MSEMeasure.measure_type" title="dival.measure.MSEMeasure.measure_type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_type</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.MSEMeasure.short_name">
-<code class="sig-name descname">short_name</code><em class="property"> = 'mse'</em><a class="headerlink" href="#dival.measure.MSEMeasure.short_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.MSEMeasure.short_name">
+<span class="sig-name descname"><span class="pre">short_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mse'</span></em><a class="headerlink" href="#dival.measure.MSEMeasure.short_name" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.MSEMeasure.short_name" title="dival.measure.MSEMeasure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.MSEMeasure.name">
-<code class="sig-name descname">name</code><em class="property"> = 'mean squared error'</em><a class="headerlink" href="#dival.measure.MSEMeasure.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.MSEMeasure.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mean</span> <span class="pre">squared</span> <span class="pre">error'</span></em><a class="headerlink" href="#dival.measure.MSEMeasure.name" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.MSEMeasure.name" title="dival.measure.MSEMeasure.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.MSEMeasure.description">
-<code class="sig-name descname">description</code><em class="property"> = 'distance given by 1/n * sum((reconstruction-ground_truth)**2)'</em><a class="headerlink" href="#dival.measure.MSEMeasure.description" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.MSEMeasure.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'distance</span> <span class="pre">given</span> <span class="pre">by</span> <span class="pre">1/n</span> <span class="pre">*</span> <span class="pre">sum((reconstruction-ground_truth)**2)'</span></em><a class="headerlink" href="#dival.measure.MSEMeasure.description" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.MSEMeasure.description" title="dival.measure.MSEMeasure.description"><code class="xref py py-attr docutils literal notranslate"><span class="pre">description</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.MSEMeasure.apply">
-<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstruction</span></em>, <em class="sig-param"><span class="n">ground_truth</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#MSEMeasure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.MSEMeasure.apply" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.MSEMeasure.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstruction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ground_truth</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#MSEMeasure.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.MSEMeasure.apply" title="Link to this definition"></a></dt>
 <dd><p>Calculate the value of this measure.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstruction</strong> (<em>odl element</em>) – The reconstruction.</p></li>
 <li><p><strong>ground_truth</strong> (<em>odl element</em>) – The ground truth to compare with.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>value</strong> – The value of this measure for the given <cite>reconstruction</cite> and
 <cite>ground_truth</cite>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -467,57 +443,61 @@ for fixed ground truth.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt id="dival.measure.MSE">
-<code class="sig-prename descclassname">dival.measure.</code><code class="sig-name descname">MSE</code><em class="property"> = &lt;dival.measure.MSEMeasure object&gt;</em><a class="headerlink" href="#dival.measure.MSE" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.MSE">
+<span class="sig-prename descclassname"><span class="pre">dival.measure.</span></span><span class="sig-name descname"><span class="pre">MSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dival.measure.MSEMeasure</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dival.measure.MSE" title="Link to this definition"></a></dt>
 <dd><p>Instance of <a class="reference internal" href="#dival.measure.MSEMeasure" title="dival.measure.MSEMeasure"><code class="xref py py-class docutils literal notranslate"><span class="pre">MSEMeasure</span></code></a>, with <code class="docutils literal notranslate"><span class="pre">short_name='mse'</span></code>.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.measure.PSNRMeasure">
-<em class="property">class </em><code class="sig-prename descclassname">dival.measure.</code><code class="sig-name descname">PSNRMeasure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_range</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">short_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#PSNRMeasure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.PSNRMeasure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.measure.Measure</span></code></a></p>
+<dt class="sig sig-object py" id="dival.measure.PSNRMeasure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.measure.</span></span><span class="sig-name descname"><span class="pre">PSNRMeasure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#PSNRMeasure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.PSNRMeasure" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a></p>
 <p>The peak signal-to-noise ratio (PSNR) measure.</p>
 <p>The data range is automatically determined from the ground truth if not
 given to the constructor.</p>
 <dl class="py attribute">
-<dt id="dival.measure.PSNRMeasure.data_range">
-<code class="sig-name descname">data_range</code><a class="headerlink" href="#dival.measure.PSNRMeasure.data_range" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.PSNRMeasure.data_range">
+<span class="sig-name descname"><span class="pre">data_range</span></span><a class="headerlink" href="#dival.measure.PSNRMeasure.data_range" title="Link to this definition"></a></dt>
 <dd><p>The data range (max-min possible value).
 If <cite>data_range</cite> is <cite>None</cite>,
 <code class="docutils literal notranslate"><span class="pre">np.max(ground_truth)</span> <span class="pre">-</span> <span class="pre">np.min(ground_truth)</span></code> is used in
 <a class="reference internal" href="#dival.measure.PSNRMeasure.apply" title="dival.measure.PSNRMeasure.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">apply()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float or <cite>None</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.PSNRMeasure.measure_type">
-<code class="sig-name descname">measure_type</code><em class="property"> = 'quality'</em><a class="headerlink" href="#dival.measure.PSNRMeasure.measure_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.PSNRMeasure.measure_type">
+<span class="sig-name descname"><span class="pre">measure_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'quality'</span></em><a class="headerlink" href="#dival.measure.PSNRMeasure.measure_type" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.PSNRMeasure.measure_type" title="dival.measure.PSNRMeasure.measure_type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_type</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.PSNRMeasure.short_name">
-<code class="sig-name descname">short_name</code><em class="property"> = 'psnr'</em><a class="headerlink" href="#dival.measure.PSNRMeasure.short_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.PSNRMeasure.short_name">
+<span class="sig-name descname"><span class="pre">short_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'psnr'</span></em><a class="headerlink" href="#dival.measure.PSNRMeasure.short_name" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.PSNRMeasure.short_name" title="dival.measure.PSNRMeasure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.PSNRMeasure.name">
-<code class="sig-name descname">name</code><em class="property"> = 'peak signal-to-noise ratio'</em><a class="headerlink" href="#dival.measure.PSNRMeasure.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.PSNRMeasure.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'peak</span> <span class="pre">signal-to-noise</span> <span class="pre">ratio'</span></em><a class="headerlink" href="#dival.measure.PSNRMeasure.name" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.PSNRMeasure.name" title="dival.measure.PSNRMeasure.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.PSNRMeasure.description">
-<code class="sig-name descname">description</code><em class="property"> = 'quality given by 10*log10(MAX**2/MSE)'</em><a class="headerlink" href="#dival.measure.PSNRMeasure.description" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.PSNRMeasure.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'quality</span> <span class="pre">given</span> <span class="pre">by</span> <span class="pre">10*log10(MAX**2/MSE)'</span></em><a class="headerlink" href="#dival.measure.PSNRMeasure.description" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.PSNRMeasure.description" title="dival.measure.PSNRMeasure.description"><code class="xref py py-attr docutils literal notranslate"><span class="pre">description</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.PSNRMeasure.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_range</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">short_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#PSNRMeasure.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.PSNRMeasure.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.PSNRMeasure.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#PSNRMeasure.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.PSNRMeasure.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data_range</strong> (<em>float</em><em>, </em><em>optional</em>) – The data range (max-min possible value).
 If <cite>data_range</cite> is <cite>None</cite>,
@@ -530,21 +510,21 @@ If <cite>data_range</cite> is <cite>None</cite>,
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.PSNRMeasure.apply">
-<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstruction</span></em>, <em class="sig-param"><span class="n">ground_truth</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#PSNRMeasure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.PSNRMeasure.apply" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.PSNRMeasure.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstruction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ground_truth</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#PSNRMeasure.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.PSNRMeasure.apply" title="Link to this definition"></a></dt>
 <dd><p>Calculate the value of this measure.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstruction</strong> (<em>odl element</em>) – The reconstruction.</p></li>
 <li><p><strong>ground_truth</strong> (<em>odl element</em>) – The ground truth to compare with.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>value</strong> – The value of this measure for the given <cite>reconstruction</cite> and
 <cite>ground_truth</cite>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -553,45 +533,49 @@ If <cite>data_range</cite> is <cite>None</cite>,
 </dd></dl>
 
 <dl class="py data">
-<dt id="dival.measure.PSNR">
-<code class="sig-prename descclassname">dival.measure.</code><code class="sig-name descname">PSNR</code><em class="property"> = &lt;dival.measure.PSNRMeasure object&gt;</em><a class="headerlink" href="#dival.measure.PSNR" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.PSNR">
+<span class="sig-prename descclassname"><span class="pre">dival.measure.</span></span><span class="sig-name descname"><span class="pre">PSNR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dival.measure.PSNRMeasure</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dival.measure.PSNR" title="Link to this definition"></a></dt>
 <dd><p>Instance of <a class="reference internal" href="#dival.measure.PSNRMeasure" title="dival.measure.PSNRMeasure"><code class="xref py py-class docutils literal notranslate"><span class="pre">PSNRMeasure</span></code></a>, with <code class="docutils literal notranslate"><span class="pre">data_range=None</span></code> and
 <code class="docutils literal notranslate"><span class="pre">short_name='psnr'</span></code>.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.measure.SSIMMeasure">
-<em class="property">class </em><code class="sig-prename descclassname">dival.measure.</code><code class="sig-name descname">SSIMMeasure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">short_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#SSIMMeasure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.SSIMMeasure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.measure.Measure</span></code></a></p>
+<dt class="sig sig-object py" id="dival.measure.SSIMMeasure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.measure.</span></span><span class="sig-name descname"><span class="pre">SSIMMeasure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#SSIMMeasure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.SSIMMeasure" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dival.measure.Measure" title="dival.measure.Measure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measure</span></code></a></p>
 <p>The structural similarity index measure.</p>
 <dl class="py attribute">
-<dt id="dival.measure.SSIMMeasure.measure_type">
-<code class="sig-name descname">measure_type</code><em class="property"> = 'quality'</em><a class="headerlink" href="#dival.measure.SSIMMeasure.measure_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.SSIMMeasure.measure_type">
+<span class="sig-name descname"><span class="pre">measure_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'quality'</span></em><a class="headerlink" href="#dival.measure.SSIMMeasure.measure_type" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.SSIMMeasure.measure_type" title="dival.measure.SSIMMeasure.measure_type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">measure_type</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.SSIMMeasure.short_name">
-<code class="sig-name descname">short_name</code><em class="property"> = 'ssim'</em><a class="headerlink" href="#dival.measure.SSIMMeasure.short_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.SSIMMeasure.short_name">
+<span class="sig-name descname"><span class="pre">short_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ssim'</span></em><a class="headerlink" href="#dival.measure.SSIMMeasure.short_name" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.SSIMMeasure.short_name" title="dival.measure.SSIMMeasure.short_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">short_name</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.SSIMMeasure.name">
-<code class="sig-name descname">name</code><em class="property"> = 'structural similarity index'</em><a class="headerlink" href="#dival.measure.SSIMMeasure.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.SSIMMeasure.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'structural</span> <span class="pre">similarity</span> <span class="pre">index'</span></em><a class="headerlink" href="#dival.measure.SSIMMeasure.name" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.SSIMMeasure.name" title="dival.measure.SSIMMeasure.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.measure.SSIMMeasure.description">
-<code class="sig-name descname">description</code><em class="property"> = 'The (M)SSIM like described in `Wang et al. 2014 &lt;https://doi.org/10.1109/TIP.2003.819861&gt;`_.'</em><a class="headerlink" href="#dival.measure.SSIMMeasure.description" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.measure.SSIMMeasure.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'The</span> <span class="pre">(M)SSIM</span> <span class="pre">like</span> <span class="pre">described</span> <span class="pre">in</span> <span class="pre">`Wang</span> <span class="pre">et</span> <span class="pre">al.</span> <span class="pre">2014</span> <span class="pre">&lt;https://doi.org/10.1109/TIP.2003.819861&gt;`_.'</span></em><a class="headerlink" href="#dival.measure.SSIMMeasure.description" title="Link to this definition"></a></dt>
+<dd><p>Class attribute, default value for <a class="reference internal" href="#dival.measure.SSIMMeasure.description" title="dival.measure.SSIMMeasure.description"><code class="xref py py-attr docutils literal notranslate"><span class="pre">description</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.SSIMMeasure.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">short_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#SSIMMeasure.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.SSIMMeasure.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.SSIMMeasure.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#SSIMMeasure.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.SSIMMeasure.__init__" title="Link to this definition"></a></dt>
 <dd><p>This is a wrapper for <code class="xref py py-func docutils literal notranslate"><span class="pre">skimage.metrics.structural_similarity()</span></code>.
 The data range is automatically determined from the ground truth if not
 given to the constructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>short_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Short name.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Keyword arguments that will be passed to
@@ -604,21 +588,21 @@ If <cite>data_range</cite> is not specified,
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.measure.SSIMMeasure.apply">
-<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstruction</span></em>, <em class="sig-param"><span class="n">ground_truth</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#SSIMMeasure.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.measure.SSIMMeasure.apply" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.SSIMMeasure.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstruction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ground_truth</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/measure.html#SSIMMeasure.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.measure.SSIMMeasure.apply" title="Link to this definition"></a></dt>
 <dd><p>Calculate the value of this measure.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstruction</strong> (<em>odl element</em>) – The reconstruction.</p></li>
 <li><p><strong>ground_truth</strong> (<em>odl element</em>) – The ground truth to compare with.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>value</strong> – The value of this measure for the given <cite>reconstruction</cite> and
 <cite>ground_truth</cite>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -627,60 +611,43 @@ If <cite>data_range</cite> is not specified,
 </dd></dl>
 
 <dl class="py data">
-<dt id="dival.measure.SSIM">
-<code class="sig-prename descclassname">dival.measure.</code><code class="sig-name descname">SSIM</code><em class="property"> = &lt;dival.measure.SSIMMeasure object&gt;</em><a class="headerlink" href="#dival.measure.SSIM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.measure.SSIM">
+<span class="sig-prename descclassname"><span class="pre">dival.measure.</span></span><span class="sig-name descname"><span class="pre">SSIM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dival.measure.SSIMMeasure</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dival.measure.SSIM" title="Link to this definition"></a></dt>
 <dd><p>Instance of <a class="reference internal" href="#dival.measure.SSIMMeasure" title="dival.measure.SSIMMeasure"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSIMMeasure</span></code></a>, with <code class="docutils literal notranslate"><span class="pre">data_range=None</span></code> and
 <code class="docutils literal notranslate"><span class="pre">short_name='ssim'</span></code>.</p>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="dival.reconstructors.html" class="btn btn-neutral float-right" title="dival.reconstructors package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="dival.hyper_param_search.html" class="btn btn-neutral float-left" title="dival.hyper_param_search module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dival.reconstructors.html" class="btn btn-neutral float-right" title="dival.reconstructors package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.
-
-    </p>
+    <p>&#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

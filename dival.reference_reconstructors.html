@@ -1,97 +1,49 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>dival.reference_reconstructors module &mdash; Deep Inversion Validation Library  documentation</title>
-  
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bcb77441" />
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.util package" href="dival.util.html" />
     <link rel="prev" title="dival.reconstructors.tvadam_ct_reconstructor module" href="dival.reconstructors.tvadam_ct_reconstructor.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            Deep Inversion Validation Library
           </a>
-
-          
-            
-            
-              <div class="version">
-                0.6.1
-              </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
@@ -122,7 +74,20 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.standard_learned_reconstructor.html">dival.reconstructors.standard_learned_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reference_reconstructors module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reference_reconstructors module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.CONFIGURATIONS"><code class="docutils literal notranslate"><span class="pre">CONFIGURATIONS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.DATASETS"><code class="docutils literal notranslate"><span class="pre">DATASETS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.construct_reconstructor"><code class="docutils literal notranslate"><span class="pre">construct_reconstructor()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.validate_reconstructor_key_name_or_type"><code class="docutils literal notranslate"><span class="pre">validate_reconstructor_key_name_or_type()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.get_params_path"><code class="docutils literal notranslate"><span class="pre">get_params_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.get_hyper_params_path"><code class="docutils literal notranslate"><span class="pre">get_hyper_params_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.download_params"><code class="docutils literal notranslate"><span class="pre">download_params()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.download_hyper_params"><code class="docutils literal notranslate"><span class="pre">download_hyper_params()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.check_for_params"><code class="docutils literal notranslate"><span class="pre">check_for_params()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.check_for_hyper_params"><code class="docutils literal notranslate"><span class="pre">check_for_hyper_params()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reference_reconstructors.get_reference_reconstructor"><code class="docutils literal notranslate"><span class="pre">get_reference_reconstructor()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.constants.html">dival.util.constants module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.download.html">dival.util.download module</a></li>
@@ -137,76 +102,35 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Deep Inversion Validation Library</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>dival.reference_reconstructors module</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">dival.reference_reconstructors module</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/dival.reference_reconstructors.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="module-dival.reference_reconstructors">
-<span id="dival-reference-reconstructors-module"></span><h1>dival.reference_reconstructors module<a class="headerlink" href="#module-dival.reference_reconstructors" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="module-dival.reference_reconstructors">
+<span id="dival-reference-reconstructors-module"></span><h1>dival.reference_reconstructors module<a class="headerlink" href="#module-dival.reference_reconstructors" title="Link to this heading"></a></h1>
 <dl class="py data">
-<dt id="dival.reference_reconstructors.CONFIGURATIONS">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">CONFIGURATIONS</code><em class="property"> = {'diptv': {'datasets': ['ellipses', 'lodopab'], 'type': {'cls': 'DeepImagePriorCTReconstructor', 'module': 'dival.reconstructors.dip_ct_reconstructor'}}, 'fbp': {'datasets': ['ellipses', 'lodopab'], 'type': {'cls': 'FBPReconstructor', 'module': 'dival.reconstructors.odl_reconstructors'}}, 'fbpunet': {'datasets': ['ellipses', 'lodopab'], 'learned_params_spec': {'ext': '.pt'}, 'type': {'cls': 'FBPUNetReconstructor', 'module': 'dival.reconstructors.fbpunet_reconstructor'}}, 'iradonmap': {'datasets': ['ellipses', 'lodopab'], 'learned_params_spec': {'ext': '.pt'}, 'type': {'cls': 'IRadonMapReconstructor', 'module': 'dival.reconstructors.iradonmap_reconstructor'}}, 'learnedgd': {'datasets': ['ellipses', 'lodopab'], 'learned_params_spec': {'ext': '.pt'}, 'type': {'cls': 'LearnedGDReconstructor', 'module': 'dival.reconstructors.learnedgd_reconstructor'}}, 'learnedpd': {'datasets': ['ellipses', 'lodopab'], 'learned_params_spec': {'ext': '.pt'}, 'type': {'cls': 'LearnedPDReconstructor', 'module': 'dival.reconstructors.learnedpd_reconstructor'}}, 'tvadam': {'datasets': ['ellipses', 'lodopab'], 'type': {'cls': 'TVAdamCTReconstructor', 'module': 'dival.reconstructors.tvadam_ct_reconstructor'}}}</em><a class="headerlink" href="#dival.reference_reconstructors.CONFIGURATIONS" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.CONFIGURATIONS">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">CONFIGURATIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'diptv':</span> <span class="pre">{'datasets':</span> <span class="pre">['ellipses',</span> <span class="pre">'lodopab'],</span> <span class="pre">'type':</span> <span class="pre">{'cls':</span> <span class="pre">'DeepImagePriorCTReconstructor',</span> <span class="pre">'module':</span> <span class="pre">'dival.reconstructors.dip_ct_reconstructor'}},</span> <span class="pre">'fbp':</span> <span class="pre">{'datasets':</span> <span class="pre">['ellipses',</span> <span class="pre">'lodopab'],</span> <span class="pre">'type':</span> <span class="pre">{'cls':</span> <span class="pre">'FBPReconstructor',</span> <span class="pre">'module':</span> <span class="pre">'dival.reconstructors.odl_reconstructors'}},</span> <span class="pre">'fbpunet':</span> <span class="pre">{'datasets':</span> <span class="pre">['ellipses',</span> <span class="pre">'lodopab'],</span> <span class="pre">'learned_params_spec':</span> <span class="pre">{'ext':</span> <span class="pre">'.pt'},</span> <span class="pre">'type':</span> <span class="pre">{'cls':</span> <span class="pre">'FBPUNetReconstructor',</span> <span class="pre">'module':</span> <span class="pre">'dival.reconstructors.fbpunet_reconstructor'}},</span> <span class="pre">'iradonmap':</span> <span class="pre">{'datasets':</span> <span class="pre">['ellipses',</span> <span class="pre">'lodopab'],</span> <span class="pre">'learned_params_spec':</span> <span class="pre">{'ext':</span> <span class="pre">'.pt'},</span> <span class="pre">'type':</span> <span class="pre">{'cls':</span> <span class="pre">'IRadonMapReconstructor',</span> <span class="pre">'module':</span> <span class="pre">'dival.reconstructors.iradonmap_reconstructor'}},</span> <span class="pre">'learnedgd':</span> <span class="pre">{'datasets':</span> <span class="pre">['ellipses',</span> <span class="pre">'lodopab'],</span> <span class="pre">'learned_params_spec':</span> <span class="pre">{'ext':</span> <span class="pre">'.pt'},</span> <span class="pre">'type':</span> <span class="pre">{'cls':</span> <span class="pre">'LearnedGDReconstructor',</span> <span class="pre">'module':</span> <span class="pre">'dival.reconstructors.learnedgd_reconstructor'}},</span> <span class="pre">'learnedpd':</span> <span class="pre">{'datasets':</span> <span class="pre">['ellipses',</span> <span class="pre">'lodopab'],</span> <span class="pre">'learned_params_spec':</span> <span class="pre">{'ext':</span> <span class="pre">'.pt'},</span> <span class="pre">'type':</span> <span class="pre">{'cls':</span> <span class="pre">'LearnedPDReconstructor',</span> <span class="pre">'module':</span> <span class="pre">'dival.reconstructors.learnedpd_reconstructor'}},</span> <span class="pre">'tvadam':</span> <span class="pre">{'datasets':</span> <span class="pre">['ellipses',</span> <span class="pre">'lodopab'],</span> <span class="pre">'type':</span> <span class="pre">{'cls':</span> <span class="pre">'TVAdamCTReconstructor',</span> <span class="pre">'module':</span> <span class="pre">'dival.reconstructors.tvadam_ct_reconstructor'}}}</span></em><a class="headerlink" href="#dival.reference_reconstructors.CONFIGURATIONS" title="Link to this definition"></a></dt>
 <dd><p>Specification of reference configurations.</p>
 <p>For each configuration key name a dict with the following fields is
 specified:</p>
@@ -247,22 +171,22 @@ to the directory path.
 </dd></dl>
 
 <dl class="py data">
-<dt id="dival.reference_reconstructors.DATASETS">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">DATASETS</code><em class="property"> = ['ellipses', 'lodopab']</em><a class="headerlink" href="#dival.reference_reconstructors.DATASETS" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.DATASETS">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">DATASETS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['ellipses',</span> <span class="pre">'lodopab']</span></em><a class="headerlink" href="#dival.reference_reconstructors.DATASETS" title="Link to this definition"></a></dt>
 <dd><p>List of standard datasets for which (some) reference reconstructor
 configurations are available.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.reference_reconstructors.construct_reconstructor">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">construct_reconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#construct_reconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.construct_reconstructor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.construct_reconstructor">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">construct_reconstructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstructor_key_name_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#construct_reconstructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reference_reconstructors.construct_reconstructor" title="Link to this definition"></a></dt>
 <dd><p>Construct reference reconstructor object (not loading parameters).</p>
 <p>Note: see :func:get_reference_reconstructor to retrieve a reference
 reconstructor with optimized parameters.</p>
 <p>This function implements the constructors calls which are potentially
 specific to each configuration.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor_key_name_or_type</strong> (<em>str</em><em> or </em><em>type</em>) – Key name of configuration or reconstructor type.</p></li>
 <li><p><strong>dataset_name</strong> (<em>str</em>) – Standard dataset name.</p></li>
@@ -271,37 +195,37 @@ For CT configurations this includes the <code class="docutils literal notranslat
 <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>ValueError</strong> – If the configuration does not exist.</p></li>
 <li><p><strong>NotImplementedError</strong> – If construction is not implemented for the configuration.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>reconstructor</strong> – The reconstructor instance.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.reference_reconstructors.validate_reconstructor_key_name_or_type">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">validate_reconstructor_key_name_or_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#validate_reconstructor_key_name_or_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.validate_reconstructor_key_name_or_type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.validate_reconstructor_key_name_or_type">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">validate_reconstructor_key_name_or_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstructor_key_name_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#validate_reconstructor_key_name_or_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reference_reconstructors.validate_reconstructor_key_name_or_type" title="Link to this definition"></a></dt>
 <dd><p>Validate that a configuration exists and return both its key name
 and the reconstructor type.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor_key_name_or_type</strong> (<em>str</em><em> or </em><em>type</em>) – Key name of configuration or reconstructor type.</p></li>
 <li><p><strong>dataset_name</strong> (<em>str</em>) – Standard dataset name.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the configuration does not exist.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><ul class="simple">
 <li><p><strong>r_key_name</strong> (<em>str</em>) – Key name of the configuration.</p></li>
 <li><p><strong>r_type</strong> (<em>type</em>) – Reconstructor type.</p></li>
@@ -312,53 +236,53 @@ and the reconstructor type.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.reference_reconstructors.get_params_path">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">get_params_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#get_params_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.get_params_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.get_params_path">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">get_params_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstructor_key_name_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#get_params_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reference_reconstructors.get_params_path" title="Link to this definition"></a></dt>
 <dd><p>Return path of the parameters for a configuration.
 It can be passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor.load_params</span></code> as a single argument
 to load all parameters (hyper params and learned params).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor_key_name_or_type</strong> (<em>str</em><em> or </em><em>type</em>) – Key name of configuration or reconstructor type.</p></li>
 <li><p><strong>dataset_name</strong> (<em>str</em>) – Standard dataset name.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>params_path</strong> – Parameter path.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.reference_reconstructors.get_hyper_params_path">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">get_hyper_params_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#get_hyper_params_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.get_hyper_params_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.get_hyper_params_path">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">get_hyper_params_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstructor_key_name_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#get_hyper_params_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reference_reconstructors.get_hyper_params_path" title="Link to this definition"></a></dt>
 <dd><p>Return path of the hyper parameters for a configuration.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor_key_name_or_type</strong> (<em>str</em><em> or </em><em>type</em>) – Key name of configuration or reconstructor type.</p></li>
 <li><p><strong>dataset_name</strong> (<em>str</em>) – Standard dataset name.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>hyper_params_path</strong> – Hyper parameter path.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.reference_reconstructors.download_params">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">download_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em>, <em class="sig-param"><span class="n">include_learned</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#download_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.download_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.download_params">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">download_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstructor_key_name_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_learned</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#download_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reference_reconstructors.download_params" title="Link to this definition"></a></dt>
 <dd><p>Download parameters for a configuration.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor_key_name_or_type</strong> (<em>str</em><em> or </em><em>type</em>) – Key name of configuration or reconstructor type.</p></li>
 <li><p><strong>dataset_name</strong> (<em>str</em>) – Standard dataset name.</p></li>
@@ -367,7 +291,7 @@ Otherwise only hyper parameters are downloaded.
 Default: <cite>True</cite>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>NotImplementedError</strong> – If trying to download learned parameters that are stored in a
     directory (instead of as a single file).</p></li>
@@ -380,11 +304,11 @@ Default: <cite>True</cite>.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.reference_reconstructors.download_hyper_params">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">download_hyper_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#download_hyper_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.download_hyper_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.download_hyper_params">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">download_hyper_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstructor_key_name_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#download_hyper_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reference_reconstructors.download_hyper_params" title="Link to this definition"></a></dt>
 <dd><p>Download hyper parameters for a configuration.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor_key_name_or_type</strong> (<em>str</em><em> or </em><em>type</em>) – Key name of configuration or reconstructor type.</p></li>
 <li><p><strong>dataset_name</strong> (<em>str</em>) – Standard dataset name.</p></li>
@@ -394,11 +318,11 @@ Default: <cite>True</cite>.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.reference_reconstructors.check_for_params">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">check_for_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em>, <em class="sig-param"><span class="n">include_learned</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">return_missing</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#check_for_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.check_for_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.check_for_params">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">check_for_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstructor_key_name_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_learned</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_missing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#check_for_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reference_reconstructors.check_for_params" title="Link to this definition"></a></dt>
 <dd><p>Return whether the parameter file(s) can be found.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor_key_name_or_type</strong> (<em>str</em><em> or </em><em>type</em>) – Key name of configuration or reconstructor type.</p></li>
 <li><p><strong>dataset_name</strong> (<em>str</em>) – Standard dataset name.</p></li>
@@ -408,7 +332,7 @@ Default: <cite>True</cite>.</p></li>
 Default: <cite>False</cite>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>NotImplementedError</strong> – If trying to check for learned parameters that are stored in a
     directory (instead of as a single file).</p></li>
@@ -417,7 +341,7 @@ Default: <cite>False</cite>.</p></li>
     directory).</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><ul class="simple">
 <li><p><strong>params_exist</strong> (<em>bool</em>) – Whether the parameter file(s) can be found.</p></li>
 <li><p><strong>missing</strong> (<em>list of str, optional</em>) – List of missing files.
@@ -429,31 +353,31 @@ Only returned if <cite>return_missing=True</cite>.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.reference_reconstructors.check_for_hyper_params">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">check_for_hyper_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#check_for_hyper_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.check_for_hyper_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.check_for_hyper_params">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">check_for_hyper_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstructor_key_name_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#check_for_hyper_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reference_reconstructors.check_for_hyper_params" title="Link to this definition"></a></dt>
 <dd><p>Return whether the hyper parameter file can be found.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor_key_name_or_type</strong> (<em>str</em><em> or </em><em>type</em>) – Key name of configuration or reconstructor type.</p></li>
 <li><p><strong>dataset_name</strong> (<em>str</em>) – Standard dataset name.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>params_exist</strong> – Whether the hyper parameter file can be found.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.reference_reconstructors.get_reference_reconstructor">
-<code class="sig-prename descclassname">dival.reference_reconstructors.</code><code class="sig-name descname">get_reference_reconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reconstructor_key_name_or_type</span></em>, <em class="sig-param"><span class="n">dataset_name</span></em>, <em class="sig-param"><span class="n">pretrained</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#get_reference_reconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reference_reconstructors.get_reference_reconstructor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reference_reconstructors.get_reference_reconstructor">
+<span class="sig-prename descclassname"><span class="pre">dival.reference_reconstructors.</span></span><span class="sig-name descname"><span class="pre">get_reference_reconstructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reconstructor_key_name_or_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reference_reconstructors.html#get_reference_reconstructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reference_reconstructors.get_reference_reconstructor" title="Link to this definition"></a></dt>
 <dd><p>Return a reference reconstructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reconstructor_key_name_or_type</strong> (<em>str</em><em> or </em><em>type</em>) – Key name of configuration or reconstructor type.</p></li>
 <li><p><strong>dataset_name</strong> (<em>str</em>) – Standard dataset name.</p></li>
@@ -464,66 +388,49 @@ For CT configurations this includes the <code class="docutils literal notranslat
 <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.RayTransform</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>RuntimeError</strong> – If parameter files are missing and the user chooses not to download.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>reconstructor</strong> – The reference reconstructor.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstructor</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="dival.util.html" class="btn btn-neutral float-right" title="dival.util package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="dival.reconstructors.tvadam_ct_reconstructor.html" class="btn btn-neutral float-left" title="dival.reconstructors.tvadam_ct_reconstructor module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dival.util.html" class="btn btn-neutral float-right" title="dival.util package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.
-
-    </p>
+    <p>&#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

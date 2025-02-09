@@ -1,97 +1,49 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>dival.reconstructors.standard_learned_reconstructor module &mdash; Deep Inversion Validation Library  documentation</title>
-  
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bcb77441" />
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.reconstructors.tvadam_ct_reconstructor module" href="dival.reconstructors.tvadam_ct_reconstructor.html" />
     <link rel="prev" title="dival.reconstructors.regression_reconstructors module" href="dival.reconstructors.regression_reconstructors.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            Deep Inversion Validation Library
           </a>
-
-          
-            
-            
-              <div class="version">
-                0.6.1
-              </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
@@ -120,7 +72,33 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.odl_reconstructors.html">dival.reconstructors.odl_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.reconstructor.html">dival.reconstructors.reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.regression_reconstructors.html">dival.reconstructors.regression_reconstructors module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.standard_learned_reconstructor module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.reconstructors.standard_learned_reconstructor module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.model"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.non_normed_op"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.non_normed_op</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.HYPER_PARAMS"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.HYPER_PARAMS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.__init__"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.opnorm"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.opnorm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.op"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.op</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.eval"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.eval()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.train()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.init_transform()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.transform"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.transform</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.init_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.init_optimizer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.optimizer"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.optimizer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.init_scheduler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.scheduler"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.scheduler</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.batch_size"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.batch_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.epochs"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.epochs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.lr"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.lr</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.normalize_by_opnorm"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.normalize_by_opnorm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.save_learned_params"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.save_learned_params()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.load_learned_params"><code class="docutils literal notranslate"><span class="pre">StandardLearnedReconstructor.load_learned_params()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reconstructors.tvadam_ct_reconstructor.html">dival.reconstructors.tvadam_ct_reconstructor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.reference_reconstructors.html">dival.reference_reconstructors module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.html">dival.util package</a></li>
@@ -137,79 +115,37 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Deep Inversion Validation Library</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="dival.reconstructors.html">dival.reconstructors package</a> &raquo;</li>
-        
-      <li>dival.reconstructors.standard_learned_reconstructor module</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="dival.reconstructors.html">dival.reconstructors package</a></li>
+      <li class="breadcrumb-item active">dival.reconstructors.standard_learned_reconstructor module</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/dival.reconstructors.standard_learned_reconstructor.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="module-dival.reconstructors.standard_learned_reconstructor">
-<span id="dival-reconstructors-standard-learned-reconstructor-module"></span><h1>dival.reconstructors.standard_learned_reconstructor module<a class="headerlink" href="#module-dival.reconstructors.standard_learned_reconstructor" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="module-dival.reconstructors.standard_learned_reconstructor">
+<span id="dival-reconstructors-standard-learned-reconstructor-module"></span><h1>dival.reconstructors.standard_learned_reconstructor module<a class="headerlink" href="#module-dival.reconstructors.standard_learned_reconstructor" title="Link to this heading"></a></h1>
 <dl class="py class">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor">
-<em class="property">class </em><code class="sig-prename descclassname">dival.reconstructors.standard_learned_reconstructor.</code><code class="sig-name descname">StandardLearnedReconstructor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log_num_validation_samples</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">save_best_learned_params_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">torch_manual_seed</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">shuffle</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">worker_init_fn</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.reconstructors.reconstructor.LearnedReconstructor</span></code></a></p>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.reconstructors.standard_learned_reconstructor.</span></span><span class="sig-name descname"><span class="pre">StandardLearnedReconstructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_data_loader_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cuda</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_pbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_num_validation_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_best_learned_params_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torch_manual_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker_init_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.reconstructors.reconstructor.html#dival.reconstructors.reconstructor.LearnedReconstructor" title="dival.reconstructors.reconstructor.LearnedReconstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">LearnedReconstructor</span></code></a></p>
 <p>Standard learned reconstructor base class.</p>
 <p>Provides a default implementation that only requires subclasses to
 implement <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a>.</p>
@@ -223,40 +159,135 @@ number of epochs based on the validation set.</p>
 <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.op" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.op"><code class="xref py py-attr docutils literal notranslate"><span class="pre">op</span></code></a> should be normalized by the operator norm.
 In this case, the inputs to <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.model" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.model"><code class="xref py py-attr docutils literal notranslate"><span class="pre">model</span></code></a> are divided by the operator norm.</p>
 <dl class="py attribute">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.model">
-<code class="sig-name descname">model</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.model" title="Link to this definition"></a></dt>
 <dd><p>The neural network.
 Must be initialized by the subclass <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a> implementation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> or <cite>None</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.non_normed_op">
-<code class="sig-name descname">non_normed_op</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.non_normed_op" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.non_normed_op">
+<span class="sig-name descname"><span class="pre">non_normed_op</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.non_normed_op" title="Link to this definition"></a></dt>
 <dd><p>The original <cite>op</cite> passed to <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.__init__" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>, regardless of
 <code class="docutils literal notranslate"><span class="pre">self.hyper_params['normalize_by_opnorm']</span></code>.
 See also <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.op" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.op"><code class="xref py py-attr docutils literal notranslate"><span class="pre">op</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.Operator</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.HYPER_PARAMS">
-<code class="sig-name descname">HYPER_PARAMS</code><em class="property"> = {'batch_size': {'default': 64, 'retrain': True}, 'epochs': {'default': 20, 'retrain': True}, 'lr': {'default': 0.01, 'retrain': True}, 'normalize_by_opnorm': {'default': False, 'retrain': True}}</em><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.HYPER_PARAMS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.HYPER_PARAMS">
+<span class="sig-name descname"><span class="pre">HYPER_PARAMS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'batch_size':</span> <span class="pre">{'default':</span> <span class="pre">64,</span> <span class="pre">'retrain':</span> <span class="pre">True},</span> <span class="pre">'epochs':</span> <span class="pre">{'default':</span> <span class="pre">20,</span> <span class="pre">'retrain':</span> <span class="pre">True},</span> <span class="pre">'lr':</span> <span class="pre">{'default':</span> <span class="pre">0.01,</span> <span class="pre">'retrain':</span> <span class="pre">True},</span> <span class="pre">'normalize_by_opnorm':</span> <span class="pre">{'default':</span> <span class="pre">False,</span> <span class="pre">'retrain':</span> <span class="pre">True}}</span></em><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.HYPER_PARAMS" title="Link to this definition"></a></dt>
+<dd><p>Specification of hyper parameters.</p>
+<p>This class attribute is a dict that lists the hyper parameter of the
+reconstructor.
+It should not be hidden by an instance attribute of the same name (i.e. by
+assigning a value to <cite>self.HYPER_PARAMS</cite> in an instance of a subtype).</p>
+<p><em>Note:</em> in order to inherit <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.HYPER_PARAMS" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.HYPER_PARAMS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HYPER_PARAMS</span></code></a> from a super class, the
+subclass should create a deep copy of it, i.e. execute
+<code class="docutils literal notranslate"><span class="pre">HYPER_PARAMS</span> <span class="pre">=</span> <span class="pre">copy.deepcopy(SuperReconstructorClass.HYPER_PARAMS)</span></code> in
+the class body.</p>
+<p>The keys of this dict are the names of the hyper parameters, and each
+value is a dict with the following fields.</p>
+<blockquote>
+<div><p>Standard fields:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'default'</span></code></dt><dd><p>Default value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'retrain'</span></code><span class="classifier">bool, optional</span></dt><dd><p>Whether training depends on the parameter. Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+Any custom subclass of <cite>LearnedReconstructor</cite> must set this
+field to <code class="docutils literal notranslate"><span class="pre">True</span></code> if training depends on the parameter value.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Hyper parameter search fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'range'</span></code><span class="classifier">(float, float), optional</span></dt><dd><p>Interval of valid values. If this field is set, the parameter
+is taken to be real-valued.
+Either <code class="docutils literal notranslate"><span class="pre">'range'</span></code> or <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> has to be set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'choices'</span></code><span class="classifier">sequence, optional</span></dt><dd><p>Sequence of valid values of any type. If this field is set,
+<code class="docutils literal notranslate"><span class="pre">'range'</span></code> is ignored. Can be used to perform manual grid
+search. Either <code class="docutils literal notranslate"><span class="pre">'range'</span></code> or <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> has to be set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'method'</span></code><span class="classifier">{‘grid_search’, ‘hyperopt’}, optional</span></dt><dd><p>Optimization method for the parameter.
+Default: <code class="docutils literal notranslate"><span class="pre">'grid_search'</span></code>.
+Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'grid_search'</span></code></dt><dd><p>Grid search over a sequence of fixed values. Can be
+configured by the dict <code class="docutils literal notranslate"><span class="pre">'grid_search_options'</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'hyperopt'</span></code></dt><dd><p>Random search using the <code class="docutils literal notranslate"><span class="pre">hyperopt</span></code> package. Can be
+configured by the dict <code class="docutils literal notranslate"><span class="pre">'hyperopt_options'</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'grid_search_options'</span></code><span class="classifier">dict</span></dt><dd><p>Option dict for grid search.</p>
+<p>The following fields determine how <code class="docutils literal notranslate"><span class="pre">'range'</span></code> is sampled
+(in case it is specified and no <code class="docutils literal notranslate"><span class="pre">'choices'</span></code> are specified):</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'num_samples'</span></code><span class="classifier">int, optional</span></dt><dd><p>Number of values. Default: <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'type'</span></code><span class="classifier">{‘linear’, ‘logarithmic’}, optional</span></dt><dd><p>Type of grid, i.e. distribution of the values.
+Default: <code class="docutils literal notranslate"><span class="pre">'linear'</span></code>.
+Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'linear'</span></code></dt><dd><p>Equidistant values in the <code class="docutils literal notranslate"><span class="pre">'range'</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'logarithmic'</span></code></dt><dd><p>Values in the <code class="docutils literal notranslate"><span class="pre">'range'</span></code> that are equidistant
+in the log scale.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'log_base'</span></code><span class="classifier">int, optional</span></dt><dd><p>Log-base that is used if <code class="docutils literal notranslate"><span class="pre">'type'</span></code> is
+<code class="docutils literal notranslate"><span class="pre">'logarithmic'</span></code>. Default: <code class="docutils literal notranslate"><span class="pre">10.</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'hyperopt_options'</span></code><span class="classifier">dict</span></dt><dd><p>Option dict for <code class="docutils literal notranslate"><span class="pre">'hyperopt'</span></code> method with the fields:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'space'</span></code><span class="classifier">hyperopt space, optional</span></dt><dd><p>Custom hyperopt search space. If this field is set,
+<code class="docutils literal notranslate"><span class="pre">'range'</span></code> and <code class="docutils literal notranslate"><span class="pre">'type'</span></code> are ignored.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'type'</span></code><span class="classifier">{‘uniform’}, optional</span></dt><dd><p>Type of the space for sampling. Default: <code class="docutils literal notranslate"><span class="pre">'uniform'</span></code>.
+Options are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'uniform'</span></code></dt><dd><p>Uniform distribution over the <code class="docutils literal notranslate"><span class="pre">'range'</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">hyper_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_data_loader_workers</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">use_cuda</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_pbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log_num_validation_samples</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">save_best_learned_params_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">torch_manual_seed</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">shuffle</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">worker_init_fn</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_data_loader_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cuda</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_pbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_num_validation_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_best_learned_params_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torch_manual_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker_init_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>op</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.Operator</span></code>) – Forward operator.</p></li>
 <li><p><strong>num_data_loader_workers</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel workers to use for loading data.</p></li>
@@ -283,39 +314,39 @@ configure the dataset copies for different worker instances
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.opnorm">
-<em class="property">property </em><code class="sig-name descname">opnorm</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.opnorm" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.opnorm">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">opnorm</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.opnorm" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.op">
-<em class="property">property </em><code class="sig-name descname">op</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.op" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.op">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">op</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.op" title="Link to this definition"></a></dt>
 <dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.Operator</span></code>:
 The forward operator, normalized if
 <code class="docutils literal notranslate"><span class="pre">self.hyper_params['normalize_by_opnorm']</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.eval">
-<code class="sig-name descname">eval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">test_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.eval" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.eval" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train">
-<code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="Link to this definition"></a></dt>
 <dd><p>Train the reconstructor with a dataset by adapting its parameters.</p>
 <p>Should only use the training and validation data from <cite>dataset</cite>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – The dataset from which the training data should be used.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform">
-<code class="sig-name descname">init_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform">
+<span class="sig-name descname"><span class="pre">init_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform" title="Link to this definition"></a></dt>
 <dd><p>Initialize the transform (<code class="xref py py-attr docutils literal notranslate"><span class="pre">_transform</span></code>) that is applied on each
 training sample, e.g. for data augmentation.
 In the default implementation of <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>, it is passed to
@@ -328,96 +359,96 @@ assigning <cite>None</cite>.
 Called in <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> at the beginning, i.e. before calling
 <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a>, <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a> and <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a>) – The dival dataset passed to <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.transform">
-<em class="property">property </em><code class="sig-name descname">transform</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.transform" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.transform">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.transform" title="Link to this definition"></a></dt>
 <dd><p>callable:
 Transform that is applied on each sample, usually set by
 <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_transform()</span></code></a>, which gets called in <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model">
-<code class="sig-name descname">init_model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model">
+<span class="sig-name descname"><span class="pre">init_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model" title="Link to this definition"></a></dt>
 <dd><p>Initialize <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.model" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.model"><code class="xref py py-attr docutils literal notranslate"><span class="pre">model</span></code></a>.
 Called in <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> after calling <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_transform()</span></code></a>, but
 before calling <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a> and <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer">
-<code class="sig-name descname">init_optimizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_train</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer">
+<span class="sig-name descname"><span class="pre">init_optimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_train</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_optimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer" title="Link to this definition"></a></dt>
 <dd><p>Initialize the optimizer.
 Called in <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>, after calling <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_transform()</span></code></a> and
 <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a>, but before calling <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>dataset_train</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code>) – The training (torch) dataset constructed in <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.optimizer">
-<em class="property">property </em><code class="sig-name descname">optimizer</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.optimizer" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.optimizer">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">optimizer</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.optimizer" title="Link to this definition"></a></dt>
 <dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code>:
 The optimizer, usually set by <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a>, which gets called
 in <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler">
-<code class="sig-name descname">init_scheduler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_train</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_scheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler">
+<span class="sig-name descname"><span class="pre">init_scheduler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_train</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.init_scheduler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler" title="Link to this definition"></a></dt>
 <dd><p>Initialize the learning rate scheduler.
 Called in <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>, after calling <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_transform()</span></code></a>,
 <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_model()</span></code></a> and <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_optimizer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_optimizer()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>dataset_train</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code>) – The training (torch) dataset constructed in <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.scheduler">
-<em class="property">property </em><code class="sig-name descname">scheduler</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.scheduler" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.scheduler">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scheduler</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.scheduler" title="Link to this definition"></a></dt>
 <dd><p>torch learning rate scheduler:
 The scheduler, usually set by <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.init_scheduler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_scheduler()</span></code></a>, which gets called
 in <a class="reference internal" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train" title="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a>.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.batch_size">
-<em class="property">property </em><code class="sig-name descname">batch_size</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.batch_size" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.batch_size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">batch_size</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.batch_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.epochs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">epochs</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.epochs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.lr">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lr</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.lr" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.normalize_by_opnorm">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normalize_by_opnorm</span></span><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.normalize_by_opnorm" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.epochs">
-<em class="property">property </em><code class="sig-name descname">epochs</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.epochs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.lr">
-<em class="property">property </em><code class="sig-name descname">lr</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.lr" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.normalize_by_opnorm">
-<em class="property">property </em><code class="sig-name descname">normalize_by_opnorm</code><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.normalize_by_opnorm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.save_learned_params">
-<code class="sig-name descname">save_learned_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.save_learned_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.save_learned_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.save_learned_params">
+<span class="sig-name descname"><span class="pre">save_learned_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.save_learned_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.save_learned_params" title="Link to this definition"></a></dt>
 <dd><p>Save learned parameters to file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path at which the learned parameters should be saved.
 Implementations may interpret this as a file path or as a directory
 path for multiple files (which then should be created if it does
@@ -429,11 +460,11 @@ without file ending.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.load_learned_params">
-<code class="sig-name descname">load_learned_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">convert_data_parallel</span><span class="o">=</span><span class="default_value">'auto'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.load_learned_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.load_learned_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.load_learned_params">
+<span class="sig-name descname"><span class="pre">load_learned_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_data_parallel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/reconstructors/standard_learned_reconstructor.html#StandardLearnedReconstructor.load_learned_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.reconstructors.standard_learned_reconstructor.StandardLearnedReconstructor.load_learned_params" title="Link to this definition"></a></dt>
 <dd><p>Load learned parameters from file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<em>str</em>) – Path at which the learned parameters are stored.
 Implementations may interpret this as a file path or as a directory
@@ -461,54 +492,37 @@ Convert to plain weight names.</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="dival.reconstructors.tvadam_ct_reconstructor.html" class="btn btn-neutral float-right" title="dival.reconstructors.tvadam_ct_reconstructor module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="dival.reconstructors.regression_reconstructors.html" class="btn btn-neutral float-left" title="dival.reconstructors.regression_reconstructors module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dival.reconstructors.tvadam_ct_reconstructor.html" class="btn btn-neutral float-right" title="dival.reconstructors.tvadam_ct_reconstructor module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.
-
-    </p>
+    <p>&#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

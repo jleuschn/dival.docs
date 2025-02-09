@@ -1,97 +1,49 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>dival.util.odl_utility module &mdash; Deep Inversion Validation Library  documentation</title>
-  
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bcb77441" />
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.util.plot module" href="dival.util.plot.html" />
     <link rel="prev" title="dival.util.odl_noise_random_state module" href="dival.util.odl_noise_random_state.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            Deep Inversion Validation Library
           </a>
-
-          
-            
-            
-              <div class="version">
-                0.6.1
-              </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
@@ -128,7 +80,36 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.util.download.html">dival.util.download module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.input.html">dival.util.input module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.odl_noise_random_state.html">dival.util.odl_noise_random_state module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.util.odl_utility module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.util.odl_utility module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dival.util.odl_utility.uniform_discr_element"><code class="docutils literal notranslate"><span class="pre">uniform_discr_element()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.util.odl_utility.apply_noise"><code class="docutils literal notranslate"><span class="pre">apply_noise()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.util.odl_utility.NoiseOperator"><code class="docutils literal notranslate"><span class="pre">NoiseOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.util.odl_utility.NoiseOperator.__init__"><code class="docutils literal notranslate"><span class="pre">NoiseOperator.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.util.odl_utility.CallbackStore"><code class="docutils literal notranslate"><span class="pre">CallbackStore</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.util.odl_utility.CallbackStore.__init__"><code class="docutils literal notranslate"><span class="pre">CallbackStore.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.util.odl_utility.CallbackStore.reset"><code class="docutils literal notranslate"><span class="pre">CallbackStore.reset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.util.odl_utility.CallbackStoreAfter"><code class="docutils literal notranslate"><span class="pre">CallbackStoreAfter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.util.odl_utility.CallbackStoreAfter.__init__"><code class="docutils literal notranslate"><span class="pre">CallbackStoreAfter.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.util.odl_utility.CallbackStoreAfter.reset"><code class="docutils literal notranslate"><span class="pre">CallbackStoreAfter.reset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.util.odl_utility.ResizeOperator"><code class="docutils literal notranslate"><span class="pre">ResizeOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.util.odl_utility.ResizeOperator.__init__"><code class="docutils literal notranslate"><span class="pre">ResizeOperator.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.util.odl_utility.RayBackProjection"><code class="docutils literal notranslate"><span class="pre">RayBackProjection</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.util.odl_utility.RayBackProjection.__init__"><code class="docutils literal notranslate"><span class="pre">RayBackProjection.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.util.odl_utility.RayBackProjection.geometry"><code class="docutils literal notranslate"><span class="pre">RayBackProjection.geometry</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.util.odl_utility.RayBackProjection.adjoint"><code class="docutils literal notranslate"><span class="pre">RayBackProjection.adjoint</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.util.odl_utility.patch_ray_trafo_for_pickling"><code class="docutils literal notranslate"><span class="pre">patch_ray_trafo_for_pickling()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.plot.html">dival.util.plot module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.std_out_err_redirect_tqdm.html">dival.util.std_out_err_redirect_tqdm module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.util.torch_losses.html">dival.util.torch_losses module</a></li>
@@ -137,82 +118,40 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Deep Inversion Validation Library</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="dival.util.html">dival.util package</a> &raquo;</li>
-        
-      <li>dival.util.odl_utility module</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="dival.util.html">dival.util package</a></li>
+      <li class="breadcrumb-item active">dival.util.odl_utility module</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/dival.util.odl_utility.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="module-dival.util.odl_utility">
-<span id="dival-util-odl-utility-module"></span><h1>dival.util.odl_utility module<a class="headerlink" href="#module-dival.util.odl_utility" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="module-dival.util.odl_utility">
+<span id="dival-util-odl-utility-module"></span><h1>dival.util.odl_utility module<a class="headerlink" href="#module-dival.util.odl_utility" title="Link to this heading"></a></h1>
 <p>Provides utilities related to ODL.</p>
 <dl class="py function">
-<dt id="dival.util.odl_utility.uniform_discr_element">
-<code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">uniform_discr_element</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inp</span></em>, <em class="sig-param"><span class="n">space</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#uniform_discr_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.uniform_discr_element" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.uniform_discr_element">
+<span class="sig-prename descclassname"><span class="pre">dival.util.odl_utility.</span></span><span class="sig-name descname"><span class="pre">uniform_discr_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#uniform_discr_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.uniform_discr_element" title="Link to this definition"></a></dt>
 <dd><p>Generate an element of a ODL space from an array-like.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>inp</strong> (<em>array-like</em>) – The input data from which the element is generated.</p></li>
 <li><p><strong>space</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.discr.DiscretizedSpace</span></code>, optional) – The space which the element will belong to. If not given, a uniform
@@ -224,13 +163,13 @@ generated.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.util.odl_utility.apply_noise">
-<code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">apply_noise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">noise_type</span></em>, <em class="sig-param"><span class="n">noise_kwargs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#apply_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.apply_noise" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.apply_noise">
+<span class="sig-prename descclassname"><span class="pre">dival.util.odl_utility.</span></span><span class="sig-name descname"><span class="pre">apply_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#apply_noise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.apply_noise" title="Link to this definition"></a></dt>
 <dd><p>Apply noise to an odl element.</p>
 <p>Calls noise functions from <code class="xref py py-mod docutils literal notranslate"><span class="pre">odl.phantom.noise</span></code> or their equivalents
 from <a class="reference internal" href="dival.util.odl_noise_random_state.html#module-dival.util.odl_noise_random_state" title="dival.util.odl_noise_random_state"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dival.util.odl_noise_random_state</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>odl element</em>) – The element to which the noise is applied (in-place).</p></li>
 <li><p><strong>noise_type</strong> ({<code class="docutils literal notranslate"><span class="pre">'white'</span></code>, <code class="docutils literal notranslate"><span class="pre">'uniform'</span></code>, <code class="docutils literal notranslate"><span class="pre">'poisson'</span></code>, <code class="docutils literal notranslate"><span class="pre">'salt_pepper'</span></code>}) – Type of noise.</p></li>
@@ -282,18 +221,18 @@ Default is <cite>None</cite>.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.util.odl_utility.NoiseOperator">
-<em class="property">class </em><code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">NoiseOperator</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#NoiseOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.NoiseOperator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<dt class="sig sig-object py" id="dival.util.odl_utility.NoiseOperator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.util.odl_utility.</span></span><span class="sig-name descname"><span class="pre">NoiseOperator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#NoiseOperator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.NoiseOperator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></p>
 <p>Operator applying noise.</p>
 <p>Wraps <a class="reference internal" href="#dival.util.odl_utility.apply_noise" title="dival.util.odl_utility.apply_noise"><code class="xref py py-func docutils literal notranslate"><span class="pre">apply_noise()</span></code></a>, which calls noise functions from
 <code class="xref py py-mod docutils literal notranslate"><span class="pre">odl.phantom.noise</span></code> or their equivalents from
 <a class="reference internal" href="dival.util.odl_noise_random_state.html#module-dival.util.odl_noise_random_state" title="dival.util.odl_noise_random_state"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dival.util.odl_noise_random_state</span></code></a>.</p>
 <dl class="py method">
-<dt id="dival.util.odl_utility.NoiseOperator.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">domain</span></em>, <em class="sig-param"><span class="n">noise_type</span></em>, <em class="sig-param"><span class="n">noise_kwargs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#NoiseOperator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.NoiseOperator.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.NoiseOperator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#NoiseOperator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.NoiseOperator.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>space</strong> (<em>odl space</em>) – Domain and range.</p></li>
 <li><p><strong>noise_type</strong> ({<code class="docutils literal notranslate"><span class="pre">'white'</span></code>, <code class="docutils literal notranslate"><span class="pre">'uniform'</span></code>, <code class="docutils literal notranslate"><span class="pre">'poisson'</span></code>,                      <code class="docutils literal notranslate"><span class="pre">'salt_pepper'</span></code>}) – Type of noise.</p></li>
@@ -309,9 +248,9 @@ Default is <cite>None</cite>.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.util.odl_utility.CallbackStore">
-<em class="property">class </em><code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">CallbackStore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">function</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">step</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code></p>
+<dt class="sig sig-object py" id="dival.util.odl_utility.CallbackStore">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.util.odl_utility.</span></span><span class="sig-name descname"><span class="pre">CallbackStore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStore" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></p>
 <p>This is a modified copy of odl.solvers.util.callback.CallbackStore,
 Copyright held by The ODL contributors, subject to the terms of the
 Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed
@@ -322,11 +261,11 @@ Can optionally apply a function, for example the norm or calculating the
 residual.
 By default, calls the <code class="docutils literal notranslate"><span class="pre">copy()</span></code> method on the iterates before storing.</p>
 <dl class="py method">
-<dt id="dival.util.odl_utility.CallbackStore.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">function</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">step</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStore.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStore.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.CallbackStore.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStore.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStore.__init__" title="Link to this definition"></a></dt>
 <dd><p>Initialize a new instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>results</strong> (<em>list</em><em>, </em><em>optional</em>) – List in which to store the iterates.
 Default: new list (<code class="docutils literal notranslate"><span class="pre">[]</span></code>)</p></li>
@@ -349,17 +288,17 @@ Store the norm of the results:
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.util.odl_utility.CallbackStore.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStore.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStore.reset" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.CallbackStore.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStore.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStore.reset" title="Link to this definition"></a></dt>
 <dd><p>Clear the results list.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.util.odl_utility.CallbackStoreAfter">
-<em class="property">class </em><code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">CallbackStoreAfter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_after_iters</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStoreAfter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStoreAfter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.solvers.util.callback.Callback</span></code></p>
+<dt class="sig sig-object py" id="dival.util.odl_utility.CallbackStoreAfter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.util.odl_utility.</span></span><span class="sig-name descname"><span class="pre">CallbackStoreAfter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_after_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStoreAfter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStoreAfter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></p>
 <p>Callback for storing after specific numbers of iterations of a solver.
 Calls the <code class="docutils literal notranslate"><span class="pre">copy()</span></code> method on the iterates before storing.</p>
 <p>The source code of this class is based on
@@ -368,38 +307,38 @@ contributors, subject to the terms of the Mozilla Public License, v. 2.0.
 If a copy of the MPL was not distributed with this file, You can obtain one
 at <a class="reference external" href="https://mozilla.org/MPL/2.0/">https://mozilla.org/MPL/2.0/</a>.</p>
 <dl class="py method">
-<dt id="dival.util.odl_utility.CallbackStoreAfter.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_after_iters</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStoreAfter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStoreAfter.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.CallbackStoreAfter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_after_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStoreAfter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStoreAfter.__init__" title="Link to this definition"></a></dt>
 <dd><p>Initialize a new instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>results</strong> (<em>list</em><em>, </em><em>optional</em>) – List in which to store the iterates.
 Default: new list (<code class="docutils literal notranslate"><span class="pre">[]</span></code>)</p></li>
-<li><p><strong>store_after_iters</strong> (<em>list of int</em><em>, </em><em>optional</em>) – Numbers of iterations after which the result should be stored.</p></li>
+<li><p><strong>store_after_iters</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Numbers of iterations after which the result should be stored.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.util.odl_utility.CallbackStoreAfter.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStoreAfter.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStoreAfter.reset" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.CallbackStoreAfter.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#CallbackStoreAfter.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.CallbackStoreAfter.reset" title="Link to this definition"></a></dt>
 <dd><p>Clear the results list.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.util.odl_utility.ResizeOperator">
-<em class="property">class </em><code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">ResizeOperator</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#ResizeOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.ResizeOperator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<dt class="sig sig-object py" id="dival.util.odl_utility.ResizeOperator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.util.odl_utility.</span></span><span class="sig-name descname"><span class="pre">ResizeOperator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#ResizeOperator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.ResizeOperator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></p>
 <dl class="py method">
-<dt id="dival.util.odl_utility.ResizeOperator.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reco_space</span></em>, <em class="sig-param"><span class="n">space</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#ResizeOperator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.ResizeOperator.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.ResizeOperator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reco_space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#ResizeOperator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.ResizeOperator.__init__" title="Link to this definition"></a></dt>
 <dd><p>Initialize a new instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>domain</strong> (<cite>Set</cite>) – The domain of this operator, i.e., the set of elements to
 which this operator can be applied</p></li>
@@ -416,9 +355,9 @@ case, <code class="docutils literal notranslate"><span class="pre">domain</span>
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.util.odl_utility.RayBackProjection">
-<em class="property">class </em><code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">RayBackProjection</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#RayBackProjection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.operator.operator.Operator</span></code></p>
+<dt class="sig sig-object py" id="dival.util.odl_utility.RayBackProjection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.util.odl_utility.</span></span><span class="sig-name descname"><span class="pre">RayBackProjection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#RayBackProjection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></p>
 <p>Adjoint of the discrete Ray transform between L^p spaces.</p>
 <p>This class is copied and modified from
 <a class="reference external" href="https://github.com/odlgroup/odl/blob/25ec783954a85c2294ad5b76414f8c7c3cd2785d/odl/tomo/operators/ray_trafo.py#L324">odl</a>.</p>
@@ -427,11 +366,11 @@ case, <code class="docutils literal notranslate"><span class="pre">domain</span>
 pickleable by replacing its <code class="xref py py-attr docutils literal notranslate"><span class="pre">_adjoint</span></code> attribute with an instance of
 this class.</p>
 <dl class="py method">
-<dt id="dival.util.odl_utility.RayBackProjection.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#RayBackProjection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.RayBackProjection.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray_trafo</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#RayBackProjection.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection.__init__" title="Link to this definition"></a></dt>
 <dd><p>Initialize a new instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>domain</strong> (<cite>Set</cite>) – The domain of this operator, i.e., the set of elements to
 which this operator can be applied</p></li>
@@ -445,17 +384,17 @@ case, <code class="docutils literal notranslate"><span class="pre">domain</span>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="dival.util.odl_utility.RayBackProjection.geometry">
-<em class="property">property </em><code class="sig-name descname">geometry</code><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection.geometry" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.util.odl_utility.RayBackProjection.geometry">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geometry</span></span><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection.geometry" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
-<dt id="dival.util.odl_utility.RayBackProjection.adjoint">
-<em class="property">property </em><code class="sig-name descname">adjoint</code><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection.adjoint" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="dival.util.odl_utility.RayBackProjection.adjoint">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">adjoint</span></span><a class="headerlink" href="#dival.util.odl_utility.RayBackProjection.adjoint" title="Link to this definition"></a></dt>
 <dd><p>Adjoint of this operator (abstract).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>OpNotImplementedError</strong> – Since the adjoint cannot be default implemented.</p>
 </dd>
 </dl>
@@ -464,67 +403,50 @@ case, <code class="docutils literal notranslate"><span class="pre">domain</span>
 </dd></dl>
 
 <dl class="py function">
-<dt id="dival.util.odl_utility.patch_ray_trafo_for_pickling">
-<code class="sig-prename descclassname">dival.util.odl_utility.</code><code class="sig-name descname">patch_ray_trafo_for_pickling</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_trafo</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#patch_ray_trafo_for_pickling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.util.odl_utility.patch_ray_trafo_for_pickling" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.util.odl_utility.patch_ray_trafo_for_pickling">
+<span class="sig-prename descclassname"><span class="pre">dival.util.odl_utility.</span></span><span class="sig-name descname"><span class="pre">patch_ray_trafo_for_pickling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray_trafo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/util/odl_utility.html#patch_ray_trafo_for_pickling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.util.odl_utility.patch_ray_trafo_for_pickling" title="Link to this definition"></a></dt>
 <dd><p>Make an object of type <code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.operators.RayTransform</span></code> pickleable
 by overwriting the <code class="xref py py-attr docutils literal notranslate"><span class="pre">_adjoint</span></code> (which originally has a local class
 type) with a <code class="xref py py-class docutils literal notranslate"><span class="pre">dival.util.torch_utility.RayBackProjection</span></code> object.
 This can be required for multiprocessing.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ray_trafo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">odl.tomo.operators.RayTransform</span></code>) – The ray transform to patch for pickling.</p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="dival.util.plot.html" class="btn btn-neutral float-right" title="dival.util.plot module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="dival.util.odl_noise_random_state.html" class="btn btn-neutral float-left" title="dival.util.odl_noise_random_state module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dival.util.plot.html" class="btn btn-neutral float-right" title="dival.util.plot module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.
-
-    </p>
+    <p>&#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

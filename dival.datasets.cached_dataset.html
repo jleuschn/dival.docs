@@ -1,103 +1,65 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>dival.datasets.cached_dataset module &mdash; Deep Inversion Validation Library  documentation</title>
-  
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bcb77441" />
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dival.datasets.dataset module" href="dival.datasets.dataset.html" />
     <link rel="prev" title="dival.datasets.angle_subset_dataset module" href="dival.datasets.angle_subset_dataset.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home"> Deep Inversion Validation Library
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            Deep Inversion Validation Library
           </a>
-
-          
-            
-            
-              <div class="version">
-                0.6.1
-              </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dival.config.html">dival.config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.data.html">dival.data module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.html">dival.datasets package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.angle_subset_dataset.html">dival.datasets.angle_subset_dataset module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.datasets.cached_dataset module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dival.datasets.cached_dataset module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dival.datasets.cached_dataset.generate_cache_files"><code class="docutils literal notranslate"><span class="pre">generate_cache_files()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dival.datasets.cached_dataset.CachedDataset"><code class="docutils literal notranslate"><span class="pre">CachedDataset</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dival.datasets.cached_dataset.CachedDataset.__init__"><code class="docutils literal notranslate"><span class="pre">CachedDataset.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.datasets.cached_dataset.CachedDataset.generator"><code class="docutils literal notranslate"><span class="pre">CachedDataset.generator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.datasets.cached_dataset.CachedDataset.get_sample"><code class="docutils literal notranslate"><span class="pre">CachedDataset.get_sample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dival.datasets.cached_dataset.CachedDataset.get_samples"><code class="docutils literal notranslate"><span class="pre">CachedDataset.get_samples()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.dataset.html">dival.datasets.dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.ellipses_dataset.html">dival.datasets.ellipses_dataset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dival.datasets.fbp_dataset.html">dival.datasets.fbp_dataset module</a></li>
@@ -137,81 +99,39 @@
 <li class="toctree-l1"><a class="reference internal" href="dival.version.html">dival.version module</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Deep Inversion Validation Library</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="dival.datasets.html">dival.datasets package</a> &raquo;</li>
-        
-      <li>dival.datasets.cached_dataset module</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="dival.datasets.html">dival.datasets package</a></li>
+      <li class="breadcrumb-item active">dival.datasets.cached_dataset module</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/dival.datasets.cached_dataset.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="module-dival.datasets.cached_dataset">
-<span id="dival-datasets-cached-dataset-module"></span><h1>dival.datasets.cached_dataset module<a class="headerlink" href="#module-dival.datasets.cached_dataset" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="module-dival.datasets.cached_dataset">
+<span id="dival-datasets-cached-dataset-module"></span><h1>dival.datasets.cached_dataset module<a class="headerlink" href="#module-dival.datasets.cached_dataset" title="Link to this heading"></a></h1>
 <dl class="py function">
-<dt id="dival.datasets.cached_dataset.generate_cache_files">
-<code class="sig-prename descclassname">dival.datasets.cached_dataset.</code><code class="sig-name descname">generate_cache_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">cache_files</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">flush_interval</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#generate_cache_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.cached_dataset.generate_cache_files" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.datasets.cached_dataset.generate_cache_files">
+<span class="sig-prename descclassname"><span class="pre">dival.datasets.cached_dataset.</span></span><span class="sig-name descname"><span class="pre">generate_cache_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flush_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#generate_cache_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.datasets.cached_dataset.generate_cache_files" title="Link to this definition"></a></dt>
 <dd><p>Generate cache files for <a class="reference internal" href="#dival.datasets.cached_dataset.CachedDataset" title="dival.datasets.cached_dataset.CachedDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">CachedDataset</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – Dataset from which to cache samples.</p></li>
 <li><p><strong>cache_files</strong> (dict of [tuple of ] (str or <cite>None</cite>)) – <p>Filenames of the cache files for each part and for each component to
@@ -229,7 +149,7 @@ observations for parts <code class="docutils literal notranslate"><span class="p
 </pre></div>
 </div>
 </p></li>
-<li><p><strong>size</strong> (<em>dict of int</em><em>, </em><em>optional</em>) – Numbers of samples to cache for each dataset part.
+<li><p><strong>size</strong> (<em>dict</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Numbers of samples to cache for each dataset part.
 If a field is omitted or has value <cite>None</cite>, all samples are cached.
 Default: <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p></li>
 <li><p><strong>flush_interval</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of samples to retrieve before flushing to file (using memmap).
@@ -241,18 +161,18 @@ If <code class="docutils literal notranslate"><span class="pre">-1</span></code>
 </dd></dl>
 
 <dl class="py class">
-<dt id="dival.datasets.cached_dataset.CachedDataset">
-<em class="property">class </em><code class="sig-prename descclassname">dival.datasets.cached_dataset.</code><code class="sig-name descname">CachedDataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">space</span></em>, <em class="sig-param"><span class="n">cache_files</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">dival.datasets.dataset.Dataset</span></code></a></p>
+<dt class="sig sig-object py" id="dival.datasets.cached_dataset.CachedDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dival.datasets.cached_dataset.</span></span><span class="sig-name descname"><span class="pre">CachedDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 <p>Dataset that allows to replace elements of a dataset with cached data
 from .npy files.</p>
 <p>The arrays in the .npy files must have shape
 <code class="docutils literal notranslate"><span class="pre">(self.get_len(part),)</span> <span class="pre">+</span> <span class="pre">self.space[i].shape</span></code> for the i-th component.</p>
 <dl class="py method">
-<dt id="dival.datasets.cached_dataset.CachedDataset.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">space</span></em>, <em class="sig-param"><span class="n">cache_files</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.datasets.cached_dataset.CachedDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dataset</strong> (<a class="reference internal" href="dival.datasets.dataset.html#dival.datasets.dataset.Dataset" title="dival.datasets.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – Original dataset from which non-cached elements are used.
 Must support random access if any elements are not cached.</p></li>
@@ -273,7 +193,7 @@ observations for parts <code class="docutils literal notranslate"><span class="p
 </pre></div>
 </div>
 </p></li>
-<li><p><strong>size</strong> (<em>dict of int</em><em>, </em><em>optional</em>) – Numbers of samples for each part.
+<li><p><strong>size</strong> (<em>dict</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Numbers of samples for each part.
 If a field is omitted or has value <cite>None</cite>, all available samples
 are used, which may be less than the number of samples in the
 original dataset if the cache contains fewer samples.
@@ -284,28 +204,28 @@ Default: <code class="docutils literal notranslate"><span class="pre">{}</span><
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.datasets.cached_dataset.CachedDataset.generator">
-<code class="sig-name descname">generator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset.generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset.generator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.datasets.cached_dataset.CachedDataset.generator">
+<span class="sig-name descname"><span class="pre">generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset.generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset.generator" title="Link to this definition"></a></dt>
 <dd><p>Yield data.</p>
 <p>The default implementation calls <a class="reference internal" href="#dival.datasets.cached_dataset.CachedDataset.get_sample" title="dival.datasets.cached_dataset.CachedDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
 implements it (i.e., supports random access).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – Whether to yield train, validation or test data.
 Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p>
 </dd>
-<dt class="field-even">Yields</dt>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>data</strong> (<em>odl element or tuple of odl elements</em>) – Sample of the dataset.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.datasets.cached_dataset.CachedDataset.get_sample">
-<code class="sig-name descname">get_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset.get_sample" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.datasets.cached_dataset.CachedDataset.get_sample">
+<span class="sig-name descname"><span class="pre">get_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset.get_sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset.get_sample" title="Link to this definition"></a></dt>
 <dd><p>Get single sample by index.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>index</strong> (<em>int</em>) – Index of the sample.</p></li>
 <li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
@@ -324,24 +244,24 @@ If a tuple element is a bool, it has the following meaning:</p>
 </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>sample</strong> – E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
 <code class="docutils literal notranslate"><span class="pre">out=(True,</span> <span class="pre">False)</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="dival.datasets.cached_dataset.CachedDataset.get_samples">
-<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">part</span><span class="o">=</span><span class="default_value">'train'</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset.get_samples" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dival.datasets.cached_dataset.CachedDataset.get_samples">
+<span class="sig-name descname"><span class="pre">get_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dival/datasets/cached_dataset.html#CachedDataset.get_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dival.datasets.cached_dataset.CachedDataset.get_samples" title="Link to this definition"></a></dt>
 <dd><p>Get samples by slice or range.</p>
 <p>The default implementation calls <a class="reference internal" href="#dival.datasets.cached_dataset.CachedDataset.get_sample" title="dival.datasets.cached_dataset.CachedDataset.get_sample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample()</span></code></a> if the dataset
 implements it.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> (<em>slice</em><em> or </em><em>range</em>) – Indexes of the samples.</p></li>
 <li><p><strong>part</strong> ({<code class="docutils literal notranslate"><span class="pre">'train'</span></code>, <code class="docutils literal notranslate"><span class="pre">'validation'</span></code>, <code class="docutils literal notranslate"><span class="pre">'test'</span></code>}, optional) – The data part. Default is <code class="docutils literal notranslate"><span class="pre">'train'</span></code>.</p></li>
@@ -361,7 +281,7 @@ If a tuple element is a bool, it has the following meaning:</p>
 </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>samples</strong> – If the dataset has multiple arrays per sample, a tuple holding
 arrays is returned.
 E.g. for a pair dataset: <code class="docutils literal notranslate"><span class="pre">(array,</span> <span class="pre">None)</span></code> if
@@ -369,7 +289,7 @@ E.g. for a pair dataset: <code class="docutils literal notranslate"><span class=
 The samples are stacked in the first
 (additional) dimension of each array.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>[tuple of ] (array-like or <cite>None</cite>)</p>
 </dd>
 </dl>
@@ -377,54 +297,37 @@ The samples are stacked in the first
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="dival.datasets.dataset.html" class="btn btn-neutral float-right" title="dival.datasets.dataset module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="dival.datasets.angle_subset_dataset.html" class="btn btn-neutral float-left" title="dival.datasets.angle_subset_dataset module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dival.datasets.dataset.html" class="btn btn-neutral float-right" title="dival.datasets.dataset module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.
-
-    </p>
+    <p>&#169; Copyright 2020, Johannes Leuschner, Maximilian Schmidt, Daniel Otero Baguer, David Erzmann.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
